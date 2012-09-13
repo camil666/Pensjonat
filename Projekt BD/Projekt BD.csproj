@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{723ED452-A908-4462-9309-41D650E257F7}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Projekt_BD</RootNamespace>
+    <AssemblyName>Projekt BD</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.4.3.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ControllerFactory.cs" />
+    <Compile Include="ControllerTypes.cs" />
+    <Compile Include="Controller\AdminFormController.cs" />
+    <Compile Include="Controller\ClientSearchController.cs" />
+    <Compile Include="Controller\ControllerBase.cs" />
+    <Compile Include="Controller\EditRoomFeatureController.cs" />
+    <Compile Include="Controller\EditRoomTypeController.cs" />
+    <Compile Include="Controller\EmployeeFormController.cs" />
+    <Compile Include="Controller\LoginFormController.cs" />
+    <Compile Include="Controller\NewClientFormController.cs" />
+    <Compile Include="Controller\NewEmployeeFormController.cs" />
+    <Compile Include="Controller\ReservationFormController.cs" />
+    <Compile Include="Controller\NewVisitFormController.cs" />
+    <Compile Include="Controller\ReceptionistFormController.cs" />
+    <Compile Include="Interfaces\IController.cs" />
+    <Compile Include="PensjonatDAL.cs" />
+    <Compile Include="View\AdminForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AdminForm.Designer.cs">
+      <DependentUpon>AdminForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClientSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ClientSearch.Designer.cs">
+      <DependentUpon>ClientSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditRoomFeatureForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\EditRoomFeatureForm.Designer.cs">
+      <DependentUpon>EditRoomFeatureForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditRoomForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\EditRoomForm.Designer.cs">
+      <DependentUpon>EditRoomForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditRoomTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\EditRoomTypeForm.Designer.cs">
+      <DependentUpon>EditRoomTypeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\EmployeeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\EmployeeForm.Designer.cs">
+      <DependentUpon>EmployeeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\NewClientForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\NewClientForm.Designer.cs">
+      <DependentUpon>NewClientForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\NewEmployeeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\NewEmployeeForm.Designer.cs">
+      <DependentUpon>NewEmployeeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ReservationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ReservationForm.Designer.cs">
+      <DependentUpon>ReservationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\NewVisitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\NewVisitForm.Designer.cs">
+      <DependentUpon>NewVisitForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ReceptionistForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ReceptionistForm.Designer.cs">
+      <DependentUpon>ReceptionistForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="View\AdminForm.resx">
+      <DependentUpon>AdminForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ClientSearch.resx">
+      <DependentUpon>ClientSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EditRoomFeatureForm.resx">
+      <DependentUpon>EditRoomFeatureForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EditRoomTypeForm.resx">
+      <DependentUpon>EditRoomTypeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EmployeeForm.resx">
+      <DependentUpon>EmployeeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="View\NewClientForm.resx">
+      <DependentUpon>NewClientForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\NewEmployeeForm.resx">
+      <DependentUpon>NewEmployeeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ReservationForm.resx">
+      <DependentUpon>ReservationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\NewVisitForm.resx">
+      <DependentUpon>NewVisitForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ReceptionistForm.resx">
+      <DependentUpon>ReceptionistForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Abstract\" />
+    <Folder Include="Logic\" />
+    <Folder Include="Model\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{E6F453D8-2BE3-44FD-B04E-6179B93DCDD5}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

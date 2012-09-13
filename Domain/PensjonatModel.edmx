@@ -1,0 +1,1304 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PensjonatModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="PensjonatModelStoreContainer">
+          <EntitySet Name="Discounts" EntityType="PensjonatModel.Store.Discounts" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Employees" EntityType="PensjonatModel.Store.Employees" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmployeeServices" EntityType="PensjonatModel.Store.EmployeeServices" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Features" EntityType="PensjonatModel.Store.Features" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Guests" EntityType="PensjonatModel.Store.Guests" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MealPlans" EntityType="PensjonatModel.Store.MealPlans" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Reservations" EntityType="PensjonatModel.Store.Reservations" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Roles" EntityType="PensjonatModel.Store.Roles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RoomFeatures" EntityType="PensjonatModel.Store.RoomFeatures" store:Type="Tables" store:Schema="dbo" store:Name="RoomFeatures">
+            <DefiningQuery>SELECT 
+      [RoomFeatures].[RoomNumber] AS [RoomNumber], 
+      [RoomFeatures].[FeatureId] AS [FeatureId]
+      FROM [dbo].[RoomFeatures] AS [RoomFeatures]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="RoomReservations" EntityType="PensjonatModel.Store.RoomReservations" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Rooms" EntityType="PensjonatModel.Store.Rooms" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RoomTypes" EntityType="PensjonatModel.Store.RoomTypes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Services" EntityType="PensjonatModel.Store.Services" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ServiceTypes" EntityType="PensjonatModel.Store.ServiceTypes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tasks" EntityType="PensjonatModel.Store.Tasks" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TaskTypes" EntityType="PensjonatModel.Store.TaskTypes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="VisitMealPlans" EntityType="PensjonatModel.Store.VisitMealPlans" store:Type="Tables" store:Schema="dbo" store:Name="VisitMealPlans">
+            <DefiningQuery>SELECT 
+      [VisitMealPlans].[PlanId] AS [PlanId], 
+      [VisitMealPlans].[VisitId] AS [VisitId], 
+      [VisitMealPlans].[StartDate] AS [StartDate], 
+      [VisitMealPlans].[EndDate] AS [EndDate]
+      FROM [dbo].[VisitMealPlans] AS [VisitMealPlans]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Visits" EntityType="PensjonatModel.Store.Visits" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Discount_Guest" Association="PensjonatModel.Store.FK_Discount_Guest">
+            <End Role="Guests" EntitySet="Guests" />
+            <End Role="Discounts" EntitySet="Discounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeService_Employee" Association="PensjonatModel.Store.FK_EmployeeService_Employee">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="EmployeeServices" EntitySet="EmployeeServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeService_ServiceType" Association="PensjonatModel.Store.FK_EmployeeService_ServiceType">
+            <End Role="ServiceTypes" EntitySet="ServiceTypes" />
+            <End Role="EmployeeServices" EntitySet="EmployeeServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservation_Guest" Association="PensjonatModel.Store.FK_Reservation_Guest">
+            <End Role="Guests" EntitySet="Guests" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Room_RoomType" Association="PensjonatModel.Store.FK_Room_RoomType">
+            <End Role="RoomTypes" EntitySet="RoomTypes" />
+            <End Role="Rooms" EntitySet="Rooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoomFeature_Feature" Association="PensjonatModel.Store.FK_RoomFeature_Feature">
+            <End Role="Features" EntitySet="Features" />
+            <End Role="RoomFeatures" EntitySet="RoomFeatures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoomFeature_Room" Association="PensjonatModel.Store.FK_RoomFeature_Room">
+            <End Role="Rooms" EntitySet="Rooms" />
+            <End Role="RoomFeatures" EntitySet="RoomFeatures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoomReservation_Reservation" Association="PensjonatModel.Store.FK_RoomReservation_Reservation">
+            <End Role="Reservations" EntitySet="Reservations" />
+            <End Role="RoomReservations" EntitySet="RoomReservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoomReservation_Room" Association="PensjonatModel.Store.FK_RoomReservation_Room">
+            <End Role="Rooms" EntitySet="Rooms" />
+            <End Role="RoomReservations" EntitySet="RoomReservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Service_ServiceType" Association="PensjonatModel.Store.FK_Service_ServiceType">
+            <End Role="ServiceTypes" EntitySet="ServiceTypes" />
+            <End Role="Services" EntitySet="Services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Service_Visit" Association="PensjonatModel.Store.FK_Service_Visit">
+            <End Role="Visits" EntitySet="Visits" />
+            <End Role="Services" EntitySet="Services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_Employee" Association="PensjonatModel.Store.FK_Task_Employee">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_TaskType" Association="PensjonatModel.Store.FK_Task_TaskType">
+            <End Role="TaskTypes" EntitySet="TaskTypes" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visit_Guest" Association="PensjonatModel.Store.FK_Visit_Guest">
+            <End Role="Guests" EntitySet="Guests" />
+            <End Role="Visits" EntitySet="Visits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visit_Room" Association="PensjonatModel.Store.FK_Visit_Room">
+            <End Role="Rooms" EntitySet="Rooms" />
+            <End Role="Visits" EntitySet="Visits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visit_Visit" Association="PensjonatModel.Store.FK_Visit_Visit">
+            <End Role="Visits" EntitySet="Visits" />
+            <End Role="Visits1" EntitySet="Visits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitMealPlan_MealPlan" Association="PensjonatModel.Store.FK_VisitMealPlan_MealPlan">
+            <End Role="MealPlans" EntitySet="MealPlans" />
+            <End Role="VisitMealPlans" EntitySet="VisitMealPlans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitMealPlan_Visit" Association="PensjonatModel.Store.FK_VisitMealPlan_Visit">
+            <End Role="Visits" EntitySet="Visits" />
+            <End Role="VisitMealPlans" EntitySet="VisitMealPlans" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Discounts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="GuestId" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="TelephoneNumber" Type="varchar" Nullable="false" MaxLength="15" />
+          <Property Name="Street" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="PostCode" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="ApartmentNumber" Type="varchar" Nullable="false" MaxLength="4" />
+          <Property Name="HouseNumber" Type="varchar" Nullable="false" MaxLength="4" />
+          <Property Name="Town" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="Password" Type="varchar" MaxLength="40" />
+          <Property Name="Role" Type="int" />
+        </EntityType>
+        <EntityType Name="EmployeeServices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Features">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Guests">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Street" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="PostCode" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="ApartmentNumber" Type="varchar" Nullable="false" MaxLength="4" />
+          <Property Name="HouseNumber" Type="varchar" Nullable="false" MaxLength="4" />
+          <Property Name="Town" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="TelephoneNumber" Type="varchar" Nullable="false" MaxLength="15" />
+          <Property Name="CountryId" Type="varchar" Nullable="false" MaxLength="3" />
+          <Property Name="IdNumber" Type="varchar" MaxLength="20" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="MealPlans">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PeopleCount" Type="int" Nullable="false" />
+          <Property Name="Breakfast" Type="bit" Nullable="false" />
+          <Property Name="Lunch" Type="bit" Nullable="false" />
+          <Property Name="Dinner" Type="bit" Nullable="false" />
+          <Property Name="Vegetarian" Type="bit" Nullable="false" />
+          <Property Name="Diet" Type="bit" Nullable="false" />
+          <Property Name="ToRoom" Type="bit" Nullable="false" />
+          <Property Name="AdditionalInfo" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Reservations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="GuestId" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" Nullable="false" />
+          <Property Name="AdditionalInfo" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="role" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="id" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'DBPensjon.dbo.RoomFeatures' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="RoomFeatures">
+          <Key>
+            <PropertyRef Name="RoomNumber" />
+            <PropertyRef Name="FeatureId" />
+          </Key>
+          <Property Name="RoomNumber" Type="int" Nullable="false" />
+          <Property Name="FeatureId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RoomReservations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="ReservationId" Type="int" Nullable="false" />
+          <Property Name="RoomId" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Rooms">
+          <Key>
+            <PropertyRef Name="Number" />
+          </Key>
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="TypeId" Type="int" Nullable="false" />
+          <Property Name="Capacity" Type="int" Nullable="false" />
+          <Property Name="Floor" Type="int" Nullable="false" />
+          <Property Name="Vacancy" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RoomTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="PricePerPerson" Type="float" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Services">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="VisitId" Type="int" Nullable="false" />
+          <Property Name="TypeId" Type="int" />
+          <Property Name="Quantity" Type="bigint" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
+          <Property Name="AdditionalInfo" Type="varchar" MaxLength="50" />
+          <Property Name="CustomName" Type="varchar" MaxLength="50" />
+          <Property Name="CustomDescription" Type="varchar" MaxLength="50" />
+          <Property Name="CustomCharge" Type="float" />
+        </EntityType>
+        <EntityType Name="ServiceTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="Charge" Type="float" />
+        </EntityType>
+        <EntityType Name="Tasks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="IsDone" Type="bit" Nullable="false" />
+          <Property Name="TypeId" Type="int" />
+        </EntityType>
+        <EntityType Name="TaskTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'DBPensjon.dbo.VisitMealPlans' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="VisitMealPlans">
+          <Key>
+            <PropertyRef Name="PlanId" />
+            <PropertyRef Name="VisitId" />
+            <PropertyRef Name="StartDate" />
+            <PropertyRef Name="EndDate" />
+          </Key>
+          <Property Name="PlanId" Type="int" Nullable="false" />
+          <Property Name="VisitId" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Visits">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="GuestId" Type="int" Nullable="false" />
+          <Property Name="RoomId" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" Nullable="false" />
+          <Property Name="AdditionalInfo" Type="varchar" MaxLength="50" />
+          <Property Name="Advance" Type="float" />
+        </EntityType>
+        <Association Name="FK_Discount_Guest">
+          <End Role="Guests" Type="PensjonatModel.Store.Guests" Multiplicity="1" />
+          <End Role="Discounts" Type="PensjonatModel.Store.Discounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Guests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Discounts">
+              <PropertyRef Name="GuestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeService_Employee">
+          <End Role="Employees" Type="PensjonatModel.Store.Employees" Multiplicity="1" />
+          <End Role="EmployeeServices" Type="PensjonatModel.Store.EmployeeServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeeServices">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeService_ServiceType">
+          <End Role="ServiceTypes" Type="PensjonatModel.Store.ServiceTypes" Multiplicity="1" />
+          <End Role="EmployeeServices" Type="PensjonatModel.Store.EmployeeServices" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeeServices">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservation_Guest">
+          <End Role="Guests" Type="PensjonatModel.Store.Guests" Multiplicity="1" />
+          <End Role="Reservations" Type="PensjonatModel.Store.Reservations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Guests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="GuestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Room_RoomType">
+          <End Role="RoomTypes" Type="PensjonatModel.Store.RoomTypes" Multiplicity="1" />
+          <End Role="Rooms" Type="PensjonatModel.Store.Rooms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rooms">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoomFeature_Feature">
+          <End Role="Features" Type="PensjonatModel.Store.Features" Multiplicity="1" />
+          <End Role="RoomFeatures" Type="PensjonatModel.Store.RoomFeatures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Features">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RoomFeatures">
+              <PropertyRef Name="FeatureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoomFeature_Room">
+          <End Role="Rooms" Type="PensjonatModel.Store.Rooms" Multiplicity="1" />
+          <End Role="RoomFeatures" Type="PensjonatModel.Store.RoomFeatures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rooms">
+              <PropertyRef Name="Number" />
+            </Principal>
+            <Dependent Role="RoomFeatures">
+              <PropertyRef Name="RoomNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoomReservation_Reservation">
+          <End Role="Reservations" Type="PensjonatModel.Store.Reservations" Multiplicity="1" />
+          <End Role="RoomReservations" Type="PensjonatModel.Store.RoomReservations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RoomReservations">
+              <PropertyRef Name="ReservationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoomReservation_Room">
+          <End Role="Rooms" Type="PensjonatModel.Store.Rooms" Multiplicity="1" />
+          <End Role="RoomReservations" Type="PensjonatModel.Store.RoomReservations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rooms">
+              <PropertyRef Name="Number" />
+            </Principal>
+            <Dependent Role="RoomReservations">
+              <PropertyRef Name="RoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Service_ServiceType">
+          <End Role="ServiceTypes" Type="PensjonatModel.Store.ServiceTypes" Multiplicity="0..1" />
+          <End Role="Services" Type="PensjonatModel.Store.Services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Services">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Service_Visit">
+          <End Role="Visits" Type="PensjonatModel.Store.Visits" Multiplicity="1" />
+          <End Role="Services" Type="PensjonatModel.Store.Services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Visits">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Services">
+              <PropertyRef Name="VisitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_Employee">
+          <End Role="Employees" Type="PensjonatModel.Store.Employees" Multiplicity="1" />
+          <End Role="Tasks" Type="PensjonatModel.Store.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_TaskType">
+          <End Role="TaskTypes" Type="PensjonatModel.Store.TaskTypes" Multiplicity="0..1" />
+          <End Role="Tasks" Type="PensjonatModel.Store.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visit_Guest">
+          <End Role="Guests" Type="PensjonatModel.Store.Guests" Multiplicity="1" />
+          <End Role="Visits" Type="PensjonatModel.Store.Visits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Guests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Visits">
+              <PropertyRef Name="GuestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visit_Room">
+          <End Role="Rooms" Type="PensjonatModel.Store.Rooms" Multiplicity="1" />
+          <End Role="Visits" Type="PensjonatModel.Store.Visits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rooms">
+              <PropertyRef Name="Number" />
+            </Principal>
+            <Dependent Role="Visits">
+              <PropertyRef Name="RoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visit_Visit">
+          <End Role="Visits" Type="PensjonatModel.Store.Visits" Multiplicity="0..1" />
+          <End Role="Visits1" Type="PensjonatModel.Store.Visits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Visits">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Visits1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VisitMealPlan_MealPlan">
+          <End Role="MealPlans" Type="PensjonatModel.Store.MealPlans" Multiplicity="1" />
+          <End Role="VisitMealPlans" Type="PensjonatModel.Store.VisitMealPlans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MealPlans">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VisitMealPlans">
+              <PropertyRef Name="PlanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VisitMealPlan_Visit">
+          <End Role="Visits" Type="PensjonatModel.Store.Visits" Multiplicity="1" />
+          <End Role="VisitMealPlans" Type="PensjonatModel.Store.VisitMealPlans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Visits">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VisitMealPlans">
+              <PropertyRef Name="VisitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PensjonatModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="PensjonatContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Discounts" EntityType="PensjonatModel.Discount" />
+          <EntitySet Name="Employees" EntityType="PensjonatModel.Employee" />
+          <EntitySet Name="Features" EntityType="PensjonatModel.Feature" />
+          <EntitySet Name="Guests" EntityType="PensjonatModel.Guest" />
+          <EntitySet Name="MealPlans" EntityType="PensjonatModel.MealPlan" />
+          <EntitySet Name="Reservations" EntityType="PensjonatModel.Reservation" />
+          <EntitySet Name="Roles" EntityType="PensjonatModel.Role" />
+          <EntitySet Name="RoomReservations" EntityType="PensjonatModel.RoomReservation" />
+          <EntitySet Name="Rooms" EntityType="PensjonatModel.Room" />
+          <EntitySet Name="RoomTypes" EntityType="PensjonatModel.RoomType" />
+          <EntitySet Name="Services" EntityType="PensjonatModel.Service" />
+          <EntitySet Name="ServiceTypes" EntityType="PensjonatModel.ServiceType" />
+          <EntitySet Name="Tasks" EntityType="PensjonatModel.Task" />
+          <EntitySet Name="TaskTypes" EntityType="PensjonatModel.TaskType" />
+          <EntitySet Name="VisitMealPlans" EntityType="PensjonatModel.VisitMealPlan" />
+          <EntitySet Name="Visits" EntityType="PensjonatModel.Visit" />
+          <AssociationSet Name="FK_Discount_Guest" Association="PensjonatModel.FK_Discount_Guest">
+            <End Role="Guests" EntitySet="Guests" />
+            <End Role="Discounts" EntitySet="Discounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_Employee" Association="PensjonatModel.FK_Task_Employee">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservation_Guest" Association="PensjonatModel.FK_Reservation_Guest">
+            <End Role="Guests" EntitySet="Guests" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visit_Guest" Association="PensjonatModel.FK_Visit_Guest">
+            <End Role="Guests" EntitySet="Guests" />
+            <End Role="Visits" EntitySet="Visits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitMealPlan_MealPlan" Association="PensjonatModel.FK_VisitMealPlan_MealPlan">
+            <End Role="MealPlans" EntitySet="MealPlans" />
+            <End Role="VisitMealPlans" EntitySet="VisitMealPlans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoomReservation_Reservation" Association="PensjonatModel.FK_RoomReservation_Reservation">
+            <End Role="Reservations" EntitySet="Reservations" />
+            <End Role="RoomReservations" EntitySet="RoomReservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoomReservation_Room" Association="PensjonatModel.FK_RoomReservation_Room">
+            <End Role="Rooms" EntitySet="Rooms" />
+            <End Role="RoomReservations" EntitySet="RoomReservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Room_RoomType" Association="PensjonatModel.FK_Room_RoomType">
+            <End Role="RoomTypes" EntitySet="RoomTypes" />
+            <End Role="Rooms" EntitySet="Rooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visit_Room" Association="PensjonatModel.FK_Visit_Room">
+            <End Role="Rooms" EntitySet="Rooms" />
+            <End Role="Visits" EntitySet="Visits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Service_ServiceType" Association="PensjonatModel.FK_Service_ServiceType">
+            <End Role="ServiceTypes" EntitySet="ServiceTypes" />
+            <End Role="Services" EntitySet="Services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Service_Visit" Association="PensjonatModel.FK_Service_Visit">
+            <End Role="Visits" EntitySet="Visits" />
+            <End Role="Services" EntitySet="Services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_TaskType" Association="PensjonatModel.FK_Task_TaskType">
+            <End Role="TaskTypes" EntitySet="TaskTypes" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VisitMealPlan_Visit" Association="PensjonatModel.FK_VisitMealPlan_Visit">
+            <End Role="Visits" EntitySet="Visits" />
+            <End Role="VisitMealPlans" EntitySet="VisitMealPlans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visit_Visit" Association="PensjonatModel.FK_Visit_Visit">
+            <End Role="Visits" EntitySet="Visits" />
+            <End Role="Visits1" EntitySet="Visits" />
+          </AssociationSet>
+          <AssociationSet Name="EmployeeServices" Association="PensjonatModel.EmployeeServices">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="ServiceTypes" EntitySet="ServiceTypes" />
+          </AssociationSet>
+          <AssociationSet Name="RoomFeatures" Association="PensjonatModel.RoomFeatures">
+            <End Role="Features" EntitySet="Features" />
+            <End Role="Rooms" EntitySet="Rooms" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Discount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GuestId" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Guest" Relationship="PensjonatModel.FK_Discount_Guest" FromRole="Discounts" ToRole="Guests" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="TelephoneNumber" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="Street" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="PostCode" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="ApartmentNumber" Type="String" Nullable="false" MaxLength="4" Unicode="false" FixedLength="false" />
+          <Property Name="HouseNumber" Type="String" Nullable="false" MaxLength="4" Unicode="false" FixedLength="false" />
+          <Property Name="Town" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="40" Unicode="false" FixedLength="false" />
+          <Property Name="Role" Type="Int32" />
+          <NavigationProperty Name="Tasks" Relationship="PensjonatModel.FK_Task_Employee" FromRole="Employees" ToRole="Tasks" />
+          <NavigationProperty Name="ServiceTypes" Relationship="PensjonatModel.EmployeeServices" FromRole="Employees" ToRole="ServiceTypes" />
+        </EntityType>
+        <EntityType Name="Feature">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Rooms" Relationship="PensjonatModel.RoomFeatures" FromRole="Features" ToRole="Rooms" />
+        </EntityType>
+        <EntityType Name="Guest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Street" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="PostCode" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="ApartmentNumber" Type="String" Nullable="false" MaxLength="4" Unicode="false" FixedLength="false" />
+          <Property Name="HouseNumber" Type="String" Nullable="false" MaxLength="4" Unicode="false" FixedLength="false" />
+          <Property Name="Town" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="TelephoneNumber" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="CountryId" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+          <Property Name="IdNumber" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Discounts" Relationship="PensjonatModel.FK_Discount_Guest" FromRole="Guests" ToRole="Discounts" />
+          <NavigationProperty Name="Reservations" Relationship="PensjonatModel.FK_Reservation_Guest" FromRole="Guests" ToRole="Reservations" />
+          <NavigationProperty Name="Visits" Relationship="PensjonatModel.FK_Visit_Guest" FromRole="Guests" ToRole="Visits" />
+        </EntityType>
+        <EntityType Name="MealPlan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PeopleCount" Type="Int32" Nullable="false" />
+          <Property Name="Breakfast" Type="Boolean" Nullable="false" />
+          <Property Name="Lunch" Type="Boolean" Nullable="false" />
+          <Property Name="Dinner" Type="Boolean" Nullable="false" />
+          <Property Name="Vegetarian" Type="Boolean" Nullable="false" />
+          <Property Name="Diet" Type="Boolean" Nullable="false" />
+          <Property Name="ToRoom" Type="Boolean" Nullable="false" />
+          <Property Name="AdditionalInfo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="VisitMealPlans" Relationship="PensjonatModel.FK_VisitMealPlan_MealPlan" FromRole="MealPlans" ToRole="VisitMealPlans" />
+        </EntityType>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GuestId" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" />
+          <Property Name="AdditionalInfo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Guest" Relationship="PensjonatModel.FK_Reservation_Guest" FromRole="Reservations" ToRole="Guests" />
+          <NavigationProperty Name="RoomReservations" Relationship="PensjonatModel.FK_RoomReservation_Reservation" FromRole="Reservations" ToRole="RoomReservations" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="role1" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RoomReservation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="ReservationId" Type="Int32" Nullable="false" />
+          <Property Name="RoomId" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" />
+          <Property Name="EndDate" Type="DateTime" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Reservation" Relationship="PensjonatModel.FK_RoomReservation_Reservation" FromRole="RoomReservations" ToRole="Reservations" />
+          <NavigationProperty Name="Room" Relationship="PensjonatModel.FK_RoomReservation_Room" FromRole="RoomReservations" ToRole="Rooms" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="Number" />
+          </Key>
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="TypeId" Type="Int32" Nullable="false" />
+          <Property Name="Capacity" Type="Int32" Nullable="false" />
+          <Property Name="Floor" Type="Int32" Nullable="false" />
+          <Property Name="Vacancy" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="RoomReservations" Relationship="PensjonatModel.FK_RoomReservation_Room" FromRole="Rooms" ToRole="RoomReservations" />
+          <NavigationProperty Name="RoomType" Relationship="PensjonatModel.FK_Room_RoomType" FromRole="Rooms" ToRole="RoomTypes" />
+          <NavigationProperty Name="Visits" Relationship="PensjonatModel.FK_Visit_Room" FromRole="Rooms" ToRole="Visits" />
+          <NavigationProperty Name="Features" Relationship="PensjonatModel.RoomFeatures" FromRole="Rooms" ToRole="Features" />
+        </EntityType>
+        <EntityType Name="RoomType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <Property Name="PricePerPerson" Type="Double" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Rooms" Relationship="PensjonatModel.FK_Room_RoomType" FromRole="RoomTypes" ToRole="Rooms" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VisitId" Type="Int32" Nullable="false" />
+          <Property Name="TypeId" Type="Int32" />
+          <Property Name="Quantity" Type="Int64" />
+          <Property Name="StartDate" Type="DateTime" />
+          <Property Name="EndDate" Type="DateTime" />
+          <Property Name="AdditionalInfo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CustomName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CustomDescription" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CustomCharge" Type="Double" />
+          <NavigationProperty Name="ServiceType" Relationship="PensjonatModel.FK_Service_ServiceType" FromRole="Services" ToRole="ServiceTypes" />
+          <NavigationProperty Name="Visit" Relationship="PensjonatModel.FK_Service_Visit" FromRole="Services" ToRole="Visits" />
+        </EntityType>
+        <EntityType Name="ServiceType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Charge" Type="Double" />
+          <NavigationProperty Name="Services" Relationship="PensjonatModel.FK_Service_ServiceType" FromRole="ServiceTypes" ToRole="Services" />
+          <NavigationProperty Name="Employee" Relationship="PensjonatModel.EmployeeServices" FromRole="ServiceTypes" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="StartDate" Type="DateTime" />
+          <Property Name="EndDate" Type="DateTime" />
+          <Property Name="IsDone" Type="Boolean" Nullable="false" />
+          <Property Name="TypeId" Type="Int32" />
+          <NavigationProperty Name="Employee" Relationship="PensjonatModel.FK_Task_Employee" FromRole="Tasks" ToRole="Employees" />
+          <NavigationProperty Name="TaskType" Relationship="PensjonatModel.FK_Task_TaskType" FromRole="Tasks" ToRole="TaskTypes" />
+        </EntityType>
+        <EntityType Name="TaskType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Tasks" Relationship="PensjonatModel.FK_Task_TaskType" FromRole="TaskTypes" ToRole="Tasks" />
+        </EntityType>
+        <EntityType Name="VisitMealPlan">
+          <Key>
+            <PropertyRef Name="PlanId" />
+            <PropertyRef Name="VisitId" />
+            <PropertyRef Name="StartDate" />
+            <PropertyRef Name="EndDate" />
+          </Key>
+          <Property Name="PlanId" Type="Int32" Nullable="false" />
+          <Property Name="VisitId" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="MealPlan" Relationship="PensjonatModel.FK_VisitMealPlan_MealPlan" FromRole="VisitMealPlans" ToRole="MealPlans" />
+          <NavigationProperty Name="Visit" Relationship="PensjonatModel.FK_VisitMealPlan_Visit" FromRole="VisitMealPlans" ToRole="Visits" />
+        </EntityType>
+        <EntityType Name="Visit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="GuestId" Type="Int32" Nullable="false" />
+          <Property Name="RoomId" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" />
+          <Property Name="AdditionalInfo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Advance" Type="Double" />
+          <NavigationProperty Name="Guest" Relationship="PensjonatModel.FK_Visit_Guest" FromRole="Visits" ToRole="Guests" />
+          <NavigationProperty Name="Room" Relationship="PensjonatModel.FK_Visit_Room" FromRole="Visits" ToRole="Rooms" />
+          <NavigationProperty Name="Services" Relationship="PensjonatModel.FK_Service_Visit" FromRole="Visits" ToRole="Services" />
+          <NavigationProperty Name="VisitMealPlans" Relationship="PensjonatModel.FK_VisitMealPlan_Visit" FromRole="Visits" ToRole="VisitMealPlans" />
+          <NavigationProperty Name="Visits1" Relationship="PensjonatModel.FK_Visit_Visit" FromRole="Visits" ToRole="Visits1" />
+          <NavigationProperty Name="Visit1" Relationship="PensjonatModel.FK_Visit_Visit" FromRole="Visits1" ToRole="Visits" />
+        </EntityType>
+        <Association Name="FK_Discount_Guest">
+          <End Role="Guests" Type="PensjonatModel.Guest" Multiplicity="1" />
+          <End Role="Discounts" Type="PensjonatModel.Discount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Guests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Discounts">
+              <PropertyRef Name="GuestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_Employee">
+          <End Role="Employees" Type="PensjonatModel.Employee" Multiplicity="1" />
+          <End Role="Tasks" Type="PensjonatModel.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservation_Guest">
+          <End Role="Guests" Type="PensjonatModel.Guest" Multiplicity="1" />
+          <End Role="Reservations" Type="PensjonatModel.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Guests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="GuestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visit_Guest">
+          <End Role="Guests" Type="PensjonatModel.Guest" Multiplicity="1" />
+          <End Role="Visits" Type="PensjonatModel.Visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Guests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Visits">
+              <PropertyRef Name="GuestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VisitMealPlan_MealPlan">
+          <End Role="MealPlans" Type="PensjonatModel.MealPlan" Multiplicity="1" />
+          <End Role="VisitMealPlans" Type="PensjonatModel.VisitMealPlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MealPlans">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VisitMealPlans">
+              <PropertyRef Name="PlanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoomReservation_Reservation">
+          <End Role="Reservations" Type="PensjonatModel.Reservation" Multiplicity="1" />
+          <End Role="RoomReservations" Type="PensjonatModel.RoomReservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RoomReservations">
+              <PropertyRef Name="ReservationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoomReservation_Room">
+          <End Role="Rooms" Type="PensjonatModel.Room" Multiplicity="1" />
+          <End Role="RoomReservations" Type="PensjonatModel.RoomReservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rooms">
+              <PropertyRef Name="Number" />
+            </Principal>
+            <Dependent Role="RoomReservations">
+              <PropertyRef Name="RoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Room_RoomType">
+          <End Role="RoomTypes" Type="PensjonatModel.RoomType" Multiplicity="1" />
+          <End Role="Rooms" Type="PensjonatModel.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rooms">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visit_Room">
+          <End Role="Rooms" Type="PensjonatModel.Room" Multiplicity="1" />
+          <End Role="Visits" Type="PensjonatModel.Visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rooms">
+              <PropertyRef Name="Number" />
+            </Principal>
+            <Dependent Role="Visits">
+              <PropertyRef Name="RoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Service_ServiceType">
+          <End Role="ServiceTypes" Type="PensjonatModel.ServiceType" Multiplicity="0..1" />
+          <End Role="Services" Type="PensjonatModel.Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Services">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Service_Visit">
+          <End Role="Visits" Type="PensjonatModel.Visit" Multiplicity="1" />
+          <End Role="Services" Type="PensjonatModel.Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Visits">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Services">
+              <PropertyRef Name="VisitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_TaskType">
+          <End Role="TaskTypes" Type="PensjonatModel.TaskType" Multiplicity="0..1" />
+          <End Role="Tasks" Type="PensjonatModel.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VisitMealPlan_Visit">
+          <End Role="Visits" Type="PensjonatModel.Visit" Multiplicity="1" />
+          <End Role="VisitMealPlans" Type="PensjonatModel.VisitMealPlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Visits">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VisitMealPlans">
+              <PropertyRef Name="VisitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visit_Visit">
+          <End Role="Visits" Type="PensjonatModel.Visit" Multiplicity="0..1" />
+          <End Role="Visits1" Type="PensjonatModel.Visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Visits">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Visits1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EmployeeServices">
+          <End Role="Employees" Type="PensjonatModel.Employee" Multiplicity="0..1" />
+          <End Role="ServiceTypes" Type="PensjonatModel.ServiceType" Multiplicity="*" />
+        </Association>
+        <Association Name="RoomFeatures">
+          <End Role="Features" Type="PensjonatModel.Feature" Multiplicity="*" />
+          <End Role="Rooms" Type="PensjonatModel.Room" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PensjonatModelStoreContainer" CdmEntityContainer="PensjonatContext">
+          <EntitySetMapping Name="Discounts"><EntityTypeMapping TypeName="PensjonatModel.Discount"><MappingFragment StoreEntitySet="Discounts">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="GuestId" ColumnName="GuestId" />
+            <ScalarProperty Name="Amount" ColumnName="Amount" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Employees"><EntityTypeMapping TypeName="PensjonatModel.Employee"><MappingFragment StoreEntitySet="Employees">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Username" ColumnName="Username" />
+            <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+            <ScalarProperty Name="LastName" ColumnName="LastName" />
+            <ScalarProperty Name="TelephoneNumber" ColumnName="TelephoneNumber" />
+            <ScalarProperty Name="Street" ColumnName="Street" />
+            <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+            <ScalarProperty Name="ApartmentNumber" ColumnName="ApartmentNumber" />
+            <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+            <ScalarProperty Name="Town" ColumnName="Town" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+            <ScalarProperty Name="Password" ColumnName="Password" />
+            <ScalarProperty Name="Role" ColumnName="Role" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Features"><EntityTypeMapping TypeName="PensjonatModel.Feature"><MappingFragment StoreEntitySet="Features">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Guests"><EntityTypeMapping TypeName="PensjonatModel.Guest"><MappingFragment StoreEntitySet="Guests">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+            <ScalarProperty Name="LastName" ColumnName="LastName" />
+            <ScalarProperty Name="Street" ColumnName="Street" />
+            <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+            <ScalarProperty Name="ApartmentNumber" ColumnName="ApartmentNumber" />
+            <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+            <ScalarProperty Name="Town" ColumnName="Town" />
+            <ScalarProperty Name="TelephoneNumber" ColumnName="TelephoneNumber" />
+            <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+            <ScalarProperty Name="IdNumber" ColumnName="IdNumber" />
+            <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="MealPlans"><EntityTypeMapping TypeName="PensjonatModel.MealPlan"><MappingFragment StoreEntitySet="MealPlans">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="PeopleCount" ColumnName="PeopleCount" />
+            <ScalarProperty Name="Breakfast" ColumnName="Breakfast" />
+            <ScalarProperty Name="Lunch" ColumnName="Lunch" />
+            <ScalarProperty Name="Dinner" ColumnName="Dinner" />
+            <ScalarProperty Name="Vegetarian" ColumnName="Vegetarian" />
+            <ScalarProperty Name="Diet" ColumnName="Diet" />
+            <ScalarProperty Name="ToRoom" ColumnName="ToRoom" />
+            <ScalarProperty Name="AdditionalInfo" ColumnName="AdditionalInfo" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Reservations"><EntityTypeMapping TypeName="PensjonatModel.Reservation"><MappingFragment StoreEntitySet="Reservations">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="GuestId" ColumnName="GuestId" />
+            <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+            <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+            <ScalarProperty Name="AdditionalInfo" ColumnName="AdditionalInfo" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Roles"><EntityTypeMapping TypeName="PensjonatModel.Role"><MappingFragment StoreEntitySet="Roles">
+            <ScalarProperty Name="role1" ColumnName="role" />
+            <ScalarProperty Name="id" ColumnName="id" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="RoomReservations"><EntityTypeMapping TypeName="PensjonatModel.RoomReservation"><MappingFragment StoreEntitySet="RoomReservations">
+            <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
+            <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+            <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+            <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+            <ScalarProperty Name="Id" ColumnName="Id" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Rooms"><EntityTypeMapping TypeName="PensjonatModel.Room"><MappingFragment StoreEntitySet="Rooms">
+            <ScalarProperty Name="Number" ColumnName="Number" />
+            <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+            <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+            <ScalarProperty Name="Floor" ColumnName="Floor" />
+            <ScalarProperty Name="Vacancy" ColumnName="Vacancy" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="RoomTypes"><EntityTypeMapping TypeName="PensjonatModel.RoomType"><MappingFragment StoreEntitySet="RoomTypes">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Price" ColumnName="Price" />
+            <ScalarProperty Name="PricePerPerson" ColumnName="PricePerPerson" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Services"><EntityTypeMapping TypeName="PensjonatModel.Service"><MappingFragment StoreEntitySet="Services">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="VisitId" ColumnName="VisitId" />
+            <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+            <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+            <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+            <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+            <ScalarProperty Name="AdditionalInfo" ColumnName="AdditionalInfo" />
+            <ScalarProperty Name="CustomName" ColumnName="CustomName" />
+            <ScalarProperty Name="CustomDescription" ColumnName="CustomDescription" />
+            <ScalarProperty Name="CustomCharge" ColumnName="CustomCharge" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ServiceTypes"><EntityTypeMapping TypeName="PensjonatModel.ServiceType"><MappingFragment StoreEntitySet="ServiceTypes">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Charge" ColumnName="Charge" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Tasks"><EntityTypeMapping TypeName="PensjonatModel.Task"><MappingFragment StoreEntitySet="Tasks">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+            <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+            <ScalarProperty Name="IsDone" ColumnName="IsDone" />
+            <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TaskTypes"><EntityTypeMapping TypeName="PensjonatModel.TaskType"><MappingFragment StoreEntitySet="TaskTypes">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="VisitMealPlans"><EntityTypeMapping TypeName="PensjonatModel.VisitMealPlan"><MappingFragment StoreEntitySet="VisitMealPlans">
+            <ScalarProperty Name="PlanId" ColumnName="PlanId" />
+            <ScalarProperty Name="VisitId" ColumnName="VisitId" />
+            <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+            <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Visits"><EntityTypeMapping TypeName="PensjonatModel.Visit"><MappingFragment StoreEntitySet="Visits">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+            <ScalarProperty Name="GuestId" ColumnName="GuestId" />
+            <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+            <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+            <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+            <ScalarProperty Name="AdditionalInfo" ColumnName="AdditionalInfo" />
+            <ScalarProperty Name="Advance" ColumnName="Advance" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="EmployeeServices" TypeName="PensjonatModel.EmployeeServices" StoreEntitySet="EmployeeServices">
+            <EndProperty Name="Employees">
+              <ScalarProperty Name="Id" ColumnName="EmployeeId" />
+            </EndProperty>
+            <EndProperty Name="ServiceTypes">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="RoomFeatures" TypeName="PensjonatModel.RoomFeatures" StoreEntitySet="RoomFeatures">
+            <EndProperty Name="Features">
+              <ScalarProperty Name="Id" ColumnName="FeatureId" />
+            </EndProperty>
+            <EndProperty Name="Rooms">
+              <ScalarProperty Name="Number" ColumnName="RoomNumber" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="PensjonatModel">
+        <EntityTypeShape EntityType="PensjonatModel.Discount" Width="1.5" PointX="3" PointY="6.75" Height="1.7879850260416683" IsExpanded="true" />
+        <EntityTypeShape EntityType="PensjonatModel.Employee" Width="1.5" PointX="3.75" PointY="13.25" Height="3.9033007812499978" IsExpanded="true" />
+        <EntityTypeShape EntityType="PensjonatModel.Feature" Width="1.5" PointX="1.5" PointY="3.75" Height="1.787985026041667" IsExpanded="true" />
+        <EntityTypeShape EntityType="PensjonatModel.Guest" Width="1.5" PointX="0.75" PointY="7.125" Height="4.0956022135416656" IsExpanded="true" />
+        <EntityTypeShape EntityType="PensjonatModel.MealPlan" Width="1.5" PointX="9" PointY="0.75" Height="2.9417936197916656" IsExpanded="true" />
+        <EntityTypeShape EntityType="PensjonatModel.Reservation" Width="1.5" PointX="3" PointY="9.25" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="PensjonatModel.Role" Width="1.5" PointX="7.75" PointY="9.625" Height="1.4033821614583317" IsExpanded="true" />
+        <EntityTypeShape EntityType="PensjonatModel.RoomReservation" Width="1.5" PointX="5.25" PointY="9.25" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="PensjonatModel.Room" Width="1.5" PointX="3.75" PointY="1.875" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="PensjonatModel.RoomType" Width="1.5" PointX="1.5" PointY="13.25" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="PensjonatModel.Service" Width="1.5" PointX="8.25" PointY="4.5" Height="3.3263964843750031" IsExpanded="true" />
+        <EntityTypeShape EntityType="PensjonatModel.ServiceType" Width="1.5" PointX="6" PointY="14.125" Height="2.1725878906250031" IsExpanded="true" />
+        <EntityTypeShape EntityType="PensjonatModel.Task" Width="1.5" PointX="9" PointY="13.75" Height="2.9417936197916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="PensjonatModel.TaskType" Width="1.5" PointX="6.75" PointY="17.375" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="PensjonatModel.VisitMealPlan" Width="1.5" PointX="11.25" PointY="5.125" Height="2.172587890624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="PensjonatModel.Visit" Width="1.5" PointX="6" PointY="4.375" Height="3.7109993489583397" IsExpanded="true" />
+        <AssociationConnector Association="PensjonatModel.FK_Discount_Guest" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="7.8314925130208337" />
+          <ConnectorPoint PointX="2.4166666666666665" PointY="7.8314925130208328" />
+          <ConnectorPoint PointX="2.5833333333333335" PointY="7.8314925130208337" />
+          <ConnectorPoint PointX="3" PointY="7.8314925130208337" />
+        </AssociationConnector>
+        <AssociationConnector Association="PensjonatModel.FK_Task_Employee" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.25" PointY="16.525940755208335" />
+          <ConnectorPoint PointX="9" PointY="16.525940755208335" />
+        </AssociationConnector>
+        <AssociationConnector Association="PensjonatModel.FK_Reservation_Guest" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="10.235301106770834" />
+          <ConnectorPoint PointX="2.4166666666666665" PointY="10.235301106770834" />
+          <ConnectorPoint PointX="2.5833333333333335" PointY="10.235301106770834" />
+          <ConnectorPoint PointX="3" PointY="10.235301106770834" />
+        </AssociationConnector>
+        <AssociationConnector Association="PensjonatModel.FK_Visit_Guest" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="8.8939925130208337" />
+          <ConnectorPoint PointX="2.4166666666666665" PointY="8.8939925130208337" />
+          <ConnectorPoint PointX="2.5833333333333335" PointY="8.8939925130208337" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="8.8939925130208337" />
+          <ConnectorPoint PointX="5.708333333333333" PointY="8.8939925130208337" />
+          <ConnectorPoint PointX="6.916666666666667" PointY="8.8939925130208337" />
+          <ConnectorPoint PointX="7.083333333333333" PointY="8.8939925130208337" />
+          <ConnectorPoint PointX="7.15625" PointY="8.8939925130208337" />
+          <ConnectorPoint PointX="7.15625" PointY="8.0859993489583388" />
+        </AssociationConnector>
+        <AssociationConnector Association="PensjonatModel.FK_VisitMealPlan_MealPlan" ManuallyRouted="false">
+          <ConnectorPoint PointX="10.5" PointY="2.2208968098958328" />
+          <ConnectorPoint PointX="12" PointY="2.2208968098958328" />
+          <ConnectorPoint PointX="12" PointY="5.125" />
+        </AssociationConnector>
+        <AssociationConnector Association="PensjonatModel.FK_RoomReservation_Reservation" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="10.432444661458334" />
+          <ConnectorPoint PointX="5.25" PointY="10.432444661458334" />
+        </AssociationConnector>
+        <AssociationConnector Association="PensjonatModel.FK_RoomReservation_Room" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.25" PointY="3.09375" />
+          <ConnectorPoint PointX="5.625" PointY="3.09375" />
+          <ConnectorPoint PointX="5.625" PointY="9.25" />
+        </AssociationConnector>
+        <AssociationConnector Association="PensjonatModel.FK_Room_RoomType" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.2499995" PointY="13.25" />
+          <ConnectorPoint PointX="2.2499995" PointY="11.470602213541667" />
+          <ConnectorPoint PointX="2.5" PointY="11.470602213541667" />
+          <ConnectorPoint PointX="2.5" PointY="5.7879850260416674" />
+          <ConnectorPoint PointX="3.25" PointY="5.7879850260416674" />
+          <ConnectorPoint PointX="3.25" PointY="3.24974609375" />
+          <ConnectorPoint PointX="3.75" PointY="3.24974609375" />
+        </AssociationConnector>
+        <AssociationConnector Association="PensjonatModel.FK_Visit_Room" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.25" PointY="3.7656270000000007" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="3.7656270000000003" />
+          <ConnectorPoint PointX="5.708333333333333" PointY="3.7656270000000007" />
+          <ConnectorPoint PointX="6.75" PointY="3.7656270000000007" />
+          <ConnectorPoint PointX="6.75" PointY="4.375" />
+        </AssociationConnector>
+        <AssociationConnector Association="PensjonatModel.FK_Service_ServiceType" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="14.125" />
+          <ConnectorPoint PointX="6.75" PointY="11.864889322916667" />
+          <ConnectorPoint PointX="7" PointY="11.864889322916667" />
+          <ConnectorPoint PointX="7" PointY="8.3359993489583388" />
+          <ConnectorPoint PointX="7.072916666666667" PointY="8.3359993489583388" />
+          <ConnectorPoint PointX="7.239583333333333" PointY="8.3359993489583388" />
+          <ConnectorPoint PointX="7.75" PointY="8.3359993489583388" />
+          <ConnectorPoint PointX="7.75" PointY="6.1631982421875016" />
+          <ConnectorPoint PointX="8.25" PointY="6.1631982421875016" />
+        </AssociationConnector>
+        <AssociationConnector Association="PensjonatModel.FK_Service_Visit" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.5" PointY="5.2690991210937508" />
+          <ConnectorPoint PointX="8.25" PointY="5.2690991210937508" />
+        </AssociationConnector>
+        <AssociationConnector Association="PensjonatModel.FK_Task_TaskType" ManuallyRouted="false">
+          <ConnectorPoint PointX="8.25" PointY="18.268992513020834" />
+          <ConnectorPoint PointX="9.75" PointY="18.268992513020834" />
+          <ConnectorPoint PointX="9.75" PointY="16.691793619791667" />
+        </AssociationConnector>
+        <AssociationConnector Association="PensjonatModel.FK_VisitMealPlan_Visit" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.5" PointY="7.987447916666671" />
+          <ConnectorPoint PointX="7.666666666666667" PointY="7.98744791666667" />
+          <ConnectorPoint PointX="7.833333333333333" PointY="7.987447916666671" />
+          <ConnectorPoint PointX="12" PointY="7.987447916666671" />
+          <ConnectorPoint PointX="12" PointY="7.297587890624996" />
+        </AssociationConnector>
+        <AssociationConnector Association="PensjonatModel.FK_Visit_Visit" ManuallyRouted="false">
+          <ConnectorPoint PointX="6" PointY="5.6552613181089768" />
+          <ConnectorPoint PointX="5.75" PointY="5.6552613181089768" />
+          <ConnectorPoint PointX="5.75" PointY="6.8331303335336582" />
+          <ConnectorPoint PointX="6" PointY="6.8331303335336582" />
+        </AssociationConnector>
+        <AssociationConnector Association="PensjonatModel.EmployeeServices" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.25" PointY="15.211293945312502" />
+          <ConnectorPoint PointX="6" PointY="15.211293945312502" />
+        </AssociationConnector>
+        <AssociationConnector Association="PensjonatModel.RoomFeatures" ManuallyRouted="false">
+          <ConnectorPoint PointX="3" PointY="4.18724609375" />
+          <ConnectorPoint PointX="3.1666666666666665" PointY="4.1872460937499989" />
+          <ConnectorPoint PointX="3.3333333333333335" PointY="4.18724609375" />
+          <ConnectorPoint PointX="3.75" PointY="4.18724609375" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
