@@ -71,7 +71,13 @@
     <Compile Include="Controller\NewVisitFormController.cs" />
     <Compile Include="Controller\ReceptionistFormController.cs" />
     <Compile Include="Interfaces\IController.cs" />
+    <Compile Include="Interfaces\IObjectContext.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IUnitOfWork.cs" />
+    <Compile Include="ObjectContextAdapter.cs" />
     <Compile Include="PensjonatDAL.cs" />
+    <Compile Include="Repository.cs" />
+    <Compile Include="UnitOfWork.cs" />
     <Compile Include="View\AdminForm.cs">
       <SubType>Form</SubType>
     </Compile>

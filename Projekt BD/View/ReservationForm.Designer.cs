@@ -159,7 +159,7 @@
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(75, 23);
             this.AddButton.TabIndex = 26;
-            this.AddButton.Text = "Dodaj";
+            this.AddButton.Text = "OK";
             this.AddButton.UseVisualStyleBackColor = true;
             // 
             // AddInfoTextBox

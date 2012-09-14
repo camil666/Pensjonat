@@ -120,6 +120,7 @@
             this.AllRoomsDataGridView = new System.Windows.Forms.DataGridView();
             this.EditRoomButton = new System.Windows.Forms.Button();
             this.NewRoomButton = new System.Windows.Forms.Button();
+            this.DeleteReservationButton = new System.Windows.Forms.Button();
             this.MenuStrip.SuspendLayout();
             this.VisitManagementTabPage.SuspendLayout();
             this.VisitSearchGroupBox.SuspendLayout();
@@ -166,7 +167,7 @@
             // ExitToolStripMenuItem
             // 
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.ExitToolStripMenuItem.Text = "&Wyjście";
             // 
             // ToolsToolStripMenuItem
@@ -197,7 +198,7 @@
             // AboutToolStripMenuItem
             // 
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.AboutToolStripMenuItem.Text = "&O programie...";
             // 
             // VisitManagementTabPage
@@ -643,6 +644,7 @@
             // 
             // ReservationDetailsGroupBox
             // 
+            this.ReservationDetailsGroupBox.Controls.Add(this.DeleteReservationButton);
             this.ReservationDetailsGroupBox.Controls.Add(this.AdditionalInfoDetailsTextBox);
             this.ReservationDetailsGroupBox.Controls.Add(this.AdditionalInfoDetailsLabel);
             this.ReservationDetailsGroupBox.Controls.Add(this.ReservationIDDetailsLabel);
@@ -1039,6 +1041,15 @@
             this.NewRoomButton.Text = "Dodaj pokój";
             this.NewRoomButton.UseVisualStyleBackColor = true;
             // 
+            // DeleteReservationButton
+            // 
+            this.DeleteReservationButton.Location = new System.Drawing.Point(10, 472);
+            this.DeleteReservationButton.Name = "DeleteReservationButton";
+            this.DeleteReservationButton.Size = new System.Drawing.Size(118, 23);
+            this.DeleteReservationButton.TabIndex = 19;
+            this.DeleteReservationButton.Text = "Usuń rezerwację";
+            this.DeleteReservationButton.UseVisualStyleBackColor = true;
+            // 
             // ReceptionistForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1175,5 +1186,6 @@
         public System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem ClientSearchEnabledStripMenuItem;
+        public System.Windows.Forms.Button DeleteReservationButton;
     }
 }
