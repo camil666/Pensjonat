@@ -60,12 +60,26 @@
 
         public TEntity Single(Expression<Func<TEntity, bool>> filter)
         {
-            return _objectSet.Single(filter);
+            try
+            {
+                return _objectSet.Single(filter);
+            }
+            catch (InvalidOperationException)
+            {
+                return null;
+            }
         }
 
         public TEntity First(Expression<Func<TEntity, bool>> filter)
         {
-            return _objectSet.First(filter);
+            try
+            {
+                return _objectSet.First(filter);
+            }
+            catch (InvalidOperationException)
+            {
+                return null;
+            }
         }
 
         public void Delete(TEntity entity)

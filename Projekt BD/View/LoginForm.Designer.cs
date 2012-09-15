@@ -40,7 +40,7 @@
             this.LoginButton.Location = new System.Drawing.Point(100, 127);
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.Size = new System.Drawing.Size(90, 23);
-            this.LoginButton.TabIndex = 0;
+            this.LoginButton.TabIndex = 2;
             this.LoginButton.Text = "Zaloguj";
             this.LoginButton.UseVisualStyleBackColor = true;
             // 
@@ -57,7 +57,7 @@
             this.LoginTextBox.Location = new System.Drawing.Point(129, 39);
             this.LoginTextBox.Name = "LoginTextBox";
             this.LoginTextBox.Size = new System.Drawing.Size(143, 20);
-            this.LoginTextBox.TabIndex = 2;
+            this.LoginTextBox.TabIndex = 0;
             // 
             // LoginLabel
             // 
