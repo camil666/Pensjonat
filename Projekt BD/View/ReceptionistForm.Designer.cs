@@ -82,6 +82,7 @@
             this.NewClientButton = new System.Windows.Forms.Button();
             this.ReservationsTabPage = new System.Windows.Forms.TabPage();
             this.ReservationDetailsGroupBox = new System.Windows.Forms.GroupBox();
+            this.DeleteReservationButton = new System.Windows.Forms.Button();
             this.AdditionalInfoDetailsTextBox = new System.Windows.Forms.TextBox();
             this.AdditionalInfoDetailsLabel = new System.Windows.Forms.Label();
             this.ReservationIDDetailsLabel = new System.Windows.Forms.Label();
@@ -120,7 +121,6 @@
             this.AllRoomsDataGridView = new System.Windows.Forms.DataGridView();
             this.EditRoomButton = new System.Windows.Forms.Button();
             this.NewRoomButton = new System.Windows.Forms.Button();
-            this.DeleteReservationButton = new System.Windows.Forms.Button();
             this.MenuStrip.SuspendLayout();
             this.VisitManagementTabPage.SuspendLayout();
             this.VisitSearchGroupBox.SuspendLayout();
@@ -666,6 +666,15 @@
             this.ReservationDetailsGroupBox.TabStop = false;
             this.ReservationDetailsGroupBox.Text = "Szczegóły";
             // 
+            // DeleteReservationButton
+            // 
+            this.DeleteReservationButton.Location = new System.Drawing.Point(10, 472);
+            this.DeleteReservationButton.Name = "DeleteReservationButton";
+            this.DeleteReservationButton.Size = new System.Drawing.Size(118, 23);
+            this.DeleteReservationButton.TabIndex = 19;
+            this.DeleteReservationButton.Text = "Usuń rezerwację";
+            this.DeleteReservationButton.UseVisualStyleBackColor = true;
+            // 
             // AdditionalInfoDetailsTextBox
             // 
             this.AdditionalInfoDetailsTextBox.Location = new System.Drawing.Point(109, 144);
@@ -731,6 +740,7 @@
             // 
             this.RoomsDataGridView.AllowUserToAddRows = false;
             this.RoomsDataGridView.AllowUserToDeleteRows = false;
+            this.RoomsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.RoomsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.RoomsDataGridView.Location = new System.Drawing.Point(10, 196);
             this.RoomsDataGridView.MultiSelect = false;
@@ -805,6 +815,7 @@
             // 
             this.ReservationSearchResultDataGridView.AllowUserToAddRows = false;
             this.ReservationSearchResultDataGridView.AllowUserToDeleteRows = false;
+            this.ReservationSearchResultDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.ReservationSearchResultDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ReservationSearchResultDataGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ReservationSearchResultDataGridView.Location = new System.Drawing.Point(3, 157);
@@ -908,7 +919,7 @@
             this.FeaturesGroupBox.Size = new System.Drawing.Size(398, 249);
             this.FeaturesGroupBox.TabIndex = 2;
             this.FeaturesGroupBox.TabStop = false;
-            this.FeaturesGroupBox.Text = "Udogodnienia(?)";
+            this.FeaturesGroupBox.Text = "Udogodnienia";
             // 
             // RefreshFeaturesButton
             // 
@@ -939,9 +950,13 @@
             // 
             // RoomFeaturesDataGridView
             // 
+            this.RoomFeaturesDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.RoomFeaturesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.RoomFeaturesDataGridView.Location = new System.Drawing.Point(5, 47);
+            this.RoomFeaturesDataGridView.MultiSelect = false;
             this.RoomFeaturesDataGridView.Name = "RoomFeaturesDataGridView";
+            this.RoomFeaturesDataGridView.ReadOnly = true;
+            this.RoomFeaturesDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.RoomFeaturesDataGridView.Size = new System.Drawing.Size(391, 196);
             this.RoomFeaturesDataGridView.TabIndex = 0;
             // 
@@ -989,7 +1004,10 @@
             // 
             this.RoomTypesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.RoomTypesDataGridView.Location = new System.Drawing.Point(5, 49);
+            this.RoomTypesDataGridView.MultiSelect = false;
             this.RoomTypesDataGridView.Name = "RoomTypesDataGridView";
+            this.RoomTypesDataGridView.ReadOnly = true;
+            this.RoomTypesDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.RoomTypesDataGridView.Size = new System.Drawing.Size(391, 226);
             this.RoomTypesDataGridView.TabIndex = 0;
             // 
@@ -1019,7 +1037,10 @@
             // 
             this.AllRoomsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.AllRoomsDataGridView.Location = new System.Drawing.Point(6, 48);
+            this.AllRoomsDataGridView.MultiSelect = false;
             this.AllRoomsDataGridView.Name = "AllRoomsDataGridView";
+            this.AllRoomsDataGridView.ReadOnly = true;
+            this.AllRoomsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.AllRoomsDataGridView.Size = new System.Drawing.Size(351, 476);
             this.AllRoomsDataGridView.TabIndex = 2;
             // 
@@ -1040,15 +1061,6 @@
             this.NewRoomButton.TabIndex = 0;
             this.NewRoomButton.Text = "Dodaj pokój";
             this.NewRoomButton.UseVisualStyleBackColor = true;
-            // 
-            // DeleteReservationButton
-            // 
-            this.DeleteReservationButton.Location = new System.Drawing.Point(10, 472);
-            this.DeleteReservationButton.Name = "DeleteReservationButton";
-            this.DeleteReservationButton.Size = new System.Drawing.Size(118, 23);
-            this.DeleteReservationButton.TabIndex = 19;
-            this.DeleteReservationButton.Text = "Usuń rezerwację";
-            this.DeleteReservationButton.UseVisualStyleBackColor = true;
             // 
             // ReceptionistForm
             // 

@@ -297,7 +297,7 @@
             this.Controls.Add(this.LastNameLabel);
             this.Controls.Add(this.FirstNameTextBox);
             this.Controls.Add(this.FirstNameLabel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "NewClientForm";
             this.Text = "Nowy klient";
             this.ResumeLayout(false);

@@ -70,6 +70,9 @@
                 case ControllerTypes.EditRoomType:
                     return new EditRoomTypeController();
 
+                case ControllerTypes.EditRoom:
+                    return new EditRoomController();
+
                 case ControllerTypes.EmployeeForm:
                     return new EmployeeFormController();
 

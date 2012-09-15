@@ -14,6 +14,8 @@
             base.Form = new NewClientForm();
 
             this.SetupEvents();
+
+            this.Guests = new Repository<Guest>(Context);
         }
 
         #endregion
@@ -27,6 +29,8 @@
                 return base.Form as NewClientForm;
             }
         }
+
+        private Repository<Guest> Guests { get; set; }
 
         #endregion
 
@@ -65,11 +69,11 @@
                 TelephoneNumber = this.Form.PhoneNumberTextBox.Text
             };
 
-            using (var context = new PensjonatContext())
-            {
-                context.AddToGuests(newGuest);
-                context.SaveChanges();
-            }
+            //TODO: Dorobić weryfikację danych.
+            this.Guests.Add(newGuest);
+
+            this.UnitOfWork.Commit();
+
             this.Form.Close();
         }
 

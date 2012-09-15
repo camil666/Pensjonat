@@ -11,6 +11,7 @@
         ClientSearch,
         EditRoomFeature,
         EditRoomType,
+        EditRoom,
         EmployeeForm,
         LoginForm,
         NewClientForm,

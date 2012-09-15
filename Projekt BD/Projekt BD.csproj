@@ -61,6 +61,7 @@
     <Compile Include="Controller\AdminFormController.cs" />
     <Compile Include="Controller\ClientSearchController.cs" />
     <Compile Include="Controller\ControllerBase.cs" />
+    <Compile Include="Controller\EditRoomController.cs" />
     <Compile Include="Controller\EditRoomFeatureController.cs" />
     <Compile Include="Controller\EditRoomTypeController.cs" />
     <Compile Include="Controller\EmployeeFormController.cs" />
@@ -160,6 +161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\EditRoomFeatureForm.resx">
       <DependentUpon>EditRoomFeatureForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EditRoomForm.resx">
+      <DependentUpon>EditRoomForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\EditRoomTypeForm.resx">
       <DependentUpon>EditRoomTypeForm.cs</DependentUpon>

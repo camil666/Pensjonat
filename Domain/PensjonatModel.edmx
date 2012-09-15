@@ -1184,7 +1184,7 @@
       <Diagram Name="PensjonatModel">
         <EntityTypeShape EntityType="PensjonatModel.Discount" Width="1.5" PointX="3" PointY="6.75" Height="1.7879850260416683" IsExpanded="true" />
         <EntityTypeShape EntityType="PensjonatModel.Employee" Width="1.5" PointX="3.75" PointY="13.25" Height="3.9033007812499978" IsExpanded="true" />
-        <EntityTypeShape EntityType="PensjonatModel.Feature" Width="1.5" PointX="1.5" PointY="3.75" Height="1.787985026041667" IsExpanded="true" />
+        <EntityTypeShape EntityType="PensjonatModel.Feature" Width="1.5" PointX="0.875" PointY="2.25" Height="1.787985026041667" IsExpanded="true" />
         <EntityTypeShape EntityType="PensjonatModel.Guest" Width="1.5" PointX="0.75" PointY="7.125" Height="4.0956022135416656" IsExpanded="true" />
         <EntityTypeShape EntityType="PensjonatModel.MealPlan" Width="1.5" PointX="9" PointY="0.75" Height="2.9417936197916656" IsExpanded="true" />
         <EntityTypeShape EntityType="PensjonatModel.Reservation" Width="1.5" PointX="3" PointY="9.25" Height="2.3648893229166674" IsExpanded="true" />

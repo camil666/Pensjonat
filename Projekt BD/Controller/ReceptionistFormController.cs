@@ -1,6 +1,7 @@
 ﻿namespace Projekt_BD.Controller
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Data;
     using System.Linq;
@@ -19,6 +20,12 @@
             base.Form = new ReceptionistForm();
 
             this.SetupEvents();
+
+            this.Rooms = new Repository<Room>(Context);
+            this.RoomTypes = new Repository<RoomType>(Context);
+            this.Features = new Repository<Feature>(Context);
+            this.Reservations = new Repository<Reservation>(Context);
+            this.RoomReservations = new Repository<RoomReservation>(Context);
         }
 
         #endregion
@@ -32,6 +39,16 @@
                 return base.Form as ReceptionistForm;
             }
         }
+
+        private Repository<Room> Rooms { get; set; }
+
+        private Repository<RoomType> RoomTypes { get; set; }
+
+        private Repository<Feature> Features { get; set; }
+
+        private Repository<Reservation> Reservations { get; set; }
+
+        private Repository<RoomReservation> RoomReservations { get; set; }
 
         #endregion
 
@@ -59,6 +76,9 @@
             this.Form.RefreshFeaturesButton.Click += RefreshFeaturesButton_Click;
             this.Form.VisitSearchButton.Click += VisitSearchButton_Click;
             this.Form.SaveClientChangesButton.Click += SaveClientChangesButton_Click;
+            this.Form.EditRoomButton.Click += EditRoomButton_Click;
+            this.Form.NewRoomButton.Click += NewRoomButton_Click;
+            this.Form.DeleteReservationButton.Click += DeleteReservationButton_Click;
         }
 
         #endregion
@@ -241,6 +261,40 @@
             }
         }
 
+        private void DeleteReservationButton_Click(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrEmpty(this.Form.ReservationIDDetailsTextBox.Text))   //if a reservation is selected
+            {
+                DialogResult dialogResult = MessageBox.Show("Czy na pewno chcesz usunąć rezerwację?", "Usuwanie rezerwacji", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    int selectedReservationId = int.Parse(this.Form.ReservationIDDetailsTextBox.Text);
+                    Reservation reservationToBeDeleted = Reservations.Single(r => r.Id == selectedReservationId);
+
+                    var roomReservations = RoomReservations.Find(r => r.ReservationId == selectedReservationId);
+
+                    foreach (var roomReservation in roomReservations)
+                    {
+                        RoomReservations.Delete(roomReservation);
+                    }
+
+                    Reservations.Delete(reservationToBeDeleted);
+
+                    UnitOfWork.Commit();
+
+                    this.Form.ReservationSearchButton.PerformClick();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Należy zaznaczyć rezerwację",
+                "Błąd",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation,
+                MessageBoxDefaultButton.Button1);
+            }
+        }
+
         private void EditReservationButton_Click(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(this.Form.ReservationIDDetailsTextBox.Text))   //if a reservation is selected
@@ -299,46 +353,82 @@
 
         private void RefreshRoomsButton_Click(object sender, EventArgs e)
         {
+            var rooms = (from room in this.Rooms.GetAll()
+                         select new
+                         {
+                             room.Number,
+                             room.RoomType.Name,
+                             room.Capacity,
+                             room.Floor,
+                             room.RoomType.Price,
+                             room.RoomType.PricePerPerson,
+                             /* room.Features*/
+                         }).ToList();
 
+            //TODO: Dodać wyświetlanie ficzerów
+
+            this.Form.AllRoomsDataGridView.DataSource = rooms;
+            this.Form.AllRoomsDataGridView.Columns["Number"].HeaderText = "Numer";
+            this.Form.AllRoomsDataGridView.Columns["Name"].HeaderText = "Typ";
+            this.Form.AllRoomsDataGridView.Columns["Capacity"].HeaderText = "Pojemność";
+            this.Form.AllRoomsDataGridView.Columns["Floor"].HeaderText = "Piętro";
+            this.Form.AllRoomsDataGridView.Columns["Price"].HeaderText = "Cena";
+            this.Form.AllRoomsDataGridView.Columns["PricePerPerson"].HeaderText = "Cena za osobę";
+            //this.Form.AllRoomsDataGridView.Columns["Features"].HeaderText = "Udogodnienia";
         }
 
         private void RefreshRoomTypesButton_Click(object sender, EventArgs e)
         {
-            using (var context = new PensjonatContext())
-            {
-                var roomTypes = from roomType in context.RoomTypes
-                                select new
-                                {
-                                    roomType.Id,
-                                    roomType.Name,
-                                    roomType.Description,
-                                    roomType.Price,
-                                    roomType.PricePerPerson
-                                };
-                this.Form.RoomTypesDataGridView.DataSource = roomTypes;
-                this.Form.RoomTypesDataGridView.Columns["Id"].Visible = false;
-                this.Form.RoomTypesDataGridView.Columns["Price"].HeaderText = "Cena";
-                this.Form.RoomTypesDataGridView.Columns["PricePerPerson"].HeaderText = "Cena od osoby";
-                this.Form.RoomTypesDataGridView.Columns["Name"].HeaderText = "Nazwa";
-                this.Form.RoomTypesDataGridView.Columns["Description"].HeaderText = "Opis";
-            }
+            var roomTypes = from roomType in RoomTypes.GetAll()
+                            select new
+                            {
+                                roomType.Id,
+                                roomType.Name,
+                                roomType.Description,
+                                roomType.Price,
+                                roomType.PricePerPerson
+                            };
+
+            this.Form.RoomTypesDataGridView.DataSource = roomTypes;
+            this.Form.RoomTypesDataGridView.Columns["Id"].Visible = false;
+            this.Form.RoomTypesDataGridView.Columns["Price"].HeaderText = "Cena";
+            this.Form.RoomTypesDataGridView.Columns["PricePerPerson"].HeaderText = "Cena od osoby";
+            this.Form.RoomTypesDataGridView.Columns["Name"].HeaderText = "Nazwa";
+            this.Form.RoomTypesDataGridView.Columns["Description"].HeaderText = "Opis";
         }
 
         private void RefreshFeaturesButton_Click(object sender, EventArgs e)
         {
-            using (var context = new PensjonatContext())
+            var features = from feature in Features.GetAll()
+                           select new
+                           {
+                               feature.Id,
+                               feature.Name,
+                               feature.Description
+                           };
+
+            this.Form.RoomFeaturesDataGridView.DataSource = features;
+            this.Form.RoomFeaturesDataGridView.Columns["Id"].Visible = false;
+            this.Form.RoomFeaturesDataGridView.Columns["Name"].HeaderText = "Nazwa";
+            this.Form.RoomFeaturesDataGridView.Columns["Description"].HeaderText = "Opis";
+        }
+
+        private void NewRoomButton_Click(object sender, EventArgs e)
+        {
+            ControllerFactory.Instance.Create(ControllerTypes.EditRoom).Form.ShowDialog();
+        }
+
+        private void EditRoomButton_Click(object sender, EventArgs e)
+        {
+            int selectedRowsCount = this.Form.AllRoomsDataGridView.SelectedRows.Count;
+            if (selectedRowsCount > 0)
             {
-                var features = from feature in context.Features
-                               select new
-                               {
-                                   feature.Id,
-                                   feature.Name,
-                                   feature.Description
-                               };
-                this.Form.RoomFeaturesDataGridView.DataSource = features;
-                this.Form.RoomFeaturesDataGridView.Columns["Id"].Visible = false;
-                this.Form.RoomFeaturesDataGridView.Columns["Name"].HeaderText = "Nazwa";
-                this.Form.RoomFeaturesDataGridView.Columns["Description"].HeaderText = "Opis";
+                int rowIndex = this.Form.AllRoomsDataGridView.SelectedRows[0].Index;
+                int roomNumber = (int)this.Form.AllRoomsDataGridView[0, rowIndex].Value;
+
+                var controller = ControllerFactory.Instance.Create(ControllerTypes.EditRoom);
+                controller.ItemToEditID = roomNumber;
+                controller.Form.ShowDialog();
             }
         }
 
