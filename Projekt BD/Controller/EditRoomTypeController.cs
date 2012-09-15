@@ -1,10 +1,8 @@
 ﻿namespace Projekt_BD.Controller
 {
     using System;
-    using System.Data;
-    using System.Linq;
+    using System.Windows.Forms;
     using Domain;
-    using Projekt_BD.Interfaces;
     using Projekt_BD.View;
 
     public class EditRoomTypeController : ControllerBase
@@ -16,6 +14,8 @@
             base.Form = new EditRoomTypeForm();
 
             this.SetupEvents();
+
+            RoomTypes = new Repository<RoomType>(Context);
         }
 
         #endregion
@@ -30,56 +30,88 @@
             }
         }
 
+        private Repository<RoomType> RoomTypes { get; set; }
+
         #endregion
 
         #region Methods
 
         private void SetupEvents()
         {
-            this.Form.Load += Form_Load;
-            this.Form.OkButton.Click += OkButton_Click;
+            this.Form.Load += this.Form_Load;
+            this.Form.OkButton.Click += this.OkButton_Click;
         }
 
         #endregion
 
         #region Event Methods
 
-        void Form_Load(object sender, EventArgs e)
+        private void Form_Load(object sender, EventArgs e)
         {
-            if (this.Form.RoomTypeId != 0)
+            if (this.IsEditForm)
             {
-                using (var context = new PensjonatContext())
+                var roomType = this.RoomTypes.Single(f => f.Id == this.ItemToEditID);
+                this.Form.DescriptionRichTextBox.Text = roomType.Description;
+                this.Form.PriceTextBox.Text = roomType.Price.ToString();
+
+                if (roomType.PricePerPerson != null)
                 {
-                    var roomType = context.RoomTypes.SingleOrDefault(x => x.Id == this.Form.RoomTypeId);
-                    this.Form.DescriptionRichTextBox.Text = roomType.Description;
-                    this.Form.PriceTextBox.Text = roomType.Price.ToString();
                     this.Form.PricePerPersonTextBox.Text = roomType.PricePerPerson.ToString();
-                    this.Form.NameTextBox.Text = roomType.Name;
                 }
+                this.Form.NameTextBox.Text = roomType.Name;
+
+                this.Form.Text = "Edycja typu pokoju";
+            }
+            else
+            {
+                this.Form.Text = "Nowy typ pokoju";
             }
         }
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            var roomType = new RoomType
-            {
-                Id = this.Form.RoomTypeId,
-                Description = this.Form.DescriptionRichTextBox.Text,
-                Name = this.Form.NameTextBox.Text,
-                Price = double.Parse(this.Form.PriceTextBox.Text),
-                PricePerPerson = double.Parse(this.Form.PricePerPersonTextBox.Text)
-            };
+            string description = this.Form.DescriptionRichTextBox.Text;
+            string typeName = this.Form.NameTextBox.Text;
+            double price = 0;
+            double pricePerPerson = 0;
 
-            using (var context = new PensjonatContext())
-            {
-                context.AddToRoomTypes(roomType);
-                if (roomType.Id != 0)
-                {
-                    context.ObjectStateManager.ChangeObjectState(roomType, EntityState.Modified);
-                }
+            double.TryParse(this.Form.PriceTextBox.Text, out price);
+            double.TryParse(this.Form.PricePerPersonTextBox.Text, out pricePerPerson);
 
-                context.SaveChanges();
+            if (string.IsNullOrEmpty(description) || string.IsNullOrEmpty(typeName) || price <= 0 || pricePerPerson <= 0)
+            {
+                MessageBox.Show(
+                    "Podane wartości nie są prawidłowe lub pozostawiono niewypełnione pola.",
+                    "Błąd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
+
+                return;
             }
+
+            if (this.IsEditForm)
+            {
+                var roomType = this.RoomTypes.Single(f => f.Id == this.ItemToEditID);
+                roomType.Description = description;
+                roomType.Name = typeName;
+                roomType.Price = price;
+                roomType.PricePerPerson = pricePerPerson;
+            }
+            else
+            {
+                var roomType = new RoomType
+                {
+                    Description = description,
+                    Name = typeName,
+                    Price = price,
+                    PricePerPerson = pricePerPerson
+                };
+
+                this.RoomTypes.Add(roomType);
+            }
+
+            this.UnitOfWork.Commit();
 
             this.Form.Dispose();
         }

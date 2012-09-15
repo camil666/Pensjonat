@@ -4,8 +4,6 @@
 
     public partial class EditRoomTypeForm : Form
     {
-        public int RoomTypeId { get; set; }
-
         public EditRoomTypeForm()
         {
             InitializeComponent();

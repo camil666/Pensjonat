@@ -96,8 +96,6 @@
 
         private void NewClientButton_Click(object sender, EventArgs e)
         {
-            //NewClientForm newClientForm = new NewClientForm();
-            //newClientForm.ShowDialog();
             ControllerFactory.Instance.Create(ControllerTypes.NewClientForm).Form.ShowDialog();
         }
 
@@ -107,10 +105,8 @@
 
             if (selectedClientID > 0)
             {
-                //NewReservationForm newReservationForm = new NewReservationForm(selectedClientID);
-                //newReservationForm.ShowDialog();
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.ReservationForm);
-                (controller as ReservationFormController).ClientId = selectedClientID;
+                controller.ClientID = selectedClientID;
                 controller.Form.ShowDialog();
             }
             else
@@ -125,8 +121,6 @@
 
         private void NewVisitButton_Click(object sender, EventArgs e)
         {
-            //NewVisitForm newVisitForm = new NewVisitForm();
-            //newVisitForm.ShowDialog();
             ControllerFactory.Instance.Create(ControllerTypes.NewVisitForm).Form.ShowDialog();
         }
 
@@ -252,11 +246,9 @@
             if (!String.IsNullOrEmpty(this.Form.ReservationIDDetailsTextBox.Text))   //if a reservation is selected
             {
                 int id = int.Parse(this.Form.ReservationIDDetailsTextBox.Text);
-                //EditReservationForm editReservationForm = new EditReservationForm();
-                //editReservationForm.ShowDialog();
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.ReservationForm);
-                (controller as ReservationFormController).ReservationId = id;
-                (controller as ReservationFormController).ClientId = this.Form.ClientSearchWindow.SelectedClientID;
+                controller.ItemToEditID = id;
+                controller.ClientID = this.Form.ClientSearchWindow.SelectedClientID;
                 controller.Form.ShowDialog();
             }
             else
@@ -271,8 +263,6 @@
 
         private void AddFeaturesButton_Click(object sender, EventArgs e)
         {
-            //var editFeatureForm = new EditRoomFeatureForm(0);
-            //editFeatureForm.ShowDialog();
             ControllerFactory.Instance.Create(ControllerTypes.EditRoomFeature).Form.ShowDialog();
         }
 
@@ -283,18 +273,14 @@
             {
                 int rowIndex = this.Form.RoomFeaturesDataGridView.SelectedCells[0].RowIndex;
                 int roomFeatureId = (int)this.Form.RoomFeaturesDataGridView[0, rowIndex].Value;
-                //var editRoomTypeForm = new EditRoomFeatureForm(roomFeatureId);
-                //editRoomTypeForm.ShowDialog();
-                var form = ControllerFactory.Instance.Create(ControllerTypes.EditRoomFeature).Form;
-                (form as EditRoomFeatureForm).FeatureId = roomFeatureId;
-                form.ShowDialog();
+                var controller = ControllerFactory.Instance.Create(ControllerTypes.EditRoomFeature);
+                controller.ItemToEditID = roomFeatureId;
+                controller.Form.ShowDialog();
             }
         }
 
         private void AddRoomTypeButton_Click(object sender, EventArgs e)
         {
-            //var editRoomTypeForm = new EditRoomTypeForm(0);
-            //editRoomTypeForm.ShowDialog();
             ControllerFactory.Instance.Create(ControllerTypes.EditRoomType).Form.ShowDialog();
         }
 
@@ -305,11 +291,9 @@
             {
                 int rowIndex = this.Form.RoomTypesDataGridView.SelectedCells[0].RowIndex;
                 int roomTypeId = (int)this.Form.RoomTypesDataGridView[0, rowIndex].Value;
-                //var editRoomTypeForm = new EditRoomTypeForm(roomTypeId);
-                //editRoomTypeForm.ShowDialog();
-                var form = ControllerFactory.Instance.Create(ControllerTypes.EditRoomType).Form;
-                (form as EditRoomTypeForm).RoomTypeId = roomTypeId;
-                form.ShowDialog();
+                var controller = ControllerFactory.Instance.Create(ControllerTypes.EditRoomType);
+                controller.ItemToEditID = roomTypeId;
+                controller.Form.ShowDialog();
             }
         }
 

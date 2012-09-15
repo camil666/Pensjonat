@@ -132,11 +132,9 @@
             {
                 int rowIndex = this.Form.SearchResultsDataGridView.SelectedCells[0].RowIndex;
                 int employeeId = (int)this.Form.SearchResultsDataGridView[0, rowIndex].Value;
-                //var changeEmployeeDetailsForm = new NewEmployeeForm(employeeId);
-                //changeEmployeeDetailsForm.ShowDialog();
-                var form = ControllerFactory.Instance.Create(ControllerTypes.NewEmployeeForm).Form;
-                (form as NewEmployeeForm).EmployeeId = employeeId;
-                form.ShowDialog();
+                var controller = ControllerFactory.Instance.Create(ControllerTypes.NewEmployeeForm);
+                controller.ItemToEditID = employeeId;
+                controller.Form.ShowDialog();
                 this.SearchButton_Function();
             }
         }

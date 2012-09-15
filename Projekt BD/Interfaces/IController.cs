@@ -12,6 +12,10 @@ namespace Projekt_BD.Interfaces
 
         Form Form { get; }
 
+        int ClientID { get; set; }
+
+        int ItemToEditID { get; set; }
+
         #endregion
     }
 }

@@ -10,19 +10,40 @@
 
         public ControllerBase()
         {
-            Context = new ObjectContextAdapter(new PensjonatContext());
-            UnitOfWork = new UnitOfWork(Context);
+            this.Context = new ObjectContextAdapter(new PensjonatContext());
+            this.UnitOfWork = new UnitOfWork(this.Context);
+        }
+
+        #endregion
+
+        #region Finalizer
+
+        ~ControllerBase()
+        {
+            this.UnitOfWork.Dispose();
         }
 
         #endregion
 
         #region Properties
 
+        public Form Form { get; protected set; }
+
+        public int ClientID { get; set; }
+
+        public int ItemToEditID { get; set; }
+
         protected ObjectContextAdapter Context { get; set; }
 
         protected UnitOfWork UnitOfWork { get; set; }
 
-        public Form Form { get; protected set; }
+        protected bool IsEditForm
+        {
+            get
+            {
+                return this.ItemToEditID > 0;
+            }
+        }
 
         #endregion
     }

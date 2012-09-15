@@ -4,8 +4,6 @@
 
     public partial class EditRoomFeatureForm : Form
     {
-        public int FeatureId { get; set; }
-
         public EditRoomFeatureForm()
         {
             InitializeComponent();

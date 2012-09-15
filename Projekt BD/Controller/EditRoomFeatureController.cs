@@ -1,10 +1,8 @@
 ﻿namespace Projekt_BD.Controller
 {
     using System;
-    using System.Data;
-    using System.Linq;
+    using System.Windows.Forms;
     using Domain;
-    using Projekt_BD.Interfaces;
     using Projekt_BD.View;
 
     public class EditRoomFeatureController : ControllerBase
@@ -16,6 +14,8 @@
             base.Form = new EditRoomFeatureForm();
 
             this.SetupEvents();
+
+            this.Features = new Repository<Feature>(Context);
         }
 
         #endregion
@@ -29,6 +29,8 @@
                 return base.Form as EditRoomFeatureForm;
             }
         }
+
+        private Repository<Feature> Features { get; set; }
 
         #endregion
 
@@ -44,33 +46,57 @@
 
         #region Event Methods
 
-        void Form_Load(object sender, EventArgs e)
+        private void Form_Load(object sender, EventArgs e)
         {
-            if (this.Form.FeatureId != 0)
+            if (this.IsEditForm)
             {
-                using (var context = new PensjonatContext())
-                {
-                    var feature = context.Features.SingleOrDefault(x => x.Id == this.Form.FeatureId);
-                    this.Form.NameTextBox.Text = feature.Name;
-                    this.Form.DescriptionRichTextBox.Text = feature.Description;
-                }
+                var feature = Features.Single(f => f.Id == this.ItemToEditID);
+                this.Form.NameTextBox.Text = feature.Name;
+                this.Form.DescriptionRichTextBox.Text = feature.Description;
+
+                this.Form.Text = "Edycja udogodnienia";
+            }
+            else
+            {
+                this.Form.Text = "Nowe udogodnienie";
             }
         }
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            var feature = new Feature { Id = this.Form.FeatureId, Name = this.Form.NameTextBox.Text, Description = this.Form.DescriptionRichTextBox.Text };
+            string featureName = this.Form.NameTextBox.Text;
+            string featureDescription = this.Form.DescriptionRichTextBox.Text;
 
-            using (var context = new PensjonatContext())
+            if (string.IsNullOrEmpty(featureName) || string.IsNullOrEmpty(featureDescription))
             {
-                context.AddToFeatures(feature);
-                if (feature.Id != 0)
-                {
-                    context.ObjectStateManager.ChangeObjectState(feature, EntityState.Modified);
-                }
+                MessageBox.Show(
+                    "Podane wartości nie są prawidłowe lub pozostawiono niewypełnione pola.",
+                    "Błąd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
 
-                context.SaveChanges();
+                return;
             }
+
+            if (this.IsEditForm)
+            {
+                var feature = Features.Single(f => f.Id == this.ItemToEditID);
+                feature.Name = featureName;
+                feature.Description = featureDescription;
+            }
+            else
+            {
+                var feature = new Feature
+                {
+                    Name = featureName,
+                    Description = featureDescription
+                };
+
+                Features.Add(feature);
+            }
+
+            this.UnitOfWork.Commit();
 
             this.Form.Dispose();
         }

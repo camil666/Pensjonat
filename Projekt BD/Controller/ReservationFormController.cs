@@ -23,9 +23,9 @@
 
         private static readonly string PriceColumnName = "Price";
 
-        private bool _formIsLoaded;
+        private bool formIsLoaded;
 
-        private bool _editsWereMade;
+        private bool editsWereMade;
 
         #endregion
 
@@ -39,7 +39,7 @@
 
             this.Rooms = (new Repository<Room>(Context)).GetAll();
 
-            _formIsLoaded = false;
+            this.formIsLoaded = false;
         }
 
         #endregion
@@ -51,18 +51,6 @@
             get
             {
                 return base.Form as ReservationForm;
-            }
-        }
-
-        public int ClientId { get; set; }
-
-        public int ReservationId { get; set; }
-
-        private bool IsEditForm
-        {
-            get
-            {
-                return this.ReservationId > 0;
             }
         }
 
@@ -112,7 +100,7 @@
             try
             {
                 var guestRepository = new Repository<Guest>(Context);
-                var client = guestRepository.Single(guest => guest.Id == this.ClientId);
+                var client = guestRepository.Single(guest => guest.Id == this.ClientID);
                 this.Form.ClientTextBox.Text = string.Concat(client.FirstName, " ", client.LastName);
 
                 this.ReservedRoomsSource = new BindingSource();
@@ -124,7 +112,7 @@
                     this.Form.Text = "Edycja Rezerwacji";
 
                     var reservationRepository = new Repository<Reservation>(Context);
-                    var reservationToEdit = reservationRepository.Single(reservation => reservation.Id == this.ReservationId);
+                    var reservationToEdit = reservationRepository.Single(reservation => reservation.Id == this.ItemToEditID);
 
                     this.Form.AddInfoTextBox.Text = reservationToEdit.AdditionalInfo;
                     this.Form.StartDateDateTimePicker.Value = reservationToEdit.StartDate;
@@ -132,7 +120,7 @@
 
                     var roomReservationRepository = new Repository<RoomReservation>(Context);
 
-                    var roomsReservations = (from room in roomReservationRepository.Find(room => room.ReservationId == this.ReservationId)
+                    var roomsReservations = (from room in roomReservationRepository.Find(room => room.ReservationId == this.ItemToEditID)
                                              select new { room.Room.Number, room.Room.RoomType.Name, room.Room.Capacity, room.Room.Floor, room.Room.RoomType.Price }).ToList();
 
                     this.ReservedRoomsSource.DataSource = roomsReservations;
@@ -152,7 +140,7 @@
 
                 SetColumnNames(this.Form.FreeRoomsDataGridView);
 
-                _formIsLoaded = true;
+                this.formIsLoaded = true;
             }
             catch (Exception ex)
             {
@@ -173,7 +161,7 @@
                 this.FreeRoomsSource.RemoveAt(item.Index);
             }
 
-            _editsWereMade = true;
+            this.editsWereMade = true;
         }
 
         private void RemoveFromReservationButton_Click(object sender, EventArgs e)
@@ -184,23 +172,24 @@
                 this.ReservedRoomsSource.RemoveAt(item.Index);
             }
 
-            _editsWereMade = true;
+            this.editsWereMade = true;
         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
             if (this.Form.RoomsToBeReservedDataGridView.Rows.Count < 1)
             {
-                MessageBox.Show("Należy zarezerwować minimum 1 pokój.",
-                "Błąd",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Exclamation,
-                MessageBoxDefaultButton.Button1);
+                MessageBox.Show(
+                    "Należy zarezerwować minimum 1 pokój.",
+                    "Błąd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
 
                 return;
             }
 
-            if (!this._editsWereMade)
+            if (!this.editsWereMade)
             {
                 this.Form.Close();
                 return;
@@ -211,9 +200,9 @@
 
             if (this.IsEditForm)
             {
-                reservationRepository.Delete(reservationRepository.Single(r => r.Id == this.ReservationId));
+                reservationRepository.Delete(reservationRepository.Single(r => r.Id == this.ItemToEditID));
 
-                var roomReservationsToDelete = from room in roomReservationRepository.Find(r => r.ReservationId == this.ReservationId)
+                var roomReservationsToDelete = from room in roomReservationRepository.Find(r => r.ReservationId == this.ItemToEditID)
                                                select room;
 
                 foreach (var roomReservation in roomReservationsToDelete)
@@ -227,7 +216,7 @@
                 AdditionalInfo = this.Form.AddInfoTextBox.Text,
                 StartDate = this.Form.StartDateDateTimePicker.Value,
                 EndDate = this.Form.EndDateDateTimePicker.Value,
-                GuestId = this.ClientId
+                GuestId = this.ClientID
             };
 
             reservationRepository.Add(reservation);
@@ -258,7 +247,7 @@
                 this.Form.EndDateDateTimePicker.Value.AddDays(1.0);
             }
 
-            if (_formIsLoaded)
+            if (this.formIsLoaded)
             {
                 this.FreeRoomsSource.DataSource = this.GetFreeRooms(this.Form.StartDateDateTimePicker.Value, this.Form.EndDateDateTimePicker.Value);
                 this.ReservedRoomsSource.Clear();
@@ -276,7 +265,7 @@
                                                                     (r.EndDate > reservationStart && r.EndDate < reservationEnd) ||
                                                                     (r.StartDate < reservationStart && r.EndDate > reservationEnd));
 
-            return (from room in Rooms
+            return (from room in this.Rooms
                     where !(from r in collidingReservations
                             select r.RoomId).Contains(room.Number)
                     select new { room.Number, room.RoomType.Name, room.Capacity, room.Floor, room.RoomType.Price }).ToList();
