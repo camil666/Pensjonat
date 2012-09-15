@@ -55,22 +55,24 @@
         {
             if (string.IsNullOrEmpty(this.Form.LoginTextBox.Text))
             {
-                MessageBox.Show("Należy wpisać login.",
-                "Błąd",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Exclamation,
-                MessageBoxDefaultButton.Button1);
+                MessageBox.Show(
+                    "Należy wpisać login.",
+                    "Błąd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
 
                 return;
             }
 
             if (string.IsNullOrEmpty(this.Form.PasswordTextBox.Text))
             {
-                MessageBox.Show("Należy wpisać hasło.",
-                "Błąd",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Exclamation,
-                MessageBoxDefaultButton.Button1);
+                MessageBox.Show(
+                    "Należy wpisać hasło.",
+                    "Błąd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
 
                 return;
             }
@@ -81,11 +83,12 @@
 
             if (employee == null || employee.Password != this.Form.PasswordTextBox.Text)
             {
-                MessageBox.Show("Wprowadzono błędne dane.",
-                "Błąd",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Exclamation,
-                MessageBoxDefaultButton.Button1);
+                MessageBox.Show(
+                    "Wprowadzono błędne dane.",
+                    "Błąd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
 
                 return;
             }

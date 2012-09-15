@@ -10,16 +10,16 @@
         {
             get
             {
-                return ClientSearchEnabledStripMenuItem;
+                return this.ClientSearchEnabledStripMenuItem;
             }
         }
 
         public ReceptionistForm()
         {
             InitializeComponent();
-            ClientSearchWindow = ControllerFactory.Instance.Create(ControllerTypes.ClientSearch).Form as ClientSearch;
-            ClientSearchWindow.ParentForm = this;
-            ClientSearchWindow.Show();
+            this.ClientSearchWindow = ControllerFactory.Instance.Create(ControllerTypes.ClientSearch).Form as ClientSearch;
+            this.ClientSearchWindow.ParentForm = this;
+            this.ClientSearchWindow.Show();
         }
     }
 }

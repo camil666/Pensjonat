@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using Domain;
-using Projekt_BD.Interfaces;
-using Projekt_BD.View;
-
-namespace Projekt_BD.Controller
+﻿namespace Projekt_BD.Controller
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Linq;
+    using System.Text;
+    using Domain;
+    using Projekt_BD.Interfaces;
+    using Projekt_BD.View;
+
     public class NewEmployeeFormController : ControllerBase
     {
         #region Constructors
@@ -38,9 +38,9 @@ namespace Projekt_BD.Controller
 
         private void SetupEvents()
         {
-            this.Form.Load += Form_Load;
-            this.Form.CancelButton.Click += CancelButton_Click;
-            this.Form.AddButton.Click += AddButton_Click;
+            this.Form.Load += this.Form_Load;
+            this.Form.CancelButton.Click += this.CancelButton_Click;
+            this.Form.AddButton.Click += this.AddButton_Click;
         }
 
         #endregion

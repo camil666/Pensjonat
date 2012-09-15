@@ -7,7 +7,7 @@
     {
         #region Fields
 
-        readonly ObjectContext _context;
+        private readonly ObjectContext _context;
 
         #endregion
 
@@ -15,7 +15,7 @@
 
         public ObjectContextAdapter(ObjectContext context)
         {
-            _context = context;
+            this._context = context;
         }
 
         #endregion
@@ -24,17 +24,17 @@
 
         public void Dispose()
         {
-            _context.Dispose();
+            this._context.Dispose();
         }
 
         public IObjectSet<T> CreateObjectSet<T>() where T : class
         {
-            return _context.CreateObjectSet<T>();
+            return this._context.CreateObjectSet<T>();
         }
 
         public void SaveChanges()
         {
-            _context.SaveChanges();
+            this._context.SaveChanges();
         }
 
         #endregion

@@ -44,9 +44,9 @@
 
         private void SetupEvents()
         {
-            this.Form.Load += Form_Load;
-            this.Form.OkButton.Click += OkButton_Click;
-            this.Form.CancelButton.Click += CancelButton_Click;
+            this.Form.Load += this.Form_Load;
+            this.Form.OkButton.Click += this.OkButton_Click;
+            this.Form.CancelButton.Click += this.CancelButton_Click;
         }
 
         private void SetColumnNamesAndVisibility()
@@ -64,7 +64,7 @@
                 if (Convert.ToBoolean(cell.Value) == true)
                 {
                     var featureId = (int)row.Cells["Id"].Value;
-                    Feature featureToAdd = Features.Single(f => f.Id == featureId);
+                    Feature featureToAdd = this.Features.Single(f => f.Id == featureId);
                     room.Features.Add(featureToAdd);
                 }
             }
@@ -84,7 +84,7 @@
                 this.Form.TypeTextBox.Text = room.TypeId.ToString();
                 this.Form.CapacityTextBox.Text = room.Capacity.ToString();
 
-                var notAddedFeatures = (from feature in Features.GetAll().ToList()
+                var notAddedFeatures = (from feature in this.Features.GetAll().ToList()
                                         select feature).Except(from feature2 in room.Features select feature2);
 
                 var featureList = (from f in room.Features.ToList()
@@ -108,7 +108,7 @@
             }
             else
             {
-                var featureList = (from feature in Features.GetAll()
+                var featureList = (from feature in this.Features.GetAll()
                                    select new { feature.Id, feature.Name }).ToList();
 
                 this.Form.FeaturesDataGridView.DataSource = featureList;
@@ -152,7 +152,7 @@
                 room.Floor = roomFloor;
                 room.TypeId = roomType;
 
-                AddFeaturesToRoom(room);
+                this.AddFeaturesToRoom(room);
             }
             else
             {
@@ -164,8 +164,8 @@
                     TypeId = roomType
                 };
 
-                Rooms.Add(room);
-                AddFeaturesToRoom(room);
+                this.Rooms.Add(room);
+                this.AddFeaturesToRoom(room);
             }
 
             //TODO: Naprawić bug przy dodawaniu i aktualizowaniu wpisów.

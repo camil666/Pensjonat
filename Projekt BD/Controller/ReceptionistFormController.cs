@@ -56,29 +56,29 @@
 
         private void SetupEvents()
         {
-            this.Form.ClientSearchEnabledStripMenuItem.Click += ClientSearchEnabledStripMenuItem_Click;
-            this.Form.ExitToolStripMenuItem.Click += ExitToolStripMenuItem_Click;
-            this.Form.AboutToolStripMenuItem.Click += AboutToolStripMenuItem_Click;
-            this.Form.NewClientButton.Click += NewClientButton_Click;
-            this.Form.NewReservationButton.Click += NewReservationButton_Click;
-            this.Form.NewVisitButton.Click += NewVisitButton_Click;
-            this.Form.ReservationSearchButton.Click += ReservationSearchButton_Click;
-            this.Form.StartDateReservationSearchDateTimePicker.ValueChanged += StartDateReservationSearchDateTimePicker_ValueChanged;
-            this.Form.EndDateReservationSearchDateTimePicker.ValueChanged += EndDateReservationSearchDateTimePicker_ValueChanged;
-            this.Form.ReservationSearchResultDataGridView.CellClick += ReservationSearchResultDataGridView_CellClick;
-            this.Form.EditReservationButton.Click += EditReservationButton_Click;
-            this.Form.AddFeaturesButton.Click += AddFeaturesButton_Click;
-            this.Form.EditFeaturesButton.Click += EditFeaturesButton_Click;
-            this.Form.AddRoomTypeButton.Click += AddRoomTypeButton_Click;
-            this.Form.EditRoomTypeButton.Click += EditRoomTypeButton_Click;
-            this.Form.RefreshRoomsButton.Click += RefreshRoomsButton_Click;
-            this.Form.RefreshRoomTypesButton.Click += RefreshRoomTypesButton_Click;
-            this.Form.RefreshFeaturesButton.Click += RefreshFeaturesButton_Click;
-            this.Form.VisitSearchButton.Click += VisitSearchButton_Click;
-            this.Form.SaveClientChangesButton.Click += SaveClientChangesButton_Click;
-            this.Form.EditRoomButton.Click += EditRoomButton_Click;
-            this.Form.NewRoomButton.Click += NewRoomButton_Click;
-            this.Form.DeleteReservationButton.Click += DeleteReservationButton_Click;
+            this.Form.ClientSearchEnabledStripMenuItem.Click += this.ClientSearchEnabledStripMenuItem_Click;
+            this.Form.ExitToolStripMenuItem.Click += this.ExitToolStripMenuItem_Click;
+            this.Form.AboutToolStripMenuItem.Click += this.AboutToolStripMenuItem_Click;
+            this.Form.NewClientButton.Click += this.NewClientButton_Click;
+            this.Form.NewReservationButton.Click += this.NewReservationButton_Click;
+            this.Form.NewVisitButton.Click += this.NewVisitButton_Click;
+            this.Form.ReservationSearchButton.Click += this.ReservationSearchButton_Click;
+            this.Form.StartDateReservationSearchDateTimePicker.ValueChanged += this.StartDateReservationSearchDateTimePicker_ValueChanged;
+            this.Form.EndDateReservationSearchDateTimePicker.ValueChanged += this.EndDateReservationSearchDateTimePicker_ValueChanged;
+            this.Form.ReservationSearchResultDataGridView.CellClick += this.ReservationSearchResultDataGridView_CellClick;
+            this.Form.EditReservationButton.Click += this.EditReservationButton_Click;
+            this.Form.AddFeaturesButton.Click += this.AddFeaturesButton_Click;
+            this.Form.EditFeaturesButton.Click += this.EditFeaturesButton_Click;
+            this.Form.AddRoomTypeButton.Click += this.AddRoomTypeButton_Click;
+            this.Form.EditRoomTypeButton.Click += this.EditRoomTypeButton_Click;
+            this.Form.RefreshRoomsButton.Click += this.RefreshRoomsButton_Click;
+            this.Form.RefreshRoomTypesButton.Click += this.RefreshRoomTypesButton_Click;
+            this.Form.RefreshFeaturesButton.Click += this.RefreshFeaturesButton_Click;
+            this.Form.VisitSearchButton.Click += this.VisitSearchButton_Click;
+            this.Form.SaveClientChangesButton.Click += this.SaveClientChangesButton_Click;
+            this.Form.EditRoomButton.Click += this.EditRoomButton_Click;
+            this.Form.NewRoomButton.Click += this.NewRoomButton_Click;
+            this.Form.DeleteReservationButton.Click += this.DeleteReservationButton_Click;
         }
 
         #endregion
@@ -108,7 +108,8 @@
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show(
-            "Pensjonat\n\nKamil Socha\nMarcin Koba\nDawid Mazur\n2012", "About",
+            "Pensjonat\n\nKamil Socha\nMarcin Koba\nDawid Mazur\n2012",
+            "About",
             MessageBoxButtons.OK,
             MessageBoxIcon.Asterisk,
             MessageBoxDefaultButton.Button1);
@@ -131,11 +132,12 @@
             }
             else
             {
-                MessageBox.Show("Należy zaznaczyć klienta",
-                "Błąd",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Exclamation,
-                MessageBoxDefaultButton.Button1);
+                MessageBox.Show(
+                    "Należy zaznaczyć klienta",
+                    "Błąd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
             }
         }
 
@@ -181,11 +183,12 @@
             }
             else
             {
-                MessageBox.Show("Należy zaznaczyć klienta",
-                "Błąd",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Exclamation,
-                MessageBoxDefaultButton.Button1);
+                MessageBox.Show(
+                    "Należy zaznaczyć klienta",
+                    "Błąd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
             }
         }
 
@@ -263,7 +266,8 @@
 
         private void DeleteReservationButton_Click(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(this.Form.ReservationIDDetailsTextBox.Text))   //if a reservation is selected
+            //if a reservation is selected
+            if (!string.IsNullOrEmpty(this.Form.ReservationIDDetailsTextBox.Text))
             {
                 DialogResult dialogResult = MessageBox.Show("Czy na pewno chcesz usunąć rezerwację?", "Usuwanie rezerwacji", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
@@ -287,17 +291,19 @@
             }
             else
             {
-                MessageBox.Show("Należy zaznaczyć rezerwację",
-                "Błąd",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Exclamation,
-                MessageBoxDefaultButton.Button1);
+                MessageBox.Show(
+                    "Należy zaznaczyć rezerwację",
+                    "Błąd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
             }
         }
 
         private void EditReservationButton_Click(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(this.Form.ReservationIDDetailsTextBox.Text))   //if a reservation is selected
+            //if a reservation is selected
+            if (!string.IsNullOrEmpty(this.Form.ReservationIDDetailsTextBox.Text))
             {
                 int id = int.Parse(this.Form.ReservationIDDetailsTextBox.Text);
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.ReservationForm);
@@ -307,11 +313,12 @@
             }
             else
             {
-                MessageBox.Show("Należy zaznaczyć rezerwację",
-                "Błąd",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Exclamation,
-                MessageBoxDefaultButton.Button1);
+                MessageBox.Show(
+                    "Należy zaznaczyć rezerwację",
+                    "Błąd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
             }
         }
 

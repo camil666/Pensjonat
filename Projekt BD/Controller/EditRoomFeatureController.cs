@@ -81,7 +81,7 @@
 
             if (this.IsEditForm)
             {
-                var feature = Features.Single(f => f.Id == this.ItemToEditID);
+                var feature = this.Features.Single(f => f.Id == this.ItemToEditID);
                 feature.Name = featureName;
                 feature.Description = featureDescription;
             }

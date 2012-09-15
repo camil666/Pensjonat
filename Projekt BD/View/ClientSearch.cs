@@ -7,7 +7,18 @@
 
     public partial class ClientSearch : Form
     {
-        public ReceptionistForm ParentForm { get; set; }
+        #region Constructors
+
+        public ClientSearch()
+        {
+            InitializeComponent();
+        }
+
+        #endregion
+
+        #region Properties
+
+        new public ReceptionistForm ParentForm { get; set; }
 
         public int SelectedClientID
         {
@@ -25,19 +36,6 @@
             }
         }
 
-        public ClientSearch()
-        {
-            InitializeComponent();
-        }
-
-        private void ClientSearch_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (e.CloseReason != CloseReason.ApplicationExitCall)
-            {
-                Hide();
-                e.Cancel = true;
-                this.ParentForm.ClientSearchEnabled.Checked = false;
-            }
-        }
+        #endregion
     }
 }

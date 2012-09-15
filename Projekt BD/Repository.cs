@@ -20,7 +20,7 @@
 
         public Repository(IObjectContext objectContext)
         {
-            _objectSet = objectContext.CreateObjectSet<TEntity>();
+            this._objectSet = objectContext.CreateObjectSet<TEntity>();
         }
 
         #endregion
@@ -29,7 +29,7 @@
 
         public IQueryable<TEntity> GetAll()
         {
-            return _objectSet;
+            return this._objectSet;
         }
 
         public IQueryable<TEntity> Find(
@@ -37,7 +37,7 @@
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             string includeProperties = "")
         {
-            IQueryable<TEntity> query = _objectSet;
+            IQueryable<TEntity> query = this._objectSet;
 
             if (filter != null)
             {
@@ -62,7 +62,7 @@
         {
             try
             {
-                return _objectSet.Single(filter);
+                return this._objectSet.Single(filter);
             }
             catch (InvalidOperationException)
             {
@@ -74,7 +74,7 @@
         {
             try
             {
-                return _objectSet.First(filter);
+                return this._objectSet.First(filter);
             }
             catch (InvalidOperationException)
             {
@@ -84,17 +84,17 @@
 
         public void Delete(TEntity entity)
         {
-            _objectSet.DeleteObject(entity);
+            this._objectSet.DeleteObject(entity);
         }
 
         public void Add(TEntity entity)
         {
-            _objectSet.AddObject(entity);
+            this._objectSet.AddObject(entity);
         }
 
         public void Update(TEntity entityToUpdate)
         {
-            _objectSet.Attach(entityToUpdate);
+            this._objectSet.Attach(entityToUpdate);
         }
 
         #endregion

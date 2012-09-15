@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-
-namespace Projekt_BD.Interfaces
+﻿namespace Projekt_BD.Interfaces
 {
+    using System.Windows.Forms;
+
     public interface IController
     {
         #region Properties

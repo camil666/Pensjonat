@@ -38,8 +38,8 @@
 
         private void SetupEvents()
         {
-            this.Form.CancelButton.Click += CancelButton_Click;
-            this.Form.AddButton.Click += AddButton_Click;
+            this.Form.CancelButton.Click += this.CancelButton_Click;
+            this.Form.AddButton.Click += this.AddButton_Click;
         }
 
         #endregion

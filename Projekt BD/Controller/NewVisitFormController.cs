@@ -36,7 +36,7 @@
 
         private void SetupEvents()
         {
-            this.Form.CancelButton.Click += CancelButton_Click;
+            this.Form.CancelButton.Click += this.CancelButton_Click;
         }
 
         #endregion

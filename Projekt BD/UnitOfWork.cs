@@ -15,7 +15,7 @@
 
         public UnitOfWork(IObjectContext objectContext)
         {
-            _objectContext = objectContext;
+            this._objectContext = objectContext;
         }
 
         #endregion
@@ -24,9 +24,9 @@
 
         public void Dispose()
         {
-            if (_objectContext != null)
+            if (this._objectContext != null)
             {
-                _objectContext.Dispose();
+                this._objectContext.Dispose();
             }
 
             GC.SuppressFinalize(this);
@@ -34,7 +34,7 @@
 
         public void Commit()
         {
-            _objectContext.SaveChanges();
+            this._objectContext.SaveChanges();
         }
 
         #endregion
