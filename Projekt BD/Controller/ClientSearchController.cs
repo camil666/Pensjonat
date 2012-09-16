@@ -95,37 +95,38 @@
 
                 if (!string.IsNullOrEmpty(this.Form.FirstNameClientSearchTextBox.Text))
                 {
-                    clients = clients.Where(l => l.FirstName.Contains(this.Form.FirstNameClientSearchTextBox.Text)).ToList();
+                    clients = clients.Where(l => l.FirstName.ToLowerInvariant().Contains(this.Form.FirstNameClientSearchTextBox.Text.ToLowerInvariant())).ToList();
                 }
 
                 if (!string.IsNullOrEmpty(this.Form.LastNameClientSearchTextBox.Text))
                 {
-                    clients = clients.Where(l => l.LastName.Contains(this.Form.LastNameClientSearchTextBox.Text)).ToList();
+                    clients = clients.Where(l => l.LastName.ToLowerInvariant().Contains(this.Form.LastNameClientSearchTextBox.Text.ToLowerInvariant())).ToList();
                 }
 
                 if (!string.IsNullOrEmpty(this.Form.IDNumberClientSearchTextBox.Text))
                 {
-                    clients = clients.Where(l => l.IdNumber.Contains(this.Form.IDNumberClientSearchTextBox.Text)).ToList();
+                    clients = clients.Where(l => l.IdNumber.ToLowerInvariant().Contains(this.Form.IDNumberClientSearchTextBox.Text.ToLowerInvariant())).ToList();
                 }
 
                 if (!string.IsNullOrEmpty(this.Form.EmailClientSearchTextBox.Text))
                 {
-                    clients = clients.Where(l => l.Email.Contains(this.Form.EmailClientSearchTextBox.Text)).ToList();
+                    clients = clients.Where(l => l.Email.ToLowerInvariant().Contains(this.Form.EmailClientSearchTextBox.Text.ToLowerInvariant())).ToList();
                 }
 
                 if (!string.IsNullOrEmpty(this.Form.CompanyNameClientSearchTextBox.Text))
                 {
-                    clients = clients.Where(l => l.CompanyName.Contains(this.Form.CompanyNameClientSearchTextBox.Text)).ToList();
+                    clients = clients.Where(l => l.CompanyName.ToLowerInvariant().Contains(this.Form.CompanyNameClientSearchTextBox.Text.ToLowerInvariant())).ToList();
                 }
 
-                if (!string.IsNullOrEmpty(this.Form.CountryClientSearchTextBox.Text))
-                {
-                    clients = clients.Where(l => l.CountryId.Contains(this.Form.CountryClientSearchTextBox.Text)).ToList();
-                }
+                //TODO: szukanie po nazwie kraju a nie jego id, albo zmiana bazy
+                //if (!string.IsNullOrEmpty(this.Form.CountryClientSearchTextBox.Text))
+                //{
+                //    clients = clients.Where(l => l.CountryId.Contains(this.Form.CountryClientSearchTextBox.Text)).ToList();
+                //}
 
                 if (!string.IsNullOrEmpty(this.Form.StreetClientSearchTextBox.Text))
                 {
-                    clients = clients.Where(l => l.Street.Contains(this.Form.StreetClientSearchTextBox.Text)).ToList();
+                    clients = clients.Where(l => l.Street.ToLowerInvariant().Contains(this.Form.StreetClientSearchTextBox.Text.ToLowerInvariant())).ToList();
                 }
 
                 if (!string.IsNullOrEmpty(this.Form.HouseNumberClientSearchTextBox.Text))
@@ -148,9 +149,9 @@
                     clients = clients.Where(l => l.TelephoneNumber.Contains(this.Form.PhoneClientSearchTextBox.Text)).ToList();
                 }
 
-                if (!string.IsNullOrEmpty(this.Form.PostCodeClientSearchTextBox.Text))
+                if (!string.IsNullOrEmpty(this.Form.TownClientSearchTextBox.Text))
                 {
-                    clients = clients.Where(l => l.PostCode.Contains(this.Form.PostCodeClientSearchTextBox.Text)).ToList();
+                    clients = clients.Where(l => l.Town.ToLowerInvariant().Contains(this.Form.PostCodeClientSearchTextBox.Text.ToLowerInvariant())).ToList();
                 }
 
                 this.Form.ClientSearchResultDataGridView.DataSource = clients;

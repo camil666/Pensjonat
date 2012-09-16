@@ -91,14 +91,11 @@
                 return;
             }
 
-            switch (employee.RoleId)
+            Form mainForm = LoginHelper.CreateMainForm(employee.RoleId);
+
+            if (mainForm != null)
             {
-                case 0:
-                    ControllerFactory.Instance.Create(ControllerTypes.AdminForm).Form.Show();
-                    break;
-                case 1:
-                    ControllerFactory.Instance.Create(ControllerTypes.ReceptionistForm).Form.Show();
-                    break;
+                mainForm.Show();
             }
 
             this.Form.Hide();

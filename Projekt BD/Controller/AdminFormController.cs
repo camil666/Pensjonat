@@ -69,7 +69,7 @@
             try
             {
                 var employees = (from e in DataAccess.Instance.Employees.GetAll().ToList()
-                                select new { e.Id, e.Username, e.FirstName, e.LastName, e.Role.Name, e.Email, e.Town }).ToList();
+                                 select new { e.Id, e.Username, e.FirstName, e.LastName, e.Role.Name, e.Email, e.Town }).ToList();
 
                 if (!string.IsNullOrEmpty(this.Form.IDSearchTextBox.Text))
                 {
@@ -78,26 +78,25 @@
 
                 if (!string.IsNullOrEmpty(this.Form.FirstNameSearchTextBox.Text))
                 {
-                    employees = employees.Where(l => l.FirstName.Contains(this.Form.FirstNameSearchTextBox.Text)).ToList();
+                    employees = employees.Where(l => l.FirstName.ToLowerInvariant().Contains(this.Form.FirstNameSearchTextBox.Text.ToLowerInvariant())).ToList();
                 }
 
                 if (!string.IsNullOrEmpty(this.Form.LastNameSearchTextBox.Text))
                 {
-                    employees = employees.Where(l => l.LastName.Contains(this.Form.LastNameSearchTextBox.Text)).ToList();
+                    employees = employees.Where(l => l.LastName.ToLowerInvariant().Contains(this.Form.LastNameSearchTextBox.Text.ToLowerInvariant())).ToList();
                 }
 
                 if (!string.IsNullOrEmpty(this.Form.LoginSearchTextBox.Text))
                 {
-                    employees = employees.Where(l => l.Username.Contains(this.Form.LoginSearchTextBox.Text)).ToList();
+                    employees = employees.Where(l => l.Username.ToLowerInvariant().Contains(this.Form.LoginSearchTextBox.Text.ToLowerInvariant())).ToList();
                 }
 
                 if (!string.IsNullOrEmpty(this.Form.EmailSearchTextBox.Text))
                 {
-                    employees = employees.Where(l => l.Email.Contains(this.Form.EmailSearchTextBox.Text)).ToList();
+                    employees = employees.Where(l => l.Email.ToLowerInvariant().Contains(this.Form.EmailSearchTextBox.Text.ToLowerInvariant())).ToList();
                 }
 
                 this.Form.SearchResultsDataGridView.DataSource = employees;
-
             }
             catch (Exception ex)
             {

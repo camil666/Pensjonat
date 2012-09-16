@@ -76,6 +76,7 @@
     <Compile Include="Interfaces\IObjectContext.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
+    <Compile Include="LoginHelper.cs" />
     <Compile Include="ObjectContextAdapter.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="UnitOfWork.cs" />
