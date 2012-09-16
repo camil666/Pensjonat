@@ -1,6 +1,7 @@
 ﻿namespace Projekt_BD.Controller
 {
     using System;
+    using System.Linq;
     using Domain;
     using Projekt_BD.View;
 
@@ -44,6 +45,11 @@
 
         private void Form_Load(object sender, EventArgs e)
         {
+            var roles = DataAccess.Instance.Roles.GetAll().ToList();
+            this.Form.RoleComboBox.DataSource = roles;
+            this.Form.RoleComboBox.DisplayMember = "Name";
+            this.Form.RoleComboBox.ValueMember = "Id";
+
             if (this.IsEditForm)
             {
                 var employeeToModify = DataAccess.Instance.Employees.Single(emp => emp.Id == this.ItemToEditID);
@@ -60,7 +66,7 @@
                     this.Form.PostCodeTextBox.Text = employeeToModify.PostCode;
                     this.Form.EmailTextBox.Text = employeeToModify.Email;
                     this.Form.PhoneNumberTextBox.Text = employeeToModify.TelephoneNumber;
-                    this.Form.ActualEmployee = employeeToModify;
+                    this.Form.RoleComboBox.SelectedValue = employeeToModify.RoleId;
                 }
 
                 this.Form.Text = "Edycja pracownika";
@@ -78,8 +84,8 @@
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            //TODO: weryfikacja danych.
-            //TODO: role.
+            //TODO: weryfikacja danych
+
             if (this.IsEditForm)
             {
                 var employeeToModify = DataAccess.Instance.Employees.Single(emp => emp.Id == this.ItemToEditID);
@@ -95,7 +101,7 @@
                 employeeToModify.TelephoneNumber = this.Form.PhoneNumberTextBox.Text;
                 employeeToModify.Town = this.Form.TownTextBox.Text;
                 employeeToModify.Username = this.Form.LoginTextBox.Text;
-                employeeToModify.Id = this.Form.ActualEmployee.Id;
+                employeeToModify.RoleId = (int)this.Form.RoleComboBox.SelectedValue;
             }
             else
             {
@@ -112,7 +118,7 @@
                     TelephoneNumber = this.Form.PhoneNumberTextBox.Text,
                     Town = this.Form.TownTextBox.Text,
                     Username = this.Form.LoginTextBox.Text,
-                    Id = this.Form.ActualEmployee.Id
+                    RoleId = (int)this.Form.RoleComboBox.SelectedValue
                 };
 
                 DataAccess.Instance.Employees.Add(newEmployee);

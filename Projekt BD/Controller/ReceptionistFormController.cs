@@ -445,10 +445,11 @@
             guestToBeUpdated.PostCode = this.Form.PostCodeClientDetailsTextBox.Text;
             guestToBeUpdated.Street = this.Form.StreetClientDetailsTextBox.Text;
             guestToBeUpdated.Town = this.Form.TownClientDetailsTextBox.Text;
+            guestToBeUpdated.IsVerified = this.Form.VerifiedClientDetailsCheckBox.Checked;
 
             DataAccess.Instance.UnitOfWork.Commit();
 
-            //TODO: weryfikacja danych i zapis czy klient jest zweryfikowany.
+            //TODO: weryfikacja wprowadzonych danych.
         }
 
         #endregion

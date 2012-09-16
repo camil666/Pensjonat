@@ -13,9 +13,5 @@
         }
 
         #endregion
-
-        public Employee ActualEmployee { get; set; }
-
-        public int EmployeeId { get; set; }  
     }
 }

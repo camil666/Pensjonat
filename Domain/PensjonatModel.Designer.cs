@@ -1241,7 +1241,8 @@ namespace Domain
         /// <param name="town">Initial value of the Town property.</param>
         /// <param name="telephoneNumber">Initial value of the TelephoneNumber property.</param>
         /// <param name="countryId">Initial value of the CountryId property.</param>
-        public static Guest CreateGuest(global::System.Int32 id, global::System.String firstName, global::System.String lastName, global::System.String street, global::System.String postCode, global::System.String apartmentNumber, global::System.String houseNumber, global::System.String town, global::System.String telephoneNumber, global::System.String countryId)
+        /// <param name="isVerified">Initial value of the IsVerified property.</param>
+        public static Guest CreateGuest(global::System.Int32 id, global::System.String firstName, global::System.String lastName, global::System.String street, global::System.String postCode, global::System.String apartmentNumber, global::System.String houseNumber, global::System.String town, global::System.String telephoneNumber, global::System.String countryId, global::System.Boolean isVerified)
         {
             Guest guest = new Guest();
             guest.Id = id;
@@ -1254,6 +1255,7 @@ namespace Domain
             guest.Town = town;
             guest.TelephoneNumber = telephoneNumber;
             guest.CountryId = countryId;
+            guest.IsVerified = isVerified;
             return guest;
         }
 
@@ -1575,6 +1577,30 @@ namespace Domain
         private global::System.String _Email;
         partial void OnEmailChanging(global::System.String value);
         partial void OnEmailChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsVerified
+        {
+            get
+            {
+                return _IsVerified;
+            }
+            set
+            {
+                OnIsVerifiedChanging(value);
+                ReportPropertyChanging("IsVerified");
+                _IsVerified = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsVerified");
+                OnIsVerifiedChanged();
+            }
+        }
+        private global::System.Boolean _IsVerified;
+        partial void OnIsVerifiedChanging(global::System.Boolean value);
+        partial void OnIsVerifiedChanged();
 
         #endregion
 

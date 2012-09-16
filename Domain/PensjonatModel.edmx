@@ -171,6 +171,7 @@
           <Property Name="IdNumber" Type="varchar" MaxLength="20" />
           <Property Name="CompanyName" Type="varchar" MaxLength="50" />
           <Property Name="Email" Type="varchar" MaxLength="30" />
+          <Property Name="IsVerified" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="MealPlans">
           <Key>
@@ -694,6 +695,7 @@
           <NavigationProperty Name="Discounts" Relationship="PensjonatModel.FK_Discount_Guest" FromRole="Guests" ToRole="Discounts" />
           <NavigationProperty Name="Reservations" Relationship="PensjonatModel.FK_Reservation_Guest" FromRole="Guests" ToRole="Reservations" />
           <NavigationProperty Name="Visits" Relationship="PensjonatModel.FK_Visit_Guest" FromRole="Guests" ToRole="Visits" />
+          <Property Type="Boolean" Name="IsVerified" Nullable="false" />
         </EntityType>
         <EntityType Name="MealPlan">
           <Key>
@@ -1072,7 +1074,8 @@
             <ScalarProperty Name="Description" ColumnName="Description" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Guests"><EntityTypeMapping TypeName="PensjonatModel.Guest"><MappingFragment StoreEntitySet="Guests">
-            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
             <ScalarProperty Name="FirstName" ColumnName="FirstName" />
             <ScalarProperty Name="LastName" ColumnName="LastName" />
             <ScalarProperty Name="Street" ColumnName="Street" />

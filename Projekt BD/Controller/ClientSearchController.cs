@@ -74,8 +74,7 @@
             this.Form.ParentForm.PostCodeClientDetailsTextBox.Text = selectedGuest.PostCode;
             this.Form.ParentForm.StreetClientDetailsTextBox.Text = selectedGuest.Street;
             this.Form.ParentForm.TownClientDetailsTextBox.Text = selectedGuest.Town;
-
-            //TODO: weryfikacja klienta
+            this.Form.ParentForm.VerifiedClientDetailsCheckBox.Checked = selectedGuest.IsVerified;
         }
 
         private void ClientSearchButton_Click(object sender, EventArgs e)
