@@ -29,6 +29,7 @@
             this.Guests = new Repository<Guest>(this.Context);
             this.Employees = new Repository<Employee>(this.Context);
             this.Roles = new Repository<Role>(this.Context);
+            this.Visits = new Repository<Visit>(this.Context);
         }
 
         #endregion
@@ -75,6 +76,8 @@
         public Repository<Employee> Employees { get; set; }
 
         public Repository<Role> Roles { get; set; }
+
+        public Repository<Visit> Visits { get; set; }
 
         private ObjectContextAdapter Context { get; set; }
 

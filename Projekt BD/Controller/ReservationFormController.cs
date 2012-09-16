@@ -83,8 +83,8 @@
             this.Form.AddToReservationButton.Click += this.AddToReservationButton_Click;
             this.Form.RemoveFromReservationButton.Click += this.RemoveFromReservationButton_Click;
             this.Form.AddButton.Click += this.AddButton_Click;
-            this.Form.StartDateDateTimePicker.ValueChanged += this.DateChangedEvent;
-            this.Form.EndDateDateTimePicker.ValueChanged += this.DateChangedEvent;
+            this.Form.StartDateDateTimePicker.ValueChanged += this.StartDateDateTimePicker_ValueChanged;
+            this.Form.EndDateDateTimePicker.ValueChanged += this.EndDateDateTimePicker_ValueChanged;
         }
 
         #endregion
@@ -228,14 +228,28 @@
             this.Form.Close();
         }
 
-        private void DateChangedEvent(object sender, EventArgs e)
+        private void EndDateDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            if (this.Form.StartDateDateTimePicker.Value > this.Form.EndDateDateTimePicker.Value)
+            if (this.Form.StartDateDateTimePicker.Value <= this.Form.EndDateDateTimePicker.Value)
             {
-                this.Form.EndDateDateTimePicker.Value = this.Form.StartDateDateTimePicker.Value;
-                this.Form.EndDateDateTimePicker.Value.AddDays(1.0);
+                this.Form.StartDateDateTimePicker.Value = this.Form.EndDateDateTimePicker.Value.Subtract(new TimeSpan(1,0,0,0));
             }
 
+            this.RefreshGrids();
+        }
+
+        private void StartDateDateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            if (this.Form.StartDateDateTimePicker.Value >= this.Form.EndDateDateTimePicker.Value)
+            {
+                this.Form.EndDateDateTimePicker.Value = this.Form.StartDateDateTimePicker.Value.AddDays(1.0);
+            }
+
+            this.RefreshGrids();
+        }
+
+        private void RefreshGrids()
+        {
             if (this.formIsLoaded)
             {
                 this.FreeRoomsSource.DataSource = this.GetFreeRooms(this.Form.StartDateDateTimePicker.Value, this.Form.EndDateDateTimePicker.Value);

@@ -96,6 +96,7 @@
                     employees = employees.Where(l => l.Email.ToLowerInvariant().Contains(this.Form.EmailSearchTextBox.Text.ToLowerInvariant())).ToList();
                 }
 
+                //TODO: Zmiana nazw kolumn.
                 this.Form.SearchResultsDataGridView.DataSource = employees;
             }
             catch (Exception ex)

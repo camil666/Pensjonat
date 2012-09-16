@@ -63,6 +63,8 @@
             this.Form.EditRoomButton.Click += this.EditRoomButton_Click;
             this.Form.NewRoomButton.Click += this.NewRoomButton_Click;
             this.Form.DeleteReservationButton.Click += this.DeleteReservationButton_Click;
+            this.Form.VisitStartDateSearchDateTimePicker.ValueChanged += VisitStartDateSearchDateTimePicker_ValueChanged;
+            this.Form.VisitEndDateSearchDateTimePicker.ValueChanged += VisitEndDateSearchDateTimePicker_ValueChanged;
         }
 
         #endregion
@@ -136,34 +138,23 @@
 
             if (selectedClientID > 0)
             {
-                using (var context = new PensjonatContext())
-                {
-                    try
-                    {
-                        var reservations = from rs in context.Reservations
-                                           where rs.GuestId == selectedClientID
-                                           && rs.StartDate >= this.Form.StartDateReservationSearchDateTimePicker.Value.Date
-                                           && rs.EndDate <= this.Form.EndDateReservationSearchDateTimePicker.Value.Date
-                                           select new
-                                           {
-                                               rs.Id,
-                                               rs.StartDate,
-                                               rs.EndDate,
-                                               rs.AdditionalInfo
-                                           };
+                var reservations = (from reservation in DataAccess.Instance.Reservations.Find(r => r.GuestId == selectedClientID
+                                   && r.StartDate >= this.Form.StartDateReservationSearchDateTimePicker.Value.Date
+                                   && r.EndDate <= this.Form.EndDateReservationSearchDateTimePicker.Value.Date).ToList()
+                                    select new
+                                    {
+                                        reservation.Id,
+                                        reservation.StartDate,
+                                        reservation.EndDate,
+                                        reservation.AdditionalInfo
+                                    }).ToList();
 
-                        this.Form.ReservationSearchResultDataGridView.DataSource = reservations;
+                this.Form.ReservationSearchResultDataGridView.DataSource = reservations;
 
-                        this.Form.ReservationSearchResultDataGridView.Columns["Id"].Visible = false;
-                        this.Form.ReservationSearchResultDataGridView.Columns["StartDate"].HeaderText = "Data rozpoczęcia";
-                        this.Form.ReservationSearchResultDataGridView.Columns["EndDate"].HeaderText = "Data zakończenia";
-                        this.Form.ReservationSearchResultDataGridView.Columns["AdditionalInfo"].HeaderText = "Dodatkowe informacje";
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
+                this.Form.ReservationSearchResultDataGridView.Columns["Id"].Visible = false;
+                this.Form.ReservationSearchResultDataGridView.Columns["StartDate"].HeaderText = "Data rozpoczęcia";
+                this.Form.ReservationSearchResultDataGridView.Columns["EndDate"].HeaderText = "Data zakończenia";
+                this.Form.ReservationSearchResultDataGridView.Columns["AdditionalInfo"].HeaderText = "Dodatkowe informacje";
             }
             else
             {
@@ -178,73 +169,60 @@
 
         private void StartDateReservationSearchDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            if (this.Form.StartDateReservationSearchDateTimePicker.Value > this.Form.EndDateReservationSearchDateTimePicker.Value)
+            if (this.Form.StartDateReservationSearchDateTimePicker.Value >= this.Form.EndDateReservationSearchDateTimePicker.Value)
             {
-                this.Form.EndDateReservationSearchDateTimePicker.Value = this.Form.StartDateReservationSearchDateTimePicker.Value;
+                this.Form.EndDateReservationSearchDateTimePicker.Value = this.Form.StartDateReservationSearchDateTimePicker.Value.AddDays(1.0);
             }
         }
 
         private void EndDateReservationSearchDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            if (this.Form.EndDateReservationSearchDateTimePicker.Value < this.Form.StartDateReservationSearchDateTimePicker.Value)
+            if (this.Form.EndDateReservationSearchDateTimePicker.Value <= this.Form.StartDateReservationSearchDateTimePicker.Value)
             {
-                this.Form.StartDateReservationSearchDateTimePicker.Value = this.Form.EndDateReservationSearchDateTimePicker.Value;
+                this.Form.StartDateReservationSearchDateTimePicker.Value = this.Form.EndDateReservationSearchDateTimePicker.Value.Subtract(new TimeSpan(1, 0, 0, 0));
+            }
+        }
+
+        private void VisitEndDateSearchDateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            if (this.Form.VisitEndDateSearchDateTimePicker.Value <= this.Form.VisitStartDateSearchDateTimePicker.Value)
+            {
+                this.Form.VisitStartDateSearchDateTimePicker.Value = this.Form.VisitEndDateSearchDateTimePicker.Value.Subtract(new TimeSpan(1, 0, 0, 0));
+            }
+        }
+
+        private void VisitStartDateSearchDateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            if (this.Form.VisitStartDateSearchDateTimePicker.Value >= this.Form.VisitEndDateSearchDateTimePicker.Value)
+            {
+                this.Form.VisitEndDateSearchDateTimePicker.Value = this.Form.VisitStartDateSearchDateTimePicker.Value.AddDays(1.0);
             }
         }
 
         private void ReservationSearchResultDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            this.Form.StartDateDetailsDateTimePicker.Value = (DateTime)this.Form.ReservationSearchResultDataGridView.SelectedRows[0].Cells["StartDate"].Value;
-            this.Form.EndDateDetailsDateTimePicker.Value = (DateTime)this.Form.ReservationSearchResultDataGridView.SelectedRows[0].Cells["EndDate"].Value;
-            this.Form.ReservationIDDetailsTextBox.Text = this.Form.ReservationSearchResultDataGridView.SelectedRows[0].Cells["Id"].Value.ToString();
-            this.Form.AdditionalInfoDetailsTextBox.Text = this.Form.ReservationSearchResultDataGridView.SelectedRows[0].Cells["AdditionalInfo"].Value.ToString();
-
-            using (var context = new PensjonatContext())
+            if (e.RowIndex > 0)
             {
-                try
-                {
-                    int reservationId = int.Parse(this.Form.ReservationIDDetailsTextBox.Text);
+                this.Form.StartDateDetailsDateTimePicker.Value = (DateTime)this.Form.ReservationSearchResultDataGridView.SelectedRows[0].Cells["StartDate"].Value;
+                this.Form.EndDateDetailsDateTimePicker.Value = (DateTime)this.Form.ReservationSearchResultDataGridView.SelectedRows[0].Cells["EndDate"].Value;
+                this.Form.ReservationIDDetailsTextBox.Text = this.Form.ReservationSearchResultDataGridView.SelectedRows[0].Cells["Id"].Value.ToString();
+                this.Form.AdditionalInfoDetailsTextBox.Text = this.Form.ReservationSearchResultDataGridView.SelectedRows[0].Cells["AdditionalInfo"].Value.ToString();
 
-                    var roomsReservations = from room in context.RoomReservations
-                                            where room.ReservationId == reservationId
-                                            select new
-                                            {
-                                                room.RoomId
-                                            };
+                int reservationId = int.Parse(this.Form.ReservationIDDetailsTextBox.Text);
 
-                    DataTable dataTable = new DataTable();
-                    dataTable.Columns.Add("Number");
-                    dataTable.Columns.Add("Capacity");
-                    dataTable.Columns.Add("Floor");
+                var roomsReservations = (from room in DataAccess.Instance.RoomReservations.Find(r => r.ReservationId == reservationId).ToList()
+                                         select new
+                                         {
+                                             room.Room.Number,
+                                             room.Room.Capacity,
+                                             room.Room.Floor
+                                         }).ToList();
 
-                    foreach (var roomReservation in roomsReservations)
-                    {
-                        var reservedRooms = from room in context.Rooms
-                                            where room.Number == roomReservation.RoomId
-                                            select new
-                                            {
-                                                room.Number,
-                                                room.Capacity,
-                                                room.Floor
-                                            };
+                this.Form.RoomsDataGridView.DataSource = roomsReservations;
 
-                        foreach (var roomDetails in reservedRooms)
-                        {
-                            object[] items = new object[] { roomDetails.Number, roomDetails.Capacity, roomDetails.Floor };
-                            dataTable.Rows.Add(items);
-                        }
-                    }
-
-                    this.Form.RoomsDataGridView.DataSource = dataTable;
-
-                    this.Form.RoomsDataGridView.Columns["Number"].HeaderText = "Numer pokoju";
-                    this.Form.RoomsDataGridView.Columns["Capacity"].HeaderText = "Pojemność";
-                    this.Form.RoomsDataGridView.Columns["Floor"].HeaderText = "Piętro";
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                this.Form.RoomsDataGridView.Columns["Number"].HeaderText = "Numer pokoju";
+                this.Form.RoomsDataGridView.Columns["Capacity"].HeaderText = "Pojemność";
+                this.Form.RoomsDataGridView.Columns["Floor"].HeaderText = "Piętro";
             }
         }
 
@@ -425,7 +403,48 @@
 
         private void VisitSearchButton_Click(object sender, EventArgs e)
         {
+            //TODO: mozna dodac nowy gridview na wizyty powiazane, poki co wyszukiwane sa tylko wizyty zaznaczonego uzytkownika
 
+            int selectedClientID = this.Form.ClientSearchWindow.SelectedClientID;
+
+            if (selectedClientID > 0)
+            {
+                var visits = (from visit in DataAccess.Instance.Visits.Find(v => v.GuestId == selectedClientID
+                                   && v.StartDate >= this.Form.VisitStartDateSearchDateTimePicker.Value.Date
+                                   && v.EndDate <= this.Form.VisitEndDateSearchDateTimePicker.Value.Date).ToList()
+                              select new
+                              {
+                                  visit.Id,
+                                  visit.Guest.FirstName,
+                                  visit.Guest.LastName,
+                                  visit.RoomId,
+                                  visit.StartDate,
+                                  visit.EndDate,
+                                  visit.AdditionalInfo
+                              }).ToList();
+
+                if (visits.Count == 0)
+                    return;
+
+                this.Form.ReservationSearchResultDataGridView.DataSource = visits;
+
+                this.Form.VisitSearchResultsDataGridView.Columns["Id"].Visible = false;
+                this.Form.VisitSearchResultsDataGridView.Columns["FirstName"].HeaderText = "Imię";
+                this.Form.VisitSearchResultsDataGridView.Columns["LastName"].HeaderText = "Nazwisko";
+                this.Form.VisitSearchResultsDataGridView.Columns["RoomId"].HeaderText = "Pokój";
+                this.Form.VisitSearchResultsDataGridView.Columns["StartDate"].HeaderText = "Data rozpoczęcia";
+                this.Form.VisitSearchResultsDataGridView.Columns["EndDate"].HeaderText = "Data zakończenia";
+                this.Form.VisitSearchResultsDataGridView.Columns["AdditionalInfo"].HeaderText = "Dodatkowe informacje";
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Należy zaznaczyć klienta",
+                    "Błąd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
+            }
         }
 
         private void SaveClientChangesButton_Click(object sender, EventArgs e)

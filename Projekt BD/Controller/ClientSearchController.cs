@@ -57,24 +57,27 @@
 
         private void ClientSearchResultDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int guestId = (int)this.Form.ClientSearchResultDataGridView.Rows[e.RowIndex].Cells["Id"].Value;
+            if (e.RowIndex > 0)
+            {
+                int guestId = (int)this.Form.ClientSearchResultDataGridView.Rows[e.RowIndex].Cells["Id"].Value;
 
-            Guest selectedGuest = DataAccess.Instance.Guests.Single(g => g.Id == guestId);
+                Guest selectedGuest = DataAccess.Instance.Guests.Single(g => g.Id == guestId);
 
-            this.Form.ParentForm.ApartmentNumberClientDetailsTextBox.Text = selectedGuest.ApartmentNumber;
-            this.Form.ParentForm.CompanyNameClientDetailsTextBox.Text = selectedGuest.CompanyName;
-            this.Form.ParentForm.IDClientDetailsTextBox.Text = selectedGuest.Id.ToString();
-            this.Form.ParentForm.IDNumberClientDetailsTextBox.Text = selectedGuest.IdNumber;
-            this.Form.ParentForm.CountryClientDetailsTextBox.Text = selectedGuest.CountryId;
-            this.Form.ParentForm.EmailClientDetailsTextBox.Text = selectedGuest.Email;
-            this.Form.ParentForm.FirstNameClientDetailsTextBox.Text = selectedGuest.FirstName;
-            this.Form.ParentForm.HouseNumberClientDetailsTextBox.Text = selectedGuest.HouseNumber;
-            this.Form.ParentForm.LastNameClientDetailsTextBox.Text = selectedGuest.LastName;
-            this.Form.ParentForm.PhoneNumberClientDetailsTextBox.Text = selectedGuest.TelephoneNumber;
-            this.Form.ParentForm.PostCodeClientDetailsTextBox.Text = selectedGuest.PostCode;
-            this.Form.ParentForm.StreetClientDetailsTextBox.Text = selectedGuest.Street;
-            this.Form.ParentForm.TownClientDetailsTextBox.Text = selectedGuest.Town;
-            this.Form.ParentForm.VerifiedClientDetailsCheckBox.Checked = selectedGuest.IsVerified;
+                this.Form.ParentForm.ApartmentNumberClientDetailsTextBox.Text = selectedGuest.ApartmentNumber;
+                this.Form.ParentForm.CompanyNameClientDetailsTextBox.Text = selectedGuest.CompanyName;
+                this.Form.ParentForm.IDClientDetailsTextBox.Text = selectedGuest.Id.ToString();
+                this.Form.ParentForm.IDNumberClientDetailsTextBox.Text = selectedGuest.IdNumber;
+                this.Form.ParentForm.CountryClientDetailsTextBox.Text = selectedGuest.CountryId;
+                this.Form.ParentForm.EmailClientDetailsTextBox.Text = selectedGuest.Email;
+                this.Form.ParentForm.FirstNameClientDetailsTextBox.Text = selectedGuest.FirstName;
+                this.Form.ParentForm.HouseNumberClientDetailsTextBox.Text = selectedGuest.HouseNumber;
+                this.Form.ParentForm.LastNameClientDetailsTextBox.Text = selectedGuest.LastName;
+                this.Form.ParentForm.PhoneNumberClientDetailsTextBox.Text = selectedGuest.TelephoneNumber;
+                this.Form.ParentForm.PostCodeClientDetailsTextBox.Text = selectedGuest.PostCode;
+                this.Form.ParentForm.StreetClientDetailsTextBox.Text = selectedGuest.Street;
+                this.Form.ParentForm.TownClientDetailsTextBox.Text = selectedGuest.Town;
+                this.Form.ParentForm.VerifiedClientDetailsCheckBox.Checked = selectedGuest.IsVerified;
+            }
         }
 
         private void ClientSearchButton_Click(object sender, EventArgs e)
@@ -155,6 +158,9 @@
                 }
 
                 this.Form.ClientSearchResultDataGridView.DataSource = clients;
+
+                if (clients.Count == 0)
+                    return;
 
                 this.Form.ClientSearchResultDataGridView.Columns["Id"].Visible = false;
                 this.Form.ClientSearchResultDataGridView.Columns["FirstName"].HeaderText = "Imię";
