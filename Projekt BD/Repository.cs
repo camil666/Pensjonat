@@ -12,7 +12,7 @@
     {
         #region Fields
 
-        private IObjectSet<TEntity> _objectSet;
+        private IObjectSet<TEntity> objectSet;
 
         #endregion
 
@@ -20,7 +20,7 @@
 
         public Repository(IObjectContext objectContext)
         {
-            this._objectSet = objectContext.CreateObjectSet<TEntity>();
+            this.objectSet = objectContext.CreateObjectSet<TEntity>();
         }
 
         #endregion
@@ -29,7 +29,7 @@
 
         public IQueryable<TEntity> GetAll()
         {
-            return this._objectSet;
+            return this.objectSet;
         }
 
         public IQueryable<TEntity> Find(
@@ -37,7 +37,7 @@
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             string includeProperties = "")
         {
-            IQueryable<TEntity> query = this._objectSet;
+            IQueryable<TEntity> query = this.objectSet;
 
             if (filter != null)
             {
@@ -55,14 +55,13 @@
             }
 
             return query;
-
         }
 
         public TEntity Single(Expression<Func<TEntity, bool>> filter)
         {
             try
             {
-                return this._objectSet.Single(filter);
+                return this.objectSet.Single(filter);
             }
             catch (InvalidOperationException)
             {
@@ -74,7 +73,7 @@
         {
             try
             {
-                return this._objectSet.First(filter);
+                return this.objectSet.First(filter);
             }
             catch (InvalidOperationException)
             {
@@ -84,17 +83,17 @@
 
         public void Delete(TEntity entity)
         {
-            this._objectSet.DeleteObject(entity);
+            this.objectSet.DeleteObject(entity);
         }
 
         public void Add(TEntity entity)
         {
-            this._objectSet.AddObject(entity);
+            this.objectSet.AddObject(entity);
         }
 
         public void Update(TEntity entityToUpdate)
         {
-            this._objectSet.Attach(entityToUpdate);
+            this.objectSet.Attach(entityToUpdate);
         }
 
         #endregion

@@ -14,8 +14,6 @@
             base.Form = new EditRoomFeatureForm();
 
             this.SetupEvents();
-
-            this.Features = new Repository<Feature>(Context);
         }
 
         #endregion
@@ -30,27 +28,31 @@
             }
         }
 
-        private Repository<Feature> Features { get; set; }
-
         #endregion
 
         #region Methods
 
         private void SetupEvents()
         {
-            this.Form.Load += Form_Load;
-            this.Form.OkButton.Click += OkButton_Click;
+            this.Form.Load += this.Form_Load;
+            this.Form.OkButton.Click += this.OkButton_Click;
+            this.Form.CancelButton.Click += this.CancelButton_Click;
         }
 
         #endregion
 
         #region Event Methods
 
+        void CancelButton_Click(object sender, EventArgs e)
+        {
+            this.Form.Dispose();
+        }
+
         private void Form_Load(object sender, EventArgs e)
         {
             if (this.IsEditForm)
             {
-                var feature = Features.Single(f => f.Id == this.ItemToEditID);
+                var feature = DataAccess.Instance.Features.Single(f => f.Id == this.ItemToEditID);
                 this.Form.NameTextBox.Text = feature.Name;
                 this.Form.DescriptionRichTextBox.Text = feature.Description;
 
@@ -81,7 +83,7 @@
 
             if (this.IsEditForm)
             {
-                var feature = this.Features.Single(f => f.Id == this.ItemToEditID);
+                var feature = DataAccess.Instance.Features.Single(f => f.Id == this.ItemToEditID);
                 feature.Name = featureName;
                 feature.Description = featureDescription;
             }
@@ -93,10 +95,10 @@
                     Description = featureDescription
                 };
 
-                Features.Add(feature);
+                DataAccess.Instance.Features.Add(feature);
             }
 
-            this.UnitOfWork.Commit();
+            DataAccess.Instance.UnitOfWork.Commit();
 
             this.Form.Dispose();
         }

@@ -4,9 +4,13 @@
 
     public partial class EditRoomForm : Form
     {
+        #region Constructors
+
         public EditRoomForm()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
+
+        #endregion
     }
 }

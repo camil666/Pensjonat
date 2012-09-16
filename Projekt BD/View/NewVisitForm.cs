@@ -4,9 +4,13 @@
 
     public partial class NewVisitForm : Form
     {
+        #region Constructors
+
         public NewVisitForm()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
+
+        #endregion
     }
 }

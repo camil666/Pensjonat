@@ -37,6 +37,7 @@
             this.PriceTextBox = new System.Windows.Forms.TextBox();
             this.OkButton = new System.Windows.Forms.Button();
             this.DescriptionRichTextBox = new System.Windows.Forms.RichTextBox();
+            this.CancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -79,26 +80,26 @@
             // 
             this.NameTextBox.Location = new System.Drawing.Point(132, 10);
             this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(140, 20);
+            this.NameTextBox.Size = new System.Drawing.Size(178, 20);
             this.NameTextBox.TabIndex = 4;
             // 
             // PricePerPersonTextBox
             // 
             this.PricePerPersonTextBox.Location = new System.Drawing.Point(132, 44);
             this.PricePerPersonTextBox.Name = "PricePerPersonTextBox";
-            this.PricePerPersonTextBox.Size = new System.Drawing.Size(140, 20);
+            this.PricePerPersonTextBox.Size = new System.Drawing.Size(178, 20);
             this.PricePerPersonTextBox.TabIndex = 5;
             // 
             // PriceTextBox
             // 
             this.PriceTextBox.Location = new System.Drawing.Point(132, 79);
             this.PriceTextBox.Name = "PriceTextBox";
-            this.PriceTextBox.Size = new System.Drawing.Size(140, 20);
+            this.PriceTextBox.Size = new System.Drawing.Size(178, 20);
             this.PriceTextBox.TabIndex = 6;
             // 
             // OkButton
             // 
-            this.OkButton.Location = new System.Drawing.Point(95, 170);
+            this.OkButton.Location = new System.Drawing.Point(220, 184);
             this.OkButton.Name = "OkButton";
             this.OkButton.Size = new System.Drawing.Size(90, 23);
             this.OkButton.TabIndex = 8;
@@ -107,17 +108,27 @@
             // 
             // DescriptionRichTextBox
             // 
-            this.DescriptionRichTextBox.Location = new System.Drawing.Point(132, 117);
+            this.DescriptionRichTextBox.Location = new System.Drawing.Point(76, 117);
             this.DescriptionRichTextBox.Name = "DescriptionRichTextBox";
-            this.DescriptionRichTextBox.Size = new System.Drawing.Size(140, 47);
+            this.DescriptionRichTextBox.Size = new System.Drawing.Size(234, 48);
             this.DescriptionRichTextBox.TabIndex = 9;
             this.DescriptionRichTextBox.Text = "";
+            // 
+            // CancelButton
+            // 
+            this.CancelButton.Location = new System.Drawing.Point(76, 184);
+            this.CancelButton.Name = "CancelButton";
+            this.CancelButton.Size = new System.Drawing.Size(90, 23);
+            this.CancelButton.TabIndex = 10;
+            this.CancelButton.Text = "Anuluj";
+            this.CancelButton.UseVisualStyleBackColor = true;
             // 
             // EditRoomTypeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 205);
+            this.ClientSize = new System.Drawing.Size(322, 219);
+            this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.DescriptionRichTextBox);
             this.Controls.Add(this.OkButton);
             this.Controls.Add(this.PriceTextBox);
@@ -127,6 +138,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "EditRoomTypeForm";
             this.Text = "Pokój";
             this.ResumeLayout(false);
@@ -145,5 +157,6 @@
         public System.Windows.Forms.TextBox PriceTextBox;
         public System.Windows.Forms.Button OkButton;
         public System.Windows.Forms.RichTextBox DescriptionRichTextBox;
+        public System.Windows.Forms.Button CancelButton;
     }
 }

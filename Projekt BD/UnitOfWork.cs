@@ -7,7 +7,7 @@
     {
         #region Fields
 
-        private readonly IObjectContext _objectContext;
+        private readonly IObjectContext objectContext;
 
         #endregion
 
@@ -15,7 +15,7 @@
 
         public UnitOfWork(IObjectContext objectContext)
         {
-            this._objectContext = objectContext;
+            this.objectContext = objectContext;
         }
 
         #endregion
@@ -24,9 +24,9 @@
 
         public void Dispose()
         {
-            if (this._objectContext != null)
+            if (this.objectContext != null)
             {
-                this._objectContext.Dispose();
+                this.objectContext.Dispose();
             }
 
             GC.SuppressFinalize(this);
@@ -34,7 +34,7 @@
 
         public void Commit()
         {
-            this._objectContext.SaveChanges();
+            this.objectContext.SaveChanges();
         }
 
         #endregion

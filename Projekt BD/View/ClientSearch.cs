@@ -11,14 +11,14 @@
 
         public ClientSearch()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         #endregion
 
         #region Properties
 
-        new public ReceptionistForm ParentForm { get; set; }
+        public new ReceptionistForm ParentForm { get; set; }
 
         public int SelectedClientID
         {

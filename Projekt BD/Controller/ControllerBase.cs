@@ -10,17 +10,6 @@
 
         public ControllerBase()
         {
-            this.Context = new ObjectContextAdapter(new PensjonatContext());
-            this.UnitOfWork = new UnitOfWork(this.Context);
-        }
-
-        #endregion
-
-        #region Finalizer
-
-        ~ControllerBase()
-        {
-            this.UnitOfWork.Dispose();
         }
 
         #endregion
@@ -32,10 +21,6 @@
         public int ClientID { get; set; }
 
         public int ItemToEditID { get; set; }
-
-        protected ObjectContextAdapter Context { get; set; }
-
-        protected UnitOfWork UnitOfWork { get; set; }
 
         protected bool IsEditForm
         {

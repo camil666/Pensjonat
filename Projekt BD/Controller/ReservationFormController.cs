@@ -37,8 +37,6 @@
 
             this.SetupEvents();
 
-            this.Rooms = (new Repository<Room>(Context)).GetAll();
-
             this.formIsLoaded = false;
         }
 
@@ -57,8 +55,6 @@
         private BindingSource FreeRoomsSource { get; set; }
 
         private BindingSource ReservedRoomsSource { get; set; }
-
-        private IQueryable<Room> Rooms { get; set; }
 
         #endregion
 
@@ -99,8 +95,7 @@
         {
             try
             {
-                var guestRepository = new Repository<Guest>(Context);
-                var client = guestRepository.Single(guest => guest.Id == this.ClientID);
+                var client = DataAccess.Instance.Guests.Single(guest => guest.Id == this.ClientID);
                 this.Form.ClientTextBox.Text = string.Concat(client.FirstName, " ", client.LastName);
 
                 this.ReservedRoomsSource = new BindingSource();
@@ -111,16 +106,13 @@
                 {
                     this.Form.Text = "Edycja Rezerwacji";
 
-                    var reservationRepository = new Repository<Reservation>(Context);
-                    var reservationToEdit = reservationRepository.Single(reservation => reservation.Id == this.ItemToEditID);
+                    var reservationToEdit = DataAccess.Instance.Reservations.Single(reservation => reservation.Id == this.ItemToEditID);
 
                     this.Form.AddInfoTextBox.Text = reservationToEdit.AdditionalInfo;
                     this.Form.StartDateDateTimePicker.Value = reservationToEdit.StartDate;
                     this.Form.EndDateDateTimePicker.Value = reservationToEdit.EndDate;
 
-                    var roomReservationRepository = new Repository<RoomReservation>(Context);
-
-                    var roomsReservations = (from room in roomReservationRepository.Find(room => room.ReservationId == this.ItemToEditID)
+                    var roomsReservations = (from room in DataAccess.Instance.RoomReservations.Find(room => room.ReservationId == this.ItemToEditID)
                                              select new { room.Room.Number, room.Room.RoomType.Name, room.Room.Capacity, room.Room.Floor, room.Room.RoomType.Price }).ToList();
 
                     this.ReservedRoomsSource.DataSource = roomsReservations;
@@ -195,19 +187,16 @@
                 return;
             }
 
-            var reservationRepository = new Repository<Reservation>(Context);
-            var roomReservationRepository = new Repository<RoomReservation>(Context);
-
             if (this.IsEditForm)
             {
-                reservationRepository.Delete(reservationRepository.Single(r => r.Id == this.ItemToEditID));
+                DataAccess.Instance.Reservations.Delete(DataAccess.Instance.Reservations.Single(r => r.Id == this.ItemToEditID));
 
-                var roomReservationsToDelete = from room in roomReservationRepository.Find(r => r.ReservationId == this.ItemToEditID)
+                var roomReservationsToDelete = from room in DataAccess.Instance.RoomReservations.Find(r => r.ReservationId == this.ItemToEditID)
                                                select room;
 
                 foreach (var roomReservation in roomReservationsToDelete)
                 {
-                    roomReservationRepository.Delete(roomReservation);
+                    DataAccess.Instance.RoomReservations.Delete(roomReservation);
                 }
             }
 
@@ -219,13 +208,13 @@
                 GuestId = this.ClientID
             };
 
-            reservationRepository.Add(reservation);
+            DataAccess.Instance.Reservations.Add(reservation);
 
             foreach (DataGridViewRow row in this.Form.RoomsToBeReservedDataGridView.Rows)
             {
                 int roomNumber = (int)row.Cells[NumberColumnName].Value;
 
-                roomReservationRepository.Add(
+                DataAccess.Instance.RoomReservations.Add(
                     new RoomReservation
                     {
                         RoomId = roomNumber,
@@ -235,7 +224,7 @@
                     });
             }
 
-            this.UnitOfWork.Commit();
+            DataAccess.Instance.UnitOfWork.Commit();
             this.Form.Close();
         }
 
@@ -259,13 +248,12 @@
             DateTime reservationStart = this.Form.StartDateDateTimePicker.Value;
             DateTime reservationEnd = this.Form.EndDateDateTimePicker.Value;
 
-            var roomReservationRepository = new Repository<RoomReservation>(Context);
+            var collidingReservations = DataAccess.Instance.RoomReservations
+                                        .Find(r => (r.StartDate > reservationStart && r.StartDate < reservationEnd) ||
+                                        (r.EndDate > reservationStart && r.EndDate < reservationEnd) ||
+                                        (r.StartDate < reservationStart && r.EndDate > reservationEnd));
 
-            var collidingReservations = roomReservationRepository.Find(r => (r.StartDate > reservationStart && r.StartDate < reservationEnd) ||
-                                                                    (r.EndDate > reservationStart && r.EndDate < reservationEnd) ||
-                                                                    (r.StartDate < reservationStart && r.EndDate > reservationEnd));
-
-            return (from room in this.Rooms
+            return (from room in DataAccess.Instance.Rooms.GetAll().ToList()
                     where !(from r in collidingReservations
                             select r.RoomId).Contains(room.Number)
                     select new { room.Number, room.RoomType.Name, room.Capacity, room.Floor, room.RoomType.Price }).ToList();

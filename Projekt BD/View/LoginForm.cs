@@ -4,9 +4,13 @@
 
     public partial class LoginForm : Form
     {
+        #region Construtors
+
         public LoginForm()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
+
+        #endregion
     }
 }

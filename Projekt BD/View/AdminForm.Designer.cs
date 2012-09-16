@@ -55,37 +55,36 @@
             this.ActionsGroupBox.Controls.Add(this.ChangeEmployeeDetailsButton);
             this.ActionsGroupBox.Controls.Add(this.DeleteEmployeeButton);
             this.ActionsGroupBox.Controls.Add(this.AddEmployeeButton);
-            this.ActionsGroupBox.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ActionsGroupBox.Location = new System.Drawing.Point(0, 0);
+            this.ActionsGroupBox.Location = new System.Drawing.Point(12, 12);
             this.ActionsGroupBox.Name = "ActionsGroupBox";
-            this.ActionsGroupBox.Size = new System.Drawing.Size(200, 562);
+            this.ActionsGroupBox.Size = new System.Drawing.Size(193, 496);
             this.ActionsGroupBox.TabIndex = 1;
             this.ActionsGroupBox.TabStop = false;
             this.ActionsGroupBox.Text = "Akcje predefiniowane";
             // 
             // ChangeEmployeeDetailsButton
             // 
-            this.ChangeEmployeeDetailsButton.Location = new System.Drawing.Point(12, 93);
+            this.ChangeEmployeeDetailsButton.Location = new System.Drawing.Point(6, 118);
             this.ChangeEmployeeDetailsButton.Name = "ChangeEmployeeDetailsButton";
-            this.ChangeEmployeeDetailsButton.Size = new System.Drawing.Size(180, 23);
+            this.ChangeEmployeeDetailsButton.Size = new System.Drawing.Size(181, 23);
             this.ChangeEmployeeDetailsButton.TabIndex = 2;
             this.ChangeEmployeeDetailsButton.Text = "Modyfikuj dane pracownika...";
             this.ChangeEmployeeDetailsButton.UseVisualStyleBackColor = true;
             // 
             // DeleteEmployeeButton
             // 
-            this.DeleteEmployeeButton.Location = new System.Drawing.Point(12, 64);
+            this.DeleteEmployeeButton.Location = new System.Drawing.Point(6, 84);
             this.DeleteEmployeeButton.Name = "DeleteEmployeeButton";
-            this.DeleteEmployeeButton.Size = new System.Drawing.Size(180, 23);
+            this.DeleteEmployeeButton.Size = new System.Drawing.Size(181, 23);
             this.DeleteEmployeeButton.TabIndex = 1;
             this.DeleteEmployeeButton.Text = "Usuń pracownika";
             this.DeleteEmployeeButton.UseVisualStyleBackColor = true;
             // 
             // AddEmployeeButton
             // 
-            this.AddEmployeeButton.Location = new System.Drawing.Point(12, 35);
+            this.AddEmployeeButton.Location = new System.Drawing.Point(6, 50);
             this.AddEmployeeButton.Name = "AddEmployeeButton";
-            this.AddEmployeeButton.Size = new System.Drawing.Size(180, 23);
+            this.AddEmployeeButton.Size = new System.Drawing.Size(181, 23);
             this.AddEmployeeButton.TabIndex = 0;
             this.AddEmployeeButton.Text = "Dodaj pracownika...";
             this.AddEmployeeButton.UseVisualStyleBackColor = true;
@@ -104,10 +103,9 @@
             this.SearchGroupBox.Controls.Add(this.LastNameSearchLabel);
             this.SearchGroupBox.Controls.Add(this.FirstNameSearchTextBox);
             this.SearchGroupBox.Controls.Add(this.FirstNameSearchLabel);
-            this.SearchGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SearchGroupBox.Location = new System.Drawing.Point(200, 0);
+            this.SearchGroupBox.Location = new System.Drawing.Point(211, 12);
             this.SearchGroupBox.Name = "SearchGroupBox";
-            this.SearchGroupBox.Size = new System.Drawing.Size(584, 562);
+            this.SearchGroupBox.Size = new System.Drawing.Size(561, 496);
             this.SearchGroupBox.TabIndex = 2;
             this.SearchGroupBox.TabStop = false;
             this.SearchGroupBox.Text = "Wyszukiwanie";
@@ -115,14 +113,17 @@
             // SearchResultsDataGridView
             // 
             this.SearchResultsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.SearchResultsDataGridView.Location = new System.Drawing.Point(266, 16);
+            this.SearchResultsDataGridView.Location = new System.Drawing.Point(6, 165);
+            this.SearchResultsDataGridView.MultiSelect = false;
             this.SearchResultsDataGridView.Name = "SearchResultsDataGridView";
-            this.SearchResultsDataGridView.Size = new System.Drawing.Size(306, 534);
+            this.SearchResultsDataGridView.ReadOnly = true;
+            this.SearchResultsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.SearchResultsDataGridView.Size = new System.Drawing.Size(549, 325);
             this.SearchResultsDataGridView.TabIndex = 75;
             // 
             // SearchButton
             // 
-            this.SearchButton.Location = new System.Drawing.Point(77, 205);
+            this.SearchButton.Location = new System.Drawing.Point(229, 118);
             this.SearchButton.Name = "SearchButton";
             this.SearchButton.Size = new System.Drawing.Size(100, 23);
             this.SearchButton.TabIndex = 74;
@@ -131,15 +132,15 @@
             // 
             // EmailSearchTextBox
             // 
-            this.EmailSearchTextBox.Location = new System.Drawing.Point(77, 139);
+            this.EmailSearchTextBox.Location = new System.Drawing.Point(357, 75);
             this.EmailSearchTextBox.Name = "EmailSearchTextBox";
-            this.EmailSearchTextBox.Size = new System.Drawing.Size(120, 20);
+            this.EmailSearchTextBox.Size = new System.Drawing.Size(150, 20);
             this.EmailSearchTextBox.TabIndex = 73;
             // 
             // EmailSearchLabel
             // 
             this.EmailSearchLabel.AutoSize = true;
-            this.EmailSearchLabel.Location = new System.Drawing.Point(11, 142);
+            this.EmailSearchLabel.Location = new System.Drawing.Point(291, 78);
             this.EmailSearchLabel.Name = "EmailSearchLabel";
             this.EmailSearchLabel.Size = new System.Drawing.Size(38, 13);
             this.EmailSearchLabel.TabIndex = 72;
@@ -147,15 +148,15 @@
             // 
             // LoginSearchTextBox
             // 
-            this.LoginSearchTextBox.Location = new System.Drawing.Point(77, 113);
+            this.LoginSearchTextBox.Location = new System.Drawing.Point(77, 75);
             this.LoginSearchTextBox.Name = "LoginSearchTextBox";
-            this.LoginSearchTextBox.Size = new System.Drawing.Size(120, 20);
+            this.LoginSearchTextBox.Size = new System.Drawing.Size(150, 20);
             this.LoginSearchTextBox.TabIndex = 71;
             // 
             // LoginSearchLabel
             // 
             this.LoginSearchLabel.AutoSize = true;
-            this.LoginSearchLabel.Location = new System.Drawing.Point(11, 116);
+            this.LoginSearchLabel.Location = new System.Drawing.Point(11, 78);
             this.LoginSearchLabel.Name = "LoginSearchLabel";
             this.LoginSearchLabel.Size = new System.Drawing.Size(36, 13);
             this.LoginSearchLabel.TabIndex = 70;
@@ -163,15 +164,15 @@
             // 
             // IDSearchTextBox
             // 
-            this.IDSearchTextBox.Location = new System.Drawing.Point(77, 35);
+            this.IDSearchTextBox.Location = new System.Drawing.Point(77, 25);
             this.IDSearchTextBox.Name = "IDSearchTextBox";
-            this.IDSearchTextBox.Size = new System.Drawing.Size(120, 20);
+            this.IDSearchTextBox.Size = new System.Drawing.Size(150, 20);
             this.IDSearchTextBox.TabIndex = 68;
             // 
             // IDSearchLabel
             // 
             this.IDSearchLabel.AutoSize = true;
-            this.IDSearchLabel.Location = new System.Drawing.Point(11, 38);
+            this.IDSearchLabel.Location = new System.Drawing.Point(11, 28);
             this.IDSearchLabel.Name = "IDSearchLabel";
             this.IDSearchLabel.Size = new System.Drawing.Size(21, 13);
             this.IDSearchLabel.TabIndex = 67;
@@ -179,15 +180,15 @@
             // 
             // LastNameSearchTextBox
             // 
-            this.LastNameSearchTextBox.Location = new System.Drawing.Point(77, 87);
+            this.LastNameSearchTextBox.Location = new System.Drawing.Point(357, 50);
             this.LastNameSearchTextBox.Name = "LastNameSearchTextBox";
-            this.LastNameSearchTextBox.Size = new System.Drawing.Size(120, 20);
+            this.LastNameSearchTextBox.Size = new System.Drawing.Size(150, 20);
             this.LastNameSearchTextBox.TabIndex = 66;
             // 
             // LastNameSearchLabel
             // 
             this.LastNameSearchLabel.AutoSize = true;
-            this.LastNameSearchLabel.Location = new System.Drawing.Point(11, 90);
+            this.LastNameSearchLabel.Location = new System.Drawing.Point(291, 53);
             this.LastNameSearchLabel.Name = "LastNameSearchLabel";
             this.LastNameSearchLabel.Size = new System.Drawing.Size(56, 13);
             this.LastNameSearchLabel.TabIndex = 65;
@@ -195,15 +196,15 @@
             // 
             // FirstNameSearchTextBox
             // 
-            this.FirstNameSearchTextBox.Location = new System.Drawing.Point(77, 61);
+            this.FirstNameSearchTextBox.Location = new System.Drawing.Point(77, 50);
             this.FirstNameSearchTextBox.Name = "FirstNameSearchTextBox";
-            this.FirstNameSearchTextBox.Size = new System.Drawing.Size(120, 20);
+            this.FirstNameSearchTextBox.Size = new System.Drawing.Size(150, 20);
             this.FirstNameSearchTextBox.TabIndex = 64;
             // 
             // FirstNameSearchLabel
             // 
             this.FirstNameSearchLabel.AutoSize = true;
-            this.FirstNameSearchLabel.Location = new System.Drawing.Point(11, 64);
+            this.FirstNameSearchLabel.Location = new System.Drawing.Point(11, 53);
             this.FirstNameSearchLabel.Name = "FirstNameSearchLabel";
             this.FirstNameSearchLabel.Size = new System.Drawing.Size(29, 13);
             this.FirstNameSearchLabel.TabIndex = 63;
@@ -213,7 +214,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 562);
+            this.ClientSize = new System.Drawing.Size(784, 520);
             this.Controls.Add(this.SearchGroupBox);
             this.Controls.Add(this.ActionsGroupBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

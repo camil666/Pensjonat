@@ -298,7 +298,7 @@
             this.Controls.Add(this.FirstNameLabel);
             this.Controls.Add(this.PasswordLabel);
             this.Controls.Add(this.LoginLabel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "NewEmployeeForm";
             this.Text = "Nowy Pracownik";
             this.ResumeLayout(false);

@@ -1,12 +1,16 @@
-﻿using System.Windows.Forms;
-
-namespace Projekt_BD.View
+﻿namespace Projekt_BD.View
 {
+    using System.Windows.Forms;
+
     public partial class EmployeeForm : Form
     {
+        #region Constructors
+
         public EmployeeForm()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
+
+        #endregion
     }
 }

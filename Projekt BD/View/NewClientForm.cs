@@ -4,9 +4,13 @@
 
     public partial class NewClientForm : Form
     {
+        #region Consturctors
+
         public NewClientForm()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
+
+        #endregion
     }
 }

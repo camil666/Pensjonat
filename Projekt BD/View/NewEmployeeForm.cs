@@ -5,13 +5,17 @@
 
     public partial class NewEmployeeForm : Form
     {
-        public Employee ActualEmployee { get; set; }
-
-        public int EmployeeId { get; set; }
+        #region Constructors
 
         public NewEmployeeForm()
         {
-            InitializeComponent(); 
+            this.InitializeComponent();
         }
+
+        #endregion
+
+        public Employee ActualEmployee { get; set; }
+
+        public int EmployeeId { get; set; }  
     }
 }

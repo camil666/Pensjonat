@@ -17,9 +17,6 @@
             base.Form = new EditRoomForm();
 
             this.SetupEvents();
-
-            this.Rooms = new Repository<Room>(Context);
-            this.Features = new Repository<Feature>(Context);
         }
 
         #endregion
@@ -33,10 +30,6 @@
                 return base.Form as EditRoomForm;
             }
         }
-
-        private Repository<Room> Rooms { get; set; }
-
-        private Repository<Feature> Features { get; set; }
 
         #endregion
 
@@ -64,7 +57,7 @@
                 if (Convert.ToBoolean(cell.Value) == true)
                 {
                     var featureId = (int)row.Cells["Id"].Value;
-                    Feature featureToAdd = this.Features.Single(f => f.Id == featureId);
+                    Feature featureToAdd = DataAccess.Instance.Features.Single(f => f.Id == featureId);
                     room.Features.Add(featureToAdd);
                 }
             }
@@ -78,13 +71,13 @@
         {
             if (this.IsEditForm)
             {
-                var room = Rooms.Single(r => r.Number == this.ItemToEditID);
+                var room = DataAccess.Instance.Rooms.Single(r => r.Number == this.ItemToEditID);
                 this.Form.NumberTextBox.Text = room.Number.ToString();
                 this.Form.FloorTextBox.Text = room.Floor.ToString();
                 this.Form.TypeTextBox.Text = room.TypeId.ToString();
                 this.Form.CapacityTextBox.Text = room.Capacity.ToString();
 
-                var notAddedFeatures = (from feature in this.Features.GetAll().ToList()
+                var notAddedFeatures = (from feature in DataAccess.Instance.Features.GetAll().ToList()
                                         select feature).Except(from feature2 in room.Features select feature2);
 
                 var featureList = (from f in room.Features.ToList()
@@ -108,7 +101,7 @@
             }
             else
             {
-                var featureList = (from feature in this.Features.GetAll()
+                var featureList = (from feature in DataAccess.Instance.Features.GetAll()
                                    select new { feature.Id, feature.Name }).ToList();
 
                 this.Form.FeaturesDataGridView.DataSource = featureList;
@@ -146,7 +139,7 @@
 
             if (this.IsEditForm)
             {
-                var room = Rooms.Single(r => r.Number == this.ItemToEditID);
+                var room = DataAccess.Instance.Rooms.Single(r => r.Number == this.ItemToEditID);
                 room.Number = roomNumber;
                 room.Capacity = roomCapacity;
                 room.Floor = roomFloor;
@@ -164,12 +157,12 @@
                     TypeId = roomType
                 };
 
-                this.Rooms.Add(room);
+                DataAccess.Instance.Rooms.Add(room);
                 this.AddFeaturesToRoom(room);
             }
 
             //TODO: Naprawić bug przy dodawaniu i aktualizowaniu wpisów.
-            this.UnitOfWork.Commit();
+            DataAccess.Instance.UnitOfWork.Commit();
 
             this.Form.Dispose();
         }

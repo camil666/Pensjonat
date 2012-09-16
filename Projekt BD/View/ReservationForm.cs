@@ -4,9 +4,13 @@
 
     public partial class ReservationForm : Form
     {
+        #region Constructors
+
         public ReservationForm()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
+
+        #endregion
     }
 }

@@ -34,9 +34,9 @@
 
         private void SetupEvents()
         {
-            this.Form.LoginButton.Click += LoginButton_Click;
-            this.Form.LoginTextBox.KeyDown += TextBox_KeyDown;
-            this.Form.PasswordTextBox.KeyDown += TextBox_KeyDown;
+            this.Form.LoginButton.Click += this.LoginButton_Click;
+            this.Form.LoginTextBox.KeyDown += this.TextBox_KeyDown;
+            this.Form.PasswordTextBox.KeyDown += this.TextBox_KeyDown;
         }
 
         #endregion
@@ -77,9 +77,7 @@
                 return;
             }
 
-            var employeeRepository = new Repository<Employee>(Context);
-
-            Employee employee = employeeRepository.Single(emp => emp.Username == this.Form.LoginTextBox.Text);
+            Employee employee = DataAccess.Instance.Employees.Single(emp => emp.Username == this.Form.LoginTextBox.Text);
 
             if (employee == null || employee.Password != this.Form.PasswordTextBox.Text)
             {
@@ -104,8 +102,6 @@
             }
 
             this.Form.Hide();
-
-            Context.Dispose();
         }
 
         #endregion

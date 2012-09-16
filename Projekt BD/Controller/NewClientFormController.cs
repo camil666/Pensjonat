@@ -14,8 +14,6 @@
             base.Form = new NewClientForm();
 
             this.SetupEvents();
-
-            this.Guests = new Repository<Guest>(Context);
         }
 
         #endregion
@@ -29,8 +27,6 @@
                 return base.Form as NewClientForm;
             }
         }
-
-        private Repository<Guest> Guests { get; set; }
 
         #endregion
 
@@ -70,9 +66,9 @@
             };
 
             //TODO: Dorobić weryfikację danych.
-            this.Guests.Add(newGuest);
+            DataAccess.Instance.Guests.Add(newGuest);
 
-            this.UnitOfWork.Commit();
+            DataAccess.Instance.UnitOfWork.Commit();
 
             this.Form.Close();
         }

@@ -218,7 +218,7 @@
             this.Controls.Add(this.EndDateLabel);
             this.Controls.Add(this.StartDateDateTimePicker);
             this.Controls.Add(this.StartDateLabel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "NewVisitForm";
             this.Text = "Nowy pobyt";
             ((System.ComponentModel.ISupportInitialize)(this.RoomsToBeReservedDataGridView)).EndInit();

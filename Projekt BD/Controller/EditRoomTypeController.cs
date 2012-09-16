@@ -14,8 +14,6 @@
             base.Form = new EditRoomTypeForm();
 
             this.SetupEvents();
-
-            RoomTypes = new Repository<RoomType>(Context);
         }
 
         #endregion
@@ -30,8 +28,6 @@
             }
         }
 
-        private Repository<RoomType> RoomTypes { get; set; }
-
         #endregion
 
         #region Methods
@@ -40,17 +36,23 @@
         {
             this.Form.Load += this.Form_Load;
             this.Form.OkButton.Click += this.OkButton_Click;
+            this.Form.CancelButton.Click += this.CancelButton_Click;
         }
 
         #endregion
 
         #region Event Methods
 
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            this.Form.Dispose();
+        }
+
         private void Form_Load(object sender, EventArgs e)
         {
             if (this.IsEditForm)
             {
-                var roomType = this.RoomTypes.Single(f => f.Id == this.ItemToEditID);
+                var roomType = DataAccess.Instance.RoomTypes.Single(f => f.Id == this.ItemToEditID);
                 this.Form.DescriptionRichTextBox.Text = roomType.Description;
                 this.Form.PriceTextBox.Text = roomType.Price.ToString();
 
@@ -58,6 +60,7 @@
                 {
                     this.Form.PricePerPersonTextBox.Text = roomType.PricePerPerson.ToString();
                 }
+
                 this.Form.NameTextBox.Text = roomType.Name;
 
                 this.Form.Text = "Edycja typu pokoju";
@@ -92,7 +95,7 @@
 
             if (this.IsEditForm)
             {
-                var roomType = this.RoomTypes.Single(f => f.Id == this.ItemToEditID);
+                var roomType = DataAccess.Instance.RoomTypes.Single(f => f.Id == this.ItemToEditID);
                 roomType.Description = description;
                 roomType.Name = typeName;
                 roomType.Price = price;
@@ -108,10 +111,10 @@
                     PricePerPerson = pricePerPerson
                 };
 
-                this.RoomTypes.Add(roomType);
+                DataAccess.Instance.RoomTypes.Add(roomType);
             }
 
-            this.UnitOfWork.Commit();
+            DataAccess.Instance.UnitOfWork.Commit();
 
             this.Form.Dispose();
         }

@@ -16,8 +16,6 @@
             base.Form = new ClientSearch();
 
             this.SetupEvents();
-
-            this.Guests = new Repository<Guest>(Context);
         }
 
         #endregion
@@ -31,8 +29,6 @@
                 return base.Form as ClientSearch;
             }
         }
-
-        private Repository<Guest> Guests { get; set; }
 
         #endregion
 
@@ -63,7 +59,7 @@
         {
             int guestId = (int)this.Form.ClientSearchResultDataGridView.Rows[e.RowIndex].Cells["Id"].Value;
 
-            Guest selectedGuest = Guests.Single(g => g.Id == guestId);
+            Guest selectedGuest = DataAccess.Instance.Guests.Single(g => g.Id == guestId);
 
             this.Form.ParentForm.ApartmentNumberClientDetailsTextBox.Text = selectedGuest.ApartmentNumber;
             this.Form.ParentForm.CompanyNameClientDetailsTextBox.Text = selectedGuest.CompanyName;
@@ -91,7 +87,7 @@
 
             try
             {
-                var clients = Guests.GetAll().ToList();
+                var clients = DataAccess.Instance.Guests.GetAll().ToList();
 
                 if (!string.IsNullOrEmpty(this.Form.IDClientSearchTextBox.Text))
                 {

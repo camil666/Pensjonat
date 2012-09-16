@@ -33,6 +33,7 @@
             this.OkButton = new System.Windows.Forms.Button();
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.DescriptionRichTextBox = new System.Windows.Forms.RichTextBox();
+            this.CancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -55,7 +56,7 @@
             // 
             // OkButton
             // 
-            this.OkButton.Location = new System.Drawing.Point(91, 159);
+            this.OkButton.Location = new System.Drawing.Point(197, 148);
             this.OkButton.Name = "OkButton";
             this.OkButton.Size = new System.Drawing.Size(75, 23);
             this.OkButton.TabIndex = 2;
@@ -64,29 +65,40 @@
             // 
             // NameTextBox
             // 
-            this.NameTextBox.Location = new System.Drawing.Point(131, 13);
+            this.NameTextBox.Location = new System.Drawing.Point(91, 13);
             this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(141, 20);
+            this.NameTextBox.Size = new System.Drawing.Size(181, 20);
             this.NameTextBox.TabIndex = 3;
             // 
             // DescriptionRichTextBox
             // 
-            this.DescriptionRichTextBox.Location = new System.Drawing.Point(131, 47);
+            this.DescriptionRichTextBox.Location = new System.Drawing.Point(91, 47);
             this.DescriptionRichTextBox.Name = "DescriptionRichTextBox";
-            this.DescriptionRichTextBox.Size = new System.Drawing.Size(141, 106);
+            this.DescriptionRichTextBox.Size = new System.Drawing.Size(181, 74);
             this.DescriptionRichTextBox.TabIndex = 4;
             this.DescriptionRichTextBox.Text = "";
+            // 
+            // CancelButton
+            // 
+            this.CancelButton.Location = new System.Drawing.Point(91, 148);
+            this.CancelButton.Name = "CancelButton";
+            this.CancelButton.Size = new System.Drawing.Size(75, 23);
+            this.CancelButton.TabIndex = 5;
+            this.CancelButton.Text = "Anuluj";
+            this.CancelButton.UseVisualStyleBackColor = true;
             // 
             // EditRoomFeatureForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 194);
+            this.ClientSize = new System.Drawing.Size(284, 183);
+            this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.DescriptionRichTextBox);
             this.Controls.Add(this.NameTextBox);
             this.Controls.Add(this.OkButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "EditRoomFeatureForm";
             this.Text = "EditRoomFeatureForm";
             this.ResumeLayout(false);
@@ -101,5 +113,6 @@
         public System.Windows.Forms.Button OkButton;
         public System.Windows.Forms.TextBox NameTextBox;
         public System.Windows.Forms.RichTextBox DescriptionRichTextBox;
+        public System.Windows.Forms.Button CancelButton;
     }
 }

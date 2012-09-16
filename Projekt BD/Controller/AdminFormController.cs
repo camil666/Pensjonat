@@ -22,11 +22,28 @@
 
         #region Properties
 
-        public new AdminForm Form 
+        public new AdminForm Form
         {
             get
             {
                 return base.Form as AdminForm;
+            }
+        }
+
+        private bool IsEmployeeSelected
+        {
+            get
+            {
+                return this.Form.SearchResultsDataGridView.SelectedRows.Count > 0;
+            }
+        }
+
+        private int SelectedEmployeeId
+        {
+            get
+            {
+                int selectedRowIndex = this.Form.SearchResultsDataGridView.SelectedRows[0].Index;
+                return (int)this.Form.SearchResultsDataGridView[0, selectedRowIndex].Value;
             }
         }
 
@@ -51,37 +68,35 @@
 
             try
             {
-                using (var context = new PensjonatContext())
+                var employees = DataAccess.Instance.Employees.GetAll().ToList();
+
+                if (!string.IsNullOrEmpty(this.Form.IDSearchTextBox.Text))
                 {
-                    var employees = context.Employees.ToList();
-
-                    if (!string.IsNullOrEmpty(this.Form.IDSearchTextBox.Text))
-                    {
-                        employees = employees.Where(l => l.Id == id).ToList();
-                    }
-
-                    if (!string.IsNullOrEmpty(this.Form.FirstNameSearchTextBox.Text))
-                    {
-                        employees = employees.Where(l => l.FirstName.Contains(this.Form.FirstNameSearchTextBox.Text)).ToList();
-                    }
-
-                    if (!string.IsNullOrEmpty(this.Form.LastNameSearchTextBox.Text))
-                    {
-                        employees = employees.Where(l => l.LastName.Contains(this.Form.LastNameSearchTextBox.Text)).ToList();
-                    }
-
-                    if (!string.IsNullOrEmpty(this.Form.LoginSearchTextBox.Text))
-                    {
-                        employees = employees.Where(l => l.Username.Contains(this.Form.LoginSearchTextBox.Text)).ToList();
-                    }
-
-                    if (!string.IsNullOrEmpty(this.Form.EmailSearchTextBox.Text))
-                    {
-                        employees = employees.Where(l => l.Email.Contains(this.Form.EmailSearchTextBox.Text)).ToList();
-                    }
-
-                    this.Form.SearchResultsDataGridView.DataSource = employees;
+                    employees = employees.Where(l => l.Id == id).ToList();
                 }
+
+                if (!string.IsNullOrEmpty(this.Form.FirstNameSearchTextBox.Text))
+                {
+                    employees = employees.Where(l => l.FirstName.Contains(this.Form.FirstNameSearchTextBox.Text)).ToList();
+                }
+
+                if (!string.IsNullOrEmpty(this.Form.LastNameSearchTextBox.Text))
+                {
+                    employees = employees.Where(l => l.LastName.Contains(this.Form.LastNameSearchTextBox.Text)).ToList();
+                }
+
+                if (!string.IsNullOrEmpty(this.Form.LoginSearchTextBox.Text))
+                {
+                    employees = employees.Where(l => l.Username.Contains(this.Form.LoginSearchTextBox.Text)).ToList();
+                }
+
+                if (!string.IsNullOrEmpty(this.Form.EmailSearchTextBox.Text))
+                {
+                    employees = employees.Where(l => l.Email.Contains(this.Form.EmailSearchTextBox.Text)).ToList();
+                }
+
+                this.Form.SearchResultsDataGridView.DataSource = employees;
+
             }
             catch (Exception ex)
             {
@@ -101,41 +116,50 @@
         private void AddEmployeeButton_Click(object sender, EventArgs e)
         {
             ControllerFactory.Instance.Create(ControllerTypes.NewEmployeeForm).Form.ShowDialog();
-            //var newEmployeeForm = new NewEmployeeForm(0);
-            //newEmployeeForm.ShowDialog();
         }
 
         private void DeleteEmployeeButton_Click(object sender, EventArgs e)
         {
-            int selectedCellCount = this.Form.SearchResultsDataGridView.GetCellCount(DataGridViewElementStates.Selected);
-            if (selectedCellCount > 0)
+            if (IsEmployeeSelected)
             {
-                int rowIndex = this.Form.SearchResultsDataGridView.SelectedCells[0].RowIndex;
-                int id = (int)this.Form.SearchResultsDataGridView[0, rowIndex].Value;
-
-                using (var context = new PensjonatContext())
+                DialogResult dialogResult = MessageBox.Show("Czy na pewno chcesz usunąć pracownika?", "Usuwanie pracownika", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    var employee = new Employee() { Id = id };
-                    context.Employees.Attach(employee);
-                    context.Employees.DeleteObject(employee);
-                    context.SaveChanges();
-                }
+                    DataAccess.Instance.Employees.Delete(DataAccess.Instance.Employees.Single(emp => emp.Id == SelectedEmployeeId));
 
-                this.SearchButton_Function();
+                    DataAccess.Instance.UnitOfWork.Commit();
+
+                    this.SearchButton_Function();
+                }
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Należy zaznaczyć pracownika",
+                    "Błąd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
             }
         }
 
         private void ChangeEmployeeDetailsButton_Click(object sender, EventArgs e)
         {
-            int selectedCellCount = this.Form.SearchResultsDataGridView.GetCellCount(DataGridViewElementStates.Selected);
-            if (selectedCellCount > 0)
+            if (IsEmployeeSelected)
             {
-                int rowIndex = this.Form.SearchResultsDataGridView.SelectedCells[0].RowIndex;
-                int employeeId = (int)this.Form.SearchResultsDataGridView[0, rowIndex].Value;
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.NewEmployeeForm);
-                controller.ItemToEditID = employeeId;
+                controller.ItemToEditID = this.SelectedEmployeeId;
                 controller.Form.ShowDialog();
                 this.SearchButton_Function();
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Należy zaznaczyć pracownika",
+                    "Błąd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
             }
         }
 

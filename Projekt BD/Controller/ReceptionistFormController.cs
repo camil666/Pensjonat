@@ -20,12 +20,6 @@
             base.Form = new ReceptionistForm();
 
             this.SetupEvents();
-
-            this.Rooms = new Repository<Room>(Context);
-            this.RoomTypes = new Repository<RoomType>(Context);
-            this.Features = new Repository<Feature>(Context);
-            this.Reservations = new Repository<Reservation>(Context);
-            this.RoomReservations = new Repository<RoomReservation>(Context);
         }
 
         #endregion
@@ -39,16 +33,6 @@
                 return base.Form as ReceptionistForm;
             }
         }
-
-        private Repository<Room> Rooms { get; set; }
-
-        private Repository<RoomType> RoomTypes { get; set; }
-
-        private Repository<Feature> Features { get; set; }
-
-        private Repository<Reservation> Reservations { get; set; }
-
-        private Repository<RoomReservation> RoomReservations { get; set; }
 
         #endregion
 
@@ -273,18 +257,18 @@
                 if (dialogResult == DialogResult.Yes)
                 {
                     int selectedReservationId = int.Parse(this.Form.ReservationIDDetailsTextBox.Text);
-                    Reservation reservationToBeDeleted = Reservations.Single(r => r.Id == selectedReservationId);
+                    Reservation reservationToBeDeleted = DataAccess.Instance.Reservations.Single(r => r.Id == selectedReservationId);
 
-                    var roomReservations = RoomReservations.Find(r => r.ReservationId == selectedReservationId);
+                    var roomReservations = DataAccess.Instance.RoomReservations.Find(r => r.ReservationId == selectedReservationId);
 
                     foreach (var roomReservation in roomReservations)
                     {
-                        RoomReservations.Delete(roomReservation);
+                        DataAccess.Instance.RoomReservations.Delete(roomReservation);
                     }
 
-                    Reservations.Delete(reservationToBeDeleted);
+                    DataAccess.Instance.Reservations.Delete(reservationToBeDeleted);
 
-                    UnitOfWork.Commit();
+                    DataAccess.Instance.UnitOfWork.Commit();
 
                     this.Form.ReservationSearchButton.PerformClick();
                 }
@@ -360,7 +344,7 @@
 
         private void RefreshRoomsButton_Click(object sender, EventArgs e)
         {
-            var rooms = (from room in this.Rooms.GetAll()
+            var rooms = (from room in DataAccess.Instance.Rooms.GetAll()
                          select new
                          {
                              room.Number,
@@ -386,7 +370,7 @@
 
         private void RefreshRoomTypesButton_Click(object sender, EventArgs e)
         {
-            var roomTypes = from roomType in RoomTypes.GetAll()
+            var roomTypes = from roomType in DataAccess.Instance.RoomTypes.GetAll()
                             select new
                             {
                                 roomType.Id,
@@ -406,7 +390,7 @@
 
         private void RefreshFeaturesButton_Click(object sender, EventArgs e)
         {
-            var features = from feature in Features.GetAll()
+            var features = from feature in DataAccess.Instance.Features.GetAll()
                            select new
                            {
                                feature.Id,
@@ -446,7 +430,25 @@
 
         private void SaveClientChangesButton_Click(object sender, EventArgs e)
         {
+            var guestId = int.Parse(this.Form.IDClientDetailsTextBox.Text);
+            Guest guestToBeUpdated = DataAccess.Instance.Guests.Single(g => g.Id == guestId);
 
+            guestToBeUpdated.ApartmentNumber = this.Form.ApartmentNumberClientDetailsTextBox.Text;
+            guestToBeUpdated.CompanyName = this.Form.CompanyNameClientDetailsTextBox.Text;
+            guestToBeUpdated.IdNumber = this.Form.IDNumberClientDetailsTextBox.Text;
+            guestToBeUpdated.CountryId = this.Form.CountryClientDetailsTextBox.Text;
+            guestToBeUpdated.Email = this.Form.EmailClientDetailsTextBox.Text;
+            guestToBeUpdated.FirstName = this.Form.FirstNameClientDetailsTextBox.Text;
+            guestToBeUpdated.HouseNumber = this.Form.HouseNumberClientDetailsTextBox.Text;
+            guestToBeUpdated.LastName = this.Form.LastNameClientDetailsTextBox.Text;
+            guestToBeUpdated.TelephoneNumber = this.Form.PhoneNumberClientDetailsTextBox.Text;
+            guestToBeUpdated.PostCode = this.Form.PostCodeClientDetailsTextBox.Text;
+            guestToBeUpdated.Street = this.Form.StreetClientDetailsTextBox.Text;
+            guestToBeUpdated.Town = this.Form.TownClientDetailsTextBox.Text;
+
+            DataAccess.Instance.UnitOfWork.Commit();
+
+            //TODO: weryfikacja danych i zapis czy klient jest zweryfikowany.
         }
 
         #endregion
