@@ -35,6 +35,7 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("PensjonatModel", "FK_Visit_Visit", "Visits", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Domain.Visit), "Visits1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Domain.Visit), true)]
 [assembly: EdmRelationshipAttribute("PensjonatModel", "EmployeeServices", "Employees", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Domain.Employee), "ServiceTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Domain.ServiceType))]
 [assembly: EdmRelationshipAttribute("PensjonatModel", "RoomFeatures", "Features", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Domain.Feature), "Rooms", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Domain.Room))]
+[assembly: EdmRelationshipAttribute("PensjonatModel", "FK_Employee_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Domain.Role), "Employee", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Domain.Employee), true)]
 
 #endregion
 
@@ -974,24 +975,24 @@ namespace Domain
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> Role
+        public Nullable<global::System.Int32> RoleId
         {
             get
             {
-                return _Role;
+                return _RoleId;
             }
             set
             {
-                OnRoleChanging(value);
-                ReportPropertyChanging("Role");
-                _Role = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Role");
-                OnRoleChanged();
+                OnRoleIdChanging(value);
+                ReportPropertyChanging("RoleId");
+                _RoleId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RoleId");
+                OnRoleIdChanged();
             }
         }
-        private Nullable<global::System.Int32> _Role;
-        partial void OnRoleChanging(Nullable<global::System.Int32> value);
-        partial void OnRoleChanged();
+        private Nullable<global::System.Int32> _RoleId;
+        partial void OnRoleIdChanging(Nullable<global::System.Int32> value);
+        partial void OnRoleIdChanged();
 
         #endregion
 
@@ -1038,6 +1039,44 @@ namespace Domain
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ServiceType>("PensjonatModel.EmployeeServices", "ServiceTypes", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("PensjonatModel", "FK_Employee_Role", "Role")]
+        public Role Role
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("PensjonatModel.FK_Employee_Role", "Role").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("PensjonatModel.FK_Employee_Role", "Role").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Role> RoleReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("PensjonatModel.FK_Employee_Role", "Role");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Role>("PensjonatModel.FK_Employee_Role", "Role", value);
                 }
             }
         }
@@ -2137,13 +2176,13 @@ namespace Domain
         /// <summary>
         /// Create a new Role object.
         /// </summary>
-        /// <param name="role1">Initial value of the role1 property.</param>
-        /// <param name="id">Initial value of the id property.</param>
-        public static Role CreateRole(global::System.String role1, global::System.Int32 id)
+        /// <param name="name">Initial value of the Name property.</param>
+        /// <param name="id">Initial value of the Id property.</param>
+        public static Role CreateRole(global::System.String name, global::System.Int32 id)
         {
             Role role = new Role();
-            role.role1 = role1;
-            role.id = id;
+            role.Name = name;
+            role.Id = id;
             return role;
         }
 
@@ -2156,55 +2195,81 @@ namespace Domain
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String role1
+        public global::System.String Name
         {
             get
             {
-                return _role1;
+                return _Name;
             }
             set
             {
-                Onrole1Changing(value);
-                ReportPropertyChanging("role1");
-                _role1 = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("role1");
-                Onrole1Changed();
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
             }
         }
-        private global::System.String _role1;
-        partial void Onrole1Changing(global::System.String value);
-        partial void Onrole1Changed();
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 id
+        public global::System.Int32 Id
         {
             get
             {
-                return _id;
+                return _Id;
             }
             set
             {
-                if (_id != value)
+                if (_Id != value)
                 {
-                    OnidChanging(value);
-                    ReportPropertyChanging("id");
-                    _id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("id");
-                    OnidChanged();
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
                 }
             }
         }
-        private global::System.Int32 _id;
-        partial void OnidChanging(global::System.Int32 value);
-        partial void OnidChanged();
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
 
         #endregion
 
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("PensjonatModel", "FK_Employee_Role", "Employee")]
+        public EntityCollection<Employee> Employees
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Employee>("PensjonatModel.FK_Employee_Role", "Employee");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Employee>("PensjonatModel.FK_Employee_Role", "Employee", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>

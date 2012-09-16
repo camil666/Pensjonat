@@ -91,7 +91,7 @@
                 return;
             }
 
-            switch (employee.Role)
+            switch (employee.RoleId)
             {
                 case 0:
                     ControllerFactory.Instance.Create(ControllerTypes.AdminForm).Form.Show();
