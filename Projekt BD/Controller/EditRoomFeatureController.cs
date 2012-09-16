@@ -43,7 +43,7 @@
 
         #region Event Methods
 
-        void CancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Form.Dispose();
         }

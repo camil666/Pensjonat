@@ -232,7 +232,7 @@
         {
             if (this.Form.StartDateDateTimePicker.Value <= this.Form.EndDateDateTimePicker.Value)
             {
-                this.Form.StartDateDateTimePicker.Value = this.Form.EndDateDateTimePicker.Value.Subtract(new TimeSpan(1,0,0,0));
+                this.Form.StartDateDateTimePicker.Value = this.Form.EndDateDateTimePicker.Value.Subtract(new TimeSpan(1, 0, 0, 0));
             }
 
             this.RefreshGrids();

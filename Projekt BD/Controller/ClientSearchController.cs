@@ -82,7 +82,7 @@
 
         private void ClientSearchButton_Click(object sender, EventArgs e)
         {
-            //sprawdz czy szukanie po ID
+            // sprawdz czy szukanie po ID
             bool idSearch = false;
             int id;
             idSearch = int.TryParse(this.Form.IDClientSearchTextBox.Text, out id);
@@ -160,7 +160,9 @@
                 this.Form.ClientSearchResultDataGridView.DataSource = clients;
 
                 if (clients.Count == 0)
+                {
                     return;
+                }
 
                 this.Form.ClientSearchResultDataGridView.Columns["Id"].Visible = false;
                 this.Form.ClientSearchResultDataGridView.Columns["FirstName"].HeaderText = "Imię";

@@ -61,7 +61,7 @@
 
         private void SearchButton_Function()
         {
-            //sprawdz czy szukanie po ID
+            // sprawdz czy szukanie po ID
             bool idSearch = false;
             int id;
             idSearch = int.TryParse(this.Form.IDSearchTextBox.Text, out id);
@@ -96,8 +96,15 @@
                     employees = employees.Where(l => l.Email.ToLowerInvariant().Contains(this.Form.EmailSearchTextBox.Text.ToLowerInvariant())).ToList();
                 }
 
-                //TODO: Zmiana nazw kolumn.
                 this.Form.SearchResultsDataGridView.DataSource = employees;
+
+                this.Form.SearchResultsDataGridView.Columns["Id"].Visible = false;
+                this.Form.SearchResultsDataGridView.Columns["Username"].HeaderText = "Login";
+                this.Form.SearchResultsDataGridView.Columns["FirstName"].HeaderText = "Imię";
+                this.Form.SearchResultsDataGridView.Columns["LastName"].HeaderText = "Nazwisko";
+                this.Form.SearchResultsDataGridView.Columns["Name"].HeaderText = "Funkcja";
+                this.Form.SearchResultsDataGridView.Columns["Email"].HeaderText = "E-mail";
+                this.Form.SearchResultsDataGridView.Columns["Town"].HeaderText = "Miasto";
             }
             catch (Exception ex)
             {
@@ -121,12 +128,12 @@
 
         private void DeleteEmployeeButton_Click(object sender, EventArgs e)
         {
-            if (IsEmployeeSelected)
+            if (this.IsEmployeeSelected)
             {
                 DialogResult dialogResult = MessageBox.Show("Czy na pewno chcesz usunąć pracownika?", "Usuwanie pracownika", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    DataAccess.Instance.Employees.Delete(DataAccess.Instance.Employees.Single(emp => emp.Id == SelectedEmployeeId));
+                    DataAccess.Instance.Employees.Delete(DataAccess.Instance.Employees.Single(emp => emp.Id == this.SelectedEmployeeId));
 
                     DataAccess.Instance.UnitOfWork.Commit();
 
@@ -146,7 +153,7 @@
 
         private void ChangeEmployeeDetailsButton_Click(object sender, EventArgs e)
         {
-            if (IsEmployeeSelected)
+            if (this.IsEmployeeSelected)
             {
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.NewEmployeeForm);
                 controller.ItemToEditID = this.SelectedEmployeeId;

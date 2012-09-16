@@ -54,6 +54,11 @@
 
         #region Methods
 
+        /// <summary>
+        /// Creates the specified type of controller.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>Instance of controller.</returns>
         public IController Create(ControllerTypes type)
         {
             switch (type)

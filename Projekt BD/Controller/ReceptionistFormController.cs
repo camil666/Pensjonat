@@ -63,8 +63,8 @@
             this.Form.EditRoomButton.Click += this.EditRoomButton_Click;
             this.Form.NewRoomButton.Click += this.NewRoomButton_Click;
             this.Form.DeleteReservationButton.Click += this.DeleteReservationButton_Click;
-            this.Form.VisitStartDateSearchDateTimePicker.ValueChanged += VisitStartDateSearchDateTimePicker_ValueChanged;
-            this.Form.VisitEndDateSearchDateTimePicker.ValueChanged += VisitEndDateSearchDateTimePicker_ValueChanged;
+            this.Form.VisitStartDateSearchDateTimePicker.ValueChanged += this.VisitStartDateSearchDateTimePicker_ValueChanged;
+            this.Form.VisitEndDateSearchDateTimePicker.ValueChanged += this.VisitEndDateSearchDateTimePicker_ValueChanged;
         }
 
         #endregion
@@ -228,7 +228,7 @@
 
         private void DeleteReservationButton_Click(object sender, EventArgs e)
         {
-            //if a reservation is selected
+            // if a reservation is selected
             if (!string.IsNullOrEmpty(this.Form.ReservationIDDetailsTextBox.Text))
             {
                 DialogResult dialogResult = MessageBox.Show("Czy na pewno chcesz usunąć rezerwację?", "Usuwanie rezerwacji", MessageBoxButtons.YesNo);
@@ -264,7 +264,7 @@
 
         private void EditReservationButton_Click(object sender, EventArgs e)
         {
-            //if a reservation is selected
+            // if a reservation is selected
             if (!string.IsNullOrEmpty(this.Form.ReservationIDDetailsTextBox.Text))
             {
                 int id = int.Parse(this.Form.ReservationIDDetailsTextBox.Text);
@@ -424,7 +424,9 @@
                               }).ToList();
 
                 if (visits.Count == 0)
+                {
                     return;
+                }
 
                 this.Form.ReservationSearchResultDataGridView.DataSource = visits;
 

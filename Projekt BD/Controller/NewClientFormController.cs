@@ -1,6 +1,7 @@
 ﻿namespace Projekt_BD.Controller
 {
     using System;
+    using System.Windows.Forms;
     using Domain;
     using Projekt_BD.Interfaces;
     using Projekt_BD.View;
@@ -49,6 +50,27 @@
 
         private void AddButton_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(this.Form.FirstNameTextBox.Text) ||
+                string.IsNullOrEmpty(this.Form.LastNameTextBox.Text) ||
+                string.IsNullOrEmpty(this.Form.EmailTextBox.Text) ||
+                string.IsNullOrEmpty(this.Form.CountryTextBox.Text) ||
+                string.IsNullOrEmpty(this.Form.StreetTextBox.Text) ||
+                string.IsNullOrEmpty(this.Form.PostCodeTextBox.Text) ||
+                string.IsNullOrEmpty(this.Form.ApartmentNumberTextBox.Text) ||
+                string.IsNullOrEmpty(this.Form.HouseNumberTextBox.Text) ||
+                string.IsNullOrEmpty(this.Form.TownTextBox.Text) ||
+                string.IsNullOrEmpty(this.Form.PhoneNumberTextBox.Text))
+            {
+                MessageBox.Show(
+                    "Nie wpisano wszystkich wymaganych danych.",
+                    "Błąd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
+
+                return;
+            }
+
             var newGuest = new Guest
             {
                 FirstName = this.Form.FirstNameTextBox.Text,
