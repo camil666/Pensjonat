@@ -39,12 +39,14 @@
             // 
             this.TasksDataGridView.AllowUserToAddRows = false;
             this.TasksDataGridView.AllowUserToDeleteRows = false;
+            this.TasksDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.TasksDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TasksDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TasksDataGridView.Dock = System.Windows.Forms.DockStyle.Top;
             this.TasksDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.TasksDataGridView.MultiSelect = false;
             this.TasksDataGridView.Name = "TasksDataGridView";
-            this.TasksDataGridView.Size = new System.Drawing.Size(544, 150);
+            this.TasksDataGridView.Size = new System.Drawing.Size(544, 198);
             this.TasksDataGridView.TabIndex = 0;
             // 
             // SaveButton
@@ -70,9 +72,9 @@
             this.ShowDoneTasksCheckBox.AutoSize = true;
             this.ShowDoneTasksCheckBox.Location = new System.Drawing.Point(12, 204);
             this.ShowDoneTasksCheckBox.Name = "ShowDoneTasksCheckBox";
-            this.ShowDoneTasksCheckBox.Size = new System.Drawing.Size(171, 17);
+            this.ShowDoneTasksCheckBox.Size = new System.Drawing.Size(168, 17);
             this.ShowDoneTasksCheckBox.TabIndex = 3;
-            this.ShowDoneTasksCheckBox.Text = "Wyświetlaj wykonane zadania.";
+            this.ShowDoneTasksCheckBox.Text = "Wyświetlaj wykonane zadania";
             this.ShowDoneTasksCheckBox.UseVisualStyleBackColor = true;
             // 
             // EmployeeForm
