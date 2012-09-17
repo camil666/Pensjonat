@@ -53,12 +53,16 @@
             foreach (DataGridViewRow row in this.Form.FeaturesDataGridView.Rows)
             {
                 var cell = row.Cells["Features"] as DataGridViewCheckBoxCell;
+                var featureId = (int)row.Cells["Id"].Value;
+                Feature feature = DataAccess.Instance.Features.Single(f => f.Id == featureId);
 
                 if (Convert.ToBoolean(cell.Value) == true)
                 {
-                    var featureId = (int)row.Cells["Id"].Value;
-                    Feature featureToAdd = DataAccess.Instance.Features.Single(f => f.Id == featureId);
-                    room.Features.Add(featureToAdd);
+                    room.Features.Add(feature);
+                }
+                else
+                {
+                    room.Features.Remove(feature);
                 }
             }
         }
@@ -69,12 +73,16 @@
 
         private void Form_Load(object sender, EventArgs e)
         {
+            var availableTypes = DataAccess.Instance.RoomTypes.GetAll().ToDictionary(availableType => availableType.Id, availableType => availableType.Name);
+            this.Form.TypeComboBox.DataSource = new BindingSource(availableTypes, null);
+            this.Form.TypeComboBox.DisplayMember = "Value";
+            this.Form.TypeComboBox.ValueMember = "Key";
             if (this.IsEditForm)
             {
                 var room = DataAccess.Instance.Rooms.Single(r => r.Number == this.ItemToEditID);
                 this.Form.NumberTextBox.Text = room.Number.ToString();
                 this.Form.FloorTextBox.Text = room.Floor.ToString();
-                this.Form.TypeTextBox.Text = room.TypeId.ToString();
+                this.Form.TypeComboBox.Text = availableTypes.Where(x => x.Key == room.TypeId).Select(x => x.Value).FirstOrDefault();
                 this.Form.CapacityTextBox.Text = room.Capacity.ToString();
 
                 var notAddedFeatures = (from feature in DataAccess.Instance.Features.GetAll().ToList()
@@ -107,7 +115,7 @@
 
                 this.Form.FeaturesDataGridView.DataSource = featureList;
                 this.Form.FeaturesDataGridView.Columns.Add(new DataGridViewCheckBoxColumn() { Name = "Features" });
-
+                
                 this.Form.Text = "Nowy pokój";
             }
 
@@ -124,7 +132,7 @@
             int.TryParse(this.Form.NumberTextBox.Text, out roomNumber);
             int.TryParse(this.Form.FloorTextBox.Text, out roomFloor);
             int.TryParse(this.Form.CapacityTextBox.Text, out roomCapacity);
-            int.TryParse(this.Form.TypeTextBox.Text, out roomType);
+            int.TryParse(this.Form.TypeComboBox.SelectedValue.ToString(), out roomType);
 
             if (roomNumber <= 0 || roomFloor <= 0 || roomCapacity <= 0 || roomType <= 0)
             {

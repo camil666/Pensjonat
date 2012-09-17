@@ -30,7 +30,6 @@
         {
             this.CapacityTextBox = new System.Windows.Forms.TextBox();
             this.CapacityLabel = new System.Windows.Forms.Label();
-            this.TypeTextBox = new System.Windows.Forms.TextBox();
             this.TypeLabel = new System.Windows.Forms.Label();
             this.FloorTextBox = new System.Windows.Forms.TextBox();
             this.FloorLabel = new System.Windows.Forms.Label();
@@ -40,6 +39,7 @@
             this.CancelButton = new System.Windows.Forms.Button();
             this.FeaturesDataGridView = new System.Windows.Forms.DataGridView();
             this.FeaturesLabel = new System.Windows.Forms.Label();
+            this.TypeComboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.FeaturesDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,13 +58,6 @@
             this.CapacityLabel.Size = new System.Drawing.Size(62, 13);
             this.CapacityLabel.TabIndex = 93;
             this.CapacityLabel.Text = "Pojemność:";
-            // 
-            // TypeTextBox
-            // 
-            this.TypeTextBox.Location = new System.Drawing.Point(56, 55);
-            this.TypeTextBox.Name = "TypeTextBox";
-            this.TypeTextBox.Size = new System.Drawing.Size(120, 20);
-            this.TypeTextBox.TabIndex = 92;
             // 
             // TypeLabel
             // 
@@ -146,18 +139,26 @@
             this.FeaturesLabel.TabIndex = 95;
             this.FeaturesLabel.Text = "Udogodnienia:";
             // 
+            // TypeComboBox
+            // 
+            this.TypeComboBox.FormattingEnabled = true;
+            this.TypeComboBox.Location = new System.Drawing.Point(56, 54);
+            this.TypeComboBox.Name = "TypeComboBox";
+            this.TypeComboBox.Size = new System.Drawing.Size(120, 21);
+            this.TypeComboBox.TabIndex = 103;
+            // 
             // EditRoomForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(406, 373);
+            this.Controls.Add(this.TypeComboBox);
             this.Controls.Add(this.OkButton);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.FeaturesDataGridView);
             this.Controls.Add(this.FeaturesLabel);
             this.Controls.Add(this.CapacityTextBox);
             this.Controls.Add(this.CapacityLabel);
-            this.Controls.Add(this.TypeTextBox);
             this.Controls.Add(this.TypeLabel);
             this.Controls.Add(this.FloorTextBox);
             this.Controls.Add(this.FloorLabel);
@@ -175,7 +176,6 @@
 
         public System.Windows.Forms.TextBox CapacityTextBox;
         private System.Windows.Forms.Label CapacityLabel;
-        public System.Windows.Forms.TextBox TypeTextBox;
         private System.Windows.Forms.Label TypeLabel;
         public System.Windows.Forms.TextBox FloorTextBox;
         private System.Windows.Forms.Label FloorLabel;
@@ -185,6 +185,7 @@
         public System.Windows.Forms.Button CancelButton;
         public System.Windows.Forms.DataGridView FeaturesDataGridView;
         private System.Windows.Forms.Label FeaturesLabel;
+        public System.Windows.Forms.ComboBox TypeComboBox;
 
     }
 }

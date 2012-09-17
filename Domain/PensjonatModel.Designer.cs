@@ -8,18 +8,18 @@
 //------------------------------------------------------------------------------
 
 using System;
-using System.ComponentModel;
-using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Linq;
-using System.Runtime.Serialization;
+using System.Data.EntityClient;
+using System.ComponentModel;
 using System.Xml.Serialization;
+using System.Runtime.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
 [assembly: EdmRelationshipAttribute("PensjonatModel", "FK_Discount_Guest", "Guests", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Domain.Guest), "Discounts", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Domain.Discount), true)]
+[assembly: EdmRelationshipAttribute("PensjonatModel", "FK_Employee_Role", "Roles", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Domain.Role), "Employees", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Domain.Employee), true)]
 [assembly: EdmRelationshipAttribute("PensjonatModel", "FK_Task_Employee", "Employees", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Domain.Employee), "Tasks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Domain.Task), true)]
 [assembly: EdmRelationshipAttribute("PensjonatModel", "FK_Reservation_Guest", "Guests", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Domain.Guest), "Reservations", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Domain.Reservation), true)]
 [assembly: EdmRelationshipAttribute("PensjonatModel", "FK_Visit_Guest", "Guests", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Domain.Guest), "Visits", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Domain.Visit), true)]
@@ -35,7 +35,6 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("PensjonatModel", "FK_Visit_Visit", "Visits", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Domain.Visit), "Visits1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Domain.Visit), true)]
 [assembly: EdmRelationshipAttribute("PensjonatModel", "EmployeeServices", "Employees", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Domain.Employee), "ServiceTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Domain.ServiceType))]
 [assembly: EdmRelationshipAttribute("PensjonatModel", "RoomFeatures", "Features", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Domain.Feature), "Rooms", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Domain.Room))]
-[assembly: EdmRelationshipAttribute("PensjonatModel", "FK_Employee_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Domain.Role), "Employee", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Domain.Employee), true)]
 
 #endregion
 
@@ -344,7 +343,6 @@ namespace Domain
         private ObjectSet<Visit> _Visits;
 
         #endregion
-
         #region AddTo Methods
     
         /// <summary>
@@ -476,11 +474,11 @@ namespace Domain
         }
 
         #endregion
-
     }
+    
 
     #endregion
-
+    
     #region Entities
     
     /// <summary>
@@ -509,7 +507,6 @@ namespace Domain
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -588,7 +585,6 @@ namespace Domain
         partial void OnAmountChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -631,7 +627,6 @@ namespace Domain
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -676,7 +671,6 @@ namespace Domain
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -995,9 +989,46 @@ namespace Domain
         partial void OnRoleIdChanged();
 
         #endregion
-
     
         #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("PensjonatModel", "FK_Employee_Role", "Roles")]
+        public Role Role
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("PensjonatModel.FK_Employee_Role", "Roles").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("PensjonatModel.FK_Employee_Role", "Roles").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Role> RoleReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("PensjonatModel.FK_Employee_Role", "Roles");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Role>("PensjonatModel.FK_Employee_Role", "Roles", value);
+                }
+            }
+        }
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1042,47 +1073,8 @@ namespace Domain
                 }
             }
         }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("PensjonatModel", "FK_Employee_Role", "Role")]
-        public Role Role
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("PensjonatModel.FK_Employee_Role", "Role").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("PensjonatModel.FK_Employee_Role", "Role").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Role> RoleReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Role>("PensjonatModel.FK_Employee_Role", "Role");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Role>("PensjonatModel.FK_Employee_Role", "Role", value);
-                }
-            }
-        }
 
         #endregion
-
     }
     
     /// <summary>
@@ -1109,7 +1101,6 @@ namespace Domain
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -1188,7 +1179,6 @@ namespace Domain
         partial void OnDescriptionChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -1215,7 +1205,6 @@ namespace Domain
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -1260,7 +1249,6 @@ namespace Domain
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -1603,7 +1591,6 @@ namespace Domain
         partial void OnIsVerifiedChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -1674,7 +1661,6 @@ namespace Domain
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -1713,7 +1699,6 @@ namespace Domain
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -1936,7 +1921,6 @@ namespace Domain
         partial void OnAdditionalInfoChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -1963,7 +1947,6 @@ namespace Domain
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -1994,7 +1977,6 @@ namespace Domain
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -2121,7 +2103,6 @@ namespace Domain
         partial void OnAdditionalInfoChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -2186,7 +2167,6 @@ namespace Domain
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -2213,7 +2193,6 @@ namespace Domain
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -2268,7 +2247,6 @@ namespace Domain
         partial void OnIdChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -2278,24 +2256,23 @@ namespace Domain
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("PensjonatModel", "FK_Employee_Role", "Employee")]
+        [EdmRelationshipNavigationPropertyAttribute("PensjonatModel", "FK_Employee_Role", "Employees")]
         public EntityCollection<Employee> Employees
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Employee>("PensjonatModel.FK_Employee_Role", "Employee");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Employee>("PensjonatModel.FK_Employee_Role", "Employees");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Employee>("PensjonatModel.FK_Employee_Role", "Employee", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Employee>("PensjonatModel.FK_Employee_Role", "Employees", value);
                 }
             }
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -2328,7 +2305,6 @@ namespace Domain
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -2455,7 +2431,6 @@ namespace Domain
         partial void OnVacancyChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -2564,7 +2539,6 @@ namespace Domain
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -2593,7 +2567,6 @@ namespace Domain
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -2720,7 +2693,6 @@ namespace Domain
         partial void OnIdChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -2801,7 +2773,6 @@ namespace Domain
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -2830,7 +2801,6 @@ namespace Domain
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -2957,7 +2927,6 @@ namespace Domain
         partial void OnDescriptionChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -2984,7 +2953,6 @@ namespace Domain
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -3011,7 +2979,6 @@ namespace Domain
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -3258,7 +3225,6 @@ namespace Domain
         partial void OnCustomChargeChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -3339,7 +3305,6 @@ namespace Domain
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -3366,7 +3331,6 @@ namespace Domain
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -3469,7 +3433,6 @@ namespace Domain
         partial void OnChargeChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -3534,7 +3497,6 @@ namespace Domain
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -3563,7 +3525,6 @@ namespace Domain
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -3762,7 +3723,6 @@ namespace Domain
         partial void OnTypeIdChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -3843,7 +3803,6 @@ namespace Domain
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -3870,7 +3829,6 @@ namespace Domain
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -3949,7 +3907,6 @@ namespace Domain
         partial void OnDescriptionChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -3976,7 +3933,6 @@ namespace Domain
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -4009,7 +3965,6 @@ namespace Domain
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -4208,7 +4163,6 @@ namespace Domain
         partial void OnAdvanceChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -4393,7 +4347,6 @@ namespace Domain
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -4424,7 +4377,6 @@ namespace Domain
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -4536,7 +4488,6 @@ namespace Domain
         partial void OnEndDateChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -4617,10 +4568,8 @@ namespace Domain
         }
 
         #endregion
-
     }
 
     #endregion
-
     
 }
