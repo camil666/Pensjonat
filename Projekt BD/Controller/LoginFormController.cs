@@ -92,6 +92,7 @@
             }
 
             Form mainForm = LoginHelper.CreateMainForm(employee.RoleId);
+            CurrentUser.Instance.Id = employee.Id;
 
             if (mainForm != null)
             {

@@ -39,6 +39,7 @@
             this.Employees = new Repository<Employee>(this.Context);
             this.Roles = new Repository<Role>(this.Context);
             this.Visits = new Repository<Visit>(this.Context);
+            this.Tasks = new Repository<Task>(this.Context);
         }
 
         #endregion
@@ -156,6 +157,14 @@
         /// The visits.
         /// </value>
         public Repository<Visit> Visits { get; private set; }
+
+        /// <summary>
+        /// Gets the tasks.
+        /// </summary>
+        /// <value>
+        /// The tasks.
+        /// </value>
+        public Repository<Task> Tasks { get; private set; }
 
         /// <summary>
         /// Gets or sets the context.

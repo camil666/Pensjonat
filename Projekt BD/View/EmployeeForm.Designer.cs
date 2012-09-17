@@ -31,8 +31,7 @@
             this.TasksDataGridView = new System.Windows.Forms.DataGridView();
             this.SaveButton = new System.Windows.Forms.Button();
             this.LoadButton = new System.Windows.Forms.Button();
-            this.IDEmployeeTextBox = new System.Windows.Forms.TextBox();
-            this.IDEmployeeLabel = new System.Windows.Forms.Label();
+            this.ShowDoneTasksCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.TasksDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,29 +65,22 @@
             this.LoadButton.Text = "Wczytaj niewykonane zadania";
             this.LoadButton.UseVisualStyleBackColor = true;
             // 
-            // IDEmployeeTextBox
+            // ShowDoneTasksCheckBox
             // 
-            this.IDEmployeeTextBox.Location = new System.Drawing.Point(101, 201);
-            this.IDEmployeeTextBox.Name = "IDEmployeeTextBox";
-            this.IDEmployeeTextBox.Size = new System.Drawing.Size(71, 20);
-            this.IDEmployeeTextBox.TabIndex = 3;
-            // 
-            // IDEmployeeLabel
-            // 
-            this.IDEmployeeLabel.AutoSize = true;
-            this.IDEmployeeLabel.Location = new System.Drawing.Point(12, 204);
-            this.IDEmployeeLabel.Name = "IDEmployeeLabel";
-            this.IDEmployeeLabel.Size = new System.Drawing.Size(77, 13);
-            this.IDEmployeeLabel.TabIndex = 4;
-            this.IDEmployeeLabel.Text = "ID Pracownika";
+            this.ShowDoneTasksCheckBox.AutoSize = true;
+            this.ShowDoneTasksCheckBox.Location = new System.Drawing.Point(12, 204);
+            this.ShowDoneTasksCheckBox.Name = "ShowDoneTasksCheckBox";
+            this.ShowDoneTasksCheckBox.Size = new System.Drawing.Size(171, 17);
+            this.ShowDoneTasksCheckBox.TabIndex = 3;
+            this.ShowDoneTasksCheckBox.Text = "Wyświetlaj wykonane zadania.";
+            this.ShowDoneTasksCheckBox.UseVisualStyleBackColor = true;
             // 
             // EmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(544, 262);
-            this.Controls.Add(this.IDEmployeeLabel);
-            this.Controls.Add(this.IDEmployeeTextBox);
+            this.Controls.Add(this.ShowDoneTasksCheckBox);
             this.Controls.Add(this.LoadButton);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.TasksDataGridView);
@@ -103,10 +95,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Label IDEmployeeLabel;
         public System.Windows.Forms.DataGridView TasksDataGridView;
         public System.Windows.Forms.Button SaveButton;
         public System.Windows.Forms.Button LoadButton;
-        public System.Windows.Forms.TextBox IDEmployeeTextBox;
+        public System.Windows.Forms.CheckBox ShowDoneTasksCheckBox;
     }
 }

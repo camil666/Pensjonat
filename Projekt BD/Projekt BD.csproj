@@ -71,6 +71,7 @@
     <Compile Include="Controller\ReservationFormController.cs" />
     <Compile Include="Controller\NewVisitFormController.cs" />
     <Compile Include="Controller\ReceptionistFormController.cs" />
+    <Compile Include="CurrentUser.cs" />
     <Compile Include="DataAccess.cs" />
     <Compile Include="Interfaces\IController.cs" />
     <Compile Include="Interfaces\IObjectContext.cs" />

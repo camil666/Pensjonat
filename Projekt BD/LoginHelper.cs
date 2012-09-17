@@ -23,7 +23,7 @@
                 case 1:
                     return ControllerFactory.Instance.Create(ControllerTypes.ReceptionistForm).Form;
                 default:
-                    return null;
+                    return ControllerFactory.Instance.Create(ControllerTypes.EmployeeForm).Form;
             }
         }
 

@@ -88,11 +88,12 @@
                 this.Form.FeaturesDataGridView.DataSource = (from feature in featureList select new { feature.Id, feature.Name }).ToList();
                 this.Form.FeaturesDataGridView.Columns.Add(new DataGridViewCheckBoxColumn() { Name = "Features" });
 
+                int lastColumnIndex = this.Form.FeaturesDataGridView.Columns.Count - 1;
+
                 foreach (var feature in featureList)
                 {
                     if (feature.added)
                     {
-                        int lastColumnIndex = this.Form.FeaturesDataGridView.Columns.Count - 1;
                         this.Form.FeaturesDataGridView.Rows[featureList.IndexOf(feature)].Cells[lastColumnIndex].Value = true;
                     }
                 }
