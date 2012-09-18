@@ -65,6 +65,9 @@
             this.Form.DeleteReservationButton.Click += this.DeleteReservationButton_Click;
             this.Form.VisitStartDateSearchDateTimePicker.ValueChanged += this.VisitStartDateSearchDateTimePicker_ValueChanged;
             this.Form.VisitEndDateSearchDateTimePicker.ValueChanged += this.VisitEndDateSearchDateTimePicker_ValueChanged;
+            this.Form.RefreshServiceButton.Click += this.RefreshServiceButton_Click;
+            this.Form.EditServiceButton.Click += this.EditServiceButton_Click;
+            this.Form.NewServiceButton.Click += this.NewServiceButton_Click;
         }
 
         #endregion
@@ -109,7 +112,7 @@
         private void NewReservationButton_Click(object sender, EventArgs e)
         {
             int selectedClientID = this.Form.ClientSearchWindow.SelectedClientID;
-
+            
             if (selectedClientID > 0)
             {
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.ReservationForm);
@@ -471,6 +474,42 @@
             DataAccess.Instance.UnitOfWork.Commit();
 
             //TODO: weryfikacja wprowadzonych danych.
+        }
+
+
+        private void NewServiceButton_Click(object sender, System.EventArgs e)
+        {
+            ControllerFactory.Instance.Create(ControllerTypes.EditService).Form.ShowDialog();
+        }
+
+        private void EditServiceButton_Click(object sender, System.EventArgs e)
+        {
+            int selectedRowsCount = this.Form.ServiceDataGridView.SelectedRows.Count;
+            if (selectedRowsCount > 0)
+            {
+                int rowIndex = this.Form.ServiceDataGridView.SelectedRows[0].Index;
+                int index = (int)this.Form.ServiceDataGridView[0, rowIndex].Value;
+                var controller = ControllerFactory.Instance.Create(ControllerTypes.EditService);
+                controller.ItemToEditID = index;
+                controller.Form.ShowDialog();
+            }
+        }
+
+        private void RefreshServiceButton_Click(object sender, System.EventArgs e)
+        {
+            var serviceTypes = (from serviceType in DataAccess.Instance.ServiceTypes.GetAll()
+                         select new
+                         {
+                             serviceType.Id,
+                             serviceType.Name,
+                             serviceType.Description,
+                             serviceType.Charge
+                         }).ToList();
+            this.Form.ServiceDataGridView.DataSource = serviceTypes;
+            this.Form.ServiceDataGridView.Columns["Id"].Visible = false;
+            this.Form.ServiceDataGridView.Columns["Name"].HeaderText = "Nazwa";
+            this.Form.ServiceDataGridView.Columns["Description"].HeaderText = "Opis";
+            this.Form.ServiceDataGridView.Columns["Charge"].HeaderText = "Opłata";
         }
 
         #endregion

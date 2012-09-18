@@ -99,6 +99,9 @@
                 case ControllerTypes.ReceptionistForm:
                     return new ReceptionistFormController();
 
+                case ControllerTypes.EditService:
+                    return new EditServiceFormController();
+
                 default:
                     return null;
             }

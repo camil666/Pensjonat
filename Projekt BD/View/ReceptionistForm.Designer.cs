@@ -37,6 +37,11 @@
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.VisitManagementTabPage = new System.Windows.Forms.TabPage();
             this.VisitSearchMainGroupBox = new System.Windows.Forms.GroupBox();
+            this.VisitSearchGroupBox = new System.Windows.Forms.GroupBox();
+            this.VisitEndDateSearchDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
+            this.VisitStartDateSearchDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
             this.VisitSearchButton = new System.Windows.Forms.Button();
             this.VisitSearchResultsDataGridView = new System.Windows.Forms.DataGridView();
             this.VisitActionsGroupBox = new System.Windows.Forms.GroupBox();
@@ -117,14 +122,16 @@
             this.AllRoomsDataGridView = new System.Windows.Forms.DataGridView();
             this.EditRoomButton = new System.Windows.Forms.Button();
             this.NewRoomButton = new System.Windows.Forms.Button();
-            this.VisitSearchGroupBox = new System.Windows.Forms.GroupBox();
-            this.VisitEndDateSearchDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.VisitStartDateSearchDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.label5 = new System.Windows.Forms.Label();
+            this.ServiceTab = new System.Windows.Forms.TabPage();
+            this.ServiceGroupBox = new System.Windows.Forms.GroupBox();
+            this.ServiceDataGridView = new System.Windows.Forms.DataGridView();
+            this.RefreshServiceButton = new System.Windows.Forms.Button();
+            this.EditServiceButton = new System.Windows.Forms.Button();
+            this.NewServiceButton = new System.Windows.Forms.Button();
             this.MenuStrip.SuspendLayout();
             this.VisitManagementTabPage.SuspendLayout();
             this.VisitSearchMainGroupBox.SuspendLayout();
+            this.VisitSearchGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VisitSearchResultsDataGridView)).BeginInit();
             this.VisitActionsGroupBox.SuspendLayout();
             this.ClientsTabPage.SuspendLayout();
@@ -143,7 +150,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.RoomTypesDataGridView)).BeginInit();
             this.RoomsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AllRoomsDataGridView)).BeginInit();
-            this.VisitSearchGroupBox.SuspendLayout();
+            this.ServiceTab.SuspendLayout();
+            this.ServiceGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ServiceDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // MenuStrip
@@ -227,6 +236,55 @@
             this.VisitSearchMainGroupBox.TabIndex = 5;
             this.VisitSearchMainGroupBox.TabStop = false;
             this.VisitSearchMainGroupBox.Text = "Wyszukiwanie";
+            // 
+            // VisitSearchGroupBox
+            // 
+            this.VisitSearchGroupBox.Controls.Add(this.VisitEndDateSearchDateTimePicker);
+            this.VisitSearchGroupBox.Controls.Add(this.label4);
+            this.VisitSearchGroupBox.Controls.Add(this.VisitStartDateSearchDateTimePicker);
+            this.VisitSearchGroupBox.Controls.Add(this.label5);
+            this.VisitSearchGroupBox.Location = new System.Drawing.Point(6, 19);
+            this.VisitSearchGroupBox.Name = "VisitSearchGroupBox";
+            this.VisitSearchGroupBox.Size = new System.Drawing.Size(502, 100);
+            this.VisitSearchGroupBox.TabIndex = 10;
+            this.VisitSearchGroupBox.TabStop = false;
+            this.VisitSearchGroupBox.Text = "Pobyt";
+            // 
+            // VisitEndDateSearchDateTimePicker
+            // 
+            this.VisitEndDateSearchDateTimePicker.Location = new System.Drawing.Point(106, 59);
+            this.VisitEndDateSearchDateTimePicker.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
+            this.VisitEndDateSearchDateTimePicker.MinDate = new System.DateTime(2012, 1, 1, 0, 0, 0, 0);
+            this.VisitEndDateSearchDateTimePicker.Name = "VisitEndDateSearchDateTimePicker";
+            this.VisitEndDateSearchDateTimePicker.Size = new System.Drawing.Size(249, 20);
+            this.VisitEndDateSearchDateTimePicker.TabIndex = 3;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 62);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(96, 13);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Data zakończenia:";
+            // 
+            // VisitStartDateSearchDateTimePicker
+            // 
+            this.VisitStartDateSearchDateTimePicker.Location = new System.Drawing.Point(106, 19);
+            this.VisitStartDateSearchDateTimePicker.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
+            this.VisitStartDateSearchDateTimePicker.MinDate = new System.DateTime(2012, 1, 1, 0, 0, 0, 0);
+            this.VisitStartDateSearchDateTimePicker.Name = "VisitStartDateSearchDateTimePicker";
+            this.VisitStartDateSearchDateTimePicker.Size = new System.Drawing.Size(249, 20);
+            this.VisitStartDateSearchDateTimePicker.TabIndex = 1;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 22);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(93, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Data rozpoczęcia:";
             // 
             // VisitSearchButton
             // 
@@ -851,6 +909,7 @@
             this.TabControl.Controls.Add(this.ClientsTabPage);
             this.TabControl.Controls.Add(this.VisitManagementTabPage);
             this.TabControl.Controls.Add(this.RoomTabPage);
+            this.TabControl.Controls.Add(this.ServiceTab);
             this.TabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TabControl.Location = new System.Drawing.Point(0, 24);
             this.TabControl.Name = "TabControl";
@@ -1025,54 +1084,67 @@
             this.NewRoomButton.Text = "Dodaj pokój";
             this.NewRoomButton.UseVisualStyleBackColor = true;
             // 
-            // VisitSearchGroupBox
+            // ServiceTab
             // 
-            this.VisitSearchGroupBox.Controls.Add(this.VisitEndDateSearchDateTimePicker);
-            this.VisitSearchGroupBox.Controls.Add(this.label4);
-            this.VisitSearchGroupBox.Controls.Add(this.VisitStartDateSearchDateTimePicker);
-            this.VisitSearchGroupBox.Controls.Add(this.label5);
-            this.VisitSearchGroupBox.Location = new System.Drawing.Point(6, 19);
-            this.VisitSearchGroupBox.Name = "VisitSearchGroupBox";
-            this.VisitSearchGroupBox.Size = new System.Drawing.Size(502, 100);
-            this.VisitSearchGroupBox.TabIndex = 10;
-            this.VisitSearchGroupBox.TabStop = false;
-            this.VisitSearchGroupBox.Text = "Pobyt";
+            this.ServiceTab.Controls.Add(this.ServiceGroupBox);
+            this.ServiceTab.Location = new System.Drawing.Point(4, 22);
+            this.ServiceTab.Name = "ServiceTab";
+            this.ServiceTab.Padding = new System.Windows.Forms.Padding(3);
+            this.ServiceTab.Size = new System.Drawing.Size(776, 536);
+            this.ServiceTab.TabIndex = 4;
+            this.ServiceTab.Text = "Usługi";
+            this.ServiceTab.UseVisualStyleBackColor = true;
             // 
-            // VisitEndDateSearchDateTimePicker
+            // ServiceGroupBox
             // 
-            this.VisitEndDateSearchDateTimePicker.Location = new System.Drawing.Point(106, 59);
-            this.VisitEndDateSearchDateTimePicker.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
-            this.VisitEndDateSearchDateTimePicker.MinDate = new System.DateTime(2012, 1, 1, 0, 0, 0, 0);
-            this.VisitEndDateSearchDateTimePicker.Name = "VisitEndDateSearchDateTimePicker";
-            this.VisitEndDateSearchDateTimePicker.Size = new System.Drawing.Size(249, 20);
-            this.VisitEndDateSearchDateTimePicker.TabIndex = 3;
+            this.ServiceGroupBox.Controls.Add(this.ServiceDataGridView);
+            this.ServiceGroupBox.Controls.Add(this.RefreshServiceButton);
+            this.ServiceGroupBox.Controls.Add(this.EditServiceButton);
+            this.ServiceGroupBox.Controls.Add(this.NewServiceButton);
+            this.ServiceGroupBox.Location = new System.Drawing.Point(0, 0);
+            this.ServiceGroupBox.Name = "ServiceGroupBox";
+            this.ServiceGroupBox.Size = new System.Drawing.Size(776, 536);
+            this.ServiceGroupBox.TabIndex = 0;
+            this.ServiceGroupBox.TabStop = false;
+            this.ServiceGroupBox.Text = "Usługi";
             // 
-            // label4
+            // ServiceDataGridView
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 62);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(96, 13);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Data zakończenia:";
+            this.ServiceDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ServiceDataGridView.Location = new System.Drawing.Point(4, 49);
+            this.ServiceDataGridView.Name = "ServiceDataGridView";
+            this.ServiceDataGridView.Size = new System.Drawing.Size(766, 479);
+            this.ServiceDataGridView.TabIndex = 3;
             // 
-            // VisitStartDateSearchDateTimePicker
+            // RefreshServiceButton
             // 
-            this.VisitStartDateSearchDateTimePicker.Location = new System.Drawing.Point(106, 19);
-            this.VisitStartDateSearchDateTimePicker.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
-            this.VisitStartDateSearchDateTimePicker.MinDate = new System.DateTime(2012, 1, 1, 0, 0, 0, 0);
-            this.VisitStartDateSearchDateTimePicker.Name = "VisitStartDateSearchDateTimePicker";
-            this.VisitStartDateSearchDateTimePicker.Size = new System.Drawing.Size(249, 20);
-            this.VisitStartDateSearchDateTimePicker.TabIndex = 1;
+            this.RefreshServiceButton.Location = new System.Drawing.Point(167, 19);
+            this.RefreshServiceButton.Name = "RefreshServiceButton";
+            this.RefreshServiceButton.Size = new System.Drawing.Size(75, 23);
+            this.RefreshServiceButton.TabIndex = 2;
+            this.RefreshServiceButton.Text = "Odśwież";
+            this.RefreshServiceButton.UseVisualStyleBackColor = true;
+            
             // 
-            // label5
+            // EditServiceButton
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 22);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(93, 13);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Data rozpoczęcia:";
+            this.EditServiceButton.Location = new System.Drawing.Point(85, 19);
+            this.EditServiceButton.Name = "EditServiceButton";
+            this.EditServiceButton.Size = new System.Drawing.Size(75, 23);
+            this.EditServiceButton.TabIndex = 1;
+            this.EditServiceButton.Text = "Edytuj";
+            this.EditServiceButton.UseVisualStyleBackColor = true;
+            
+            // 
+            // NewServiceButton
+            // 
+            this.NewServiceButton.Location = new System.Drawing.Point(3, 19);
+            this.NewServiceButton.Name = "NewServiceButton";
+            this.NewServiceButton.Size = new System.Drawing.Size(75, 23);
+            this.NewServiceButton.TabIndex = 0;
+            this.NewServiceButton.Text = "Dodaj";
+            this.NewServiceButton.UseVisualStyleBackColor = true;
+            
             // 
             // ReceptionistForm
             // 
@@ -1089,6 +1161,8 @@
             this.MenuStrip.PerformLayout();
             this.VisitManagementTabPage.ResumeLayout(false);
             this.VisitSearchMainGroupBox.ResumeLayout(false);
+            this.VisitSearchGroupBox.ResumeLayout(false);
+            this.VisitSearchGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VisitSearchResultsDataGridView)).EndInit();
             this.VisitActionsGroupBox.ResumeLayout(false);
             this.ClientsTabPage.ResumeLayout(false);
@@ -1110,8 +1184,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.RoomTypesDataGridView)).EndInit();
             this.RoomsGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.AllRoomsDataGridView)).EndInit();
-            this.VisitSearchGroupBox.ResumeLayout(false);
-            this.VisitSearchGroupBox.PerformLayout();
+            this.ServiceTab.ResumeLayout(false);
+            this.ServiceGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ServiceDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1213,5 +1288,11 @@
         private System.Windows.Forms.Label label4;
         public System.Windows.Forms.DateTimePicker VisitStartDateSearchDateTimePicker;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TabPage ServiceTab;
+        private System.Windows.Forms.GroupBox ServiceGroupBox;
+        public System.Windows.Forms.DataGridView ServiceDataGridView;
+        public System.Windows.Forms.Button RefreshServiceButton;
+        public System.Windows.Forms.Button EditServiceButton;
+        public System.Windows.Forms.Button NewServiceButton;
     }
 }

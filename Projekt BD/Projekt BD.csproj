@@ -73,6 +73,7 @@
     <Compile Include="Controller\ReceptionistFormController.cs" />
     <Compile Include="CurrentUser.cs" />
     <Compile Include="DataAccess.cs" />
+    <Compile Include="Controller\EditServiceFormController.cs" />
     <Compile Include="Interfaces\IController.cs" />
     <Compile Include="Interfaces\IObjectContext.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
@@ -110,6 +111,12 @@
     </Compile>
     <Compile Include="View\EditRoomTypeForm.Designer.cs">
       <DependentUpon>EditRoomTypeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditServiceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\EditServiceForm.Designer.cs">
+      <DependentUpon>EditServiceForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\EmployeeForm.cs">
       <SubType>Form</SubType>
@@ -169,6 +176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\EditRoomTypeForm.resx">
       <DependentUpon>EditRoomTypeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EditServiceForm.resx">
+      <DependentUpon>EditServiceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\EmployeeForm.resx">
       <DependentUpon>EmployeeForm.cs</DependentUpon>

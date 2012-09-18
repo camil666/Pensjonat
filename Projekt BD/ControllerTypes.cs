@@ -63,6 +63,8 @@
         /// <summary>
         /// Main form for receptionist.
         /// </summary>
-        ReceptionistForm
+        ReceptionistForm,
+
+        EditService
     }
 }

@@ -40,6 +40,8 @@
             this.Roles = new Repository<Role>(this.Context);
             this.Visits = new Repository<Visit>(this.Context);
             this.Tasks = new Repository<Task>(this.Context);
+            this.Services = new Repository<Service>(this.Context);
+            this.ServiceTypes = new Repository<ServiceType>(this.Context);
         }
 
         #endregion
@@ -165,6 +167,22 @@
         /// The tasks.
         /// </value>
         public Repository<Task> Tasks { get; private set; }
+
+        /// <summary>
+        /// Gets services.
+        /// </summary>
+        /// <value>
+        /// Service.
+        /// </value>
+        public Repository<Service> Services { get; private set; }
+
+        /// <summary>
+        /// Gets service types.
+        /// </summary>
+        /// <value>
+        /// Service type.
+        /// </value>
+        public Repository<ServiceType> ServiceTypes { get; private set; }
 
         /// <summary>
         /// Gets or sets the context.
