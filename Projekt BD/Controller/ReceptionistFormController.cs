@@ -403,37 +403,75 @@
 
         private void VisitSearchButton_Click(object sender, EventArgs e)
         {
-            //TODO: mozna dodac nowy gridview na wizyty powiazane, poki co wyszukiwane sa tylko wizyty zaznaczonego uzytkownika
-
             int selectedClientID = this.Form.ClientSearchWindow.SelectedClientID;
 
             if (selectedClientID > 0)
             {
                 var visits = (from visit in DataAccess.Instance.Visits.Find(v => v.GuestId == selectedClientID
                                    && v.StartDate >= this.Form.VisitStartDateSearchDateTimePicker.Value.Date
-                                   && v.EndDate <= this.Form.VisitEndDateSearchDateTimePicker.Value.Date).ToList()
-                              select new
-                              {
-                                  visit.Id,
-                                  visit.Guest.FirstName,
-                                  visit.Guest.LastName,
-                                  visit.RoomId,
-                                  visit.StartDate,
-                                  visit.EndDate,
-                                  visit.AdditionalInfo
-                              }).ToList();
+                                   && v.EndDate <= this.Form.VisitEndDateSearchDateTimePicker.Value.Date)
+                              select visit).ToList();
+
 
                 if (visits.Count == 0)
                 {
                     return;
                 }
 
-                this.Form.ReservationSearchResultDataGridView.DataSource = visits;
+                var visitsIds = (from visit in visits
+                                 select visit.Id).ToList();
+
+                var parentVisitsIds = (from visit in visits
+                                       where visit.ParentId != null
+                                       select visit.ParentId).ToList();
+
+                if (visitsIds.Count > 0)
+                {
+                    foreach (var id in visitsIds)
+                    {
+                        var childVisits = DataAccess.Instance.Visits.Find(v => v.ParentId == id).ToList();
+                        foreach (var visit in childVisits)
+                        {
+                            visits.Add(visit);
+                        }
+                    }
+                }
+
+                if (parentVisitsIds.Count > 0)
+                {
+                    foreach (var id in parentVisitsIds)
+                    {
+                        var parentVisit = DataAccess.Instance.Visits.Single(v => v.Id == id);
+
+                        var parentVisits = DataAccess.Instance.Visits.Find(v => (v.Id == id || v.ParentId == parentVisit.Id));
+
+                        foreach (var visit in parentVisits)
+                        {
+                            visits.Add(visit);
+                        }
+                    }
+                }
+
+                var displayableVisits = (from visit in visits
+                                         select new
+                                          {
+                                              visit.Id,
+                                              visit.Guest.FirstName,
+                                              visit.Guest.LastName,
+                                              visit.RoomId,
+                                              visit.Advance,
+                                              visit.StartDate,
+                                              visit.EndDate,
+                                              visit.AdditionalInfo
+                                          }).ToList();
+
+                this.Form.VisitSearchResultsDataGridView.DataSource = displayableVisits;
 
                 this.Form.VisitSearchResultsDataGridView.Columns["Id"].Visible = false;
                 this.Form.VisitSearchResultsDataGridView.Columns["FirstName"].HeaderText = "Imię";
                 this.Form.VisitSearchResultsDataGridView.Columns["LastName"].HeaderText = "Nazwisko";
                 this.Form.VisitSearchResultsDataGridView.Columns["RoomId"].HeaderText = "Pokój";
+                this.Form.VisitSearchResultsDataGridView.Columns["Advance"].HeaderText = "Zaliczka";
                 this.Form.VisitSearchResultsDataGridView.Columns["StartDate"].HeaderText = "Data rozpoczęcia";
                 this.Form.VisitSearchResultsDataGridView.Columns["EndDate"].HeaderText = "Data zakończenia";
                 this.Form.VisitSearchResultsDataGridView.Columns["AdditionalInfo"].HeaderText = "Dodatkowe informacje";
