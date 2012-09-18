@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PensjonatModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="PensjonatModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="PensjonatModelStoreContainer">
           <EntitySet Name="Discounts" EntityType="PensjonatModel.Store.Discounts" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Employees" EntityType="PensjonatModel.Store.Employees" store:Type="Tables" Schema="dbo" />
@@ -538,8 +538,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PensjonatModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -711,8 +710,8 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="GuestId" Type="Int32" Nullable="false" />
-          <Property Name="StartDate" Type="DateTime" Nullable="false" />
-          <Property Name="EndDate" Type="DateTime" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="AdditionalInfo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Guest" Relationship="PensjonatModel.FK_Reservation_Guest" FromRole="Reservations" ToRole="Guests" />
           <NavigationProperty Name="RoomReservations" Relationship="PensjonatModel.FK_RoomReservation_Reservation" FromRole="Reservations" ToRole="RoomReservations" />
@@ -731,8 +730,8 @@
           </Key>
           <Property Name="ReservationId" Type="Int32" Nullable="false" />
           <Property Name="RoomId" Type="Int32" Nullable="false" />
-          <Property Name="StartDate" Type="DateTime" />
-          <Property Name="EndDate" Type="DateTime" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Reservation" Relationship="PensjonatModel.FK_RoomReservation_Reservation" FromRole="RoomReservations" ToRole="Reservations" />
           <NavigationProperty Name="Room" Relationship="PensjonatModel.FK_RoomReservation_Room" FromRole="RoomReservations" ToRole="Rooms" />
@@ -770,8 +769,8 @@
           <Property Name="VisitId" Type="Int32" Nullable="false" />
           <Property Name="TypeId" Type="Int32" />
           <Property Name="Quantity" Type="Int64" />
-          <Property Name="StartDate" Type="DateTime" />
-          <Property Name="EndDate" Type="DateTime" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
           <Property Name="AdditionalInfo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="CustomName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="CustomDescription" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
@@ -798,8 +797,8 @@
           <Property Name="EmployeeId" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="Name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="StartDate" Type="DateTime" />
-          <Property Name="EndDate" Type="DateTime" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
           <Property Name="IsDone" Type="Boolean" Nullable="false" />
           <Property Name="TypeId" Type="Int32" />
           <NavigationProperty Name="Employee" Relationship="PensjonatModel.FK_Task_Employee" FromRole="Tasks" ToRole="Employees" />
@@ -823,8 +822,8 @@
           </Key>
           <Property Name="PlanId" Type="Int32" Nullable="false" />
           <Property Name="VisitId" Type="Int32" Nullable="false" />
-          <Property Name="StartDate" Type="DateTime" Nullable="false" />
-          <Property Name="EndDate" Type="DateTime" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="MealPlan" Relationship="PensjonatModel.FK_VisitMealPlan_MealPlan" FromRole="VisitMealPlans" ToRole="MealPlans" />
           <NavigationProperty Name="Visit" Relationship="PensjonatModel.FK_VisitMealPlan_Visit" FromRole="VisitMealPlans" ToRole="Visits" />
         </EntityType>
@@ -836,8 +835,8 @@
           <Property Name="ParentId" Type="Int32" />
           <Property Name="GuestId" Type="Int32" Nullable="false" />
           <Property Name="RoomId" Type="Int32" Nullable="false" />
-          <Property Name="StartDate" Type="DateTime" Nullable="false" />
-          <Property Name="EndDate" Type="DateTime" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="AdditionalInfo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="Advance" Type="Double" />
           <NavigationProperty Name="Guest" Relationship="PensjonatModel.FK_Visit_Guest" FromRole="Visits" ToRole="Guests" />
