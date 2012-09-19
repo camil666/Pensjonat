@@ -500,6 +500,26 @@
 
         private void SaveClientChangesButton_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(this.Form.ApartmentNumberClientDetailsTextBox.Text) ||
+                string.IsNullOrEmpty(this.Form.CountryClientDetailsTextBox.Text) ||
+                string.IsNullOrEmpty(this.Form.FirstNameClientDetailsTextBox.Text) ||
+                string.IsNullOrEmpty(this.Form.HouseNumberClientDetailsTextBox.Text) ||
+                string.IsNullOrEmpty(this.Form.LastNameClientDetailsTextBox.Text) ||
+                string.IsNullOrEmpty(this.Form.PhoneNumberClientDetailsTextBox.Text) ||
+                string.IsNullOrEmpty(this.Form.PostCodeClientDetailsTextBox.Text) ||
+                string.IsNullOrEmpty(this.Form.StreetClientDetailsTextBox.Text) ||
+                string.IsNullOrEmpty(this.Form.TownClientDetailsTextBox.Text))
+            {
+                MessageBox.Show(
+                    "Należy wpisać wymagane dane.",
+                    "Błąd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
+
+                return;
+            }
+
             var guestId = int.Parse(this.Form.IDClientDetailsTextBox.Text);
             Guest guestToBeUpdated = DataAccess.Instance.Guests.Single(g => g.Id == guestId);
 
@@ -518,8 +538,6 @@
             guestToBeUpdated.IsVerified = this.Form.VerifiedClientDetailsCheckBox.Checked;
 
             DataAccess.Instance.UnitOfWork.Commit();
-
-            //TODO: weryfikacja wprowadzonych danych.
         }
 
 

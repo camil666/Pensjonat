@@ -181,7 +181,6 @@
                 this.AddFeaturesToRoom(room);
             }
 
-            //TODO: Naprawić bug przy dodawaniu i aktualizowaniu wpisów.
             DataAccess.Instance.UnitOfWork.Commit();
 
             this.Form.Dispose();
