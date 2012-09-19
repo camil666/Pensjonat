@@ -70,7 +70,7 @@
             this.Form.NewServiceButton.Click += this.NewServiceButton_Click;
         }
 
-        public void ReservationSearchResultDataGridView_Refresh()
+        private void ReservationSearchResultDataGridView_Refresh()
         {
             int selectedClientID = this.Form.ClientSearchWindow.SelectedClientID;
 
@@ -103,6 +103,76 @@
                     MessageBoxIcon.Exclamation,
                     MessageBoxDefaultButton.Button1);
             }
+        }
+
+        private void refreshRooms()
+        {
+            var rooms = (from room in DataAccess.Instance.Rooms.GetAll()
+                         select new
+                         {
+                             room.Number,
+                             room.RoomType.Name,
+                             room.Capacity,
+                             room.Floor,
+                             room.RoomType.Price,
+                             room.RoomType.PricePerPerson,
+                             FeatureList = room.Features
+                         }).ToList();
+
+            this.Form.AllRoomsDataGridView.DataSource = rooms;
+            this.Form.AllRoomsDataGridView.Columns.Add("Features", "Udogodnienia");
+
+            foreach (var room in rooms)
+            {
+                foreach (var feature in room.FeatureList)
+                {
+                    this.Form.AllRoomsDataGridView.Rows[rooms.IndexOf(room)].Cells["Features"].Value += string.Concat(feature.Name, ", ");
+                }
+            }
+
+            this.Form.AllRoomsDataGridView.Columns["Number"].HeaderText = "Numer";
+            this.Form.AllRoomsDataGridView.Columns["Name"].HeaderText = "Typ";
+            this.Form.AllRoomsDataGridView.Columns["Capacity"].HeaderText = "Pojemność";
+            this.Form.AllRoomsDataGridView.Columns["Floor"].HeaderText = "Piętro";
+            this.Form.AllRoomsDataGridView.Columns["Price"].HeaderText = "Cena";
+            this.Form.AllRoomsDataGridView.Columns["PricePerPerson"].HeaderText = "Cena za osobę";
+            this.Form.AllRoomsDataGridView.Columns["FeatureList"].Visible = false;
+        }
+
+        private void refreshRoomTypes()
+        {
+            var roomTypes = from roomType in DataAccess.Instance.RoomTypes.GetAll()
+                            select new
+                            {
+                                roomType.Id,
+                                roomType.Name,
+                                roomType.Description,
+                                roomType.Price,
+                                roomType.PricePerPerson
+                            };
+
+            this.Form.RoomTypesDataGridView.DataSource = roomTypes;
+            this.Form.RoomTypesDataGridView.Columns["Id"].Visible = false;
+            this.Form.RoomTypesDataGridView.Columns["Price"].HeaderText = "Cena";
+            this.Form.RoomTypesDataGridView.Columns["PricePerPerson"].HeaderText = "Cena od osoby";
+            this.Form.RoomTypesDataGridView.Columns["Name"].HeaderText = "Nazwa";
+            this.Form.RoomTypesDataGridView.Columns["Description"].HeaderText = "Opis";
+        }
+
+        private void refreshFeatures()
+        {
+            var features = from feature in DataAccess.Instance.Features.GetAll()
+                           select new
+                           {
+                               feature.Id,
+                               feature.Name,
+                               feature.Description
+                           };
+
+            this.Form.RoomFeaturesDataGridView.DataSource = features;
+            this.Form.RoomFeaturesDataGridView.Columns["Id"].Visible = false;
+            this.Form.RoomFeaturesDataGridView.Columns["Name"].HeaderText = "Nazwa";
+            this.Form.RoomFeaturesDataGridView.Columns["Description"].HeaderText = "Opis";
         }
 
         #endregion
@@ -297,6 +367,7 @@
         private void AddFeaturesButton_Click(object sender, EventArgs e)
         {
             ControllerFactory.Instance.Create(ControllerTypes.EditRoomFeature).Form.ShowDialog();
+            this.refreshFeatures();
         }
 
         private void EditFeaturesButton_Click(object sender, EventArgs e)
@@ -309,12 +380,14 @@
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.EditRoomFeature);
                 controller.ItemToEditID = roomFeatureId;
                 controller.Form.ShowDialog();
+                this.refreshFeatures();
             }
         }
 
         private void AddRoomTypeButton_Click(object sender, EventArgs e)
         {
             ControllerFactory.Instance.Create(ControllerTypes.EditRoomType).Form.ShowDialog();
+            this.refreshRoomTypes();
         }
 
         private void EditRoomTypeButton_Click(object sender, EventArgs e)
@@ -327,82 +400,29 @@
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.EditRoomType);
                 controller.ItemToEditID = roomTypeId;
                 controller.Form.ShowDialog();
+                this.refreshRoomTypes();
             }
         }
 
         private void RefreshRoomsButton_Click(object sender, EventArgs e)
         {
-            var rooms = (from room in DataAccess.Instance.Rooms.GetAll()
-                         select new
-                         {
-                             room.Number,
-                             room.RoomType.Name,
-                             room.Capacity,
-                             room.Floor,
-                             room.RoomType.Price,
-                             room.RoomType.PricePerPerson,
-                             FeatureList = room.Features
-                         }).ToList();
-
-            this.Form.AllRoomsDataGridView.DataSource = rooms;
-            this.Form.AllRoomsDataGridView.Columns.Add("Features", "Udogodnienia");
-
-            foreach (var room in rooms)
-            {
-                foreach (var feature in room.FeatureList)
-                {
-                    this.Form.AllRoomsDataGridView.Rows[rooms.IndexOf(room)].Cells["Features"].Value += string.Concat(feature.Name, ", ");
-                }
-            }
-
-            this.Form.AllRoomsDataGridView.Columns["Number"].HeaderText = "Numer";
-            this.Form.AllRoomsDataGridView.Columns["Name"].HeaderText = "Typ";
-            this.Form.AllRoomsDataGridView.Columns["Capacity"].HeaderText = "Pojemność";
-            this.Form.AllRoomsDataGridView.Columns["Floor"].HeaderText = "Piętro";
-            this.Form.AllRoomsDataGridView.Columns["Price"].HeaderText = "Cena";
-            this.Form.AllRoomsDataGridView.Columns["PricePerPerson"].HeaderText = "Cena za osobę";
-            this.Form.AllRoomsDataGridView.Columns["FeatureList"].Visible = false;
+            this.refreshRooms();
         }
 
         private void RefreshRoomTypesButton_Click(object sender, EventArgs e)
         {
-            var roomTypes = from roomType in DataAccess.Instance.RoomTypes.GetAll()
-                            select new
-                            {
-                                roomType.Id,
-                                roomType.Name,
-                                roomType.Description,
-                                roomType.Price,
-                                roomType.PricePerPerson
-                            };
-
-            this.Form.RoomTypesDataGridView.DataSource = roomTypes;
-            this.Form.RoomTypesDataGridView.Columns["Id"].Visible = false;
-            this.Form.RoomTypesDataGridView.Columns["Price"].HeaderText = "Cena";
-            this.Form.RoomTypesDataGridView.Columns["PricePerPerson"].HeaderText = "Cena od osoby";
-            this.Form.RoomTypesDataGridView.Columns["Name"].HeaderText = "Nazwa";
-            this.Form.RoomTypesDataGridView.Columns["Description"].HeaderText = "Opis";
+            this.refreshRoomTypes();
         }
 
         private void RefreshFeaturesButton_Click(object sender, EventArgs e)
         {
-            var features = from feature in DataAccess.Instance.Features.GetAll()
-                           select new
-                           {
-                               feature.Id,
-                               feature.Name,
-                               feature.Description
-                           };
-
-            this.Form.RoomFeaturesDataGridView.DataSource = features;
-            this.Form.RoomFeaturesDataGridView.Columns["Id"].Visible = false;
-            this.Form.RoomFeaturesDataGridView.Columns["Name"].HeaderText = "Nazwa";
-            this.Form.RoomFeaturesDataGridView.Columns["Description"].HeaderText = "Opis";
+            this.refreshFeatures();
         }
 
         private void NewRoomButton_Click(object sender, EventArgs e)
         {
             ControllerFactory.Instance.Create(ControllerTypes.EditRoom).Form.ShowDialog();
+            this.refreshRooms();
         }
 
         private void EditRoomButton_Click(object sender, EventArgs e)
@@ -416,6 +436,7 @@
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.EditRoom);
                 controller.ItemToEditID = roomNumber;
                 controller.Form.ShowDialog();
+                this.refreshRooms();
             }
         }
 
