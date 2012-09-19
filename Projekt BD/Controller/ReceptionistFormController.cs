@@ -112,7 +112,7 @@
         private void NewReservationButton_Click(object sender, EventArgs e)
         {
             int selectedClientID = this.Form.ClientSearchWindow.SelectedClientID;
-            
+
             if (selectedClientID > 0)
             {
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.ReservationForm);
@@ -334,19 +334,27 @@
                              room.Floor,
                              room.RoomType.Price,
                              room.RoomType.PricePerPerson,
-                             /* room.Features*/
+                             FeatureList = room.Features
                          }).ToList();
 
-            //TODO: Dodać wyświetlanie ficzerów
-
             this.Form.AllRoomsDataGridView.DataSource = rooms;
+            this.Form.AllRoomsDataGridView.Columns.Add("Features", "Udogodnienia");
+
+            foreach (var room in rooms)
+            {
+                foreach (var feature in room.FeatureList)
+                {
+                    this.Form.AllRoomsDataGridView.Rows[rooms.IndexOf(room)].Cells["Features"].Value += string.Concat(feature.Name, ", ");
+                }
+            }
+
             this.Form.AllRoomsDataGridView.Columns["Number"].HeaderText = "Numer";
             this.Form.AllRoomsDataGridView.Columns["Name"].HeaderText = "Typ";
             this.Form.AllRoomsDataGridView.Columns["Capacity"].HeaderText = "Pojemność";
             this.Form.AllRoomsDataGridView.Columns["Floor"].HeaderText = "Piętro";
             this.Form.AllRoomsDataGridView.Columns["Price"].HeaderText = "Cena";
             this.Form.AllRoomsDataGridView.Columns["PricePerPerson"].HeaderText = "Cena za osobę";
-            //this.Form.AllRoomsDataGridView.Columns["Features"].HeaderText = "Udogodnienia";
+            this.Form.AllRoomsDataGridView.Columns["FeatureList"].Visible = false;
         }
 
         private void RefreshRoomTypesButton_Click(object sender, EventArgs e)
@@ -536,13 +544,13 @@
         private void RefreshServiceButton_Click(object sender, System.EventArgs e)
         {
             var serviceTypes = (from serviceType in DataAccess.Instance.ServiceTypes.GetAll()
-                         select new
-                         {
-                             serviceType.Id,
-                             serviceType.Name,
-                             serviceType.Description,
-                             serviceType.Charge
-                         }).ToList();
+                                select new
+                                {
+                                    serviceType.Id,
+                                    serviceType.Name,
+                                    serviceType.Description,
+                                    serviceType.Charge
+                                }).ToList();
             this.Form.ServiceDataGridView.DataSource = serviceTypes;
             this.Form.ServiceDataGridView.Columns["Id"].Visible = false;
             this.Form.ServiceDataGridView.Columns["Name"].HeaderText = "Nazwa";
