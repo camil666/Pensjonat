@@ -70,21 +70,21 @@
             this.NameTextBox.Location = new System.Drawing.Point(68, 16);
             this.NameTextBox.Name = "NameTextBox";
             this.NameTextBox.Size = new System.Drawing.Size(204, 20);
-            this.NameTextBox.TabIndex = 3;
+            this.NameTextBox.TabIndex = 1;
             // 
             // ChargeTextBox
             // 
             this.ChargeTextBox.Location = new System.Drawing.Point(68, 46);
             this.ChargeTextBox.Name = "ChargeTextBox";
             this.ChargeTextBox.Size = new System.Drawing.Size(204, 20);
-            this.ChargeTextBox.TabIndex = 4;
+            this.ChargeTextBox.TabIndex = 2;
             // 
             // DescriptionRichTextBox
             // 
             this.DescriptionRichTextBox.Location = new System.Drawing.Point(68, 76);
             this.DescriptionRichTextBox.Name = "DescriptionRichTextBox";
             this.DescriptionRichTextBox.Size = new System.Drawing.Size(204, 132);
-            this.DescriptionRichTextBox.TabIndex = 5;
+            this.DescriptionRichTextBox.TabIndex = 3;
             this.DescriptionRichTextBox.Text = "";
             // 
             // OkButton
@@ -92,7 +92,7 @@
             this.OkButton.Location = new System.Drawing.Point(25, 221);
             this.OkButton.Name = "OkButton";
             this.OkButton.Size = new System.Drawing.Size(117, 23);
-            this.OkButton.TabIndex = 6;
+            this.OkButton.TabIndex = 4;
             this.OkButton.Text = "OK";
             this.OkButton.UseVisualStyleBackColor = true;
             // 
@@ -101,7 +101,7 @@
             this.CancelButton.Location = new System.Drawing.Point(148, 221);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(124, 23);
-            this.CancelButton.TabIndex = 7;
+            this.CancelButton.TabIndex = 5;
             this.CancelButton.Text = "Anuluj";
             this.CancelButton.UseVisualStyleBackColor = true;
             // 

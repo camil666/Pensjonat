@@ -59,6 +59,7 @@
             this.FreeRoomsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.FreeRoomsDataGridView.Size = new System.Drawing.Size(368, 150);
             this.FreeRoomsDataGridView.TabIndex = 17;
+            this.FreeRoomsDataGridView.TabStop = false;
             // 
             // FreeRoomsLabel
             // 
@@ -76,7 +77,7 @@
             this.EndDateDateTimePicker.MinDate = new System.DateTime(2012, 1, 1, 0, 0, 0, 0);
             this.EndDateDateTimePicker.Name = "EndDateDateTimePicker";
             this.EndDateDateTimePicker.Size = new System.Drawing.Size(249, 20);
-            this.EndDateDateTimePicker.TabIndex = 15;
+            this.EndDateDateTimePicker.TabIndex = 2;
             // 
             // EndDateLabel
             // 
@@ -94,7 +95,7 @@
             this.StartDateDateTimePicker.MinDate = new System.DateTime(2012, 1, 1, 0, 0, 0, 0);
             this.StartDateDateTimePicker.Name = "StartDateDateTimePicker";
             this.StartDateDateTimePicker.Size = new System.Drawing.Size(249, 20);
-            this.StartDateDateTimePicker.TabIndex = 13;
+            this.StartDateDateTimePicker.TabIndex = 1;
             // 
             // StartDateLabel
             // 
@@ -110,7 +111,7 @@
             this.AddToReservationButton.Location = new System.Drawing.Point(389, 154);
             this.AddToReservationButton.Name = "AddToReservationButton";
             this.AddToReservationButton.Size = new System.Drawing.Size(42, 23);
-            this.AddToReservationButton.TabIndex = 21;
+            this.AddToReservationButton.TabIndex = 4;
             this.AddToReservationButton.Text = "->";
             this.AddToReservationButton.UseVisualStyleBackColor = true;
             // 
@@ -119,7 +120,7 @@
             this.RemoveFromReservationButton.Location = new System.Drawing.Point(389, 183);
             this.RemoveFromReservationButton.Name = "RemoveFromReservationButton";
             this.RemoveFromReservationButton.Size = new System.Drawing.Size(42, 23);
-            this.RemoveFromReservationButton.TabIndex = 22;
+            this.RemoveFromReservationButton.TabIndex = 5;
             this.RemoveFromReservationButton.Text = "<-";
             this.RemoveFromReservationButton.UseVisualStyleBackColor = true;
             // 
@@ -134,6 +135,7 @@
             this.RoomsToBeReservedDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.RoomsToBeReservedDataGridView.Size = new System.Drawing.Size(368, 150);
             this.RoomsToBeReservedDataGridView.TabIndex = 23;
+            this.RoomsToBeReservedDataGridView.TabStop = false;
             // 
             // RoomsToBeReservedLabel
             // 
@@ -149,7 +151,7 @@
             this.CancelButton.Location = new System.Drawing.Point(608, 294);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
-            this.CancelButton.TabIndex = 25;
+            this.CancelButton.TabIndex = 6;
             this.CancelButton.Text = "Anuluj";
             this.CancelButton.UseVisualStyleBackColor = true;
             // 
@@ -158,7 +160,7 @@
             this.AddButton.Location = new System.Drawing.Point(730, 294);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(75, 23);
-            this.AddButton.TabIndex = 26;
+            this.AddButton.TabIndex = 7;
             this.AddButton.Text = "OK";
             this.AddButton.UseVisualStyleBackColor = true;
             // 
@@ -167,7 +169,7 @@
             this.AddInfoTextBox.Location = new System.Drawing.Point(556, 46);
             this.AddInfoTextBox.Name = "AddInfoTextBox";
             this.AddInfoTextBox.Size = new System.Drawing.Size(249, 20);
-            this.AddInfoTextBox.TabIndex = 28;
+            this.AddInfoTextBox.TabIndex = 3;
             // 
             // AddInfoLabel
             // 
@@ -185,6 +187,7 @@
             this.ClientTextBox.ReadOnly = true;
             this.ClientTextBox.Size = new System.Drawing.Size(249, 20);
             this.ClientTextBox.TabIndex = 29;
+            this.ClientTextBox.TabStop = false;
             // 
             // ClientLabel
             // 

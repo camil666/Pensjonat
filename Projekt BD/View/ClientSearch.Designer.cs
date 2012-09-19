@@ -72,13 +72,14 @@
             this.ClientSearchResultDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ClientSearchResultDataGridView.Size = new System.Drawing.Size(384, 228);
             this.ClientSearchResultDataGridView.TabIndex = 58;
+            this.ClientSearchResultDataGridView.TabStop = false;
             // 
             // ClientSearchButton
             // 
             this.ClientSearchButton.Location = new System.Drawing.Point(150, 325);
             this.ClientSearchButton.Name = "ClientSearchButton";
             this.ClientSearchButton.Size = new System.Drawing.Size(80, 23);
-            this.ClientSearchButton.TabIndex = 57;
+            this.ClientSearchButton.TabIndex = 14;
             this.ClientSearchButton.Text = "Wyszukaj";
             this.ClientSearchButton.UseVisualStyleBackColor = true;
             // 
@@ -96,14 +97,14 @@
             this.CompanyNameClientSearchTextBox.Location = new System.Drawing.Point(90, 210);
             this.CompanyNameClientSearchTextBox.Name = "CompanyNameClientSearchTextBox";
             this.CompanyNameClientSearchTextBox.Size = new System.Drawing.Size(283, 20);
-            this.CompanyNameClientSearchTextBox.TabIndex = 55;
+            this.CompanyNameClientSearchTextBox.TabIndex = 11;
             // 
             // CountryClientSearchTextBox
             // 
             this.CountryClientSearchTextBox.Location = new System.Drawing.Point(253, 170);
             this.CountryClientSearchTextBox.Name = "CountryClientSearchTextBox";
             this.CountryClientSearchTextBox.Size = new System.Drawing.Size(120, 20);
-            this.CountryClientSearchTextBox.TabIndex = 54;
+            this.CountryClientSearchTextBox.TabIndex = 10;
             // 
             // CountryClientSearchLabel
             // 
@@ -119,7 +120,7 @@
             this.PostCodeClientSearchTextBox.Location = new System.Drawing.Point(90, 170);
             this.PostCodeClientSearchTextBox.Name = "PostCodeClientSearchTextBox";
             this.PostCodeClientSearchTextBox.Size = new System.Drawing.Size(86, 20);
-            this.PostCodeClientSearchTextBox.TabIndex = 52;
+            this.PostCodeClientSearchTextBox.TabIndex = 9;
             // 
             // PostCodeClientSearchLabel
             // 
@@ -135,7 +136,7 @@
             this.ApartmentNumberClientSearchTextBox.Location = new System.Drawing.Point(253, 130);
             this.ApartmentNumberClientSearchTextBox.Name = "ApartmentNumberClientSearchTextBox";
             this.ApartmentNumberClientSearchTextBox.Size = new System.Drawing.Size(120, 20);
-            this.ApartmentNumberClientSearchTextBox.TabIndex = 50;
+            this.ApartmentNumberClientSearchTextBox.TabIndex = 8;
             // 
             // ApartmentNumberClientSearchLabel
             // 
@@ -151,7 +152,7 @@
             this.HouseNumberClientSearchTextBox.Location = new System.Drawing.Point(56, 130);
             this.HouseNumberClientSearchTextBox.Name = "HouseNumberClientSearchTextBox";
             this.HouseNumberClientSearchTextBox.Size = new System.Drawing.Size(120, 20);
-            this.HouseNumberClientSearchTextBox.TabIndex = 48;
+            this.HouseNumberClientSearchTextBox.TabIndex = 7;
             // 
             // HouseNumberClientSearchLabel
             // 
@@ -167,7 +168,7 @@
             this.StreetClientSearchTextBox.Location = new System.Drawing.Point(253, 90);
             this.StreetClientSearchTextBox.Name = "StreetClientSearchTextBox";
             this.StreetClientSearchTextBox.Size = new System.Drawing.Size(120, 20);
-            this.StreetClientSearchTextBox.TabIndex = 46;
+            this.StreetClientSearchTextBox.TabIndex = 6;
             // 
             // StreetClientSearchLabel
             // 
@@ -183,7 +184,7 @@
             this.TownClientSearchTextBox.Location = new System.Drawing.Point(56, 90);
             this.TownClientSearchTextBox.Name = "TownClientSearchTextBox";
             this.TownClientSearchTextBox.Size = new System.Drawing.Size(120, 20);
-            this.TownClientSearchTextBox.TabIndex = 44;
+            this.TownClientSearchTextBox.TabIndex = 5;
             // 
             // TownClientSearchLabel
             // 
@@ -199,7 +200,7 @@
             this.LastNameClientSearchTextBox.Location = new System.Drawing.Point(253, 50);
             this.LastNameClientSearchTextBox.Name = "LastNameClientSearchTextBox";
             this.LastNameClientSearchTextBox.Size = new System.Drawing.Size(120, 20);
-            this.LastNameClientSearchTextBox.TabIndex = 42;
+            this.LastNameClientSearchTextBox.TabIndex = 4;
             // 
             // LastNameClientSearchLabel
             // 
@@ -215,7 +216,7 @@
             this.FirstNameClientSearchTextBox.Location = new System.Drawing.Point(56, 50);
             this.FirstNameClientSearchTextBox.Name = "FirstNameClientSearchTextBox";
             this.FirstNameClientSearchTextBox.Size = new System.Drawing.Size(120, 20);
-            this.FirstNameClientSearchTextBox.TabIndex = 40;
+            this.FirstNameClientSearchTextBox.TabIndex = 3;
             // 
             // FirstNameClientSearchLabel
             // 
@@ -240,14 +241,14 @@
             this.IDClientSearchTextBox.Location = new System.Drawing.Point(56, 10);
             this.IDClientSearchTextBox.Name = "IDClientSearchTextBox";
             this.IDClientSearchTextBox.Size = new System.Drawing.Size(120, 20);
-            this.IDClientSearchTextBox.TabIndex = 60;
+            this.IDClientSearchTextBox.TabIndex = 1;
             // 
             // IDNumberClientSearchTextBox
             // 
             this.IDNumberClientSearchTextBox.Location = new System.Drawing.Point(252, 10);
             this.IDNumberClientSearchTextBox.Name = "IDNumberClientSearchTextBox";
             this.IDNumberClientSearchTextBox.Size = new System.Drawing.Size(120, 20);
-            this.IDNumberClientSearchTextBox.TabIndex = 62;
+            this.IDNumberClientSearchTextBox.TabIndex = 2;
             // 
             // IDNumberClientSearchLabel
             // 
@@ -272,14 +273,14 @@
             this.EmailClientSearchTextBox.Location = new System.Drawing.Point(90, 250);
             this.EmailClientSearchTextBox.Name = "EmailClientSearchTextBox";
             this.EmailClientSearchTextBox.Size = new System.Drawing.Size(283, 20);
-            this.EmailClientSearchTextBox.TabIndex = 63;
+            this.EmailClientSearchTextBox.TabIndex = 12;
             // 
             // PhoneClientSearchTextBox
             // 
             this.PhoneClientSearchTextBox.Location = new System.Drawing.Point(90, 289);
             this.PhoneClientSearchTextBox.Name = "PhoneClientSearchTextBox";
             this.PhoneClientSearchTextBox.Size = new System.Drawing.Size(283, 20);
-            this.PhoneClientSearchTextBox.TabIndex = 65;
+            this.PhoneClientSearchTextBox.TabIndex = 13;
             // 
             // label1
             // 

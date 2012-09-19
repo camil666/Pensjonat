@@ -70,14 +70,14 @@
             this.EmailTextBox.Location = new System.Drawing.Point(93, 252);
             this.EmailTextBox.Name = "EmailTextBox";
             this.EmailTextBox.Size = new System.Drawing.Size(283, 20);
-            this.EmailTextBox.TabIndex = 87;
+            this.EmailTextBox.TabIndex = 11;
             // 
             // IDNumberTextBox
             // 
             this.IDNumberTextBox.Location = new System.Drawing.Point(59, 12);
             this.IDNumberTextBox.Name = "IDNumberTextBox";
             this.IDNumberTextBox.Size = new System.Drawing.Size(120, 20);
-            this.IDNumberTextBox.TabIndex = 86;
+            this.IDNumberTextBox.TabIndex = 1;
             // 
             // IDNumberLabel
             // 
@@ -102,14 +102,14 @@
             this.CompanyNameTextBox.Location = new System.Drawing.Point(93, 212);
             this.CompanyNameTextBox.Name = "CompanyNameTextBox";
             this.CompanyNameTextBox.Size = new System.Drawing.Size(283, 20);
-            this.CompanyNameTextBox.TabIndex = 81;
+            this.CompanyNameTextBox.TabIndex = 10;
             // 
             // CountryTextBox
             // 
             this.CountryTextBox.Location = new System.Drawing.Point(256, 172);
             this.CountryTextBox.Name = "CountryTextBox";
             this.CountryTextBox.Size = new System.Drawing.Size(120, 20);
-            this.CountryTextBox.TabIndex = 80;
+            this.CountryTextBox.TabIndex = 9;
             // 
             // CountryLabel
             // 
@@ -125,7 +125,7 @@
             this.PostCodeTextBox.Location = new System.Drawing.Point(93, 172);
             this.PostCodeTextBox.Name = "PostCodeTextBox";
             this.PostCodeTextBox.Size = new System.Drawing.Size(86, 20);
-            this.PostCodeTextBox.TabIndex = 78;
+            this.PostCodeTextBox.TabIndex = 8;
             // 
             // PostCodeLabel
             // 
@@ -141,7 +141,7 @@
             this.ApartmentNumberTextBox.Location = new System.Drawing.Point(256, 132);
             this.ApartmentNumberTextBox.Name = "ApartmentNumberTextBox";
             this.ApartmentNumberTextBox.Size = new System.Drawing.Size(120, 20);
-            this.ApartmentNumberTextBox.TabIndex = 76;
+            this.ApartmentNumberTextBox.TabIndex = 7;
             // 
             // ApartmentNumberLabel
             // 
@@ -157,7 +157,7 @@
             this.HouseNumberTextBox.Location = new System.Drawing.Point(59, 132);
             this.HouseNumberTextBox.Name = "HouseNumberTextBox";
             this.HouseNumberTextBox.Size = new System.Drawing.Size(120, 20);
-            this.HouseNumberTextBox.TabIndex = 74;
+            this.HouseNumberTextBox.TabIndex = 6;
             // 
             // HouseNumberLabel
             // 
@@ -173,7 +173,7 @@
             this.StreetTextBox.Location = new System.Drawing.Point(256, 92);
             this.StreetTextBox.Name = "StreetTextBox";
             this.StreetTextBox.Size = new System.Drawing.Size(120, 20);
-            this.StreetTextBox.TabIndex = 72;
+            this.StreetTextBox.TabIndex = 5;
             // 
             // StreetLabel
             // 
@@ -189,7 +189,7 @@
             this.TownTextBox.Location = new System.Drawing.Point(59, 92);
             this.TownTextBox.Name = "TownTextBox";
             this.TownTextBox.Size = new System.Drawing.Size(120, 20);
-            this.TownTextBox.TabIndex = 70;
+            this.TownTextBox.TabIndex = 4;
             // 
             // TownLabel
             // 
@@ -205,7 +205,7 @@
             this.LastNameTextBox.Location = new System.Drawing.Point(256, 52);
             this.LastNameTextBox.Name = "LastNameTextBox";
             this.LastNameTextBox.Size = new System.Drawing.Size(120, 20);
-            this.LastNameTextBox.TabIndex = 68;
+            this.LastNameTextBox.TabIndex = 3;
             // 
             // LastNameLabel
             // 
@@ -221,7 +221,7 @@
             this.FirstNameTextBox.Location = new System.Drawing.Point(59, 52);
             this.FirstNameTextBox.Name = "FirstNameTextBox";
             this.FirstNameTextBox.Size = new System.Drawing.Size(120, 20);
-            this.FirstNameTextBox.TabIndex = 66;
+            this.FirstNameTextBox.TabIndex = 2;
             // 
             // FirstNameLabel
             // 
@@ -237,7 +237,7 @@
             this.CancelButton.Location = new System.Drawing.Point(59, 329);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
-            this.CancelButton.TabIndex = 89;
+            this.CancelButton.TabIndex = 13;
             this.CancelButton.Text = "Anuluj";
             this.CancelButton.UseVisualStyleBackColor = true;
             // 
@@ -246,7 +246,7 @@
             this.AddButton.Location = new System.Drawing.Point(220, 329);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(75, 23);
-            this.AddButton.TabIndex = 90;
+            this.AddButton.TabIndex = 14;
             this.AddButton.Text = "Dodaj";
             this.AddButton.UseVisualStyleBackColor = true;
             // 
@@ -264,7 +264,7 @@
             this.PhoneNumberTextBox.Location = new System.Drawing.Point(93, 289);
             this.PhoneNumberTextBox.Name = "PhoneNumberTextBox";
             this.PhoneNumberTextBox.Size = new System.Drawing.Size(283, 20);
-            this.PhoneNumberTextBox.TabIndex = 92;
+            this.PhoneNumberTextBox.TabIndex = 12;
             // 
             // NewClientForm
             // 

@@ -81,28 +81,28 @@
             this.NameTextBox.Location = new System.Drawing.Point(132, 10);
             this.NameTextBox.Name = "NameTextBox";
             this.NameTextBox.Size = new System.Drawing.Size(178, 20);
-            this.NameTextBox.TabIndex = 4;
+            this.NameTextBox.TabIndex = 1;
             // 
             // PricePerPersonTextBox
             // 
             this.PricePerPersonTextBox.Location = new System.Drawing.Point(132, 44);
             this.PricePerPersonTextBox.Name = "PricePerPersonTextBox";
             this.PricePerPersonTextBox.Size = new System.Drawing.Size(178, 20);
-            this.PricePerPersonTextBox.TabIndex = 5;
+            this.PricePerPersonTextBox.TabIndex = 2;
             // 
             // PriceTextBox
             // 
             this.PriceTextBox.Location = new System.Drawing.Point(132, 79);
             this.PriceTextBox.Name = "PriceTextBox";
             this.PriceTextBox.Size = new System.Drawing.Size(178, 20);
-            this.PriceTextBox.TabIndex = 6;
+            this.PriceTextBox.TabIndex = 3;
             // 
             // OkButton
             // 
             this.OkButton.Location = new System.Drawing.Point(220, 184);
             this.OkButton.Name = "OkButton";
             this.OkButton.Size = new System.Drawing.Size(90, 23);
-            this.OkButton.TabIndex = 8;
+            this.OkButton.TabIndex = 6;
             this.OkButton.Text = "OK";
             this.OkButton.UseVisualStyleBackColor = true;
             // 
@@ -111,7 +111,7 @@
             this.DescriptionRichTextBox.Location = new System.Drawing.Point(76, 117);
             this.DescriptionRichTextBox.Name = "DescriptionRichTextBox";
             this.DescriptionRichTextBox.Size = new System.Drawing.Size(234, 48);
-            this.DescriptionRichTextBox.TabIndex = 9;
+            this.DescriptionRichTextBox.TabIndex = 4;
             this.DescriptionRichTextBox.Text = "";
             // 
             // CancelButton
@@ -119,7 +119,7 @@
             this.CancelButton.Location = new System.Drawing.Point(76, 184);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(90, 23);
-            this.CancelButton.TabIndex = 10;
+            this.CancelButton.TabIndex = 5;
             this.CancelButton.Text = "Anuluj";
             this.CancelButton.UseVisualStyleBackColor = true;
             // 

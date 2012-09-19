@@ -48,13 +48,14 @@
             this.TasksDataGridView.Name = "TasksDataGridView";
             this.TasksDataGridView.Size = new System.Drawing.Size(544, 198);
             this.TasksDataGridView.TabIndex = 0;
+            this.TasksDataGridView.TabStop = false;
             // 
             // SaveButton
             // 
             this.SaveButton.Location = new System.Drawing.Point(457, 227);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(75, 23);
-            this.SaveButton.TabIndex = 1;
+            this.SaveButton.TabIndex = 2;
             this.SaveButton.Text = "Zapisz";
             this.SaveButton.UseVisualStyleBackColor = true;
             // 
@@ -63,7 +64,7 @@
             this.LoadButton.Location = new System.Drawing.Point(12, 227);
             this.LoadButton.Name = "LoadButton";
             this.LoadButton.Size = new System.Drawing.Size(160, 23);
-            this.LoadButton.TabIndex = 2;
+            this.LoadButton.TabIndex = 1;
             this.LoadButton.Text = "Wczytaj niewykonane zadania";
             this.LoadButton.UseVisualStyleBackColor = true;
             // 
@@ -74,6 +75,7 @@
             this.ShowDoneTasksCheckBox.Name = "ShowDoneTasksCheckBox";
             this.ShowDoneTasksCheckBox.Size = new System.Drawing.Size(168, 17);
             this.ShowDoneTasksCheckBox.TabIndex = 3;
+            this.ShowDoneTasksCheckBox.TabStop = false;
             this.ShowDoneTasksCheckBox.Text = "Wyświetlaj wykonane zadania";
             this.ShowDoneTasksCheckBox.UseVisualStyleBackColor = true;
             // 

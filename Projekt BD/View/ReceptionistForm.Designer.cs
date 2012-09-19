@@ -257,7 +257,7 @@
             this.VisitEndDateSearchDateTimePicker.MinDate = new System.DateTime(2012, 1, 1, 0, 0, 0, 0);
             this.VisitEndDateSearchDateTimePicker.Name = "VisitEndDateSearchDateTimePicker";
             this.VisitEndDateSearchDateTimePicker.Size = new System.Drawing.Size(249, 20);
-            this.VisitEndDateSearchDateTimePicker.TabIndex = 3;
+            this.VisitEndDateSearchDateTimePicker.TabIndex = 6;
             // 
             // label4
             // 
@@ -275,7 +275,7 @@
             this.VisitStartDateSearchDateTimePicker.MinDate = new System.DateTime(2012, 1, 1, 0, 0, 0, 0);
             this.VisitStartDateSearchDateTimePicker.Name = "VisitStartDateSearchDateTimePicker";
             this.VisitStartDateSearchDateTimePicker.Size = new System.Drawing.Size(249, 20);
-            this.VisitStartDateSearchDateTimePicker.TabIndex = 1;
+            this.VisitStartDateSearchDateTimePicker.TabIndex = 5;
             // 
             // label5
             // 
@@ -291,7 +291,7 @@
             this.VisitSearchButton.Location = new System.Drawing.Point(221, 143);
             this.VisitSearchButton.Name = "VisitSearchButton";
             this.VisitSearchButton.Size = new System.Drawing.Size(75, 23);
-            this.VisitSearchButton.TabIndex = 9;
+            this.VisitSearchButton.TabIndex = 7;
             this.VisitSearchButton.Text = "Wyszukaj";
             this.VisitSearchButton.UseVisualStyleBackColor = true;
             // 
@@ -303,6 +303,7 @@
             this.VisitSearchResultsDataGridView.Name = "VisitSearchResultsDataGridView";
             this.VisitSearchResultsDataGridView.Size = new System.Drawing.Size(508, 355);
             this.VisitSearchResultsDataGridView.TabIndex = 8;
+            this.VisitSearchResultsDataGridView.TabStop = false;
             // 
             // VisitActionsGroupBox
             // 
@@ -419,7 +420,7 @@
             this.IDNumberClientDetailsTextBox.Location = new System.Drawing.Point(253, 19);
             this.IDNumberClientDetailsTextBox.Name = "IDNumberClientDetailsTextBox";
             this.IDNumberClientDetailsTextBox.Size = new System.Drawing.Size(120, 20);
-            this.IDNumberClientDetailsTextBox.TabIndex = 66;
+            this.IDNumberClientDetailsTextBox.TabIndex = 2;
             // 
             // IDNumberClientDetailsLabel
             // 
@@ -436,7 +437,7 @@
             this.VerifiedClientDetailsCheckBox.Location = new System.Drawing.Point(10, 302);
             this.VerifiedClientDetailsCheckBox.Name = "VerifiedClientDetailsCheckBox";
             this.VerifiedClientDetailsCheckBox.Size = new System.Drawing.Size(97, 17);
-            this.VerifiedClientDetailsCheckBox.TabIndex = 64;
+            this.VerifiedClientDetailsCheckBox.TabIndex = 14;
             this.VerifiedClientDetailsCheckBox.Text = "Zweryfikowany";
             this.VerifiedClientDetailsCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -447,6 +448,7 @@
             this.IDClientDetailsTextBox.ReadOnly = true;
             this.IDClientDetailsTextBox.Size = new System.Drawing.Size(120, 20);
             this.IDClientDetailsTextBox.TabIndex = 62;
+            this.IDClientDetailsTextBox.TabStop = false;
             // 
             // IDClientDetailsLabel
             // 
@@ -462,7 +464,7 @@
             this.PhoneNumberClientDetailsTextBox.Location = new System.Drawing.Point(253, 259);
             this.PhoneNumberClientDetailsTextBox.Name = "PhoneNumberClientDetailsTextBox";
             this.PhoneNumberClientDetailsTextBox.Size = new System.Drawing.Size(120, 20);
-            this.PhoneNumberClientDetailsTextBox.TabIndex = 60;
+            this.PhoneNumberClientDetailsTextBox.TabIndex = 13;
             // 
             // PhoneNumberClientDetailsLabel
             // 
@@ -478,7 +480,7 @@
             this.EmailClientDetailsTextBox.Location = new System.Drawing.Point(56, 259);
             this.EmailClientDetailsTextBox.Name = "EmailClientDetailsTextBox";
             this.EmailClientDetailsTextBox.Size = new System.Drawing.Size(120, 20);
-            this.EmailClientDetailsTextBox.TabIndex = 58;
+            this.EmailClientDetailsTextBox.TabIndex = 12;
             // 
             // EmailClientDetailsLabel
             // 
@@ -494,7 +496,7 @@
             this.SaveClientChangesButton.Location = new System.Drawing.Point(10, 353);
             this.SaveClientChangesButton.Name = "SaveClientChangesButton";
             this.SaveClientChangesButton.Size = new System.Drawing.Size(110, 23);
-            this.SaveClientChangesButton.TabIndex = 55;
+            this.SaveClientChangesButton.TabIndex = 15;
             this.SaveClientChangesButton.Text = "Zapisz zmiany";
             this.SaveClientChangesButton.UseVisualStyleBackColor = true;
             // 
@@ -512,14 +514,14 @@
             this.CompanyNameClientDetailsTextBox.Location = new System.Drawing.Point(90, 219);
             this.CompanyNameClientDetailsTextBox.Name = "CompanyNameClientDetailsTextBox";
             this.CompanyNameClientDetailsTextBox.Size = new System.Drawing.Size(283, 20);
-            this.CompanyNameClientDetailsTextBox.TabIndex = 53;
+            this.CompanyNameClientDetailsTextBox.TabIndex = 11;
             // 
             // CountryClientDetailsTextBox
             // 
             this.CountryClientDetailsTextBox.Location = new System.Drawing.Point(253, 179);
             this.CountryClientDetailsTextBox.Name = "CountryClientDetailsTextBox";
             this.CountryClientDetailsTextBox.Size = new System.Drawing.Size(120, 20);
-            this.CountryClientDetailsTextBox.TabIndex = 52;
+            this.CountryClientDetailsTextBox.TabIndex = 10;
             // 
             // CountryClientDetailsLabel
             // 
@@ -535,7 +537,7 @@
             this.PostCodeClientDetailsTextBox.Location = new System.Drawing.Point(90, 179);
             this.PostCodeClientDetailsTextBox.Name = "PostCodeClientDetailsTextBox";
             this.PostCodeClientDetailsTextBox.Size = new System.Drawing.Size(86, 20);
-            this.PostCodeClientDetailsTextBox.TabIndex = 50;
+            this.PostCodeClientDetailsTextBox.TabIndex = 9;
             // 
             // PostCodeClientDetailsLabel
             // 
@@ -551,7 +553,7 @@
             this.ApartmentNumberClientDetailsTextBox.Location = new System.Drawing.Point(253, 139);
             this.ApartmentNumberClientDetailsTextBox.Name = "ApartmentNumberClientDetailsTextBox";
             this.ApartmentNumberClientDetailsTextBox.Size = new System.Drawing.Size(120, 20);
-            this.ApartmentNumberClientDetailsTextBox.TabIndex = 48;
+            this.ApartmentNumberClientDetailsTextBox.TabIndex = 8;
             // 
             // ApartmentNumberClientDetailsLabel
             // 
@@ -567,7 +569,7 @@
             this.HouseNumberClientDetailsTextBox.Location = new System.Drawing.Point(56, 139);
             this.HouseNumberClientDetailsTextBox.Name = "HouseNumberClientDetailsTextBox";
             this.HouseNumberClientDetailsTextBox.Size = new System.Drawing.Size(120, 20);
-            this.HouseNumberClientDetailsTextBox.TabIndex = 46;
+            this.HouseNumberClientDetailsTextBox.TabIndex = 7;
             // 
             // HouseNumberClientDetailsLabel
             // 
@@ -583,7 +585,7 @@
             this.StreetClientDetailsTextBox.Location = new System.Drawing.Point(253, 99);
             this.StreetClientDetailsTextBox.Name = "StreetClientDetailsTextBox";
             this.StreetClientDetailsTextBox.Size = new System.Drawing.Size(120, 20);
-            this.StreetClientDetailsTextBox.TabIndex = 44;
+            this.StreetClientDetailsTextBox.TabIndex = 6;
             // 
             // StreetClientDetailsLabel
             // 
@@ -599,7 +601,7 @@
             this.TownClientDetailsTextBox.Location = new System.Drawing.Point(56, 99);
             this.TownClientDetailsTextBox.Name = "TownClientDetailsTextBox";
             this.TownClientDetailsTextBox.Size = new System.Drawing.Size(120, 20);
-            this.TownClientDetailsTextBox.TabIndex = 42;
+            this.TownClientDetailsTextBox.TabIndex = 5;
             // 
             // TownClientDetailsLabel
             // 
@@ -615,7 +617,7 @@
             this.LastNameClientDetailsTextBox.Location = new System.Drawing.Point(253, 59);
             this.LastNameClientDetailsTextBox.Name = "LastNameClientDetailsTextBox";
             this.LastNameClientDetailsTextBox.Size = new System.Drawing.Size(120, 20);
-            this.LastNameClientDetailsTextBox.TabIndex = 40;
+            this.LastNameClientDetailsTextBox.TabIndex = 4;
             // 
             // LastNameClientDetailsLabel
             // 
@@ -631,7 +633,7 @@
             this.FirstNameClientDetailsTextBox.Location = new System.Drawing.Point(56, 59);
             this.FirstNameClientDetailsTextBox.Name = "FirstNameClientDetailsTextBox";
             this.FirstNameClientDetailsTextBox.Size = new System.Drawing.Size(120, 20);
-            this.FirstNameClientDetailsTextBox.TabIndex = 38;
+            this.FirstNameClientDetailsTextBox.TabIndex = 3;
             // 
             // FirstNameClientDetailsLabel
             // 
@@ -647,7 +649,7 @@
             this.NewClientButton.Location = new System.Drawing.Point(134, 55);
             this.NewClientButton.Name = "NewClientButton";
             this.NewClientButton.Size = new System.Drawing.Size(110, 23);
-            this.NewClientButton.TabIndex = 56;
+            this.NewClientButton.TabIndex = 1;
             this.NewClientButton.Text = "Nowy klient...";
             this.NewClientButton.UseVisualStyleBackColor = true;
             // 
@@ -692,7 +694,7 @@
             this.DeleteReservationButton.Location = new System.Drawing.Point(10, 472);
             this.DeleteReservationButton.Name = "DeleteReservationButton";
             this.DeleteReservationButton.Size = new System.Drawing.Size(118, 23);
-            this.DeleteReservationButton.TabIndex = 19;
+            this.DeleteReservationButton.TabIndex = 5;
             this.DeleteReservationButton.Text = "Usuń rezerwację";
             this.DeleteReservationButton.UseVisualStyleBackColor = true;
             // 
@@ -703,6 +705,7 @@
             this.AdditionalInfoDetailsTextBox.ReadOnly = true;
             this.AdditionalInfoDetailsTextBox.Size = new System.Drawing.Size(249, 20);
             this.AdditionalInfoDetailsTextBox.TabIndex = 18;
+            this.AdditionalInfoDetailsTextBox.TabStop = false;
             // 
             // AdditionalInfoDetailsLabel
             // 
@@ -729,13 +732,14 @@
             this.ReservationIDDetailsTextBox.ReadOnly = true;
             this.ReservationIDDetailsTextBox.Size = new System.Drawing.Size(100, 20);
             this.ReservationIDDetailsTextBox.TabIndex = 15;
+            this.ReservationIDDetailsTextBox.TabStop = false;
             // 
             // ReservationIntoVisitButton
             // 
             this.ReservationIntoVisitButton.Location = new System.Drawing.Point(10, 501);
             this.ReservationIntoVisitButton.Name = "ReservationIntoVisitButton";
             this.ReservationIntoVisitButton.Size = new System.Drawing.Size(118, 23);
-            this.ReservationIntoVisitButton.TabIndex = 14;
+            this.ReservationIntoVisitButton.TabIndex = 6;
             this.ReservationIntoVisitButton.Text = "Zamień w pobyt...";
             this.ReservationIntoVisitButton.UseVisualStyleBackColor = true;
             // 
@@ -744,7 +748,7 @@
             this.EditReservationButton.Location = new System.Drawing.Point(10, 364);
             this.EditReservationButton.Name = "EditReservationButton";
             this.EditReservationButton.Size = new System.Drawing.Size(120, 23);
-            this.EditReservationButton.TabIndex = 13;
+            this.EditReservationButton.TabIndex = 4;
             this.EditReservationButton.Text = "Edytuj rezerwację...";
             this.EditReservationButton.UseVisualStyleBackColor = true;
             // 
@@ -753,7 +757,7 @@
             this.NewReservationButton.Location = new System.Drawing.Point(268, 501);
             this.NewReservationButton.Name = "NewReservationButton";
             this.NewReservationButton.Size = new System.Drawing.Size(110, 23);
-            this.NewReservationButton.TabIndex = 12;
+            this.NewReservationButton.TabIndex = 7;
             this.NewReservationButton.Text = "Nowa rezerwacja...";
             this.NewReservationButton.UseVisualStyleBackColor = true;
             // 
@@ -771,6 +775,7 @@
             this.RoomsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.RoomsDataGridView.Size = new System.Drawing.Size(368, 150);
             this.RoomsDataGridView.TabIndex = 9;
+            this.RoomsDataGridView.TabStop = false;
             // 
             // RoomsLabel
             // 
@@ -790,6 +795,7 @@
             this.EndDateDetailsDateTimePicker.Name = "EndDateDetailsDateTimePicker";
             this.EndDateDetailsDateTimePicker.Size = new System.Drawing.Size(249, 20);
             this.EndDateDetailsDateTimePicker.TabIndex = 7;
+            this.EndDateDetailsDateTimePicker.TabStop = false;
             // 
             // EndDateDetailsLabel
             // 
@@ -809,6 +815,7 @@
             this.StartDateDetailsDateTimePicker.Name = "StartDateDetailsDateTimePicker";
             this.StartDateDetailsDateTimePicker.Size = new System.Drawing.Size(249, 20);
             this.StartDateDetailsDateTimePicker.TabIndex = 5;
+            this.StartDateDetailsDateTimePicker.TabStop = false;
             // 
             // StartDateDetailsLabel
             // 
@@ -844,13 +851,14 @@
             this.ReservationSearchResultDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ReservationSearchResultDataGridView.Size = new System.Drawing.Size(374, 370);
             this.ReservationSearchResultDataGridView.TabIndex = 3;
+            this.ReservationSearchResultDataGridView.TabStop = false;
             // 
             // ReservationSearchButton
             // 
             this.ReservationSearchButton.Location = new System.Drawing.Point(150, 129);
             this.ReservationSearchButton.Name = "ReservationSearchButton";
             this.ReservationSearchButton.Size = new System.Drawing.Size(80, 23);
-            this.ReservationSearchButton.TabIndex = 2;
+            this.ReservationSearchButton.TabIndex = 3;
             this.ReservationSearchButton.Text = "Wyszukaj";
             this.ReservationSearchButton.UseVisualStyleBackColor = true;
             // 
@@ -874,7 +882,7 @@
             this.EndDateReservationSearchDateTimePicker.MinDate = new System.DateTime(2012, 1, 1, 0, 0, 0, 0);
             this.EndDateReservationSearchDateTimePicker.Name = "EndDateReservationSearchDateTimePicker";
             this.EndDateReservationSearchDateTimePicker.Size = new System.Drawing.Size(249, 20);
-            this.EndDateReservationSearchDateTimePicker.TabIndex = 3;
+            this.EndDateReservationSearchDateTimePicker.TabIndex = 2;
             // 
             // label1
             // 
@@ -948,7 +956,7 @@
             this.RefreshFeaturesButton.Location = new System.Drawing.Point(169, 18);
             this.RefreshFeaturesButton.Name = "RefreshFeaturesButton";
             this.RefreshFeaturesButton.Size = new System.Drawing.Size(75, 23);
-            this.RefreshFeaturesButton.TabIndex = 5;
+            this.RefreshFeaturesButton.TabIndex = 8;
             this.RefreshFeaturesButton.Text = "Odśwież";
             this.RefreshFeaturesButton.UseVisualStyleBackColor = true;
             // 
@@ -957,7 +965,7 @@
             this.EditFeaturesButton.Location = new System.Drawing.Point(88, 18);
             this.EditFeaturesButton.Name = "EditFeaturesButton";
             this.EditFeaturesButton.Size = new System.Drawing.Size(75, 23);
-            this.EditFeaturesButton.TabIndex = 4;
+            this.EditFeaturesButton.TabIndex = 7;
             this.EditFeaturesButton.Text = "Edytuj";
             this.EditFeaturesButton.UseVisualStyleBackColor = true;
             // 
@@ -966,7 +974,7 @@
             this.AddFeaturesButton.Location = new System.Drawing.Point(7, 18);
             this.AddFeaturesButton.Name = "AddFeaturesButton";
             this.AddFeaturesButton.Size = new System.Drawing.Size(75, 23);
-            this.AddFeaturesButton.TabIndex = 4;
+            this.AddFeaturesButton.TabIndex = 6;
             this.AddFeaturesButton.Text = "Dodaj ";
             this.AddFeaturesButton.UseVisualStyleBackColor = true;
             // 
@@ -981,6 +989,7 @@
             this.RoomFeaturesDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.RoomFeaturesDataGridView.Size = new System.Drawing.Size(391, 196);
             this.RoomFeaturesDataGridView.TabIndex = 0;
+            this.RoomFeaturesDataGridView.TabStop = false;
             // 
             // RoomTypesGroupBox
             // 
@@ -1000,7 +1009,7 @@
             this.RefreshRoomTypesButton.Location = new System.Drawing.Point(168, 19);
             this.RefreshRoomTypesButton.Name = "RefreshRoomTypesButton";
             this.RefreshRoomTypesButton.Size = new System.Drawing.Size(75, 23);
-            this.RefreshRoomTypesButton.TabIndex = 4;
+            this.RefreshRoomTypesButton.TabIndex = 5;
             this.RefreshRoomTypesButton.Text = "Odśwież";
             this.RefreshRoomTypesButton.UseVisualStyleBackColor = true;
             // 
@@ -1009,7 +1018,7 @@
             this.EditRoomTypeButton.Location = new System.Drawing.Point(87, 19);
             this.EditRoomTypeButton.Name = "EditRoomTypeButton";
             this.EditRoomTypeButton.Size = new System.Drawing.Size(75, 23);
-            this.EditRoomTypeButton.TabIndex = 3;
+            this.EditRoomTypeButton.TabIndex = 4;
             this.EditRoomTypeButton.Text = "Edytuj typ";
             this.EditRoomTypeButton.UseVisualStyleBackColor = true;
             // 
@@ -1018,7 +1027,7 @@
             this.AddRoomTypeButton.Location = new System.Drawing.Point(6, 19);
             this.AddRoomTypeButton.Name = "AddRoomTypeButton";
             this.AddRoomTypeButton.Size = new System.Drawing.Size(75, 23);
-            this.AddRoomTypeButton.TabIndex = 2;
+            this.AddRoomTypeButton.TabIndex = 3;
             this.AddRoomTypeButton.Text = "Dodaj typ";
             this.AddRoomTypeButton.UseVisualStyleBackColor = true;
             // 
@@ -1032,6 +1041,7 @@
             this.RoomTypesDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.RoomTypesDataGridView.Size = new System.Drawing.Size(391, 226);
             this.RoomTypesDataGridView.TabIndex = 0;
+            this.RoomTypesDataGridView.TabStop = false;
             // 
             // RoomsGroupBox
             // 
@@ -1051,7 +1061,7 @@
             this.RefreshRoomsButton.Location = new System.Drawing.Point(168, 19);
             this.RefreshRoomsButton.Name = "RefreshRoomsButton";
             this.RefreshRoomsButton.Size = new System.Drawing.Size(75, 23);
-            this.RefreshRoomsButton.TabIndex = 6;
+            this.RefreshRoomsButton.TabIndex = 2;
             this.RefreshRoomsButton.Text = "Odśwież";
             this.RefreshRoomsButton.UseVisualStyleBackColor = true;
             // 
@@ -1065,6 +1075,7 @@
             this.AllRoomsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.AllRoomsDataGridView.Size = new System.Drawing.Size(351, 476);
             this.AllRoomsDataGridView.TabIndex = 2;
+            this.AllRoomsDataGridView.TabStop = false;
             // 
             // EditRoomButton
             // 
@@ -1115,6 +1126,7 @@
             this.ServiceDataGridView.Name = "ServiceDataGridView";
             this.ServiceDataGridView.Size = new System.Drawing.Size(766, 479);
             this.ServiceDataGridView.TabIndex = 3;
+            this.ServiceDataGridView.TabStop = false;
             // 
             // RefreshServiceButton
             // 
@@ -1124,7 +1136,6 @@
             this.RefreshServiceButton.TabIndex = 2;
             this.RefreshServiceButton.Text = "Odśwież";
             this.RefreshServiceButton.UseVisualStyleBackColor = true;
-            
             // 
             // EditServiceButton
             // 
@@ -1134,7 +1145,6 @@
             this.EditServiceButton.TabIndex = 1;
             this.EditServiceButton.Text = "Edytuj";
             this.EditServiceButton.UseVisualStyleBackColor = true;
-            
             // 
             // NewServiceButton
             // 
@@ -1144,7 +1154,6 @@
             this.NewServiceButton.TabIndex = 0;
             this.NewServiceButton.Text = "Dodaj";
             this.NewServiceButton.UseVisualStyleBackColor = true;
-            
             // 
             // ReceptionistForm
             // 

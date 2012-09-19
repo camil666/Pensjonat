@@ -54,7 +54,7 @@
             this.AddInfoTextBox.Location = new System.Drawing.Point(557, 48);
             this.AddInfoTextBox.Name = "AddInfoTextBox";
             this.AddInfoTextBox.Size = new System.Drawing.Size(249, 20);
-            this.AddInfoTextBox.TabIndex = 45;
+            this.AddInfoTextBox.TabIndex = 3;
             // 
             // AddInfoLabel
             // 
@@ -70,7 +70,7 @@
             this.AddButton.Location = new System.Drawing.Point(731, 341);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(75, 23);
-            this.AddButton.TabIndex = 43;
+            this.AddButton.TabIndex = 9;
             this.AddButton.Text = "Dodaj";
             this.AddButton.UseVisualStyleBackColor = true;
             // 
@@ -79,7 +79,7 @@
             this.CancelButton.Location = new System.Drawing.Point(609, 341);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
-            this.CancelButton.TabIndex = 42;
+            this.CancelButton.TabIndex = 8;
             this.CancelButton.Text = "Anuluj";
             this.CancelButton.UseVisualStyleBackColor = true;
             // 
@@ -99,13 +99,14 @@
             this.RoomsToBeReservedDataGridView.Name = "RoomsToBeReservedDataGridView";
             this.RoomsToBeReservedDataGridView.Size = new System.Drawing.Size(368, 150);
             this.RoomsToBeReservedDataGridView.TabIndex = 40;
+            this.RoomsToBeReservedDataGridView.TabStop = false;
             // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(390, 240);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(42, 23);
-            this.button3.TabIndex = 39;
+            this.button3.TabIndex = 7;
             this.button3.Text = "<-";
             this.button3.UseVisualStyleBackColor = true;
             // 
@@ -114,7 +115,7 @@
             this.button2.Location = new System.Drawing.Point(390, 211);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(42, 23);
-            this.button2.TabIndex = 38;
+            this.button2.TabIndex = 6;
             this.button2.Text = "->";
             this.button2.UseVisualStyleBackColor = true;
             // 
@@ -123,7 +124,7 @@
             this.ShowFreeRoomsButton.Location = new System.Drawing.Point(124, 127);
             this.ShowFreeRoomsButton.Name = "ShowFreeRoomsButton";
             this.ShowFreeRoomsButton.Size = new System.Drawing.Size(130, 23);
-            this.ShowFreeRoomsButton.TabIndex = 37;
+            this.ShowFreeRoomsButton.TabIndex = 5;
             this.ShowFreeRoomsButton.Text = "Pokaż wolne pokoje";
             this.ShowFreeRoomsButton.UseVisualStyleBackColor = true;
             // 
@@ -132,7 +133,7 @@
             this.ClientsCountTextBox.Location = new System.Drawing.Point(115, 88);
             this.ClientsCountTextBox.Name = "ClientsCountTextBox";
             this.ClientsCountTextBox.Size = new System.Drawing.Size(49, 20);
-            this.ClientsCountTextBox.TabIndex = 36;
+            this.ClientsCountTextBox.TabIndex = 4;
             // 
             // ClientsCountLabel
             // 
@@ -150,6 +151,7 @@
             this.FreeRoomsDataGridView.Name = "FreeRoomsDataGridView";
             this.FreeRoomsDataGridView.Size = new System.Drawing.Size(368, 150);
             this.FreeRoomsDataGridView.TabIndex = 34;
+            this.FreeRoomsDataGridView.TabStop = false;
             // 
             // FreeRoomsLabel
             // 
@@ -167,7 +169,7 @@
             this.EndDateDateTimePicker.MinDate = new System.DateTime(2012, 1, 1, 0, 0, 0, 0);
             this.EndDateDateTimePicker.Name = "EndDateDateTimePicker";
             this.EndDateDateTimePicker.Size = new System.Drawing.Size(249, 20);
-            this.EndDateDateTimePicker.TabIndex = 32;
+            this.EndDateDateTimePicker.TabIndex = 2;
             // 
             // EndDateLabel
             // 
@@ -185,7 +187,7 @@
             this.StartDateDateTimePicker.MinDate = new System.DateTime(2012, 1, 1, 0, 0, 0, 0);
             this.StartDateDateTimePicker.Name = "StartDateDateTimePicker";
             this.StartDateDateTimePicker.Size = new System.Drawing.Size(249, 20);
-            this.StartDateDateTimePicker.TabIndex = 30;
+            this.StartDateDateTimePicker.TabIndex = 1;
             // 
             // StartDateLabel
             // 

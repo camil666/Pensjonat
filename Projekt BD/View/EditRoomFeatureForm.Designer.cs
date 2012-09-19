@@ -59,7 +59,7 @@
             this.OkButton.Location = new System.Drawing.Point(197, 148);
             this.OkButton.Name = "OkButton";
             this.OkButton.Size = new System.Drawing.Size(75, 23);
-            this.OkButton.TabIndex = 2;
+            this.OkButton.TabIndex = 4;
             this.OkButton.Text = "OK";
             this.OkButton.UseVisualStyleBackColor = true;
             // 
@@ -68,14 +68,14 @@
             this.NameTextBox.Location = new System.Drawing.Point(91, 13);
             this.NameTextBox.Name = "NameTextBox";
             this.NameTextBox.Size = new System.Drawing.Size(181, 20);
-            this.NameTextBox.TabIndex = 3;
+            this.NameTextBox.TabIndex = 1;
             // 
             // DescriptionRichTextBox
             // 
             this.DescriptionRichTextBox.Location = new System.Drawing.Point(91, 47);
             this.DescriptionRichTextBox.Name = "DescriptionRichTextBox";
             this.DescriptionRichTextBox.Size = new System.Drawing.Size(181, 74);
-            this.DescriptionRichTextBox.TabIndex = 4;
+            this.DescriptionRichTextBox.TabIndex = 2;
             this.DescriptionRichTextBox.Text = "";
             // 
             // CancelButton
@@ -83,7 +83,7 @@
             this.CancelButton.Location = new System.Drawing.Point(91, 148);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
-            this.CancelButton.TabIndex = 5;
+            this.CancelButton.TabIndex = 3;
             this.CancelButton.Text = "Anuluj";
             this.CancelButton.UseVisualStyleBackColor = true;
             // 
