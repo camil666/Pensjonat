@@ -106,42 +106,42 @@
             this.LoginTextBox.Location = new System.Drawing.Point(81, 7);
             this.LoginTextBox.Name = "LoginTextBox";
             this.LoginTextBox.Size = new System.Drawing.Size(100, 20);
-            this.LoginTextBox.TabIndex = 5;
+            this.LoginTextBox.TabIndex = 1;
             // 
             // PasswordTextBox
             // 
             this.PasswordTextBox.Location = new System.Drawing.Point(81, 37);
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.Size = new System.Drawing.Size(100, 20);
-            this.PasswordTextBox.TabIndex = 6;
+            this.PasswordTextBox.TabIndex = 2;
             // 
             // FirstNameTextBox
             // 
             this.FirstNameTextBox.Location = new System.Drawing.Point(81, 67);
             this.FirstNameTextBox.Name = "FirstNameTextBox";
             this.FirstNameTextBox.Size = new System.Drawing.Size(100, 20);
-            this.FirstNameTextBox.TabIndex = 7;
+            this.FirstNameTextBox.TabIndex = 3;
             // 
             // LastNameTextBox
             // 
             this.LastNameTextBox.Location = new System.Drawing.Point(81, 97);
             this.LastNameTextBox.Name = "LastNameTextBox";
             this.LastNameTextBox.Size = new System.Drawing.Size(100, 20);
-            this.LastNameTextBox.TabIndex = 8;
+            this.LastNameTextBox.TabIndex = 4;
             // 
             // TownTextBox
             // 
             this.TownTextBox.Location = new System.Drawing.Point(81, 127);
             this.TownTextBox.Name = "TownTextBox";
             this.TownTextBox.Size = new System.Drawing.Size(100, 20);
-            this.TownTextBox.TabIndex = 9;
+            this.TownTextBox.TabIndex = 5;
             // 
             // PostCodeTextBox
             // 
             this.PostCodeTextBox.Location = new System.Drawing.Point(93, 187);
             this.PostCodeTextBox.Name = "PostCodeTextBox";
             this.PostCodeTextBox.Size = new System.Drawing.Size(88, 20);
-            this.PostCodeTextBox.TabIndex = 44;
+            this.PostCodeTextBox.TabIndex = 9;
             // 
             // PostCodeLabel
             // 
@@ -157,7 +157,7 @@
             this.ApartmentNumberTextBox.Location = new System.Drawing.Point(277, 157);
             this.ApartmentNumberTextBox.Name = "ApartmentNumberTextBox";
             this.ApartmentNumberTextBox.Size = new System.Drawing.Size(100, 20);
-            this.ApartmentNumberTextBox.TabIndex = 42;
+            this.ApartmentNumberTextBox.TabIndex = 8;
             // 
             // ApartmentNumberLabel
             // 
@@ -173,7 +173,7 @@
             this.HouseNumberTextBox.Location = new System.Drawing.Point(80, 157);
             this.HouseNumberTextBox.Name = "HouseNumberTextBox";
             this.HouseNumberTextBox.Size = new System.Drawing.Size(100, 20);
-            this.HouseNumberTextBox.TabIndex = 40;
+            this.HouseNumberTextBox.TabIndex = 7;
             // 
             // HouseNumberLabel
             // 
@@ -189,7 +189,7 @@
             this.StreetTextBox.Location = new System.Drawing.Point(277, 127);
             this.StreetTextBox.Name = "StreetTextBox";
             this.StreetTextBox.Size = new System.Drawing.Size(100, 20);
-            this.StreetTextBox.TabIndex = 38;
+            this.StreetTextBox.TabIndex = 6;
             // 
             // StreetLabel
             // 
@@ -214,7 +214,7 @@
             this.EmailTextBox.Location = new System.Drawing.Point(81, 217);
             this.EmailTextBox.Name = "EmailTextBox";
             this.EmailTextBox.Size = new System.Drawing.Size(100, 20);
-            this.EmailTextBox.TabIndex = 46;
+            this.EmailTextBox.TabIndex = 10;
             // 
             // PhoneNumberLabel
             // 
@@ -230,7 +230,7 @@
             this.PhoneNumberTextBox.Location = new System.Drawing.Point(81, 247);
             this.PhoneNumberTextBox.Name = "PhoneNumberTextBox";
             this.PhoneNumberTextBox.Size = new System.Drawing.Size(100, 20);
-            this.PhoneNumberTextBox.TabIndex = 48;
+            this.PhoneNumberTextBox.TabIndex = 11;
             // 
             // RoleLabel
             // 
@@ -247,14 +247,14 @@
             this.RoleComboBox.Location = new System.Drawing.Point(81, 277);
             this.RoleComboBox.Name = "RoleComboBox";
             this.RoleComboBox.Size = new System.Drawing.Size(100, 21);
-            this.RoleComboBox.TabIndex = 50;
+            this.RoleComboBox.TabIndex = 12;
             // 
             // AddButton
             // 
             this.AddButton.Location = new System.Drawing.Point(214, 327);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(75, 23);
-            this.AddButton.TabIndex = 51;
+            this.AddButton.TabIndex = 14;
             this.AddButton.Text = "OK";
             this.AddButton.UseVisualStyleBackColor = true;
             // 
@@ -263,7 +263,7 @@
             this.CancelButton.Location = new System.Drawing.Point(81, 327);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
-            this.CancelButton.TabIndex = 52;
+            this.CancelButton.TabIndex = 13;
             this.CancelButton.Text = "Anuluj";
             this.CancelButton.UseVisualStyleBackColor = true;
             // 

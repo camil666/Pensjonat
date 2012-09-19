@@ -87,7 +87,6 @@
                 TelephoneNumber = this.Form.PhoneNumberTextBox.Text
             };
 
-            //TODO: Dorobić weryfikację danych.
             DataAccess.Instance.Guests.Add(newGuest);
 
             DataAccess.Instance.UnitOfWork.Commit();

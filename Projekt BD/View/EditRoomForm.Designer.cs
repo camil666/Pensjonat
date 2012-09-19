@@ -48,7 +48,7 @@
             this.CapacityTextBox.Location = new System.Drawing.Point(253, 55);
             this.CapacityTextBox.Name = "CapacityTextBox";
             this.CapacityTextBox.Size = new System.Drawing.Size(120, 20);
-            this.CapacityTextBox.TabIndex = 94;
+            this.CapacityTextBox.TabIndex = 4;
             // 
             // CapacityLabel
             // 
@@ -73,7 +73,7 @@
             this.FloorTextBox.Location = new System.Drawing.Point(253, 15);
             this.FloorTextBox.Name = "FloorTextBox";
             this.FloorTextBox.Size = new System.Drawing.Size(120, 20);
-            this.FloorTextBox.TabIndex = 90;
+            this.FloorTextBox.TabIndex = 2;
             // 
             // FloorLabel
             // 
@@ -89,7 +89,7 @@
             this.NumberTextBox.Location = new System.Drawing.Point(56, 15);
             this.NumberTextBox.Name = "NumberTextBox";
             this.NumberTextBox.Size = new System.Drawing.Size(120, 20);
-            this.NumberTextBox.TabIndex = 88;
+            this.NumberTextBox.TabIndex = 1;
             // 
             // NumberLabel
             // 
@@ -105,7 +105,7 @@
             this.OkButton.Location = new System.Drawing.Point(312, 338);
             this.OkButton.Name = "OkButton";
             this.OkButton.Size = new System.Drawing.Size(75, 23);
-            this.OkButton.TabIndex = 102;
+            this.OkButton.TabIndex = 6;
             this.OkButton.Text = "OK";
             this.OkButton.UseVisualStyleBackColor = true;
             // 
@@ -114,7 +114,7 @@
             this.CancelButton.Location = new System.Drawing.Point(190, 338);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
-            this.CancelButton.TabIndex = 101;
+            this.CancelButton.TabIndex = 5;
             this.CancelButton.Text = "Anuluj";
             this.CancelButton.UseVisualStyleBackColor = true;
             // 
@@ -129,6 +129,7 @@
             this.FeaturesDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.FeaturesDataGridView.Size = new System.Drawing.Size(368, 223);
             this.FeaturesDataGridView.TabIndex = 96;
+            this.FeaturesDataGridView.TabStop = false;
             // 
             // FeaturesLabel
             // 
@@ -145,7 +146,7 @@
             this.TypeComboBox.Location = new System.Drawing.Point(56, 54);
             this.TypeComboBox.Name = "TypeComboBox";
             this.TypeComboBox.Size = new System.Drawing.Size(120, 21);
-            this.TypeComboBox.TabIndex = 103;
+            this.TypeComboBox.TabIndex = 3;
             // 
             // EditRoomForm
             // 

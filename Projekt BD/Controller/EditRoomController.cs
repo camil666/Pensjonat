@@ -10,6 +10,16 @@
 
     public class EditRoomController : ControllerBase
     {
+        #region Field
+
+        private static readonly string IdColumnName = "Id";
+
+        private static readonly string NameColumnName = "Name";
+
+        private static readonly string IsAddedColumnName = "IsAdded";
+
+        #endregion
+
         #region Constructors
 
         public EditRoomController()
@@ -44,16 +54,17 @@
 
         private void SetColumnNamesAndVisibility()
         {
-            this.Form.FeaturesDataGridView.Columns["Id"].Visible = false;
-            this.Form.FeaturesDataGridView.Columns["Name"].HeaderText = "Nazwa";
+            this.Form.FeaturesDataGridView.Columns[IdColumnName].Visible = false;
+            this.Form.FeaturesDataGridView.Columns[NameColumnName].HeaderText = "Nazwa";
+            this.Form.FeaturesDataGridView.Columns[IsAddedColumnName].HeaderText = string.Empty;
         }
 
         private void AddFeaturesToRoom(Room room)
         {
             foreach (DataGridViewRow row in this.Form.FeaturesDataGridView.Rows)
             {
-                var cell = row.Cells["Features"] as DataGridViewCheckBoxCell;
-                var featureId = (int)row.Cells["Id"].Value;
+                var cell = row.Cells[IsAddedColumnName] as DataGridViewCheckBoxCell;
+                var featureId = (int)row.Cells[IdColumnName].Value;
                 Feature feature = DataAccess.Instance.Features.Single(f => f.Id == featureId);
 
                 if (Convert.ToBoolean(cell.Value) == true)
@@ -94,7 +105,7 @@
                                           select new { f2.Id, f2.Name, added = false }).ToList();
 
                 this.Form.FeaturesDataGridView.DataSource = (from feature in featureList select new { feature.Id, feature.Name }).ToList();
-                this.Form.FeaturesDataGridView.Columns.Add(new DataGridViewCheckBoxColumn() { Name = "Features" });
+                this.Form.FeaturesDataGridView.Columns.Add(new DataGridViewCheckBoxColumn() { Name = IsAddedColumnName });
 
                 int lastColumnIndex = this.Form.FeaturesDataGridView.Columns.Count - 1;
 
@@ -114,7 +125,7 @@
                                    select new { feature.Id, feature.Name }).ToList();
 
                 this.Form.FeaturesDataGridView.DataSource = featureList;
-                this.Form.FeaturesDataGridView.Columns.Add(new DataGridViewCheckBoxColumn() { Name = "Features" });
+                this.Form.FeaturesDataGridView.Columns.Add(new DataGridViewCheckBoxColumn() { Name = IsAddedColumnName });
                 
                 this.Form.Text = "Nowy pokój";
             }
@@ -170,7 +181,6 @@
                 this.AddFeaturesToRoom(room);
             }
 
-            //TODO: Naprawić bug przy dodawaniu i aktualizowaniu wpisów.
             DataAccess.Instance.UnitOfWork.Commit();
 
             this.Form.Dispose();

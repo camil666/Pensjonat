@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Windows.Forms;
     using Domain;
     using Projekt_BD.View;
 
@@ -84,7 +85,26 @@
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            //TODO: weryfikacja danych
+            if (string.IsNullOrEmpty(this.Form.ApartmentNumberTextBox.Text) ||
+                string.IsNullOrEmpty(this.Form.EmailTextBox.Text) ||
+                string.IsNullOrEmpty(this.Form.FirstNameTextBox.Text) ||
+                string.IsNullOrEmpty(this.Form.HouseNumberTextBox.Text) ||
+                string.IsNullOrEmpty(this.Form.LastNameTextBox.Text) ||
+                string.IsNullOrEmpty(this.Form.PostCodeTextBox.Text) ||
+                string.IsNullOrEmpty(this.Form.StreetTextBox.Text) ||
+                string.IsNullOrEmpty(this.Form.PhoneNumberTextBox.Text) ||
+                string.IsNullOrEmpty(this.Form.TownTextBox.Text) ||
+                string.IsNullOrEmpty(this.Form.LoginTextBox.Text))
+            {
+                MessageBox.Show(
+                    "Należy wpisać wymagane dane.",
+                    "Błąd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
+
+                return;
+            }
 
             if (this.IsEditForm)
             {

@@ -120,13 +120,14 @@
             this.SearchResultsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.SearchResultsDataGridView.Size = new System.Drawing.Size(549, 325);
             this.SearchResultsDataGridView.TabIndex = 75;
+            this.SearchResultsDataGridView.TabStop = false;
             // 
             // SearchButton
             // 
             this.SearchButton.Location = new System.Drawing.Point(229, 118);
             this.SearchButton.Name = "SearchButton";
             this.SearchButton.Size = new System.Drawing.Size(100, 23);
-            this.SearchButton.TabIndex = 74;
+            this.SearchButton.TabIndex = 8;
             this.SearchButton.Text = "Wyszukaj";
             this.SearchButton.UseVisualStyleBackColor = true;
             // 
@@ -135,7 +136,7 @@
             this.EmailSearchTextBox.Location = new System.Drawing.Point(357, 75);
             this.EmailSearchTextBox.Name = "EmailSearchTextBox";
             this.EmailSearchTextBox.Size = new System.Drawing.Size(150, 20);
-            this.EmailSearchTextBox.TabIndex = 73;
+            this.EmailSearchTextBox.TabIndex = 7;
             // 
             // EmailSearchLabel
             // 
@@ -151,7 +152,7 @@
             this.LoginSearchTextBox.Location = new System.Drawing.Point(77, 75);
             this.LoginSearchTextBox.Name = "LoginSearchTextBox";
             this.LoginSearchTextBox.Size = new System.Drawing.Size(150, 20);
-            this.LoginSearchTextBox.TabIndex = 71;
+            this.LoginSearchTextBox.TabIndex = 5;
             // 
             // LoginSearchLabel
             // 
@@ -167,7 +168,7 @@
             this.IDSearchTextBox.Location = new System.Drawing.Point(77, 25);
             this.IDSearchTextBox.Name = "IDSearchTextBox";
             this.IDSearchTextBox.Size = new System.Drawing.Size(150, 20);
-            this.IDSearchTextBox.TabIndex = 68;
+            this.IDSearchTextBox.TabIndex = 3;
             // 
             // IDSearchLabel
             // 
@@ -183,7 +184,7 @@
             this.LastNameSearchTextBox.Location = new System.Drawing.Point(357, 50);
             this.LastNameSearchTextBox.Name = "LastNameSearchTextBox";
             this.LastNameSearchTextBox.Size = new System.Drawing.Size(150, 20);
-            this.LastNameSearchTextBox.TabIndex = 66;
+            this.LastNameSearchTextBox.TabIndex = 6;
             // 
             // LastNameSearchLabel
             // 
@@ -199,7 +200,7 @@
             this.FirstNameSearchTextBox.Location = new System.Drawing.Point(77, 50);
             this.FirstNameSearchTextBox.Name = "FirstNameSearchTextBox";
             this.FirstNameSearchTextBox.Size = new System.Drawing.Size(150, 20);
-            this.FirstNameSearchTextBox.TabIndex = 64;
+            this.FirstNameSearchTextBox.TabIndex = 4;
             // 
             // FirstNameSearchLabel
             // 
