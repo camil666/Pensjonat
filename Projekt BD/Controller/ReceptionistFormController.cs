@@ -70,6 +70,41 @@
             this.Form.NewServiceButton.Click += this.NewServiceButton_Click;
         }
 
+        public void ReservationSearchResultDataGridView_Refresh()
+        {
+            int selectedClientID = this.Form.ClientSearchWindow.SelectedClientID;
+
+            if (selectedClientID > 0)
+            {
+                var reservations = (from reservation in DataAccess.Instance.Reservations.Find(r => r.GuestId == selectedClientID
+                                   && r.StartDate >= this.Form.StartDateReservationSearchDateTimePicker.Value.Date
+                                   && r.EndDate <= this.Form.EndDateReservationSearchDateTimePicker.Value.Date).ToList()
+                                    select new
+                                    {
+                                        reservation.Id,
+                                        reservation.StartDate,
+                                        reservation.EndDate,
+                                        reservation.AdditionalInfo
+                                    }).ToList();
+
+                this.Form.ReservationSearchResultDataGridView.DataSource = reservations;
+
+                this.Form.ReservationSearchResultDataGridView.Columns["Id"].Visible = false;
+                this.Form.ReservationSearchResultDataGridView.Columns["StartDate"].HeaderText = "Data rozpoczęcia";
+                this.Form.ReservationSearchResultDataGridView.Columns["EndDate"].HeaderText = "Data zakończenia";
+                this.Form.ReservationSearchResultDataGridView.Columns["AdditionalInfo"].HeaderText = "Dodatkowe informacje";
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Należy zaznaczyć klienta",
+                    "Błąd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
+            }
+        }
+
         #endregion
 
         #region Event Methods
@@ -118,6 +153,7 @@
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.ReservationForm);
                 controller.ClientID = selectedClientID;
                 controller.Form.ShowDialog();
+                this.ReservationSearchResultDataGridView_Refresh();
             }
             else
             {
@@ -137,37 +173,7 @@
 
         private void ReservationSearchButton_Click(object sender, EventArgs e)
         {
-            int selectedClientID = this.Form.ClientSearchWindow.SelectedClientID;
-
-            if (selectedClientID > 0)
-            {
-                var reservations = (from reservation in DataAccess.Instance.Reservations.Find(r => r.GuestId == selectedClientID
-                                   && r.StartDate >= this.Form.StartDateReservationSearchDateTimePicker.Value.Date
-                                   && r.EndDate <= this.Form.EndDateReservationSearchDateTimePicker.Value.Date).ToList()
-                                    select new
-                                    {
-                                        reservation.Id,
-                                        reservation.StartDate,
-                                        reservation.EndDate,
-                                        reservation.AdditionalInfo
-                                    }).ToList();
-
-                this.Form.ReservationSearchResultDataGridView.DataSource = reservations;
-
-                this.Form.ReservationSearchResultDataGridView.Columns["Id"].Visible = false;
-                this.Form.ReservationSearchResultDataGridView.Columns["StartDate"].HeaderText = "Data rozpoczęcia";
-                this.Form.ReservationSearchResultDataGridView.Columns["EndDate"].HeaderText = "Data zakończenia";
-                this.Form.ReservationSearchResultDataGridView.Columns["AdditionalInfo"].HeaderText = "Dodatkowe informacje";
-            }
-            else
-            {
-                MessageBox.Show(
-                    "Należy zaznaczyć klienta",
-                    "Błąd",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation,
-                    MessageBoxDefaultButton.Button1);
-            }
+            this.ReservationSearchResultDataGridView_Refresh();
         }
 
         private void StartDateReservationSearchDateTimePicker_ValueChanged(object sender, EventArgs e)
@@ -275,6 +281,7 @@
                 controller.ItemToEditID = id;
                 controller.ClientID = this.Form.ClientSearchWindow.SelectedClientID;
                 controller.Form.ShowDialog();
+                this.ReservationSearchResultDataGridView_Refresh();
             }
             else
             {
