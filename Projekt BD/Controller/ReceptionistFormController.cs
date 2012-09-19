@@ -204,7 +204,7 @@
 
         private void ReservationSearchResultDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex > 0)
+            if (e.RowIndex >= 0)
             {
                 this.Form.StartDateDetailsDateTimePicker.Value = (DateTime)this.Form.ReservationSearchResultDataGridView.SelectedRows[0].Cells["StartDate"].Value;
                 this.Form.EndDateDetailsDateTimePicker.Value = (DateTime)this.Form.ReservationSearchResultDataGridView.SelectedRows[0].Cells["EndDate"].Value;

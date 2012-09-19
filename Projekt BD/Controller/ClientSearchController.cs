@@ -57,7 +57,7 @@
 
         private void ClientSearchResultDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex > 0)
+            if (e.RowIndex >= 0)
             {
                 int guestId = (int)this.Form.ClientSearchResultDataGridView.Rows[e.RowIndex].Cells["Id"].Value;
 
