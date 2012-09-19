@@ -16,6 +16,7 @@
             base.Form = new AdminForm();
 
             this.SetupEvents();
+            this.SearchButton_Function();
         }
 
         #endregion
@@ -124,6 +125,7 @@
         private void AddEmployeeButton_Click(object sender, EventArgs e)
         {
             ControllerFactory.Instance.Create(ControllerTypes.NewEmployeeForm).Form.ShowDialog();
+            this.SearchButton_Function();
         }
 
         private void DeleteEmployeeButton_Click(object sender, EventArgs e)

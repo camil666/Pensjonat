@@ -17,8 +17,8 @@
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //Application.Run(ControllerFactory.Instance.Create(ControllerTypes.AdminForm).Form);
-            Application.Run(ControllerFactory.Instance.Create(ControllerTypes.ReceptionistForm).Form);
+            Application.Run(ControllerFactory.Instance.Create(ControllerTypes.AdminForm).Form);
+            //Application.Run(ControllerFactory.Instance.Create(ControllerTypes.ReceptionistForm).Form);
             //Application.Run(ControllerFactory.Instance.Create(ControllerTypes.LoginForm).Form);
             //Application.Run(ControllerFactory.Instance.Create(ControllerTypes.EmployeeForm).Form);
         }
