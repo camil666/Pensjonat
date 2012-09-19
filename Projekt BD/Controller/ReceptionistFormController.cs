@@ -520,6 +520,12 @@
                 return;
             }
 
+            DialogResult dialogResult = MessageBox.Show("Czy na pewno chcesz zmienić dane gościa?", "Zmiana danych", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
+
             var guestId = int.Parse(this.Form.IDClientDetailsTextBox.Text);
             Guest guestToBeUpdated = DataAccess.Instance.Guests.Single(g => g.Id == guestId);
 
