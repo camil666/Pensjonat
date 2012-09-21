@@ -64,8 +64,11 @@
     <Compile Include="Controller\EditRoomController.cs" />
     <Compile Include="Controller\EditRoomFeatureController.cs" />
     <Compile Include="Controller\EditRoomTypeController.cs" />
+    <Compile Include="Controller\EditTaskController.cs" />
+    <Compile Include="Controller\EditTaskTypeController.cs" />
     <Compile Include="Controller\EmployeeFormController.cs" />
     <Compile Include="Controller\LoginFormController.cs" />
+    <Compile Include="Controller\ManagerFormController.cs" />
     <Compile Include="Controller\NewClientFormController.cs" />
     <Compile Include="Controller\NewEmployeeFormController.cs" />
     <Compile Include="Controller\ReservationFormController.cs" />
@@ -118,6 +121,18 @@
     <Compile Include="View\EditServiceForm.Designer.cs">
       <DependentUpon>EditServiceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\EditTaskForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\EditTaskForm.Designer.cs">
+      <DependentUpon>EditTaskForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditTaskTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\EditTaskTypeForm.Designer.cs">
+      <DependentUpon>EditTaskTypeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\EmployeeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,6 +147,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\ManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ManagerForm.Designer.cs">
+      <DependentUpon>ManagerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\NewClientForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,6 +201,12 @@
     <EmbeddedResource Include="View\EditServiceForm.resx">
       <DependentUpon>EditServiceForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\EditTaskForm.resx">
+      <DependentUpon>EditTaskForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EditTaskTypeForm.resx">
+      <DependentUpon>EditTaskTypeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\EmployeeForm.resx">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -195,6 +222,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\ManagerForm.resx">
+      <DependentUpon>ManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\NewClientForm.resx">
       <DependentUpon>NewClientForm.cs</DependentUpon>
     </EmbeddedResource>

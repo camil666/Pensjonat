@@ -138,7 +138,6 @@
                     TelephoneNumber = this.Form.PhoneNumberTextBox.Text,
                     Town = this.Form.TownTextBox.Text,
                     Username = this.Form.LoginTextBox.Text,
-                    RoleId = (int)this.Form.RoleComboBox.SelectedValue
                 };
 
                 DataAccess.Instance.Employees.Add(newEmployee);

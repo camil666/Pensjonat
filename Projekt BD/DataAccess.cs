@@ -40,6 +40,7 @@
             this.Roles = new Repository<Role>(this.Context);
             this.Visits = new Repository<Visit>(this.Context);
             this.Tasks = new Repository<Task>(this.Context);
+            this.TaskTypes = new Repository<TaskType>(this.Context);
             this.Services = new Repository<Service>(this.Context);
             this.ServiceTypes = new Repository<ServiceType>(this.Context);
         }
@@ -167,6 +168,14 @@
         /// The tasks.
         /// </value>
         public Repository<Task> Tasks { get; private set; }
+
+        /// <summary>
+        /// Gets task types.
+        /// </summary>
+        /// <value>
+        /// task type
+        /// </value>
+        public Repository<TaskType> TaskTypes { get; private set; }
 
         /// <summary>
         /// Gets services.

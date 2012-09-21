@@ -65,6 +65,12 @@
         /// </summary>
         ReceptionistForm,
 
-        EditService
+        EditService,
+
+        ManagerForm,
+
+        EditTaskForm,
+
+        EditTaskTypeForm
     }
 }
