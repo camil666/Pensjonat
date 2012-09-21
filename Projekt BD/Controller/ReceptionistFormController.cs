@@ -20,6 +20,7 @@
             base.Form = new ReceptionistForm();
 
             this.SetupEvents();
+            this.Init();
         }
 
         #endregion
@@ -37,6 +38,14 @@
         #endregion
 
         #region Methods
+
+        private void Init()
+        {
+            this.refreshRooms();
+            this.refreshRoomTypes();
+            this.refreshFeatures();
+            this.refreshService();
+        }
 
         private void SetupEvents()
         {
@@ -173,6 +182,23 @@
             this.Form.RoomFeaturesDataGridView.Columns["Id"].Visible = false;
             this.Form.RoomFeaturesDataGridView.Columns["Name"].HeaderText = "Nazwa";
             this.Form.RoomFeaturesDataGridView.Columns["Description"].HeaderText = "Opis";
+        }
+
+        private void refreshService()
+        {
+            var serviceTypes = (from serviceType in DataAccess.Instance.ServiceTypes.GetAll()
+                                select new
+                                {
+                                    serviceType.Id,
+                                    serviceType.Name,
+                                    serviceType.Description,
+                                    serviceType.Charge
+                                }).ToList();
+            this.Form.ServiceDataGridView.DataSource = serviceTypes;
+            this.Form.ServiceDataGridView.Columns["Id"].Visible = false;
+            this.Form.ServiceDataGridView.Columns["Name"].HeaderText = "Nazwa";
+            this.Form.ServiceDataGridView.Columns["Description"].HeaderText = "Opis";
+            this.Form.ServiceDataGridView.Columns["Charge"].HeaderText = "Opłata";
         }
 
         #endregion
@@ -376,7 +402,7 @@
             if (selectedCellCount > 0)
             {
                 int rowIndex = this.Form.RoomFeaturesDataGridView.SelectedCells[0].RowIndex;
-                int roomFeatureId = (int)this.Form.RoomFeaturesDataGridView[0, rowIndex].Value;
+                int roomFeatureId = (int)this.Form.RoomFeaturesDataGridView["Id", rowIndex].Value;
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.EditRoomFeature);
                 controller.ItemToEditID = roomFeatureId;
                 controller.Form.ShowDialog();
@@ -396,7 +422,7 @@
             if (selectedCellCount > 0)
             {
                 int rowIndex = this.Form.RoomTypesDataGridView.SelectedCells[0].RowIndex;
-                int roomTypeId = (int)this.Form.RoomTypesDataGridView[0, rowIndex].Value;
+                int roomTypeId = (int)this.Form.RoomTypesDataGridView["Id", rowIndex].Value;
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.EditRoomType);
                 controller.ItemToEditID = roomTypeId;
                 controller.Form.ShowDialog();
@@ -431,7 +457,7 @@
             if (selectedRowsCount > 0)
             {
                 int rowIndex = this.Form.AllRoomsDataGridView.SelectedRows[0].Index;
-                int roomNumber = (int)this.Form.AllRoomsDataGridView[0, rowIndex].Value;
+                int roomNumber = (int)this.Form.AllRoomsDataGridView["Number", rowIndex].Value;
 
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.EditRoom);
                 controller.ItemToEditID = roomNumber;
@@ -578,6 +604,7 @@
         private void NewServiceButton_Click(object sender, System.EventArgs e)
         {
             ControllerFactory.Instance.Create(ControllerTypes.EditService).Form.ShowDialog();
+            this.refreshService();
         }
 
         private void EditServiceButton_Click(object sender, System.EventArgs e)
@@ -586,28 +613,17 @@
             if (selectedRowsCount > 0)
             {
                 int rowIndex = this.Form.ServiceDataGridView.SelectedRows[0].Index;
-                int index = (int)this.Form.ServiceDataGridView[0, rowIndex].Value;
+                int index = (int)this.Form.ServiceDataGridView["Id", rowIndex].Value;
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.EditService);
                 controller.ItemToEditID = index;
                 controller.Form.ShowDialog();
+                this.refreshService();
             }
         }
 
         private void RefreshServiceButton_Click(object sender, System.EventArgs e)
         {
-            var serviceTypes = (from serviceType in DataAccess.Instance.ServiceTypes.GetAll()
-                                select new
-                                {
-                                    serviceType.Id,
-                                    serviceType.Name,
-                                    serviceType.Description,
-                                    serviceType.Charge
-                                }).ToList();
-            this.Form.ServiceDataGridView.DataSource = serviceTypes;
-            this.Form.ServiceDataGridView.Columns["Id"].Visible = false;
-            this.Form.ServiceDataGridView.Columns["Name"].HeaderText = "Nazwa";
-            this.Form.ServiceDataGridView.Columns["Description"].HeaderText = "Opis";
-            this.Form.ServiceDataGridView.Columns["Charge"].HeaderText = "Opłata";
+            this.refreshService();
         }
 
         #endregion

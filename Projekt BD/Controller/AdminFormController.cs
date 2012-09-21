@@ -16,6 +16,7 @@
             base.Form = new AdminForm();
 
             this.SetupEvents();
+            this.SearchButton_Function();
         }
 
         #endregion
@@ -124,6 +125,58 @@
         private void AddEmployeeButton_Click(object sender, EventArgs e)
         {
             ControllerFactory.Instance.Create(ControllerTypes.NewEmployeeForm).Form.ShowDialog();
+            this.SearchButton_Function();
+        }
+
+        private void DeleteEmployeeButton_Click(object sender, EventArgs e)
+        {
+            if (this.IsEmployeeSelected)
+            {
+                DialogResult dialogResult = MessageBox.Show("Czy na pewno chcesz usunąć pracownika?", "Usuwanie pracownika", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    DataAccess.Instance.Employees.Delete(DataAccess.Instance.Employees.Single(emp => emp.Id == this.SelectedEmployeeId));
+
+                    DataAccess.Instance.UnitOfWork.Commit();
+
+                    this.SearchButton_Function();
+                }
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Należy zaznaczyć pracownika",
+                    "Błąd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
+            }
+        }
+
+        private void ChangeEmployeeDetailsButton_Click(object sender, EventArgs e)
+        {
+            if (this.IsEmployeeSelected)
+            {
+                var controller = ControllerFactory.Instance.Create(ControllerTypes.NewEmployeeForm);
+                controller.ItemToEditID = this.SelectedEmployeeId;
+                controller.Form.ShowDialog();
+                this.SearchButton_Function();
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Należy zaznaczyć pracownika",
+                    "Błąd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
+            }
+        }
+
+        #endregion
+    }
+}
+
         }
 
         private void DeleteEmployeeButton_Click(object sender, EventArgs e)
