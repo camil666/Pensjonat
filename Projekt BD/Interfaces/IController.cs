@@ -12,6 +12,8 @@
 
         int ItemToEditID { get; set; }
 
+        int EmployeeIdForManagerController { get; set; }
+
         #endregion
     }
 }

@@ -8,12 +8,14 @@ namespace Projekt_BD.Controller
 {
     using System;
     using System.Collections.Generic;
+    using System.Data;
     using System.Linq;
     using System.Text;
     using System.Windows.Forms;
 
     using Domain;
 
+    using Projekt_BD.Interfaces;
     using Projekt_BD.View;
 
     /// <summary>
@@ -191,7 +193,9 @@ namespace Projekt_BD.Controller
 
         private void AddTasksButton_Click(object sender, EventArgs e)
         {
-            if (ControllerFactory.Instance.Create(ControllerTypes.EditTaskForm).Form.ShowDialog() == DialogResult.OK)
+            var controller = ControllerFactory.Instance.Create(ControllerTypes.EditTaskForm);
+            controller.EmployeeIdForManagerController = this.SelectedEmployeeId;
+            if (controller.Form.ShowDialog() == DialogResult.OK)
             {
                 this.LoadTasks();
             }
@@ -253,6 +257,7 @@ namespace Projekt_BD.Controller
             {
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.EditTaskTypeForm);
                 controller.ItemToEditID = this.SelectedTaskTypeId;
+                
                 if (controller.Form.ShowDialog() == DialogResult.OK)
                 {
                     this.LoadTaskTypes();
@@ -266,22 +271,30 @@ namespace Projekt_BD.Controller
 
         private void DeleteTaskTypeButton_Click(object sender, EventArgs e)
         {
-            if (this.IsTaskTypeSelected)
+            try
             {
-                var selectedRowIndexes = this.Form.TaskTypesDataGridView.SelectedRows;
-                foreach (DataGridViewRow item in selectedRowIndexes)
+                if (this.IsTaskTypeSelected)
                 {
-                    var id = (int)this.Form.TaskTypesDataGridView[0, item.Index].Value;
-                    var taskType = DataAccess.Instance.TaskTypes.Single(t => t.Id == id);
-                    DataAccess.Instance.TaskTypes.Delete(taskType);
+                    var selectedRowIndexes = this.Form.TaskTypesDataGridView.SelectedRows;
+                    foreach (DataGridViewRow item in selectedRowIndexes)
+                    {
+                        var id = (int)this.Form.TaskTypesDataGridView[0, item.Index].Value;
+                        var taskType = DataAccess.Instance.TaskTypes.Single(t => t.Id == id);
+                        DataAccess.Instance.TaskTypes.Delete(taskType);
+                    }
+                    DataAccess.Instance.UnitOfWork.Commit();
+                    this.LoadTaskTypes();
                 }
-                DataAccess.Instance.UnitOfWork.Commit();
-                this.LoadTaskTypes();
+                else
+                {
+                    MessageBox.Show("Nie zaznaczono zadań do usunięcia!");
+                }
             }
-            else
+            catch (UpdateException ex)
             {
-                MessageBox.Show("Nie zaznaczono zadań do usunięcia!");
+                MessageBox.Show("Nie można usunąć typu zadania, ponieważ istnieją zadania tego typu!");
             }
+            
         }
 
         private void AddTaskTypeButton_Click(object sender, EventArgs e)

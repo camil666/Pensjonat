@@ -22,6 +22,8 @@
 
         public int ItemToEditID { get; set; }
 
+        public int EmployeeIdForManagerController { get; set; }
+
         protected bool IsEditForm
         {
             get

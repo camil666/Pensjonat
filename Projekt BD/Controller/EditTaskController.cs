@@ -145,7 +145,8 @@ namespace Projekt_BD.Controller
                     IsDone = isDone,
                     TypeId = taskTypeId,
                     StartDate = startDate,
-                    EndDate = endDate
+                    EndDate = endDate,
+                    EmployeeId = this.EmployeeIdForManagerController
                 };
 
                 DataAccess.Instance.Tasks.Add(this.task);
