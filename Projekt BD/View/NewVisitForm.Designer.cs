@@ -30,23 +30,24 @@
         {
             this.AddInfoTextBox = new System.Windows.Forms.TextBox();
             this.AddInfoLabel = new System.Windows.Forms.Label();
-            this.AddButton = new System.Windows.Forms.Button();
+            this.OkButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
             this.RoomsToBeReservedLabel = new System.Windows.Forms.Label();
-            this.RoomsToBeReservedDataGridView = new System.Windows.Forms.DataGridView();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.ShowFreeRoomsButton = new System.Windows.Forms.Button();
-            this.ClientsCountTextBox = new System.Windows.Forms.TextBox();
-            this.ClientsCountLabel = new System.Windows.Forms.Label();
-            this.FreeRoomsDataGridView = new System.Windows.Forms.DataGridView();
+            this.GuestsToVisitDataGridView = new System.Windows.Forms.DataGridView();
+            this.RemoveGuestFromVisitButton = new System.Windows.Forms.Button();
+            this.AddGuestToVisitButton = new System.Windows.Forms.Button();
+            this.GuestsDataGridView = new System.Windows.Forms.DataGridView();
             this.FreeRoomsLabel = new System.Windows.Forms.Label();
             this.EndDateDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.EndDateLabel = new System.Windows.Forms.Label();
             this.StartDateDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.StartDateLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.RoomsToBeReservedDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FreeRoomsDataGridView)).BeginInit();
+            this.AdvanceTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.RoomNumberComboBox = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.GuestsToVisitDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GuestsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // AddInfoTextBox
@@ -54,29 +55,29 @@
             this.AddInfoTextBox.Location = new System.Drawing.Point(557, 48);
             this.AddInfoTextBox.Name = "AddInfoTextBox";
             this.AddInfoTextBox.Size = new System.Drawing.Size(249, 20);
-            this.AddInfoTextBox.TabIndex = 3;
+            this.AddInfoTextBox.TabIndex = 4;
             // 
             // AddInfoLabel
             // 
             this.AddInfoLabel.AutoSize = true;
-            this.AddInfoLabel.Location = new System.Drawing.Point(435, 51);
+            this.AddInfoLabel.Location = new System.Drawing.Point(436, 51);
             this.AddInfoLabel.Name = "AddInfoLabel";
             this.AddInfoLabel.Size = new System.Drawing.Size(116, 13);
             this.AddInfoLabel.TabIndex = 44;
             this.AddInfoLabel.Text = "Dodatkowe informacje:";
             // 
-            // AddButton
+            // OkButton
             // 
-            this.AddButton.Location = new System.Drawing.Point(731, 341);
-            this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(75, 23);
-            this.AddButton.TabIndex = 9;
-            this.AddButton.Text = "Dodaj";
-            this.AddButton.UseVisualStyleBackColor = true;
+            this.OkButton.Location = new System.Drawing.Point(731, 307);
+            this.OkButton.Name = "OkButton";
+            this.OkButton.Size = new System.Drawing.Size(75, 23);
+            this.OkButton.TabIndex = 9;
+            this.OkButton.Text = "Dodaj";
+            this.OkButton.UseVisualStyleBackColor = true;
             // 
             // CancelButton
             // 
-            this.CancelButton.Location = new System.Drawing.Point(609, 341);
+            this.CancelButton.Location = new System.Drawing.Point(609, 307);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
             this.CancelButton.TabIndex = 8;
@@ -86,84 +87,68 @@
             // RoomsToBeReservedLabel
             // 
             this.RoomsToBeReservedLabel.AutoSize = true;
-            this.RoomsToBeReservedLabel.Location = new System.Drawing.Point(435, 155);
+            this.RoomsToBeReservedLabel.Location = new System.Drawing.Point(435, 121);
             this.RoomsToBeReservedLabel.Name = "RoomsToBeReservedLabel";
-            this.RoomsToBeReservedLabel.Size = new System.Drawing.Size(59, 13);
+            this.RoomsToBeReservedLabel.Size = new System.Drawing.Size(115, 13);
             this.RoomsToBeReservedLabel.TabIndex = 41;
-            this.RoomsToBeReservedLabel.Text = "Do pobytu:";
+            this.RoomsToBeReservedLabel.Text = "Przydzieleni do pokoju:";
             // 
-            // RoomsToBeReservedDataGridView
+            // GuestsToVisitDataGridView
             // 
-            this.RoomsToBeReservedDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.RoomsToBeReservedDataGridView.Location = new System.Drawing.Point(438, 171);
-            this.RoomsToBeReservedDataGridView.Name = "RoomsToBeReservedDataGridView";
-            this.RoomsToBeReservedDataGridView.Size = new System.Drawing.Size(368, 150);
-            this.RoomsToBeReservedDataGridView.TabIndex = 40;
-            this.RoomsToBeReservedDataGridView.TabStop = false;
+            this.GuestsToVisitDataGridView.AllowUserToAddRows = false;
+            this.GuestsToVisitDataGridView.AllowUserToDeleteRows = false;
+            this.GuestsToVisitDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GuestsToVisitDataGridView.Location = new System.Drawing.Point(438, 137);
+            this.GuestsToVisitDataGridView.Name = "GuestsToVisitDataGridView";
+            this.GuestsToVisitDataGridView.ReadOnly = true;
+            this.GuestsToVisitDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.GuestsToVisitDataGridView.Size = new System.Drawing.Size(368, 150);
+            this.GuestsToVisitDataGridView.TabIndex = 40;
+            this.GuestsToVisitDataGridView.TabStop = false;
             // 
-            // button3
+            // RemoveGuestFromVisitButton
             // 
-            this.button3.Location = new System.Drawing.Point(390, 240);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(42, 23);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "<-";
-            this.button3.UseVisualStyleBackColor = true;
+            this.RemoveGuestFromVisitButton.Location = new System.Drawing.Point(390, 206);
+            this.RemoveGuestFromVisitButton.Name = "RemoveGuestFromVisitButton";
+            this.RemoveGuestFromVisitButton.Size = new System.Drawing.Size(42, 23);
+            this.RemoveGuestFromVisitButton.TabIndex = 7;
+            this.RemoveGuestFromVisitButton.Text = "<-";
+            this.RemoveGuestFromVisitButton.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // AddGuestToVisitButton
             // 
-            this.button2.Location = new System.Drawing.Point(390, 211);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(42, 23);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "->";
-            this.button2.UseVisualStyleBackColor = true;
+            this.AddGuestToVisitButton.Location = new System.Drawing.Point(390, 177);
+            this.AddGuestToVisitButton.Name = "AddGuestToVisitButton";
+            this.AddGuestToVisitButton.Size = new System.Drawing.Size(42, 23);
+            this.AddGuestToVisitButton.TabIndex = 6;
+            this.AddGuestToVisitButton.Text = "->";
+            this.AddGuestToVisitButton.UseVisualStyleBackColor = true;
             // 
-            // ShowFreeRoomsButton
+            // GuestsDataGridView
             // 
-            this.ShowFreeRoomsButton.Location = new System.Drawing.Point(124, 127);
-            this.ShowFreeRoomsButton.Name = "ShowFreeRoomsButton";
-            this.ShowFreeRoomsButton.Size = new System.Drawing.Size(130, 23);
-            this.ShowFreeRoomsButton.TabIndex = 5;
-            this.ShowFreeRoomsButton.Text = "Pokaż wolne pokoje";
-            this.ShowFreeRoomsButton.UseVisualStyleBackColor = true;
-            // 
-            // ClientsCountTextBox
-            // 
-            this.ClientsCountTextBox.Location = new System.Drawing.Point(115, 88);
-            this.ClientsCountTextBox.Name = "ClientsCountTextBox";
-            this.ClientsCountTextBox.Size = new System.Drawing.Size(49, 20);
-            this.ClientsCountTextBox.TabIndex = 4;
-            // 
-            // ClientsCountLabel
-            // 
-            this.ClientsCountLabel.AutoSize = true;
-            this.ClientsCountLabel.Location = new System.Drawing.Point(13, 91);
-            this.ClientsCountLabel.Name = "ClientsCountLabel";
-            this.ClientsCountLabel.Size = new System.Drawing.Size(58, 13);
-            this.ClientsCountLabel.TabIndex = 35;
-            this.ClientsCountLabel.Text = "Ilość osób:";
-            // 
-            // FreeRoomsDataGridView
-            // 
-            this.FreeRoomsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.FreeRoomsDataGridView.Location = new System.Drawing.Point(16, 171);
-            this.FreeRoomsDataGridView.Name = "FreeRoomsDataGridView";
-            this.FreeRoomsDataGridView.Size = new System.Drawing.Size(368, 150);
-            this.FreeRoomsDataGridView.TabIndex = 34;
-            this.FreeRoomsDataGridView.TabStop = false;
+            this.GuestsDataGridView.AllowUserToAddRows = false;
+            this.GuestsDataGridView.AllowUserToDeleteRows = false;
+            this.GuestsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GuestsDataGridView.Location = new System.Drawing.Point(16, 137);
+            this.GuestsDataGridView.Name = "GuestsDataGridView";
+            this.GuestsDataGridView.ReadOnly = true;
+            this.GuestsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.GuestsDataGridView.Size = new System.Drawing.Size(368, 150);
+            this.GuestsDataGridView.TabIndex = 34;
+            this.GuestsDataGridView.TabStop = false;
             // 
             // FreeRoomsLabel
             // 
             this.FreeRoomsLabel.AutoSize = true;
-            this.FreeRoomsLabel.Location = new System.Drawing.Point(13, 155);
+            this.FreeRoomsLabel.Location = new System.Drawing.Point(13, 121);
             this.FreeRoomsLabel.Name = "FreeRoomsLabel";
-            this.FreeRoomsLabel.Size = new System.Drawing.Size(76, 13);
+            this.FreeRoomsLabel.Size = new System.Drawing.Size(43, 13);
             this.FreeRoomsLabel.TabIndex = 33;
-            this.FreeRoomsLabel.Text = "Wolne pokoje:";
+            this.FreeRoomsLabel.Text = "Goście:";
             // 
             // EndDateDateTimePicker
             // 
+            this.EndDateDateTimePicker.Enabled = false;
             this.EndDateDateTimePicker.Location = new System.Drawing.Point(115, 48);
             this.EndDateDateTimePicker.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
             this.EndDateDateTimePicker.MinDate = new System.DateTime(2012, 1, 1, 0, 0, 0, 0);
@@ -182,6 +167,7 @@
             // 
             // StartDateDateTimePicker
             // 
+            this.StartDateDateTimePicker.Enabled = false;
             this.StartDateDateTimePicker.Location = new System.Drawing.Point(115, 8);
             this.StartDateDateTimePicker.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
             this.StartDateDateTimePicker.MinDate = new System.DateTime(2012, 1, 1, 0, 0, 0, 0);
@@ -198,23 +184,57 @@
             this.StartDateLabel.TabIndex = 29;
             this.StartDateLabel.Text = "Data rozpoczęcia:";
             // 
+            // AdvanceTextBox
+            // 
+            this.AdvanceTextBox.Location = new System.Drawing.Point(557, 8);
+            this.AdvanceTextBox.Name = "AdvanceTextBox";
+            this.AdvanceTextBox.Size = new System.Drawing.Size(250, 20);
+            this.AdvanceTextBox.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(436, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(50, 13);
+            this.label1.TabIndex = 46;
+            this.label1.Text = "Zaliczka:";
+            // 
+            // RoomNumberComboBox
+            // 
+            this.RoomNumberComboBox.FormattingEnabled = true;
+            this.RoomNumberComboBox.Location = new System.Drawing.Point(557, 88);
+            this.RoomNumberComboBox.Name = "RoomNumberComboBox";
+            this.RoomNumberComboBox.Size = new System.Drawing.Size(121, 21);
+            this.RoomNumberComboBox.TabIndex = 5;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(514, 91);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(37, 13);
+            this.label2.TabIndex = 48;
+            this.label2.Text = "Pokój:";
+            // 
             // NewVisitForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(819, 372);
+            this.ClientSize = new System.Drawing.Size(819, 342);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.RoomNumberComboBox);
+            this.Controls.Add(this.AdvanceTextBox);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.AddInfoTextBox);
             this.Controls.Add(this.AddInfoLabel);
-            this.Controls.Add(this.AddButton);
+            this.Controls.Add(this.OkButton);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.RoomsToBeReservedLabel);
-            this.Controls.Add(this.RoomsToBeReservedDataGridView);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.ShowFreeRoomsButton);
-            this.Controls.Add(this.ClientsCountTextBox);
-            this.Controls.Add(this.ClientsCountLabel);
-            this.Controls.Add(this.FreeRoomsDataGridView);
+            this.Controls.Add(this.GuestsToVisitDataGridView);
+            this.Controls.Add(this.RemoveGuestFromVisitButton);
+            this.Controls.Add(this.AddGuestToVisitButton);
+            this.Controls.Add(this.GuestsDataGridView);
             this.Controls.Add(this.FreeRoomsLabel);
             this.Controls.Add(this.EndDateDateTimePicker);
             this.Controls.Add(this.EndDateLabel);
@@ -223,8 +243,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "NewVisitForm";
             this.Text = "Nowy pobyt";
-            ((System.ComponentModel.ISupportInitialize)(this.RoomsToBeReservedDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FreeRoomsDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GuestsToVisitDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GuestsDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -234,20 +254,21 @@
 
         private System.Windows.Forms.Label AddInfoLabel;
         private System.Windows.Forms.Label RoomsToBeReservedLabel;
-        private System.Windows.Forms.Label ClientsCountLabel;
         private System.Windows.Forms.Label FreeRoomsLabel;
         private System.Windows.Forms.Label EndDateLabel;
         private System.Windows.Forms.Label StartDateLabel;
         public System.Windows.Forms.TextBox AddInfoTextBox;
-        public System.Windows.Forms.Button AddButton;
+        public System.Windows.Forms.Button OkButton;
         public System.Windows.Forms.Button CancelButton;
-        public System.Windows.Forms.DataGridView RoomsToBeReservedDataGridView;
-        public System.Windows.Forms.Button button3;
-        public System.Windows.Forms.Button button2;
-        public System.Windows.Forms.Button ShowFreeRoomsButton;
-        public System.Windows.Forms.TextBox ClientsCountTextBox;
-        public System.Windows.Forms.DataGridView FreeRoomsDataGridView;
+        public System.Windows.Forms.DataGridView GuestsToVisitDataGridView;
+        public System.Windows.Forms.Button RemoveGuestFromVisitButton;
+        public System.Windows.Forms.Button AddGuestToVisitButton;
+        public System.Windows.Forms.DataGridView GuestsDataGridView;
         public System.Windows.Forms.DateTimePicker EndDateDateTimePicker;
         public System.Windows.Forms.DateTimePicker StartDateDateTimePicker;
+        public System.Windows.Forms.TextBox AdvanceTextBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        public System.Windows.Forms.ComboBox RoomNumberComboBox;
     }
 }

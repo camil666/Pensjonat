@@ -22,6 +22,8 @@
                     return ControllerFactory.Instance.Create(ControllerTypes.AdminForm).Form;
                 case 1:
                     return ControllerFactory.Instance.Create(ControllerTypes.ReceptionistForm).Form;
+                case 2:
+                    return ControllerFactory.Instance.Create(ControllerTypes.ManagerForm).Form;
                 default:
                     return ControllerFactory.Instance.Create(ControllerTypes.EmployeeForm).Form;
             }

@@ -113,7 +113,7 @@ namespace Projekt_BD.Controller
             bool isDone = this.Form.IsDoneCheckBox.Checked;
             int taskTypeId = 0;
             int.TryParse(this.Form.TaskTypeComboBox.SelectedValue.ToString(), out taskTypeId);
-            bool validateDate = startDate > endDate;
+            bool validateDate = startDate >= endDate;
 
             if (string.IsNullOrEmpty(taskName) || string.IsNullOrEmpty(taskDescription) || validateDate)
             {

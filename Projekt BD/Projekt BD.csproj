@@ -77,6 +77,7 @@
     <Compile Include="CurrentUser.cs" />
     <Compile Include="DataAccess.cs" />
     <Compile Include="Controller\EditServiceFormController.cs" />
+    <Compile Include="DisplayedGuest.cs" />
     <Compile Include="Interfaces\IController.cs" />
     <Compile Include="Interfaces\IObjectContext.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
