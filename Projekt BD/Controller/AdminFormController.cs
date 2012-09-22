@@ -70,7 +70,7 @@
             try
             {
                 var employees = (from e in DataAccess.Instance.Employees.GetAll().ToList()
-                                 select new { e.Id, e.Username, e.FirstName, e.LastName, e.Email, e.Town }).ToList();
+                                 select new { e.Id, e.Username, e.FirstName, e.LastName, e.Email, e.Town, e.Role.Name }).ToList();
 
                 if (!string.IsNullOrEmpty(this.Form.IDSearchTextBox.Text))
                 {

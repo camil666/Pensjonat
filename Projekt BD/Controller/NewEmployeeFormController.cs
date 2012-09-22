@@ -46,10 +46,10 @@
 
         private void Form_Load(object sender, EventArgs e)
         {
-            var roles = DataAccess.Instance.Roles.GetAll().ToList();
-            this.Form.RoleComboBox.DataSource = roles;
-            this.Form.RoleComboBox.DisplayMember = "Name";
-            this.Form.RoleComboBox.ValueMember = "Id";
+            var availableRoles = DataAccess.Instance.Roles.GetAll().ToDictionary(availableType => availableType.Id, availableType => availableType.Name);
+            this.Form.RoleComboBox.DataSource = new BindingSource(availableRoles, null);
+            this.Form.RoleComboBox.DisplayMember = "Value";
+            this.Form.RoleComboBox.ValueMember = "Key";
 
             if (this.IsEditForm)
             {
@@ -138,6 +138,7 @@
                     TelephoneNumber = this.Form.PhoneNumberTextBox.Text,
                     Town = this.Form.TownTextBox.Text,
                     Username = this.Form.LoginTextBox.Text,
+                    RoleId = (int)this.Form.RoleComboBox.SelectedValue
                 };
 
                 DataAccess.Instance.Employees.Add(newEmployee);

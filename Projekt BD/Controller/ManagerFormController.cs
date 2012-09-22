@@ -15,6 +15,7 @@ namespace Projekt_BD.Controller
 
     using Domain;
 
+    using Projekt_BD.Enums;
     using Projekt_BD.Interfaces;
     using Projekt_BD.View;
 
@@ -116,7 +117,6 @@ namespace Projekt_BD.Controller
             this.Form.RemoveTasksButton.Click += this.RemoveTasksButton_Click;
             this.Form.EditTaskButton.Click += this.EditTasksButton_Click;
             this.Form.EmployeesDataGridView.CellMouseClick += this.EmployeeCellMouse_Click;
-            this.Form.TasksDataGridView.CellMouseClick += this.TaskCellMouse_Click;
 
             this.Form.AddTaskTypeButton.Click += this.AddTaskTypeButton_Click;
             this.Form.DeleteTaskTypeButton.Click += this.DeleteTaskTypeButton_Click;
@@ -157,6 +157,7 @@ namespace Projekt_BD.Controller
         private void LoadEmployees()
         {
             var employees = from employee in DataAccess.Instance.Employees.GetAll()
+                            where employee.RoleId == (int)Roles.Employee
                             select new
                             {
                                 employee.Id,
@@ -242,11 +243,6 @@ namespace Projekt_BD.Controller
         private void EmployeeCellMouse_Click(object sender, DataGridViewCellMouseEventArgs e)
         {
             this.LoadTasks();
-        }
-
-
-        private void TaskCellMouse_Click(object sender, DataGridViewCellMouseEventArgs e)
-        {
         }
 
         // task types
