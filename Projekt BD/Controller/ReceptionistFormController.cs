@@ -77,6 +77,7 @@
             this.Form.RefreshServiceButton.Click += this.RefreshServiceButton_Click;
             this.Form.EditServiceButton.Click += this.EditServiceButton_Click;
             this.Form.NewServiceButton.Click += this.NewServiceButton_Click;
+            this.Form.ReservationIntoVisitButton.Click += this.ReservationIntoVisitButton_Click;
         }
 
         private void ReservationSearchResultDataGridView_Refresh()
@@ -624,6 +625,20 @@
         private void RefreshServiceButton_Click(object sender, System.EventArgs e)
         {
             this.refreshService();
+        }
+
+        private void ReservationIntoVisitButton_Click(object sender, EventArgs e)
+        {
+            if (this.Form.ReservationSearchResultDataGridView.SelectedRows.Count > 0)
+            {
+                var controller = ControllerFactory.Instance.Create(ControllerTypes.NewVisitForm); 
+                controller.ItemToEditID = int.Parse(this.Form.ReservationIDDetailsTextBox.Text); 
+                controller.Form.ShowDialog();
+            } 
+            else
+            {
+                MessageBox.Show("Należy zaznaczyć rezerwację", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+            }
         }
 
         #endregion

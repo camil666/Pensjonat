@@ -145,7 +145,7 @@
             int.TryParse(this.Form.CapacityTextBox.Text, out roomCapacity);
             int.TryParse(this.Form.TypeComboBox.SelectedValue.ToString(), out roomType);
 
-            if (roomNumber <= 0 || roomFloor <= 0 || roomCapacity <= 0 || roomType <= 0)
+            if (roomNumber <= 0 || roomFloor < 0 || roomCapacity <= 0 || roomType <= 0)
             {
                 MessageBox.Show(
                     "Podane wartości nie są prawidłowe lub pozostawiono niewypełnione pola.",
