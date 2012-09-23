@@ -61,7 +61,31 @@
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            if (this.Form.GuestsToVisitDataGridView.Rows.Count < 1)
+            int parentVisitId = 0;
+            var visitsToBeAdded = new List<Visit>();
+
+            foreach (var datasource in AddedGuestsDataSources)
+            {
+                foreach (var item in datasource.List)
+                {
+                    var guest = item as DisplayedGuest;
+
+                    double advance;
+                    double.TryParse(this.Form.AdvanceTextBox.Text, out advance);
+
+                    visitsToBeAdded.Add(new Visit()
+                    {
+                        AdditionalInfo = this.Form.AddInfoTextBox.Text,
+                        Advance = advance,
+                        EndDate = this.Form.EndDateDateTimePicker.Value,
+                        StartDate = this.Form.StartDateDateTimePicker.Value,
+                        RoomId = (int)this.Form.RoomNumberComboBox.Items[AddedGuestsDataSources.IndexOf(datasource)],
+                        GuestId = guest.Id
+                    });
+                }
+            }
+
+            if (visitsToBeAdded.Count < 1)
             {
                 MessageBox.Show(
                     "Należy dodać do pokoju minimum jednego gościa.",
@@ -73,40 +97,28 @@
                 return;
             }
 
-            int parentVisitId = 0;
-            bool parentVisitAdded = false;
+            var reservation = DataAccess.Instance.Reservations.Single(r => r.Id == this.ItemToEditID);
 
-            foreach (var datasource in AddedGuestsDataSources)
+            Visit parentVisit = visitsToBeAdded.SingleOrDefault(v => v.GuestId == reservation.GuestId);
+            if (parentVisit != null)
             {
-                foreach (var item in datasource.List)
-                {
-                    var guest = item as DisplayedGuest;
+                DataAccess.Instance.Visits.Add(parentVisit);
+                DataAccess.Instance.UnitOfWork.Commit();
+                parentVisitId = parentVisit.Id;
+                visitsToBeAdded.Remove(parentVisit);
+            }
+            else
+            {
+                DataAccess.Instance.Visits.Add(visitsToBeAdded[0]);
+                DataAccess.Instance.UnitOfWork.Commit();
+                parentVisitId = visitsToBeAdded[0].Id;
+                visitsToBeAdded.RemoveAt(0);
+            }
 
-                    double advance;
-                    double.TryParse(this.Form.AdvanceTextBox.Text, out advance);
-
-                    var visit = new Visit()
-                    {
-                        AdditionalInfo = this.Form.AddInfoTextBox.Text,
-                        Advance = advance,
-                        EndDate = this.Form.EndDateDateTimePicker.Value,
-                        StartDate = this.Form.StartDateDateTimePicker.Value,
-                        RoomId = (int)this.Form.RoomNumberComboBox.Items[AddedGuestsDataSources.IndexOf(datasource)],
-                        GuestId = guest.Id
-                    };
-
-                    if (parentVisitAdded)
-                    {
-                        visit.ParentId = parentVisitId;
-                        DataAccess.Instance.Visits.Add(visit);
-                    }
-                    else
-                    {
-                        DataAccess.Instance.Visits.Add(visit);
-                        DataAccess.Instance.UnitOfWork.Commit();
-                        parentVisitId = visit.Id;
-                    }
-                }
+            foreach (var visit in visitsToBeAdded)
+            {
+                visit.ParentId = parentVisitId;
+                DataAccess.Instance.Visits.Add(visit);
             }
 
             DataAccess.Instance.UnitOfWork.Commit();
