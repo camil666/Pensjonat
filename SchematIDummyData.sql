@@ -579,6 +579,7 @@ GO
 ALTER TABLE [dbo].[Services] CHECK CONSTRAINT [FK_Service_Visit]
 GO
 
+insert into [dbo].[MealPrices] (BreakfastPrice, LunchPrice, DinnerPrice, ThreeMealsPrice) values (30,40,50,100)
 
 Insert into Dbo.Roles (Id, Name) Values (0, 'Administrator')
 Insert into Dbo.Roles (Id, Name) Values (1, 'Receptionist')
