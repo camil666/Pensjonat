@@ -2,6 +2,8 @@
 {
     using System.Windows.Forms;
 
+    using Projekt_BD.Enums;
+
     /// <summary>
     /// Helper class for creating forms for different users.
     /// </summary>
@@ -18,14 +20,16 @@
         {
             switch (roleId)
             {
-                case 0:
+                case (int)Roles.Administrator:
                     return ControllerFactory.Instance.Create(ControllerTypes.AdminForm).Form;
-                case 1:
+                case (int)Roles.Receptionist:
                     return ControllerFactory.Instance.Create(ControllerTypes.ReceptionistForm).Form;
-                case 2:
+                case (int)Roles.Manager:
                     return ControllerFactory.Instance.Create(ControllerTypes.ManagerForm).Form;
-                case 3:
+                case (int)Roles.Employee:
                     return ControllerFactory.Instance.Create(ControllerTypes.EmployeeForm).Form;
+                case (int)Roles.Root:
+                    return ControllerFactory.Instance.Create(ControllerTypes.AdminForm).Form;
                 default:
                     return ControllerFactory.Instance.Create(ControllerTypes.EmployeeForm).Form;
             }

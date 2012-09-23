@@ -71,6 +71,8 @@
 
         EditTaskForm,
 
-        EditTaskTypeForm
+        EditTaskTypeForm,
+
+        EditServiceForVisit
     }
 }

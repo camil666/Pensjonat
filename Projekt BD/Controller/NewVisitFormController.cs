@@ -178,6 +178,19 @@
         private void AddGuestToVisitButton_Click(object sender, EventArgs e)
         {
             int roomIndex = this.Form.RoomNumberComboBox.SelectedIndex;
+            var number = (int)this.Form.RoomNumberComboBox.Items[roomIndex];
+            var room = DataAccess.Instance.Rooms.Single(x => x.Number == number);
+            if (room.Capacity <= this.AddedGuestsDataSources[roomIndex].Count)
+            {
+                MessageBox.Show(
+                    "Zbyt dużo gości w jednym pokoju!.",
+                    "Błąd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
+
+                return;
+            }
 
             foreach (DataGridViewRow item in this.Form.GuestsDataGridView.SelectedRows)
             {

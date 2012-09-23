@@ -22,6 +22,8 @@ namespace Projekt_BD.Enums
 
         Manager = 2,
 
-        Employee = 3
+        Employee = 3,
+
+        Root = 4
     }
 }

@@ -4,6 +4,8 @@
     using System.Linq;
     using System.Windows.Forms;
     using Domain;
+
+    using Projekt_BD.Enums;
     using Projekt_BD.Interfaces;
     using Projekt_BD.View;
 
@@ -69,7 +71,7 @@
 
             try
             {
-                var employees = (from e in DataAccess.Instance.Employees.GetAll().ToList()
+                var employees = (from e in DataAccess.Instance.Employees.GetAll().Where(x => x.RoleId != (int)Roles.Root).ToList()
                                  select new { e.Id, e.Username, e.FirstName, e.LastName, e.Email, e.Town, e.Role.Name }).ToList();
 
                 if (!string.IsNullOrEmpty(this.Form.IDSearchTextBox.Text))
