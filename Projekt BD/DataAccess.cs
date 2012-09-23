@@ -43,6 +43,7 @@
             this.TaskTypes = new Repository<TaskType>(this.Context);
             this.Services = new Repository<Service>(this.Context);
             this.ServiceTypes = new Repository<ServiceType>(this.Context);
+            this.Discounts = new Repository<Discount>(this.Context);
         }
 
         #endregion
@@ -192,6 +193,14 @@
         /// Service type.
         /// </value>
         public Repository<ServiceType> ServiceTypes { get; private set; }
+
+        /// <summary>
+        /// Gets the discounts.
+        /// </summary>
+        /// <value>
+        /// The discounts.
+        /// </value>
+        public Repository<Discount> Discounts { get; private set; }
 
         /// <summary>
         /// Gets or sets the context.

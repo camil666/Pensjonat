@@ -75,6 +75,8 @@
 
         EditServiceForVisit,
 
-        EditServiceDetailsForm
+        EditServiceDetailsForm,
+
+        GenerateReceiptForm
     }
 }

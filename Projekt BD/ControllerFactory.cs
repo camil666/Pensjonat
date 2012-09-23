@@ -117,6 +117,9 @@
                 case ControllerTypes.EditServiceDetailsForm:
                     return new EditServiceDetailsController();
 
+                case ControllerTypes.GenerateReceiptForm:
+                    return new GenerateReceiptController();
+
                 default:
                     return null;
             }

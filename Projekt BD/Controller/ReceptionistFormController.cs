@@ -79,9 +79,8 @@
             this.Form.NewServiceButton.Click += this.NewServiceButton_Click;
             this.Form.ReservationIntoVisitButton.Click += this.ReservationIntoVisitButton_Click;
             this.Form.ServicesButton.Click += this.EditServiceForVisitClick;
-        }
-
-        
+            this.Form.GenerateReceiptButton.Click += this.GenerateReceiptButton_Click;
+        } 
 
         private void ReservationSearchResultDataGridView_Refresh()
         {
@@ -208,6 +207,22 @@
         #endregion
 
         #region Event Methods
+
+        private void GenerateReceiptButton_Click(object sender, EventArgs e)
+        {
+            if (this.Form.VisitSearchResultsDataGridView.SelectedRows.Count > 0)
+            {
+                var controller = ControllerFactory.Instance.Create(ControllerTypes.GenerateReceiptForm);
+
+                controller.ItemToEditID = (int)this.Form.VisitSearchResultsDataGridView.SelectedRows[0].Cells["Id"].Value;
+
+                controller.Form.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Należy zaznaczyć wizytę", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+            }
+        }
 
         private void ClientSearchEnabledStripMenuItem_Click(object sender, EventArgs e)
         {
