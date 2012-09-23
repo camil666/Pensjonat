@@ -8,13 +8,12 @@
 //------------------------------------------------------------------------------
 
 using System;
-using System.ComponentModel;
-using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Linq;
-using System.Runtime.Serialization;
+using System.Data.EntityClient;
+using System.ComponentModel;
 using System.Xml.Serialization;
+using System.Runtime.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
@@ -342,9 +341,24 @@ namespace Domain
             }
         }
         private ObjectSet<Visit> _Visits;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<MealPrice> MealPrices
+        {
+            get
+            {
+                if ((_MealPrices == null))
+                {
+                    _MealPrices = base.CreateObjectSet<MealPrice>("MealPrices");
+                }
+                return _MealPrices;
+            }
+        }
+        private ObjectSet<MealPrice> _MealPrices;
 
         #endregion
-
         #region AddTo Methods
     
         /// <summary>
@@ -474,13 +488,21 @@ namespace Domain
         {
             base.AddObject("Visits", visit);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the MealPrices EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToMealPrices(MealPrice mealPrice)
+        {
+            base.AddObject("MealPrices", mealPrice);
+        }
 
         #endregion
-
     }
+    
 
     #endregion
-
+    
     #region Entities
     
     /// <summary>
@@ -509,7 +531,6 @@ namespace Domain
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -588,7 +609,6 @@ namespace Domain
         partial void OnAmountChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -631,7 +651,6 @@ namespace Domain
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -676,7 +695,6 @@ namespace Domain
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -995,7 +1013,6 @@ namespace Domain
         partial void OnRoleIdChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -1082,7 +1099,6 @@ namespace Domain
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -1109,7 +1125,6 @@ namespace Domain
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -1188,7 +1203,6 @@ namespace Domain
         partial void OnDescriptionChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -1215,7 +1229,6 @@ namespace Domain
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -1260,7 +1273,6 @@ namespace Domain
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -1603,7 +1615,6 @@ namespace Domain
         partial void OnIsVerifiedChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -1674,7 +1685,6 @@ namespace Domain
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -1698,7 +1708,8 @@ namespace Domain
         /// <param name="vegetarian">Initial value of the Vegetarian property.</param>
         /// <param name="diet">Initial value of the Diet property.</param>
         /// <param name="toRoom">Initial value of the ToRoom property.</param>
-        public static MealPlan CreateMealPlan(global::System.Int32 id, global::System.Int32 peopleCount, global::System.Boolean breakfast, global::System.Boolean lunch, global::System.Boolean dinner, global::System.Boolean vegetarian, global::System.Boolean diet, global::System.Boolean toRoom)
+        /// <param name="price">Initial value of the Price property.</param>
+        public static MealPlan CreateMealPlan(global::System.Int32 id, global::System.Int32 peopleCount, global::System.Boolean breakfast, global::System.Boolean lunch, global::System.Boolean dinner, global::System.Boolean vegetarian, global::System.Boolean diet, global::System.Boolean toRoom, global::System.Double price)
         {
             MealPlan mealPlan = new MealPlan();
             mealPlan.Id = id;
@@ -1709,11 +1720,11 @@ namespace Domain
             mealPlan.Vegetarian = vegetarian;
             mealPlan.Diet = diet;
             mealPlan.ToRoom = toRoom;
+            mealPlan.Price = price;
             return mealPlan;
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -1934,9 +1945,32 @@ namespace Domain
         private global::System.String _AdditionalInfo;
         partial void OnAdditionalInfoChanging(global::System.String value);
         partial void OnAdditionalInfoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double Price
+        {
+            get
+            {
+                return _Price;
+            }
+            set
+            {
+                OnPriceChanging(value);
+                ReportPropertyChanging("Price");
+                _Price = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Price");
+                OnPriceChanged();
+            }
+        }
+        private global::System.Double _Price;
+        partial void OnPriceChanging(global::System.Double value);
+        partial void OnPriceChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -1963,7 +1997,165 @@ namespace Domain
         }
 
         #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="PensjonatModel", Name="MealPrice")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class MealPrice : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new MealPrice object.
+        /// </summary>
+        /// <param name="breakfastPrice">Initial value of the BreakfastPrice property.</param>
+        /// <param name="lunchPrice">Initial value of the LunchPrice property.</param>
+        /// <param name="dinnerPrice">Initial value of the DinnerPrice property.</param>
+        /// <param name="threeMealsPrice">Initial value of the ThreeMealsPrice property.</param>
+        /// <param name="id">Initial value of the Id property.</param>
+        public static MealPrice CreateMealPrice(global::System.Double breakfastPrice, global::System.Double lunchPrice, global::System.Double dinnerPrice, global::System.Double threeMealsPrice, global::System.Int32 id)
+        {
+            MealPrice mealPrice = new MealPrice();
+            mealPrice.BreakfastPrice = breakfastPrice;
+            mealPrice.LunchPrice = lunchPrice;
+            mealPrice.DinnerPrice = dinnerPrice;
+            mealPrice.ThreeMealsPrice = threeMealsPrice;
+            mealPrice.Id = id;
+            return mealPrice;
+        }
 
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double BreakfastPrice
+        {
+            get
+            {
+                return _BreakfastPrice;
+            }
+            set
+            {
+                OnBreakfastPriceChanging(value);
+                ReportPropertyChanging("BreakfastPrice");
+                _BreakfastPrice = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("BreakfastPrice");
+                OnBreakfastPriceChanged();
+            }
+        }
+        private global::System.Double _BreakfastPrice;
+        partial void OnBreakfastPriceChanging(global::System.Double value);
+        partial void OnBreakfastPriceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double LunchPrice
+        {
+            get
+            {
+                return _LunchPrice;
+            }
+            set
+            {
+                OnLunchPriceChanging(value);
+                ReportPropertyChanging("LunchPrice");
+                _LunchPrice = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LunchPrice");
+                OnLunchPriceChanged();
+            }
+        }
+        private global::System.Double _LunchPrice;
+        partial void OnLunchPriceChanging(global::System.Double value);
+        partial void OnLunchPriceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double DinnerPrice
+        {
+            get
+            {
+                return _DinnerPrice;
+            }
+            set
+            {
+                OnDinnerPriceChanging(value);
+                ReportPropertyChanging("DinnerPrice");
+                _DinnerPrice = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DinnerPrice");
+                OnDinnerPriceChanged();
+            }
+        }
+        private global::System.Double _DinnerPrice;
+        partial void OnDinnerPriceChanging(global::System.Double value);
+        partial void OnDinnerPriceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double ThreeMealsPrice
+        {
+            get
+            {
+                return _ThreeMealsPrice;
+            }
+            set
+            {
+                OnThreeMealsPriceChanging(value);
+                ReportPropertyChanging("ThreeMealsPrice");
+                _ThreeMealsPrice = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ThreeMealsPrice");
+                OnThreeMealsPriceChanged();
+            }
+        }
+        private global::System.Double _ThreeMealsPrice;
+        partial void OnThreeMealsPriceChanging(global::System.Double value);
+        partial void OnThreeMealsPriceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+
+        #endregion
+    
     }
     
     /// <summary>
@@ -1983,18 +2175,19 @@ namespace Domain
         /// <param name="guestId">Initial value of the GuestId property.</param>
         /// <param name="startDate">Initial value of the StartDate property.</param>
         /// <param name="endDate">Initial value of the EndDate property.</param>
-        public static Reservation CreateReservation(global::System.Int32 id, global::System.Int32 guestId, global::System.DateTime startDate, global::System.DateTime endDate)
+        /// <param name="isVisit">Initial value of the IsVisit property.</param>
+        public static Reservation CreateReservation(global::System.Int32 id, global::System.Int32 guestId, global::System.DateTime startDate, global::System.DateTime endDate, global::System.Boolean isVisit)
         {
             Reservation reservation = new Reservation();
             reservation.Id = id;
             reservation.GuestId = guestId;
             reservation.StartDate = startDate;
             reservation.EndDate = endDate;
+            reservation.IsVisit = isVisit;
             return reservation;
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -2119,9 +2312,32 @@ namespace Domain
         private global::System.String _AdditionalInfo;
         partial void OnAdditionalInfoChanging(global::System.String value);
         partial void OnAdditionalInfoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsVisit
+        {
+            get
+            {
+                return _IsVisit;
+            }
+            set
+            {
+                OnIsVisitChanging(value);
+                ReportPropertyChanging("IsVisit");
+                _IsVisit = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsVisit");
+                OnIsVisitChanged();
+            }
+        }
+        private global::System.Boolean _IsVisit;
+        partial void OnIsVisitChanging(global::System.Boolean value);
+        partial void OnIsVisitChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -2186,7 +2402,6 @@ namespace Domain
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -2213,7 +2428,6 @@ namespace Domain
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -2268,7 +2482,6 @@ namespace Domain
         partial void OnIdChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -2295,7 +2508,6 @@ namespace Domain
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -2328,7 +2540,6 @@ namespace Domain
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -2455,7 +2666,6 @@ namespace Domain
         partial void OnVacancyChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -2564,7 +2774,6 @@ namespace Domain
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -2593,7 +2802,6 @@ namespace Domain
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -2720,7 +2928,6 @@ namespace Domain
         partial void OnIdChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -2801,7 +3008,6 @@ namespace Domain
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -2830,7 +3036,6 @@ namespace Domain
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -2957,7 +3162,6 @@ namespace Domain
         partial void OnDescriptionChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -2984,7 +3188,6 @@ namespace Domain
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -3011,7 +3214,6 @@ namespace Domain
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -3258,7 +3460,6 @@ namespace Domain
         partial void OnCustomChargeChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -3339,7 +3540,6 @@ namespace Domain
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -3366,7 +3566,6 @@ namespace Domain
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -3469,7 +3668,6 @@ namespace Domain
         partial void OnChargeChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -3534,7 +3732,6 @@ namespace Domain
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -3563,7 +3760,6 @@ namespace Domain
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -3762,7 +3958,6 @@ namespace Domain
         partial void OnTypeIdChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -3843,7 +4038,6 @@ namespace Domain
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -3870,7 +4064,6 @@ namespace Domain
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -3949,7 +4142,6 @@ namespace Domain
         partial void OnDescriptionChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -3976,7 +4168,6 @@ namespace Domain
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -3997,7 +4188,8 @@ namespace Domain
         /// <param name="roomId">Initial value of the RoomId property.</param>
         /// <param name="startDate">Initial value of the StartDate property.</param>
         /// <param name="endDate">Initial value of the EndDate property.</param>
-        public static Visit CreateVisit(global::System.Int32 id, global::System.Int32 guestId, global::System.Int32 roomId, global::System.DateTime startDate, global::System.DateTime endDate)
+        /// <param name="settled">Initial value of the Settled property.</param>
+        public static Visit CreateVisit(global::System.Int32 id, global::System.Int32 guestId, global::System.Int32 roomId, global::System.DateTime startDate, global::System.DateTime endDate, global::System.Boolean settled)
         {
             Visit visit = new Visit();
             visit.Id = id;
@@ -4005,11 +4197,11 @@ namespace Domain
             visit.RoomId = roomId;
             visit.StartDate = startDate;
             visit.EndDate = endDate;
+            visit.Settled = settled;
             return visit;
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -4206,9 +4398,32 @@ namespace Domain
         private Nullable<global::System.Double> _Advance;
         partial void OnAdvanceChanging(Nullable<global::System.Double> value);
         partial void OnAdvanceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Settled
+        {
+            get
+            {
+                return _Settled;
+            }
+            set
+            {
+                OnSettledChanging(value);
+                ReportPropertyChanging("Settled");
+                _Settled = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Settled");
+                OnSettledChanged();
+            }
+        }
+        private global::System.Boolean _Settled;
+        partial void OnSettledChanging(global::System.Boolean value);
+        partial void OnSettledChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -4393,7 +4608,6 @@ namespace Domain
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -4413,24 +4627,25 @@ namespace Domain
         /// <param name="visitId">Initial value of the VisitId property.</param>
         /// <param name="startDate">Initial value of the StartDate property.</param>
         /// <param name="endDate">Initial value of the EndDate property.</param>
-        public static VisitMealPlan CreateVisitMealPlan(global::System.Int32 planId, global::System.Int32 visitId, global::System.DateTime startDate, global::System.DateTime endDate)
+        /// <param name="id">Initial value of the Id property.</param>
+        public static VisitMealPlan CreateVisitMealPlan(global::System.Int32 planId, global::System.Int32 visitId, global::System.DateTime startDate, global::System.DateTime endDate, global::System.Int32 id)
         {
             VisitMealPlan visitMealPlan = new VisitMealPlan();
             visitMealPlan.PlanId = planId;
             visitMealPlan.VisitId = visitId;
             visitMealPlan.StartDate = startDate;
             visitMealPlan.EndDate = endDate;
+            visitMealPlan.Id = id;
             return visitMealPlan;
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int32 PlanId
         {
@@ -4440,14 +4655,11 @@ namespace Domain
             }
             set
             {
-                if (_PlanId != value)
-                {
-                    OnPlanIdChanging(value);
-                    ReportPropertyChanging("PlanId");
-                    _PlanId = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("PlanId");
-                    OnPlanIdChanged();
-                }
+                OnPlanIdChanging(value);
+                ReportPropertyChanging("PlanId");
+                _PlanId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PlanId");
+                OnPlanIdChanged();
             }
         }
         private global::System.Int32 _PlanId;
@@ -4457,7 +4669,7 @@ namespace Domain
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int32 VisitId
         {
@@ -4467,14 +4679,11 @@ namespace Domain
             }
             set
             {
-                if (_VisitId != value)
-                {
-                    OnVisitIdChanging(value);
-                    ReportPropertyChanging("VisitId");
-                    _VisitId = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("VisitId");
-                    OnVisitIdChanged();
-                }
+                OnVisitIdChanging(value);
+                ReportPropertyChanging("VisitId");
+                _VisitId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("VisitId");
+                OnVisitIdChanged();
             }
         }
         private global::System.Int32 _VisitId;
@@ -4484,7 +4693,7 @@ namespace Domain
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.DateTime StartDate
         {
@@ -4494,14 +4703,11 @@ namespace Domain
             }
             set
             {
-                if (_StartDate != value)
-                {
-                    OnStartDateChanging(value);
-                    ReportPropertyChanging("StartDate");
-                    _StartDate = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("StartDate");
-                    OnStartDateChanged();
-                }
+                OnStartDateChanging(value);
+                ReportPropertyChanging("StartDate");
+                _StartDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("StartDate");
+                OnStartDateChanged();
             }
         }
         private global::System.DateTime _StartDate;
@@ -4511,7 +4717,7 @@ namespace Domain
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.DateTime EndDate
         {
@@ -4521,22 +4727,45 @@ namespace Domain
             }
             set
             {
-                if (_EndDate != value)
-                {
-                    OnEndDateChanging(value);
-                    ReportPropertyChanging("EndDate");
-                    _EndDate = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("EndDate");
-                    OnEndDateChanged();
-                }
+                OnEndDateChanging(value);
+                ReportPropertyChanging("EndDate");
+                _EndDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("EndDate");
+                OnEndDateChanged();
             }
         }
         private global::System.DateTime _EndDate;
         partial void OnEndDateChanging(global::System.DateTime value);
         partial void OnEndDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -4617,10 +4846,8 @@ namespace Domain
         }
 
         #endregion
-
     }
 
     #endregion
-
     
 }

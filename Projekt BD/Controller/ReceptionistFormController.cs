@@ -54,7 +54,7 @@
             this.Form.AboutToolStripMenuItem.Click += this.AboutToolStripMenuItem_Click;
             this.Form.NewClientButton.Click += this.NewClientButton_Click;
             this.Form.NewReservationButton.Click += this.NewReservationButton_Click;
-            this.Form.NewVisitButton.Click += this.NewVisitButton_Click;
+            this.Form.EditMealPlansForVisit.Click += this.EditMealPlansForVisitClick;
             this.Form.ReservationSearchButton.Click += this.ReservationSearchButton_Click;
             this.Form.StartDateReservationSearchDateTimePicker.ValueChanged += this.StartDateReservationSearchDateTimePicker_ValueChanged;
             this.Form.EndDateReservationSearchDateTimePicker.ValueChanged += this.EndDateReservationSearchDateTimePicker_ValueChanged;
@@ -80,8 +80,6 @@
             this.Form.ReservationIntoVisitButton.Click += this.ReservationIntoVisitButton_Click;
             this.Form.ServicesButton.Click += this.EditServiceForVisitClick;
         }
-
-        
 
         private void ReservationSearchResultDataGridView_Refresh()
         {
@@ -651,6 +649,22 @@
                 int rowIndex = this.Form.VisitSearchResultsDataGridView.SelectedRows[0].Index;
                 int index = (int)this.Form.VisitSearchResultsDataGridView["Id", rowIndex].Value;
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.EditServiceForVisit);
+                controller.ItemToEditID = index;
+                controller.Form.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Należy zaznaczyć rezerwację", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+            }
+        }
+
+        private void EditMealPlansForVisitClick(object sender, EventArgs e)
+        {
+            if (this.Form.VisitSearchResultsDataGridView.SelectedRows.Count > 0)
+            {
+                int rowIndex = this.Form.VisitSearchResultsDataGridView.SelectedRows[0].Index;
+                int index = (int)this.Form.VisitSearchResultsDataGridView["Id", rowIndex].Value;
+                var controller = ControllerFactory.Instance.Create(ControllerTypes.MealPlansForm);
                 controller.ItemToEditID = index;
                 controller.Form.ShowDialog();
             }

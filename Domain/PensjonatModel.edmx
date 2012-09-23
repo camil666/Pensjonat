@@ -12,6 +12,15 @@
           <EntitySet Name="Features" EntityType="PensjonatModel.Store.Features" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Guests" EntityType="PensjonatModel.Store.Guests" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MealPlans" EntityType="PensjonatModel.Store.MealPlans" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MealPrices" EntityType="PensjonatModel.Store.MealPrices" store:Type="Tables" store:Schema="dbo" store:Name="MealPrices">
+            <DefiningQuery>SELECT 
+      [MealPrices].[BreakfastPrice] AS [BreakfastPrice], 
+      [MealPrices].[LunchPrice] AS [LunchPrice], 
+      [MealPrices].[DinnerPrice] AS [DinnerPrice], 
+      [MealPrices].[ThreeMealsPrice] AS [ThreeMealsPrice], 
+      [MealPrices].[Id] AS [Id]
+      FROM [dbo].[MealPrices] AS [MealPrices]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="Reservations" EntityType="PensjonatModel.Store.Reservations" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Roles" EntityType="PensjonatModel.Store.Roles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RoomFeatures" EntityType="PensjonatModel.Store.RoomFeatures" store:Type="Tables" Schema="dbo" />
@@ -22,14 +31,7 @@
           <EntitySet Name="ServiceTypes" EntityType="PensjonatModel.Store.ServiceTypes" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tasks" EntityType="PensjonatModel.Store.Tasks" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TaskTypes" EntityType="PensjonatModel.Store.TaskTypes" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="VisitMealPlans" EntityType="PensjonatModel.Store.VisitMealPlans" store:Type="Tables" store:Schema="dbo" store:Name="VisitMealPlans">
-            <DefiningQuery>SELECT 
-      [VisitMealPlans].[PlanId] AS [PlanId], 
-      [VisitMealPlans].[VisitId] AS [VisitId], 
-      [VisitMealPlans].[StartDate] AS [StartDate], 
-      [VisitMealPlans].[EndDate] AS [EndDate]
-      FROM [dbo].[VisitMealPlans] AS [VisitMealPlans]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="VisitMealPlans" EntityType="PensjonatModel.Store.VisitMealPlans" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Visits" EntityType="PensjonatModel.Store.Visits" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_Discount_Guest" Association="PensjonatModel.Store.FK_Discount_Guest">
             <End Role="Guests" EntitySet="Guests" />
@@ -181,6 +183,24 @@
           <Property Name="Diet" Type="bit" Nullable="false" />
           <Property Name="ToRoom" Type="bit" Nullable="false" />
           <Property Name="AdditionalInfo" Type="varchar" MaxLength="50" />
+          <Property Name="Price" Type="float" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'DBPensjon.dbo.MealPrices' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="MealPrices">
+          <Key>
+            
+            
+            
+            
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="BreakfastPrice" Type="float" Nullable="false" />
+          <Property Name="LunchPrice" Type="float" Nullable="false" />
+          <Property Name="DinnerPrice" Type="float" Nullable="false" />
+          <Property Name="ThreeMealsPrice" Type="float" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="Reservations">
           <Key>
@@ -191,6 +211,7 @@
           <Property Name="StartDate" Type="date" Nullable="false" />
           <Property Name="EndDate" Type="date" Nullable="false" />
           <Property Name="AdditionalInfo" Type="varchar" MaxLength="50" />
+          <Property Name="IsVisit" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -282,20 +303,15 @@
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Description" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBPensjon.dbo.VisitMealPlans' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
         <EntityType Name="VisitMealPlans">
           <Key>
-            <PropertyRef Name="PlanId" />
-            <PropertyRef Name="VisitId" />
-            <PropertyRef Name="StartDate" />
-            <PropertyRef Name="EndDate" />
+            <PropertyRef Name="Id" />
           </Key>
           <Property Name="PlanId" Type="int" Nullable="false" />
           <Property Name="VisitId" Type="int" Nullable="false" />
           <Property Name="StartDate" Type="date" Nullable="false" />
           <Property Name="EndDate" Type="date" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="Visits">
           <Key>
@@ -309,6 +325,7 @@
           <Property Name="EndDate" Type="date" Nullable="false" />
           <Property Name="AdditionalInfo" Type="varchar" MaxLength="50" />
           <Property Name="Advance" Type="float" />
+          <Property Name="Settled" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_Discount_Guest">
           <End Role="Guests" Type="PensjonatModel.Store.Guests" Multiplicity="1" />
@@ -627,6 +644,7 @@
             <End Role="Features" EntitySet="Features" />
             <End Role="Rooms" EntitySet="Rooms" />
           </AssociationSet>
+          <EntitySet Name="MealPrices" EntityType="PensjonatModel.MealPrice" />
         </EntityContainer>
         <EntityType Name="Discount">
           <Key>
@@ -703,6 +721,7 @@
           <Property Name="ToRoom" Type="Boolean" Nullable="false" />
           <Property Name="AdditionalInfo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="VisitMealPlans" Relationship="PensjonatModel.FK_VisitMealPlan_MealPlan" FromRole="MealPlans" ToRole="VisitMealPlans" />
+          <Property Type="Double" Name="Price" Nullable="false" />
         </EntityType>
         <EntityType Name="Reservation">
           <Key>
@@ -715,6 +734,7 @@
           <Property Name="AdditionalInfo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Guest" Relationship="PensjonatModel.FK_Reservation_Guest" FromRole="Reservations" ToRole="Guests" />
           <NavigationProperty Name="RoomReservations" Relationship="PensjonatModel.FK_RoomReservation_Reservation" FromRole="Reservations" ToRole="RoomReservations" />
+          <Property Type="Boolean" Name="IsVisit" Nullable="false" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -815,10 +835,7 @@
         </EntityType>
         <EntityType Name="VisitMealPlan">
           <Key>
-            <PropertyRef Name="PlanId" />
-            <PropertyRef Name="VisitId" />
-            <PropertyRef Name="StartDate" />
-            <PropertyRef Name="EndDate" />
+            <PropertyRef Name="Id" />
           </Key>
           <Property Name="PlanId" Type="Int32" Nullable="false" />
           <Property Name="VisitId" Type="Int32" Nullable="false" />
@@ -826,6 +843,7 @@
           <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="MealPlan" Relationship="PensjonatModel.FK_VisitMealPlan_MealPlan" FromRole="VisitMealPlans" ToRole="MealPlans" />
           <NavigationProperty Name="Visit" Relationship="PensjonatModel.FK_VisitMealPlan_Visit" FromRole="VisitMealPlans" ToRole="Visits" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="Visit">
           <Key>
@@ -845,6 +863,7 @@
           <NavigationProperty Name="VisitMealPlans" Relationship="PensjonatModel.FK_VisitMealPlan_Visit" FromRole="Visits" ToRole="VisitMealPlans" />
           <NavigationProperty Name="Visits1" Relationship="PensjonatModel.FK_Visit_Visit" FromRole="Visits" ToRole="Visits1" />
           <NavigationProperty Name="Visit1" Relationship="PensjonatModel.FK_Visit_Visit" FromRole="Visits1" ToRole="Visits" />
+          <Property Type="Boolean" Name="Settled" Nullable="false" />
         </EntityType>
         <Association Name="FK_Discount_Guest">
           <End Role="Guests" Type="PensjonatModel.Guest" Multiplicity="1" />
@@ -1034,6 +1053,16 @@
           <End Role="Features" Type="PensjonatModel.Feature" Multiplicity="*" />
           <End Role="Rooms" Type="PensjonatModel.Room" Multiplicity="*" />
         </Association>
+        <EntityType Name="MealPrice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Double" Name="BreakfastPrice" Nullable="false" />
+          <Property Type="Double" Name="LunchPrice" Nullable="false" />
+          <Property Type="Double" Name="DinnerPrice" Nullable="false" />
+          <Property Type="Double" Name="ThreeMealsPrice" Nullable="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1082,7 +1111,8 @@
             <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="MealPlans"><EntityTypeMapping TypeName="PensjonatModel.MealPlan"><MappingFragment StoreEntitySet="MealPlans">
-            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
             <ScalarProperty Name="PeopleCount" ColumnName="PeopleCount" />
             <ScalarProperty Name="Breakfast" ColumnName="Breakfast" />
             <ScalarProperty Name="Lunch" ColumnName="Lunch" />
@@ -1093,7 +1123,8 @@
             <ScalarProperty Name="AdditionalInfo" ColumnName="AdditionalInfo" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Reservations"><EntityTypeMapping TypeName="PensjonatModel.Reservation"><MappingFragment StoreEntitySet="Reservations">
-            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="IsVisit" ColumnName="IsVisit" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
             <ScalarProperty Name="GuestId" ColumnName="GuestId" />
             <ScalarProperty Name="StartDate" ColumnName="StartDate" />
             <ScalarProperty Name="EndDate" ColumnName="EndDate" />
@@ -1158,13 +1189,15 @@
             <ScalarProperty Name="Description" ColumnName="Description" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="VisitMealPlans"><EntityTypeMapping TypeName="PensjonatModel.VisitMealPlan"><MappingFragment StoreEntitySet="VisitMealPlans">
-            <ScalarProperty Name="PlanId" ColumnName="PlanId" />
+            <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PlanId" ColumnName="PlanId" />
             <ScalarProperty Name="VisitId" ColumnName="VisitId" />
             <ScalarProperty Name="StartDate" ColumnName="StartDate" />
             <ScalarProperty Name="EndDate" ColumnName="EndDate" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Visits"><EntityTypeMapping TypeName="PensjonatModel.Visit"><MappingFragment StoreEntitySet="Visits">
-            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Settled" ColumnName="Settled" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
             <ScalarProperty Name="ParentId" ColumnName="ParentId" />
             <ScalarProperty Name="GuestId" ColumnName="GuestId" />
             <ScalarProperty Name="RoomId" ColumnName="RoomId" />
@@ -1189,6 +1222,17 @@
               <ScalarProperty Name="Number" ColumnName="RoomNumber" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="MealPrices">
+            <EntityTypeMapping TypeName="PensjonatModel.MealPrice">
+              <MappingFragment StoreEntitySet="MealPrices">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ThreeMealsPrice" ColumnName="ThreeMealsPrice" />
+                <ScalarProperty Name="DinnerPrice" ColumnName="DinnerPrice" />
+                <ScalarProperty Name="LunchPrice" ColumnName="LunchPrice" />
+                <ScalarProperty Name="BreakfastPrice" ColumnName="BreakfastPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1249,7 +1293,7 @@
           <ConnectorPoint PointX="5.541666666666667" PointY="8.8939925130208337" />
           <ConnectorPoint PointX="5.708333333333333" PointY="8.8939925130208337" />
           <ConnectorPoint PointX="7.15625" PointY="8.8939925130208337" />
-          <ConnectorPoint PointX="7.15625" PointY="8.0859993489583388" />
+          <ConnectorPoint PointX="7.15625" PointY="8.27830078125" />
         </AssociationConnector>
         <AssociationConnector Association="PensjonatModel.FK_VisitMealPlan_MealPlan" ManuallyRouted="false">
           <ConnectorPoint PointX="10.5" PointY="2.2208968098958328" />
@@ -1282,9 +1326,9 @@
         <AssociationConnector Association="PensjonatModel.FK_Service_ServiceType" ManuallyRouted="false">
           <ConnectorPoint PointX="7.5" PointY="19.2112939453125" />
           <ConnectorPoint PointX="8.75" PointY="19.2112939453125" />
-          <ConnectorPoint PointX="8.75" PointY="17.5" />
-          <ConnectorPoint PointX="9" PointY="17.5" />
-          <ConnectorPoint PointX="9" PointY="7.8263964843750031" />
+          <ConnectorPoint PointX="9.125" PointY="17.5" />
+          <ConnectorPoint PointX="9.375" PointY="7.8263964843750031" />
+          <ConnectorPoint PointX="9.375" PointY="17.5" />
         </AssociationConnector>
         <AssociationConnector Association="PensjonatModel.FK_Service_Visit" ManuallyRouted="false">
           <ConnectorPoint PointX="7.5" PointY="6.1631982421875016" />
@@ -1298,17 +1342,17 @@
           <ConnectorPoint PointX="9.75" PointY="17.75" />
         </AssociationConnector>
         <AssociationConnector Association="PensjonatModel.FK_VisitMealPlan_Visit" ManuallyRouted="false">
-          <ConnectorPoint PointX="7.5" PointY="7.987447916666671" />
-          <ConnectorPoint PointX="8.9166666666666661" PointY="7.98744791666667" />
-          <ConnectorPoint PointX="9.0833333333333339" PointY="7.987447916666671" />
-          <ConnectorPoint PointX="12" PointY="7.987447916666671" />
-          <ConnectorPoint PointX="12" PointY="7.297587890624996" />
+          <ConnectorPoint PointX="7.5" PointY="8.0835986328125014" />
+          <ConnectorPoint PointX="9.2916666666666661" PointY="8.0835986328125014" />
+          <ConnectorPoint PointX="9.4583333333333339" PointY="8.0835986328125014" />
+          <ConnectorPoint PointX="12" PointY="8.0835986328125014" />
+          <ConnectorPoint PointX="12" PointY="7.4898893229166656" />
         </AssociationConnector>
         <AssociationConnector Association="PensjonatModel.FK_Visit_Visit" ManuallyRouted="false">
-          <ConnectorPoint PointX="6" PointY="5.6552613181089768" />
-          <ConnectorPoint PointX="5.75" PointY="5.6552613181089768" />
-          <ConnectorPoint PointX="5.75" PointY="6.8331303335336582" />
-          <ConnectorPoint PointX="6" PointY="6.8331303335336582" />
+          <ConnectorPoint PointX="6" PointY="5.72034795673077" />
+          <ConnectorPoint PointX="5.75" PointY="5.72034795673077" />
+          <ConnectorPoint PointX="5.75" PointY="6.9618243689903849" />
+          <ConnectorPoint PointX="6" PointY="6.9618243689903849" />
         </AssociationConnector>
         <AssociationConnector Association="PensjonatModel.EmployeeServices" ManuallyRouted="false">
           <ConnectorPoint PointX="5.25" PointY="19.2112939453125" />
@@ -1318,6 +1362,7 @@
           <ConnectorPoint PointX="3" PointY="4.18724609375" />
           <ConnectorPoint PointX="3.75" PointY="4.18724609375" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="PensjonatModel.MealPrice" Width="1.5" PointX="0.75" PointY="0.75" Height="1.9802864583333388" />
       </Diagram>
     </Diagrams>
   </Designer>

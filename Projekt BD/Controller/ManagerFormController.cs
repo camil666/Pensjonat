@@ -195,7 +195,7 @@ namespace Projekt_BD.Controller
         private void AddTasksButton_Click(object sender, EventArgs e)
         {
             var controller = ControllerFactory.Instance.Create(ControllerTypes.EditTaskForm);
-            controller.EmployeeIdForManagerController = this.SelectedEmployeeId;
+            controller.SecondaryId = this.SelectedEmployeeId;
             if (controller.Form.ShowDialog() == DialogResult.OK)
             {
                 this.LoadTasks();

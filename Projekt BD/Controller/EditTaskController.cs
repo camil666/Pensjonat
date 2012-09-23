@@ -69,7 +69,7 @@ namespace Projekt_BD.Controller
             this.Form.TaskTypeComboBox.DataSource = new BindingSource(availableTypes, null);
             this.Form.TaskTypeComboBox.DisplayMember = "Value";
             this.Form.TaskTypeComboBox.ValueMember = "Key";
-
+            
             if (this.IsEditForm)
             {
                 this.task = DataAccess.Instance.Tasks.Single(x => x.Id == this.ItemToEditID);
@@ -145,7 +145,7 @@ namespace Projekt_BD.Controller
                     TypeId = taskTypeId,
                     StartDate = startDate,
                     EndDate = endDate,
-                    EmployeeId = this.EmployeeIdForManagerController
+                    EmployeeId = this.SecondaryId
                 };
 
                 DataAccess.Instance.Tasks.Add(this.task);

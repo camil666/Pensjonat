@@ -117,6 +117,11 @@
                 case ControllerTypes.EditServiceDetailsForm:
                     return new EditServiceDetailsController();
 
+                case ControllerTypes.MealPlansForm:
+                    return new MealPlanController();
+
+                case ControllerTypes.EditMealPlansForVisitForm:
+                    return new EditMealPlanController();
                 default:
                     return null;
             }

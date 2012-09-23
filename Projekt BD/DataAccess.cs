@@ -43,6 +43,9 @@
             this.TaskTypes = new Repository<TaskType>(this.Context);
             this.Services = new Repository<Service>(this.Context);
             this.ServiceTypes = new Repository<ServiceType>(this.Context);
+            this.MealPlans = new Repository<MealPlan>(this.Context);
+            this.VisitMealPlans = new Repository<VisitMealPlan>(this.Context);
+            this.MealPrices = new Repository<MealPrice>(this.Context);
         }
 
         #endregion
@@ -192,6 +195,31 @@
         /// Service type.
         /// </value>
         public Repository<ServiceType> ServiceTypes { get; private set; }
+
+
+        /// <summary>
+        /// Gets service types.
+        /// </summary>
+        /// <value>
+        /// Service type.
+        /// </value>
+        public Repository<MealPlan> MealPlans { get; private set; }
+
+        /// <summary>
+        /// Gets service types.
+        /// </summary>
+        /// <value>
+        /// Service type.
+        /// </value>
+        public Repository<VisitMealPlan> VisitMealPlans { get; private set; }
+
+        /// <summary>
+        /// Gets service types.
+        /// </summary>
+        /// <value>
+        /// Service type.
+        /// </value>
+        public Repository<MealPrice> MealPrices { get; private set; }
 
         /// <summary>
         /// Gets or sets the context.

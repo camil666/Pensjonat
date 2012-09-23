@@ -12,7 +12,7 @@
 
         int ItemToEditID { get; set; }
 
-        int EmployeeIdForManagerController { get; set; }
+        int SecondaryId { get; set; }
 
         #endregion
     }

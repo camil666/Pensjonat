@@ -22,9 +22,7 @@
 
         public int ItemToEditID { get; set; }
 
-        public int EmployeeIdForManagerController { get; set; }
-
-        public int VisitIdForServiceController { get; set; }
+        public int SecondaryId { get; set; }
 
         protected bool IsEditForm
         {

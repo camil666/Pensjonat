@@ -45,7 +45,7 @@
             this.VisitSearchButton = new System.Windows.Forms.Button();
             this.VisitSearchResultsDataGridView = new System.Windows.Forms.DataGridView();
             this.VisitActionsGroupBox = new System.Windows.Forms.GroupBox();
-            this.NewVisitButton = new System.Windows.Forms.Button();
+            this.EditMealPlansForVisit = new System.Windows.Forms.Button();
             this.PrintingButton = new System.Windows.Forms.Button();
             this.ServicesButton = new System.Windows.Forms.Button();
             this.DiscountsButton = new System.Windows.Forms.Button();
@@ -301,13 +301,14 @@
             this.VisitSearchResultsDataGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.VisitSearchResultsDataGridView.Location = new System.Drawing.Point(3, 172);
             this.VisitSearchResultsDataGridView.Name = "VisitSearchResultsDataGridView";
+            this.VisitSearchResultsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.VisitSearchResultsDataGridView.Size = new System.Drawing.Size(508, 355);
             this.VisitSearchResultsDataGridView.TabIndex = 8;
             this.VisitSearchResultsDataGridView.TabStop = false;
             // 
             // VisitActionsGroupBox
             // 
-            this.VisitActionsGroupBox.Controls.Add(this.NewVisitButton);
+            this.VisitActionsGroupBox.Controls.Add(this.EditMealPlansForVisit);
             this.VisitActionsGroupBox.Controls.Add(this.PrintingButton);
             this.VisitActionsGroupBox.Controls.Add(this.ServicesButton);
             this.VisitActionsGroupBox.Controls.Add(this.DiscountsButton);
@@ -320,14 +321,14 @@
             this.VisitActionsGroupBox.TabStop = false;
             this.VisitActionsGroupBox.Text = "Akcje";
             // 
-            // NewVisitButton
+            // EditMealPlansForVisit
             // 
-            this.NewVisitButton.Location = new System.Drawing.Point(50, 350);
-            this.NewVisitButton.Name = "NewVisitButton";
-            this.NewVisitButton.Size = new System.Drawing.Size(150, 23);
-            this.NewVisitButton.TabIndex = 4;
-            this.NewVisitButton.Text = "Nowy pobyt...";
-            this.NewVisitButton.UseVisualStyleBackColor = true;
+            this.EditMealPlansForVisit.Location = new System.Drawing.Point(50, 303);
+            this.EditMealPlansForVisit.Name = "EditMealPlansForVisit";
+            this.EditMealPlansForVisit.Size = new System.Drawing.Size(150, 23);
+            this.EditMealPlansForVisit.TabIndex = 4;
+            this.EditMealPlansForVisit.Text = "Edytuj posiłki...";
+            this.EditMealPlansForVisit.UseVisualStyleBackColor = true;
             // 
             // PrintingButton
             // 
@@ -1124,6 +1125,7 @@
             this.ServiceDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ServiceDataGridView.Location = new System.Drawing.Point(4, 49);
             this.ServiceDataGridView.Name = "ServiceDataGridView";
+            this.ServiceDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ServiceDataGridView.Size = new System.Drawing.Size(766, 479);
             this.ServiceDataGridView.TabIndex = 3;
             this.ServiceDataGridView.TabStop = false;
@@ -1268,7 +1270,6 @@
         public System.Windows.Forms.TabControl TabControl;
         public System.Windows.Forms.Button VisitSearchButton;
         public System.Windows.Forms.DataGridView VisitSearchResultsDataGridView;
-        public System.Windows.Forms.Button NewVisitButton;
         public System.Windows.Forms.Button PrintingButton;
         public System.Windows.Forms.Button ServicesButton;
         public System.Windows.Forms.Button DiscountsButton;
@@ -1303,5 +1304,6 @@
         public System.Windows.Forms.Button RefreshServiceButton;
         public System.Windows.Forms.Button EditServiceButton;
         public System.Windows.Forms.Button NewServiceButton;
+        public System.Windows.Forms.Button EditMealPlansForVisit;
     }
 }

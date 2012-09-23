@@ -75,6 +75,10 @@
 
         EditServiceForVisit,
 
-        EditServiceDetailsForm
+        EditServiceDetailsForm,
+
+        MealPlansForm,
+
+        EditMealPlansForVisitForm
     }
 }
