@@ -24,6 +24,8 @@
 
         public int EmployeeIdForManagerController { get; set; }
 
+        public int VisitIdForServiceController { get; set; }
+
         protected bool IsEditForm
         {
             get

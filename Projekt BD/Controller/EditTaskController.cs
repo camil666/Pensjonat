@@ -113,9 +113,8 @@ namespace Projekt_BD.Controller
             bool isDone = this.Form.IsDoneCheckBox.Checked;
             int taskTypeId = 0;
             int.TryParse(this.Form.TaskTypeComboBox.SelectedValue.ToString(), out taskTypeId);
-            bool validateDate = startDate >= endDate;
 
-            if (string.IsNullOrEmpty(taskName) || string.IsNullOrEmpty(taskDescription) || validateDate)
+            if (string.IsNullOrEmpty(taskName) || string.IsNullOrEmpty(taskDescription) || startDate >= endDate)
             {
                 MessageBox.Show(
                     "Podane wartości nie są prawidłowe lub pozostawiono niewypełnione pola.",

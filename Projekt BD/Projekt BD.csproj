@@ -64,6 +64,8 @@
     <Compile Include="Controller\EditRoomController.cs" />
     <Compile Include="Controller\EditRoomFeatureController.cs" />
     <Compile Include="Controller\EditRoomTypeController.cs" />
+    <Compile Include="Controller\EditServiceDetailsController.cs" />
+    <Compile Include="Controller\EditServiceForVisitController.cs" />
     <Compile Include="Controller\EditTaskController.cs" />
     <Compile Include="Controller\EditTaskTypeController.cs" />
     <Compile Include="Controller\EmployeeFormController.cs" />
@@ -117,11 +119,23 @@
     <Compile Include="View\EditRoomTypeForm.Designer.cs">
       <DependentUpon>EditRoomTypeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\EditServiceDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\EditServiceDetails.Designer.cs">
+      <DependentUpon>EditServiceDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\EditServiceForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\EditServiceForm.Designer.cs">
       <DependentUpon>EditServiceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditServiceForVisitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\EditServiceForVisitForm.Designer.cs">
+      <DependentUpon>EditServiceForVisitForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\EditTaskForm.cs">
       <SubType>Form</SubType>
@@ -200,8 +214,14 @@
     <EmbeddedResource Include="View\EditRoomTypeForm.resx">
       <DependentUpon>EditRoomTypeForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\EditServiceDetails.resx">
+      <DependentUpon>EditServiceDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\EditServiceForm.resx">
       <DependentUpon>EditServiceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EditServiceForVisitForm.resx">
+      <DependentUpon>EditServiceForVisitForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\EditTaskForm.resx">
       <DependentUpon>EditTaskForm.cs</DependentUpon>

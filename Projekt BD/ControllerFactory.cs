@@ -110,6 +110,13 @@
 
                 case ControllerTypes.EditTaskTypeForm:
                     return new EditTaskTypeController();
+
+                case ControllerTypes.EditServiceForVisit:
+                    return new EditServiceForVisitController();
+
+                case ControllerTypes.EditServiceDetailsForm:
+                    return new EditServiceDetailsController();
+
                 default:
                     return null;
             }
