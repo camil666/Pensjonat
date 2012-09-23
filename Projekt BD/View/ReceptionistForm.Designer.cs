@@ -46,7 +46,7 @@
             this.VisitSearchResultsDataGridView = new System.Windows.Forms.DataGridView();
             this.VisitActionsGroupBox = new System.Windows.Forms.GroupBox();
             this.EditMealPlansForVisit = new System.Windows.Forms.Button();
-            this.PrintingButton = new System.Windows.Forms.Button();
+            this.GenerateReceiptButton = new System.Windows.Forms.Button();
             this.ServicesButton = new System.Windows.Forms.Button();
             this.DiscountsButton = new System.Windows.Forms.Button();
             this.ChargesButton = new System.Windows.Forms.Button();
@@ -309,7 +309,7 @@
             // VisitActionsGroupBox
             // 
             this.VisitActionsGroupBox.Controls.Add(this.EditMealPlansForVisit);
-            this.VisitActionsGroupBox.Controls.Add(this.PrintingButton);
+            this.VisitActionsGroupBox.Controls.Add(this.GenerateReceiptButton);
             this.VisitActionsGroupBox.Controls.Add(this.ServicesButton);
             this.VisitActionsGroupBox.Controls.Add(this.DiscountsButton);
             this.VisitActionsGroupBox.Controls.Add(this.ChargesButton);
@@ -330,14 +330,14 @@
             this.EditMealPlansForVisit.Text = "Edytuj posiłki...";
             this.EditMealPlansForVisit.UseVisualStyleBackColor = true;
             // 
-            // PrintingButton
+            // GenerateReceiptButton
             // 
-            this.PrintingButton.Location = new System.Drawing.Point(50, 100);
-            this.PrintingButton.Name = "PrintingButton";
-            this.PrintingButton.Size = new System.Drawing.Size(150, 23);
-            this.PrintingButton.TabIndex = 0;
-            this.PrintingButton.Text = "Drukowanie faktury...";
-            this.PrintingButton.UseVisualStyleBackColor = true;
+            this.GenerateReceiptButton.Location = new System.Drawing.Point(50, 100);
+            this.GenerateReceiptButton.Name = "GenerateReceiptButton";
+            this.GenerateReceiptButton.Size = new System.Drawing.Size(150, 23);
+            this.GenerateReceiptButton.TabIndex = 0;
+            this.GenerateReceiptButton.Text = "Generowanie faktury...";
+            this.GenerateReceiptButton.UseVisualStyleBackColor = true;
             // 
             // ServicesButton
             // 
@@ -1270,7 +1270,7 @@
         public System.Windows.Forms.TabControl TabControl;
         public System.Windows.Forms.Button VisitSearchButton;
         public System.Windows.Forms.DataGridView VisitSearchResultsDataGridView;
-        public System.Windows.Forms.Button PrintingButton;
+        public System.Windows.Forms.Button GenerateReceiptButton;
         public System.Windows.Forms.Button ServicesButton;
         public System.Windows.Forms.Button DiscountsButton;
         public System.Windows.Forms.Button ChargesButton;

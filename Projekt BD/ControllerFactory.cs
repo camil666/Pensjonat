@@ -119,6 +119,8 @@
 
                 case ControllerTypes.MealPlansForm:
                     return new MealPlanController();
+                case ControllerTypes.GenerateReceiptForm:
+                    return new GenerateReceiptController();
 
                 case ControllerTypes.EditMealPlansForVisitForm:
                     return new EditMealPlanController();

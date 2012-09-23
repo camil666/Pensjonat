@@ -44,6 +44,7 @@
             this.Services = new Repository<Service>(this.Context);
             this.ServiceTypes = new Repository<ServiceType>(this.Context);
             this.MealPlans = new Repository<MealPlan>(this.Context);
+            this.Discounts = new Repository<Discount>(this.Context);
             this.VisitMealPlans = new Repository<VisitMealPlan>(this.Context);
             this.MealPrices = new Repository<MealPrice>(this.Context);
         }
@@ -203,6 +204,13 @@
         /// <value>
         /// Service type.
         /// </value>
+        /// <summary>
+        /// Gets the discounts.
+        /// </summary>
+        /// <value>
+        /// The discounts.
+        /// </value>
+        public Repository<Discount> Discounts { get; private set; }
         public Repository<MealPlan> MealPlans { get; private set; }
 
         /// <summary>

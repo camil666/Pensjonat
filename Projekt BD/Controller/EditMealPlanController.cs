@@ -114,7 +114,8 @@ namespace Projekt_BD.Controller
                     price += mealPrice.LunchPrice;
                 }
             }
-            
+
+            price *= count;
 
             if (this.IsEditForm)
             {
@@ -125,6 +126,7 @@ namespace Projekt_BD.Controller
                 this.visitMealPlan.MealPlan.Lunch = lunch;
                 this.visitMealPlan.MealPlan.ToRoom = toRoom;
                 this.visitMealPlan.MealPlan.Vegetarian = vegetarian;
+                this.visitMealPlan.MealPlan.Price = price;
                 this.visitMealPlan.StartDate = startDate;
                 this.visitMealPlan.EndDate = endDate;
                 this.visitMealPlan.MealPlan.AdditionalInfo = additionalInfo;

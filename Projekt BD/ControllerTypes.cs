@@ -78,6 +78,7 @@
         EditServiceDetailsForm,
 
         MealPlansForm,
+        GenerateReceiptForm,
 
         EditMealPlansForVisitForm
     }
