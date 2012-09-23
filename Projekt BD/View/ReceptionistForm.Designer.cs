@@ -128,6 +128,10 @@
             this.RefreshServiceButton = new System.Windows.Forms.Button();
             this.EditServiceButton = new System.Windows.Forms.Button();
             this.NewServiceButton = new System.Windows.Forms.Button();
+            this.DeleteRoomButton = new System.Windows.Forms.Button();
+            this.DeleteRoomTypeButton = new System.Windows.Forms.Button();
+            this.DeleteFeatureButton = new System.Windows.Forms.Button();
+            this.DeleteServiceTypeButton = new System.Windows.Forms.Button();
             this.MenuStrip.SuspendLayout();
             this.VisitManagementTabPage.SuspendLayout();
             this.VisitSearchMainGroupBox.SuspendLayout();
@@ -941,6 +945,7 @@
             // 
             // FeaturesGroupBox
             // 
+            this.FeaturesGroupBox.Controls.Add(this.DeleteFeatureButton);
             this.FeaturesGroupBox.Controls.Add(this.RefreshFeaturesButton);
             this.FeaturesGroupBox.Controls.Add(this.EditFeaturesButton);
             this.FeaturesGroupBox.Controls.Add(this.AddFeaturesButton);
@@ -994,6 +999,7 @@
             // 
             // RoomTypesGroupBox
             // 
+            this.RoomTypesGroupBox.Controls.Add(this.DeleteRoomTypeButton);
             this.RoomTypesGroupBox.Controls.Add(this.RefreshRoomTypesButton);
             this.RoomTypesGroupBox.Controls.Add(this.EditRoomTypeButton);
             this.RoomTypesGroupBox.Controls.Add(this.AddRoomTypeButton);
@@ -1046,6 +1052,7 @@
             // 
             // RoomsGroupBox
             // 
+            this.RoomsGroupBox.Controls.Add(this.DeleteRoomButton);
             this.RoomsGroupBox.Controls.Add(this.RefreshRoomsButton);
             this.RoomsGroupBox.Controls.Add(this.AllRoomsDataGridView);
             this.RoomsGroupBox.Controls.Add(this.EditRoomButton);
@@ -1109,6 +1116,7 @@
             // 
             // ServiceGroupBox
             // 
+            this.ServiceGroupBox.Controls.Add(this.DeleteServiceTypeButton);
             this.ServiceGroupBox.Controls.Add(this.ServiceDataGridView);
             this.ServiceGroupBox.Controls.Add(this.RefreshServiceButton);
             this.ServiceGroupBox.Controls.Add(this.EditServiceButton);
@@ -1156,6 +1164,42 @@
             this.NewServiceButton.TabIndex = 0;
             this.NewServiceButton.Text = "Dodaj";
             this.NewServiceButton.UseVisualStyleBackColor = true;
+            // 
+            // DeleteRoomButton
+            // 
+            this.DeleteRoomButton.Location = new System.Drawing.Point(249, 19);
+            this.DeleteRoomButton.Name = "DeleteRoomButton";
+            this.DeleteRoomButton.Size = new System.Drawing.Size(75, 23);
+            this.DeleteRoomButton.TabIndex = 3;
+            this.DeleteRoomButton.Text = "Usuń pokój";
+            this.DeleteRoomButton.UseVisualStyleBackColor = true;
+            // 
+            // DeleteRoomTypeButton
+            // 
+            this.DeleteRoomTypeButton.Location = new System.Drawing.Point(249, 19);
+            this.DeleteRoomTypeButton.Name = "DeleteRoomTypeButton";
+            this.DeleteRoomTypeButton.Size = new System.Drawing.Size(75, 23);
+            this.DeleteRoomTypeButton.TabIndex = 4;
+            this.DeleteRoomTypeButton.Text = "Usuń typ";
+            this.DeleteRoomTypeButton.UseVisualStyleBackColor = true;
+            // 
+            // DeleteFeatureButton
+            // 
+            this.DeleteFeatureButton.Location = new System.Drawing.Point(250, 18);
+            this.DeleteFeatureButton.Name = "DeleteFeatureButton";
+            this.DeleteFeatureButton.Size = new System.Drawing.Size(75, 23);
+            this.DeleteFeatureButton.TabIndex = 6;
+            this.DeleteFeatureButton.Text = "Usuń";
+            this.DeleteFeatureButton.UseVisualStyleBackColor = true;
+            // 
+            // DeleteServiceTypeButton
+            // 
+            this.DeleteServiceTypeButton.Location = new System.Drawing.Point(248, 19);
+            this.DeleteServiceTypeButton.Name = "DeleteServiceTypeButton";
+            this.DeleteServiceTypeButton.Size = new System.Drawing.Size(75, 23);
+            this.DeleteServiceTypeButton.TabIndex = 4;
+            this.DeleteServiceTypeButton.Text = "Usuń";
+            this.DeleteServiceTypeButton.UseVisualStyleBackColor = true;
             // 
             // ReceptionistForm
             // 
@@ -1305,5 +1349,9 @@
         public System.Windows.Forms.Button EditServiceButton;
         public System.Windows.Forms.Button NewServiceButton;
         public System.Windows.Forms.Button EditMealPlansForVisit;
+        public System.Windows.Forms.Button DeleteFeatureButton;
+        public System.Windows.Forms.Button DeleteRoomTypeButton;
+        public System.Windows.Forms.Button DeleteRoomButton;
+        public System.Windows.Forms.Button DeleteServiceTypeButton;
     }
 }

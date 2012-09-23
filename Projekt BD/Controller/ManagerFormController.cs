@@ -9,6 +9,7 @@ namespace Projekt_BD.Controller
     using System;
     using System.Collections.Generic;
     using System.Data;
+    using System.Globalization;
     using System.Linq;
     using System.Text;
     using System.Windows.Forms;
@@ -31,6 +32,8 @@ namespace Projekt_BD.Controller
         private static readonly string FirstNameColumnName = "FirstName";
 
         private static readonly string LastNameColumnName = "LastName";
+
+        private MealPrice mealPrices;
 
         #endregion
 
@@ -121,7 +124,7 @@ namespace Projekt_BD.Controller
             this.Form.AddTaskTypeButton.Click += this.AddTaskTypeButton_Click;
             this.Form.DeleteTaskTypeButton.Click += this.DeleteTaskTypeButton_Click;
             this.Form.EditTaskTypeButton.Click += this.EditTaskTypeButton_Click;
-
+            this.Form.SaveButton.Click += this.SaveButtonClick;
         }
 
         private void SetVisibiltyAndHeaderNamesOfEmployees()
@@ -181,6 +184,18 @@ namespace Projekt_BD.Controller
             }
         }
 
+        private void LoadSettings()
+        {
+            mealPrices = DataAccess.Instance.MealPrices.GetAll().FirstOrDefault();
+            if (mealPrices != null)
+            {
+                this.Form.BreakfastTextBox.Text = mealPrices.BreakfastPrice.ToString(CultureInfo.InvariantCulture);
+                this.Form.DinnerTextBox.Text = mealPrices.DinnerPrice.ToString(CultureInfo.InvariantCulture);
+                this.Form.LunchTextBox.Text = mealPrices.LunchPrice.ToString(CultureInfo.InvariantCulture);
+                this.Form.AllMealsTextBox.Text = mealPrices.ThreeMealsPrice.ToString(CultureInfo.InvariantCulture);
+            }
+        }
+
         #endregion
 
         #region Event Methods
@@ -189,16 +204,37 @@ namespace Projekt_BD.Controller
         {
             this.LoadEmployees();
             this.LoadTaskTypes();
+            this.LoadSettings();
             this.SetVisibiltyAndHeaderNamesOfTasks();
+        }
+
+        private void SaveButtonClick(object sender, EventArgs e)
+        {
+            double breakfast;
+            double lunch;
+            double dinner;
+            double all;
+            if (!double.TryParse(this.Form.BreakfastTextBox.Text, out breakfast) || !double.TryParse(this.Form.LunchTextBox.Text, out lunch) || 
+                !double.TryParse(this.Form.DinnerTextBox.Text, out dinner) || !double.TryParse(this.Form.AllMealsTextBox.Text, out all))
+            {
+                MessageBox.Show("Wprowadź poprawne dane!");
+                return;
+            }
+            mealPrices.BreakfastPrice = breakfast;
+            mealPrices.DinnerPrice = dinner;
+            mealPrices.LunchPrice = lunch;
+            mealPrices.ThreeMealsPrice = all;
+            DataAccess.Instance.UnitOfWork.Commit();
         }
 
         private void AddTasksButton_Click(object sender, EventArgs e)
         {
-            var controller = ControllerFactory.Instance.Create(ControllerTypes.EditTaskForm);
-            controller.SecondaryId = this.SelectedEmployeeId;
-            if (controller.Form.ShowDialog() == DialogResult.OK)
+            if (DataAccess.Instance.TaskTypes.GetAll().Any())
             {
-                this.LoadTasks();
+                var controller = ControllerFactory.Instance.Create(ControllerTypes.EditTaskForm);
+                controller.SecondaryId = this.SelectedEmployeeId;
+                controller.Form.ShowDialog();
+                this.LoadTasks();    
             }
         }
 
@@ -229,10 +265,8 @@ namespace Projekt_BD.Controller
             {
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.EditTaskForm);
                 controller.ItemToEditID = this.SelectedTaskId;
-                if (controller.Form.ShowDialog() == DialogResult.OK)
-                {
-                    this.LoadTasks();
-                }
+                controller.Form.ShowDialog();
+                this.LoadTasks();
             }
             else
             {
@@ -253,11 +287,8 @@ namespace Projekt_BD.Controller
             {
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.EditTaskTypeForm);
                 controller.ItemToEditID = this.SelectedTaskTypeId;
-                
-                if (controller.Form.ShowDialog() == DialogResult.OK)
-                {
-                    this.LoadTaskTypes();
-                }
+                controller.Form.ShowDialog();
+                this.LoadTaskTypes();
             }
             else
             {
@@ -295,10 +326,8 @@ namespace Projekt_BD.Controller
 
         private void AddTaskTypeButton_Click(object sender, EventArgs e)
         {
-            if (ControllerFactory.Instance.Create(ControllerTypes.EditTaskTypeForm).Form.ShowDialog() == DialogResult.OK)
-            {
-                this.LoadTaskTypes();
-            }
+            ControllerFactory.Instance.Create(ControllerTypes.EditTaskTypeForm).Form.ShowDialog();
+            this.LoadTaskTypes();
         }
 
         #endregion

@@ -43,6 +43,17 @@
             this.EditTaskTypeButton = new System.Windows.Forms.Button();
             this.AddTaskTypeButton = new System.Windows.Forms.Button();
             this.TaskTypesDataGridView = new System.Windows.Forms.DataGridView();
+            this.SettingsTabPage = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.BreakfastTextBox = new System.Windows.Forms.TextBox();
+            this.LunchTextBox = new System.Windows.Forms.TextBox();
+            this.DinnerTextBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.AllMealsTextBox = new System.Windows.Forms.TextBox();
+            this.SaveButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.TasksTabPage.SuspendLayout();
             this.TasksGroupBox.SuspendLayout();
@@ -52,12 +63,15 @@
             this.TaskTypesTabPage.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TaskTypesDataGridView)).BeginInit();
+            this.SettingsTabPage.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.TasksTabPage);
             this.tabControl1.Controls.Add(this.TaskTypesTabPage);
+            this.tabControl1.Controls.Add(this.SettingsTabPage);
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -73,7 +87,7 @@
             this.TasksTabPage.Padding = new System.Windows.Forms.Padding(3);
             this.TasksTabPage.Size = new System.Drawing.Size(710, 376);
             this.TasksTabPage.TabIndex = 0;
-            this.TasksTabPage.Text = "TasksTabPage";
+            this.TasksTabPage.Text = "Zadania";
             this.TasksTabPage.UseVisualStyleBackColor = true;
             // 
             // TasksGroupBox
@@ -121,6 +135,7 @@
             this.TasksDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TasksDataGridView.Location = new System.Drawing.Point(3, 50);
             this.TasksDataGridView.Name = "TasksDataGridView";
+            this.TasksDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.TasksDataGridView.Size = new System.Drawing.Size(339, 318);
             this.TasksDataGridView.TabIndex = 0;
             // 
@@ -139,6 +154,7 @@
             this.EmployeesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.EmployeesDataGridView.Location = new System.Drawing.Point(5, 17);
             this.EmployeesDataGridView.Name = "EmployeesDataGridView";
+            this.EmployeesDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.EmployeesDataGridView.Size = new System.Drawing.Size(350, 354);
             this.EmployeesDataGridView.TabIndex = 0;
             // 
@@ -150,7 +166,7 @@
             this.TaskTypesTabPage.Padding = new System.Windows.Forms.Padding(3);
             this.TaskTypesTabPage.Size = new System.Drawing.Size(710, 376);
             this.TaskTypesTabPage.TabIndex = 1;
-            this.TaskTypesTabPage.Text = "TaskTypesTabPage";
+            this.TaskTypesTabPage.Text = "Typy zadań";
             this.TaskTypesTabPage.UseVisualStyleBackColor = true;
             // 
             // groupBox1
@@ -198,8 +214,111 @@
             this.TaskTypesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TaskTypesDataGridView.Location = new System.Drawing.Point(95, 16);
             this.TaskTypesDataGridView.Name = "TaskTypesDataGridView";
+            this.TaskTypesDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.TaskTypesDataGridView.Size = new System.Drawing.Size(613, 354);
             this.TaskTypesDataGridView.TabIndex = 0;
+            // 
+            // SettingsTabPage
+            // 
+            this.SettingsTabPage.Controls.Add(this.groupBox2);
+            this.SettingsTabPage.Location = new System.Drawing.Point(4, 22);
+            this.SettingsTabPage.Name = "SettingsTabPage";
+            this.SettingsTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.SettingsTabPage.Size = new System.Drawing.Size(710, 376);
+            this.SettingsTabPage.TabIndex = 2;
+            this.SettingsTabPage.Text = "Ustawienia";
+            this.SettingsTabPage.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.SaveButton);
+            this.groupBox2.Controls.Add(this.AllMealsTextBox);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.DinnerTextBox);
+            this.groupBox2.Controls.Add(this.LunchTextBox);
+            this.groupBox2.Controls.Add(this.BreakfastTextBox);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Location = new System.Drawing.Point(6, 6);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(701, 367);
+            this.groupBox2.TabIndex = 0;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Ustawienia";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 37);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(80, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Cena śniadania";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 66);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Cena obiadu";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 91);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Cena kolacji";
+            // 
+            // BreakfastTextBox
+            // 
+            this.BreakfastTextBox.Location = new System.Drawing.Point(145, 34);
+            this.BreakfastTextBox.Name = "BreakfastTextBox";
+            this.BreakfastTextBox.Size = new System.Drawing.Size(100, 20);
+            this.BreakfastTextBox.TabIndex = 3;
+            // 
+            // LunchTextBox
+            // 
+            this.LunchTextBox.Location = new System.Drawing.Point(145, 63);
+            this.LunchTextBox.Name = "LunchTextBox";
+            this.LunchTextBox.Size = new System.Drawing.Size(100, 20);
+            this.LunchTextBox.TabIndex = 4;
+            // 
+            // DinnerTextBox
+            // 
+            this.DinnerTextBox.Location = new System.Drawing.Point(145, 88);
+            this.DinnerTextBox.Name = "DinnerTextBox";
+            this.DinnerTextBox.Size = new System.Drawing.Size(100, 20);
+            this.DinnerTextBox.TabIndex = 5;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 117);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(110, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Cena trzech posiłków";
+            // 
+            // AllMealsTextBox
+            // 
+            this.AllMealsTextBox.Location = new System.Drawing.Point(145, 114);
+            this.AllMealsTextBox.Name = "AllMealsTextBox";
+            this.AllMealsTextBox.Size = new System.Drawing.Size(100, 20);
+            this.AllMealsTextBox.TabIndex = 7;
+            // 
+            // SaveButton
+            // 
+            this.SaveButton.Location = new System.Drawing.Point(69, 149);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(115, 23);
+            this.SaveButton.TabIndex = 8;
+            this.SaveButton.Text = "Zapisz ustawienia";
+            this.SaveButton.UseVisualStyleBackColor = true;
             // 
             // ManagerForm
             // 
@@ -218,6 +337,9 @@
             this.TaskTypesTabPage.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TaskTypesDataGridView)).EndInit();
+            this.SettingsTabPage.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -239,5 +361,16 @@
         public System.Windows.Forms.Button EditTaskTypeButton;
         public System.Windows.Forms.Button AddTaskTypeButton;
         public System.Windows.Forms.DataGridView TaskTypesDataGridView;
+        private System.Windows.Forms.TabPage SettingsTabPage;
+        private System.Windows.Forms.GroupBox groupBox2;
+        public System.Windows.Forms.Button SaveButton;
+        public System.Windows.Forms.TextBox AllMealsTextBox;
+        private System.Windows.Forms.Label label4;
+        public System.Windows.Forms.TextBox DinnerTextBox;
+        public System.Windows.Forms.TextBox LunchTextBox;
+        public System.Windows.Forms.TextBox BreakfastTextBox;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }

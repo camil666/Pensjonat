@@ -29,8 +29,6 @@ namespace Projekt_BD.Controller
             base.Form = new EditTaskForm();
 
             this.SetupEvents();
-
-            this.SetupButtons();
         }
 
         #endregion
@@ -51,12 +49,6 @@ namespace Projekt_BD.Controller
             this.Form.Load += this.FormLoad;
             this.Form.CancButton.Click += this.CancelButtonClick;
             this.Form.OkButton.Click += this.OkButtonClick;
-        }
-
-        private void SetupButtons()
-        {
-            this.Form.OkButton.DialogResult = DialogResult.OK;
-            this.Form.CancButton.DialogResult = DialogResult.Cancel;
         }
 
         #endregion
@@ -109,7 +101,7 @@ namespace Projekt_BD.Controller
             string taskName = this.Form.NameTextBox.Text;
             string taskDescription = this.Form.DescriptionTextBox.Text;
             DateTime startDate = this.Form.StartDateTimePicker.Value;
-            DateTime endDate = this.Form.EndDateTimePicker.Value;
+            DateTime endDate = this.Form.EndDateTimePicker.Value.AddSeconds(1.0);
             bool isDone = this.Form.IsDoneCheckBox.Checked;
             int taskTypeId = 0;
             int.TryParse(this.Form.TaskTypeComboBox.SelectedValue.ToString(), out taskTypeId);

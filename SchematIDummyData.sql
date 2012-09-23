@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [DBPensjon]    Script Date: 09/23/2012 19:30:20 ******/
+/****** Object:  Database [DBPensjon]    Script Date: 09/23/2012 21:40:07 ******/
 CREATE DATABASE [DBPensjon] ON  PRIMARY 
 ( NAME = N'DBPensjon', FILENAME = N'd:\SqlServer\x64\Microsoft SQL Server\MSSQL10_50.SQLEXPRESS\MSSQL\DATA\DBPensjon.mdf' , SIZE = 3072KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
  LOG ON 
@@ -71,7 +71,7 @@ ALTER DATABASE [DBPensjon] SET DB_CHAINING OFF
 GO
 USE [DBPensjon]
 GO
-/****** Object:  Table [dbo].[TaskTypes]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  Table [dbo].[TaskTypes]    Script Date: 09/23/2012 21:40:10 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -90,7 +90,7 @@ CREATE TABLE [dbo].[TaskTypes](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[MealPrices]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  Table [dbo].[MealPrices]    Script Date: 09/23/2012 21:40:10 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -100,10 +100,14 @@ CREATE TABLE [dbo].[MealPrices](
 	[LunchPrice] [float] NOT NULL,
 	[DinnerPrice] [float] NOT NULL,
 	[ThreeMealsPrice] [float] NOT NULL,
-	[Id] [int] IDENTITY(1,1) NOT NULL
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+ CONSTRAINT [PK_MealPrices] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[MealPlans]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  Table [dbo].[MealPlans]    Script Date: 09/23/2012 21:40:10 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -129,7 +133,7 @@ CREATE TABLE [dbo].[MealPlans](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[Guests]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  Table [dbo].[Guests]    Script Date: 09/23/2012 21:40:10 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -159,7 +163,7 @@ CREATE TABLE [dbo].[Guests](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[Features]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  Table [dbo].[Features]    Script Date: 09/23/2012 21:40:10 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -178,7 +182,7 @@ CREATE TABLE [dbo].[Features](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[Roles]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  Table [dbo].[Roles]    Script Date: 09/23/2012 21:40:10 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -196,7 +200,7 @@ CREATE TABLE [dbo].[Roles](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[ServiceTypes]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  Table [dbo].[ServiceTypes]    Script Date: 09/23/2012 21:40:10 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -216,7 +220,7 @@ CREATE TABLE [dbo].[ServiceTypes](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[RoomTypes]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  Table [dbo].[RoomTypes]    Script Date: 09/23/2012 21:40:10 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -237,7 +241,7 @@ CREATE TABLE [dbo].[RoomTypes](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[Rooms]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  Table [dbo].[Rooms]    Script Date: 09/23/2012 21:40:10 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -254,7 +258,7 @@ CREATE TABLE [dbo].[Rooms](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Reservations]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  Table [dbo].[Reservations]    Script Date: 09/23/2012 21:40:10 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -276,7 +280,7 @@ CREATE TABLE [dbo].[Reservations](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[Employees]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  Table [dbo].[Employees]    Script Date: 09/23/2012 21:40:10 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -305,7 +309,7 @@ CREATE TABLE [dbo].[Employees](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[Discounts]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  Table [dbo].[Discounts]    Script Date: 09/23/2012 21:40:10 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -320,7 +324,7 @@ CREATE TABLE [dbo].[Discounts](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Tasks]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  Table [dbo].[Tasks]    Script Date: 09/23/2012 21:40:10 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -335,7 +339,7 @@ CREATE TABLE [dbo].[Tasks](
 	[StartDate] [datetime] NULL,
 	[EndDate] [datetime] NULL,
 	[IsDone] [bit] NOT NULL,
-	[TypeId] [int] NULL,
+	[TypeId] [int] NOT NULL,
  CONSTRAINT [PK_Task] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -344,7 +348,7 @@ CREATE TABLE [dbo].[Tasks](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[EmployeeServices]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  Table [dbo].[EmployeeServices]    Script Date: 09/23/2012 21:40:10 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -358,7 +362,7 @@ CREATE TABLE [dbo].[EmployeeServices](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[RoomReservations]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  Table [dbo].[RoomReservations]    Script Date: 09/23/2012 21:40:10 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -375,7 +379,7 @@ CREATE TABLE [dbo].[RoomReservations](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[RoomFeatures]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  Table [dbo].[RoomFeatures]    Script Date: 09/23/2012 21:40:10 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -390,7 +394,7 @@ CREATE TABLE [dbo].[RoomFeatures](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Visits]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  Table [dbo].[Visits]    Script Date: 09/23/2012 21:40:10 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -415,7 +419,7 @@ CREATE TABLE [dbo].[Visits](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[VisitMealPlans]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  Table [dbo].[VisitMealPlans]    Script Date: 09/23/2012 21:40:10 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -432,7 +436,7 @@ CREATE TABLE [dbo].[VisitMealPlans](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Services]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  Table [dbo].[Services]    Script Date: 09/23/2012 21:40:10 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -458,121 +462,121 @@ CREATE TABLE [dbo].[Services](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Default [DF_Guests_IsVerified]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  Default [DF_Guests_IsVerified]    Script Date: 09/23/2012 21:40:10 ******/
 ALTER TABLE [dbo].[Guests] ADD  CONSTRAINT [DF_Guests_IsVerified]  DEFAULT ((0)) FOR [IsVerified]
 GO
-/****** Object:  Default [DF_Employee_role]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  Default [DF_Employee_role]    Script Date: 09/23/2012 21:40:10 ******/
 ALTER TABLE [dbo].[Employees] ADD  CONSTRAINT [DF_Employee_role]  DEFAULT ((1)) FOR [RoleId]
 GO
-/****** Object:  ForeignKey [FK_Room_RoomType]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  ForeignKey [FK_Room_RoomType]    Script Date: 09/23/2012 21:40:10 ******/
 ALTER TABLE [dbo].[Rooms]  WITH CHECK ADD  CONSTRAINT [FK_Room_RoomType] FOREIGN KEY([TypeId])
 REFERENCES [dbo].[RoomTypes] ([Id])
 GO
 ALTER TABLE [dbo].[Rooms] CHECK CONSTRAINT [FK_Room_RoomType]
 GO
-/****** Object:  ForeignKey [FK_Reservation_Guest]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  ForeignKey [FK_Reservation_Guest]    Script Date: 09/23/2012 21:40:10 ******/
 ALTER TABLE [dbo].[Reservations]  WITH CHECK ADD  CONSTRAINT [FK_Reservation_Guest] FOREIGN KEY([GuestId])
 REFERENCES [dbo].[Guests] ([Id])
 GO
 ALTER TABLE [dbo].[Reservations] CHECK CONSTRAINT [FK_Reservation_Guest]
 GO
-/****** Object:  ForeignKey [FK_Employee_Role]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  ForeignKey [FK_Employee_Role]    Script Date: 09/23/2012 21:40:10 ******/
 ALTER TABLE [dbo].[Employees]  WITH NOCHECK ADD  CONSTRAINT [FK_Employee_Role] FOREIGN KEY([RoleId])
 REFERENCES [dbo].[Roles] ([Id])
 GO
 ALTER TABLE [dbo].[Employees] CHECK CONSTRAINT [FK_Employee_Role]
 GO
-/****** Object:  ForeignKey [FK_Discount_Guest]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  ForeignKey [FK_Discount_Guest]    Script Date: 09/23/2012 21:40:10 ******/
 ALTER TABLE [dbo].[Discounts]  WITH CHECK ADD  CONSTRAINT [FK_Discount_Guest] FOREIGN KEY([GuestId])
 REFERENCES [dbo].[Guests] ([Id])
 GO
 ALTER TABLE [dbo].[Discounts] CHECK CONSTRAINT [FK_Discount_Guest]
 GO
-/****** Object:  ForeignKey [FK_Task_Employee]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  ForeignKey [FK_Task_Employee]    Script Date: 09/23/2012 21:40:10 ******/
 ALTER TABLE [dbo].[Tasks]  WITH CHECK ADD  CONSTRAINT [FK_Task_Employee] FOREIGN KEY([EmployeeId])
 REFERENCES [dbo].[Employees] ([Id])
 GO
 ALTER TABLE [dbo].[Tasks] CHECK CONSTRAINT [FK_Task_Employee]
 GO
-/****** Object:  ForeignKey [FK_Task_TaskType]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  ForeignKey [FK_Task_TaskType]    Script Date: 09/23/2012 21:40:10 ******/
 ALTER TABLE [dbo].[Tasks]  WITH CHECK ADD  CONSTRAINT [FK_Task_TaskType] FOREIGN KEY([TypeId])
 REFERENCES [dbo].[TaskTypes] ([Id])
 GO
 ALTER TABLE [dbo].[Tasks] CHECK CONSTRAINT [FK_Task_TaskType]
 GO
-/****** Object:  ForeignKey [FK_EmployeeService_Employee]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  ForeignKey [FK_EmployeeService_Employee]    Script Date: 09/23/2012 21:40:10 ******/
 ALTER TABLE [dbo].[EmployeeServices]  WITH CHECK ADD  CONSTRAINT [FK_EmployeeService_Employee] FOREIGN KEY([EmployeeId])
 REFERENCES [dbo].[Employees] ([Id])
 GO
 ALTER TABLE [dbo].[EmployeeServices] CHECK CONSTRAINT [FK_EmployeeService_Employee]
 GO
-/****** Object:  ForeignKey [FK_EmployeeService_ServiceType]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  ForeignKey [FK_EmployeeService_ServiceType]    Script Date: 09/23/2012 21:40:10 ******/
 ALTER TABLE [dbo].[EmployeeServices]  WITH CHECK ADD  CONSTRAINT [FK_EmployeeService_ServiceType] FOREIGN KEY([Id])
 REFERENCES [dbo].[ServiceTypes] ([Id])
 GO
 ALTER TABLE [dbo].[EmployeeServices] CHECK CONSTRAINT [FK_EmployeeService_ServiceType]
 GO
-/****** Object:  ForeignKey [FK_RoomReservation_Reservation]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  ForeignKey [FK_RoomReservation_Reservation]    Script Date: 09/23/2012 21:40:10 ******/
 ALTER TABLE [dbo].[RoomReservations]  WITH CHECK ADD  CONSTRAINT [FK_RoomReservation_Reservation] FOREIGN KEY([ReservationId])
 REFERENCES [dbo].[Reservations] ([Id])
 GO
 ALTER TABLE [dbo].[RoomReservations] CHECK CONSTRAINT [FK_RoomReservation_Reservation]
 GO
-/****** Object:  ForeignKey [FK_RoomReservation_Room]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  ForeignKey [FK_RoomReservation_Room]    Script Date: 09/23/2012 21:40:10 ******/
 ALTER TABLE [dbo].[RoomReservations]  WITH CHECK ADD  CONSTRAINT [FK_RoomReservation_Room] FOREIGN KEY([RoomId])
 REFERENCES [dbo].[Rooms] ([Number])
 GO
 ALTER TABLE [dbo].[RoomReservations] CHECK CONSTRAINT [FK_RoomReservation_Room]
 GO
-/****** Object:  ForeignKey [FK_RoomFeature_Feature]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  ForeignKey [FK_RoomFeature_Feature]    Script Date: 09/23/2012 21:40:10 ******/
 ALTER TABLE [dbo].[RoomFeatures]  WITH CHECK ADD  CONSTRAINT [FK_RoomFeature_Feature] FOREIGN KEY([FeatureId])
 REFERENCES [dbo].[Features] ([Id])
 GO
 ALTER TABLE [dbo].[RoomFeatures] CHECK CONSTRAINT [FK_RoomFeature_Feature]
 GO
-/****** Object:  ForeignKey [FK_RoomFeature_Room]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  ForeignKey [FK_RoomFeature_Room]    Script Date: 09/23/2012 21:40:10 ******/
 ALTER TABLE [dbo].[RoomFeatures]  WITH CHECK ADD  CONSTRAINT [FK_RoomFeature_Room] FOREIGN KEY([RoomNumber])
 REFERENCES [dbo].[Rooms] ([Number])
 GO
 ALTER TABLE [dbo].[RoomFeatures] CHECK CONSTRAINT [FK_RoomFeature_Room]
 GO
-/****** Object:  ForeignKey [FK_Visit_Guest]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  ForeignKey [FK_Visit_Guest]    Script Date: 09/23/2012 21:40:10 ******/
 ALTER TABLE [dbo].[Visits]  WITH CHECK ADD  CONSTRAINT [FK_Visit_Guest] FOREIGN KEY([GuestId])
 REFERENCES [dbo].[Guests] ([Id])
 GO
 ALTER TABLE [dbo].[Visits] CHECK CONSTRAINT [FK_Visit_Guest]
 GO
-/****** Object:  ForeignKey [FK_Visit_Room]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  ForeignKey [FK_Visit_Room]    Script Date: 09/23/2012 21:40:10 ******/
 ALTER TABLE [dbo].[Visits]  WITH CHECK ADD  CONSTRAINT [FK_Visit_Room] FOREIGN KEY([RoomId])
 REFERENCES [dbo].[Rooms] ([Number])
 GO
 ALTER TABLE [dbo].[Visits] CHECK CONSTRAINT [FK_Visit_Room]
 GO
-/****** Object:  ForeignKey [FK_Visit_Visit]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  ForeignKey [FK_Visit_Visit]    Script Date: 09/23/2012 21:40:10 ******/
 ALTER TABLE [dbo].[Visits]  WITH CHECK ADD  CONSTRAINT [FK_Visit_Visit] FOREIGN KEY([ParentId])
 REFERENCES [dbo].[Visits] ([Id])
 GO
 ALTER TABLE [dbo].[Visits] CHECK CONSTRAINT [FK_Visit_Visit]
 GO
-/****** Object:  ForeignKey [FK_VisitMealPlan_MealPlan]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  ForeignKey [FK_VisitMealPlan_MealPlan]    Script Date: 09/23/2012 21:40:10 ******/
 ALTER TABLE [dbo].[VisitMealPlans]  WITH CHECK ADD  CONSTRAINT [FK_VisitMealPlan_MealPlan] FOREIGN KEY([PlanId])
 REFERENCES [dbo].[MealPlans] ([Id])
 GO
 ALTER TABLE [dbo].[VisitMealPlans] CHECK CONSTRAINT [FK_VisitMealPlan_MealPlan]
 GO
-/****** Object:  ForeignKey [FK_VisitMealPlan_Visit]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  ForeignKey [FK_VisitMealPlan_Visit]    Script Date: 09/23/2012 21:40:10 ******/
 ALTER TABLE [dbo].[VisitMealPlans]  WITH CHECK ADD  CONSTRAINT [FK_VisitMealPlan_Visit] FOREIGN KEY([VisitId])
 REFERENCES [dbo].[Visits] ([Id])
 GO
 ALTER TABLE [dbo].[VisitMealPlans] CHECK CONSTRAINT [FK_VisitMealPlan_Visit]
 GO
-/****** Object:  ForeignKey [FK_Service_ServiceType]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  ForeignKey [FK_Service_ServiceType]    Script Date: 09/23/2012 21:40:10 ******/
 ALTER TABLE [dbo].[Services]  WITH CHECK ADD  CONSTRAINT [FK_Service_ServiceType] FOREIGN KEY([TypeId])
 REFERENCES [dbo].[ServiceTypes] ([Id])
 GO
 ALTER TABLE [dbo].[Services] CHECK CONSTRAINT [FK_Service_ServiceType]
 GO
-/****** Object:  ForeignKey [FK_Service_Visit]    Script Date: 09/23/2012 19:30:23 ******/
+/****** Object:  ForeignKey [FK_Service_Visit]    Script Date: 09/23/2012 21:40:10 ******/
 ALTER TABLE [dbo].[Services]  WITH CHECK ADD  CONSTRAINT [FK_Service_Visit] FOREIGN KEY([VisitId])
 REFERENCES [dbo].[Visits] ([Id])
 GO

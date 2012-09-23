@@ -30,7 +30,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("PensjonatModel", "FK_Visit_Room", "Rooms", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Domain.Room), "Visits", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Domain.Visit), true)]
 [assembly: EdmRelationshipAttribute("PensjonatModel", "FK_Service_ServiceType", "ServiceTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Domain.ServiceType), "Services", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Domain.Service), true)]
 [assembly: EdmRelationshipAttribute("PensjonatModel", "FK_Service_Visit", "Visits", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Domain.Visit), "Services", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Domain.Service), true)]
-[assembly: EdmRelationshipAttribute("PensjonatModel", "FK_Task_TaskType", "TaskTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Domain.TaskType), "Tasks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Domain.Task), true)]
+[assembly: EdmRelationshipAttribute("PensjonatModel", "FK_Task_TaskType", "TaskTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Domain.TaskType), "Tasks", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Domain.Task), true)]
 [assembly: EdmRelationshipAttribute("PensjonatModel", "FK_VisitMealPlan_Visit", "Visits", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Domain.Visit), "VisitMealPlans", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Domain.VisitMealPlan), true)]
 [assembly: EdmRelationshipAttribute("PensjonatModel", "FK_Visit_Visit", "Visits", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Domain.Visit), "Visits1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Domain.Visit), true)]
 [assembly: EdmRelationshipAttribute("PensjonatModel", "EmployeeServices", "Employees", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Domain.Employee), "ServiceTypes", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Domain.ServiceType))]
@@ -165,6 +165,22 @@ namespace Domain
             }
         }
         private ObjectSet<MealPlan> _MealPlans;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<MealPrice> MealPrices
+        {
+            get
+            {
+                if ((_MealPrices == null))
+                {
+                    _MealPrices = base.CreateObjectSet<MealPrice>("MealPrices");
+                }
+                return _MealPrices;
+            }
+        }
+        private ObjectSet<MealPrice> _MealPrices;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -341,22 +357,6 @@ namespace Domain
             }
         }
         private ObjectSet<Visit> _Visits;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<MealPrice> MealPrices
-        {
-            get
-            {
-                if ((_MealPrices == null))
-                {
-                    _MealPrices = base.CreateObjectSet<MealPrice>("MealPrices");
-                }
-                return _MealPrices;
-            }
-        }
-        private ObjectSet<MealPrice> _MealPrices;
 
         #endregion
         #region AddTo Methods
@@ -399,6 +399,14 @@ namespace Domain
         public void AddToMealPlans(MealPlan mealPlan)
         {
             base.AddObject("MealPlans", mealPlan);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the MealPrices EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToMealPrices(MealPrice mealPrice)
+        {
+            base.AddObject("MealPrices", mealPrice);
         }
     
         /// <summary>
@@ -487,14 +495,6 @@ namespace Domain
         public void AddToVisits(Visit visit)
         {
             base.AddObject("Visits", visit);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the MealPrices EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToMealPrices(MealPrice mealPrice)
-        {
-            base.AddObject("MealPrices", mealPrice);
         }
 
         #endregion
@@ -3750,12 +3750,14 @@ namespace Domain
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="employeeId">Initial value of the EmployeeId property.</param>
         /// <param name="isDone">Initial value of the IsDone property.</param>
-        public static Task CreateTask(global::System.Int32 id, global::System.Int32 employeeId, global::System.Boolean isDone)
+        /// <param name="typeId">Initial value of the TypeId property.</param>
+        public static Task CreateTask(global::System.Int32 id, global::System.Int32 employeeId, global::System.Boolean isDone, global::System.Int32 typeId)
         {
             Task task = new Task();
             task.Id = id;
             task.EmployeeId = employeeId;
             task.IsDone = isDone;
+            task.TypeId = typeId;
             return task;
         }
 
@@ -3936,9 +3938,9 @@ namespace Domain
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> TypeId
+        public global::System.Int32 TypeId
         {
             get
             {
@@ -3953,8 +3955,8 @@ namespace Domain
                 OnTypeIdChanged();
             }
         }
-        private Nullable<global::System.Int32> _TypeId;
-        partial void OnTypeIdChanging(Nullable<global::System.Int32> value);
+        private global::System.Int32 _TypeId;
+        partial void OnTypeIdChanging(global::System.Int32 value);
         partial void OnTypeIdChanged();
 
         #endregion

@@ -71,7 +71,7 @@ namespace Projekt_BD.Controller
             string additionalInfo = this.Form.AdditionalInfoTextBox.Text;
             int count;
             DateTime startDate = this.Form.StartDateTimePicker.Value;
-            DateTime endDate = this.Form.EndDateTimePicker.Value;
+            DateTime endDate = this.Form.EndDateTimePicker.Value.AddSeconds(1.0);
             bool breakfast = this.Form.BreakfastCheckBox.Checked;
             bool diet = this.Form.DietCheckBox.Checked;
             bool dinner = this.Form.DinnerCheckBox.Checked;
@@ -79,7 +79,7 @@ namespace Projekt_BD.Controller
             bool toRoom = this.Form.ToRoomCheckBox.Checked;
             bool vegetarian = this.Form.VegetarianCheckBox.Checked;
 
-            if ((startDate > endDate) || int.TryParse(this.Form.CountTextBox.Text, out count) == false)
+            if ((startDate >= endDate) || int.TryParse(this.Form.CountTextBox.Text, out count) == false)
             {
                 MessageBox.Show(
                     "Podane wartości nie są prawidłowe lub pozostawiono niewypełnione pola.",

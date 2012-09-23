@@ -123,10 +123,8 @@ namespace Projekt_BD.Controller
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.EditMealPlansForVisitForm);
                 controller.ItemToEditID = index;
                 controller.ClientID = this.ItemToEditID;
-                if (controller.Form.ShowDialog() == DialogResult.OK)
-                {
-                    this.RefreshDataGridView();
-                }
+                controller.Form.ShowDialog();
+                this.RefreshDataGridView();
             }
             else
             {
@@ -138,10 +136,8 @@ namespace Projekt_BD.Controller
         {
             var controller = ControllerFactory.Instance.Create(ControllerTypes.EditMealPlansForVisitForm);
             controller.ClientID = this.ItemToEditID;
-            if (controller.Form.ShowDialog() == DialogResult.OK)
-            {
-                this.RefreshDataGridView();
-            }
+            controller.Form.ShowDialog();
+            this.RefreshDataGridView();
         }
 
         private void FormLoad(object sender, EventArgs e)

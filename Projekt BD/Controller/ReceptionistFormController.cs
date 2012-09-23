@@ -80,7 +80,10 @@
             this.Form.ReservationIntoVisitButton.Click += this.ReservationIntoVisitButton_Click;
             this.Form.ServicesButton.Click += this.EditServiceForVisitClick;
             this.Form.GenerateReceiptButton.Click += this.GenerateReceiptButton_Click;
-        } 
+            this.Form.DeleteFeatureButton.Click += this.DeleteFeatureButtonClick;
+            this.Form.DeleteRoomTypeButton.Click += this.DeleteRoomTypeButtonClick;
+            this.Form.DeleteRoomButton.Click += this.DeleteRoomButtonClick;
+        }
 
         private void ReservationSearchResultDataGridView_Refresh()
         {
@@ -691,6 +694,72 @@
             }
         }
 
+        private void DeleteRoomButtonClick(object sender, EventArgs e)
+        {
+            if (this.Form.AllRoomsDataGridView.SelectedRows.Count > 0)
+            {
+                var selectedRowIndexes = this.Form.AllRoomsDataGridView.SelectedRows;
+                foreach (DataGridViewRow item in selectedRowIndexes)
+                {
+                    var id = (int)this.Form.AllRoomsDataGridView["Number", item.Index].Value;
+                    var room = DataAccess.Instance.Rooms.Single(t => t.Number == id);
+                    DataAccess.Instance.Rooms.Delete(room);
+                }
+                DataAccess.Instance.UnitOfWork.Commit();
+                this.refreshRooms();
+            }
+            else
+            {
+                MessageBox.Show("Nie zaznaczono zadań do usunięcia!");
+            }
+        }
+
+        private void DeleteRoomTypeButtonClick(object sender, EventArgs e)
+        {
+            if (this.Form.RoomTypesDataGridView.SelectedRows.Count > 0)
+            {
+                try
+                {
+                    var selectedRowIndexes = this.Form.RoomTypesDataGridView.SelectedRows;
+                    foreach (DataGridViewRow item in selectedRowIndexes)
+                    {
+                        var id = (int)this.Form.RoomTypesDataGridView[0, item.Index].Value;
+                        var roomType = DataAccess.Instance.RoomTypes.Single(t => t.Id == id);
+                        DataAccess.Instance.RoomTypes.Delete(roomType);
+                    }
+                    DataAccess.Instance.UnitOfWork.Commit();
+                    this.refreshFeatures();
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show("Nie wolno usunąć typu pokoju, ponieważ istnieje pokój o ww. typie!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nie zaznaczono zadań do usunięcia!");
+            }
+        }
+
+        private void DeleteFeatureButtonClick(object sender, EventArgs e)
+        {
+            if (this.Form.RoomFeaturesDataGridView.SelectedRows.Count > 0)
+            {
+                var selectedRowIndexes = this.Form.RoomFeaturesDataGridView.SelectedRows;
+                foreach (DataGridViewRow item in selectedRowIndexes)
+                {
+                    var id = (int)this.Form.RoomFeaturesDataGridView[0, item.Index].Value;
+                    var feature = DataAccess.Instance.Features.Single(t => t.Id == id);
+                    DataAccess.Instance.Features.Delete(feature);
+                }
+                DataAccess.Instance.UnitOfWork.Commit();
+                this.refreshFeatures();
+            }
+            else
+            {
+                MessageBox.Show("Nie zaznaczono zadań do usunięcia!");
+            }
+        }
         #endregion
     }
 }
