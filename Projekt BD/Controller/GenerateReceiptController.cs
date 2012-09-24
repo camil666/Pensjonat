@@ -114,9 +114,9 @@
 
                         writer.WriteLine(string.Format("Klient: {0} {1}", visit.Guest.FirstName, visit.Guest.LastName));
                         writer.WriteLine("---");
-                        writer.WriteLine(string.Format("Cena za pokój: {0}/os.", roomPrice));
+                        writer.WriteLine(string.Format("Cena za pokój: {0}zł/os.", roomPrice));
                         writer.WriteLine(string.Format("Ilość dni: {0}", visitDuration));
-                        writer.WriteLine(string.Format("Cena za wynajem pokoju: {0}", totalRoomCost));
+                        writer.WriteLine(string.Format("Cena za wynajem pokoju: {0} zł", totalRoomCost));
                         writer.WriteLine("---");
                         writer.WriteLine("Usługi:");
 
@@ -132,13 +132,17 @@
                         foreach (var mealPlan in visit.VisitMealPlans)
                         {
                             totalVisitCost += (double)mealPlan.MealPlan.Price;
-                            writer.WriteLine(string.Format("Cena: {0}", mealPlan.MealPlan.Price));
+                            writer.WriteLine(string.Format("Cena: {0} zł\t{1} - {2}", mealPlan.MealPlan.Price, mealPlan.StartDate, mealPlan.EndDate));
                         }
 
                         writer.WriteLine("---");
                         writer.WriteLine("Zniżki:");
 
                         var discounts = DataAccess.Instance.Discounts.Find(d => d.GuestId == visit.GuestId);
+                        if (discounts == null)
+                        {
+                            writer.WriteLine(string.Format("Brak zniżek!"));
+                        }
 
                         foreach (var discount in discounts)
                         {
@@ -147,7 +151,7 @@
                         }
 
                         writer.WriteLine("---");
-                        writer.WriteLine("Cena za pobyt: {0}", totalVisitCost);
+                        writer.WriteLine("Cena za pobyt: {0} zł", totalVisitCost);
                         writer.WriteLine();
                         totalGroupCost += totalVisitCost;
                     }
@@ -156,7 +160,7 @@
                     {
                         writer.WriteLine();
                         writer.WriteLine("------");
-                        writer.WriteLine("Cena za grupę: {0}", totalGroupCost);
+                        writer.WriteLine("Cena za grupę: {0} zł", totalGroupCost);
                     }
 
                     writer.Close();

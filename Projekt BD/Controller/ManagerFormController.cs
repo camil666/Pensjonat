@@ -200,6 +200,17 @@
         }
 
         /// <summary>
+        /// Sets the visibilty and header names of task types.
+        /// </summary>
+        private void SetVisibiltyAndHeaderNamesOfTaskTypes()
+        {
+            this.Form.TaskTypesDataGridView.Columns[IdColumnName].Visible = false;
+            this.Form.TaskTypesDataGridView.Columns["Name"].HeaderText = "Nazwa";
+            this.Form.TaskTypesDataGridView.Columns["Description"].HeaderText = "Opis";
+            this.Form.TaskTypesDataGridView.Columns["Description"].Width = 480;
+        }
+
+        /// <summary>
         /// Loads the task types.
         /// </summary>
         private void LoadTaskTypes()
@@ -213,6 +224,7 @@
                             };
 
             this.Form.TaskTypesDataGridView.DataSource = taskTypes;
+            this.SetVisibiltyAndHeaderNamesOfTaskTypes();
         }
 
         /// <summary>
@@ -406,6 +418,7 @@
         /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void DeleteTaskTypeButton_Click(object sender, EventArgs e)
         {
+            TaskType taskType = null;
             try
             {
                 if (this.IsTaskTypeSelected)
@@ -414,7 +427,7 @@
                     foreach (DataGridViewRow item in selectedRowIndexes)
                     {
                         var id = (int)this.Form.TaskTypesDataGridView[0, item.Index].Value;
-                        var taskType = DataAccess.Instance.TaskTypes.Single(t => t.Id == id);
+                        taskType = DataAccess.Instance.TaskTypes.Single(t => t.Id == id);
                         DataAccess.Instance.TaskTypes.Delete(taskType);
                     }
                     DataAccess.Instance.UnitOfWork.Commit();
@@ -428,6 +441,7 @@
             catch (Exception)
             {
                 MessageBox.Show("Nie można usunąć typu zadania, ponieważ istnieją zadania tego typu!");
+                DataAccess.Instance.UnitOfWork.Refresh<TaskType>(taskType);
             }
         }
 

@@ -100,15 +100,14 @@
         {
             int parentVisitId = 0;
             var visitsToBeAdded = new List<Visit>();
+            double advance;
+            double.TryParse(this.Form.AdvanceTextBox.Text, out advance);
 
             foreach (var datasource in this.AddedGuestsDataSources)
             {
                 foreach (var item in datasource.List)
                 {
                     var guest = item as DisplayedGuest;
-
-                    double advance;
-                    double.TryParse(this.Form.AdvanceTextBox.Text, out advance);
 
                     visitsToBeAdded.Add(new Visit()
                     {
@@ -120,6 +119,18 @@
                         GuestId = guest.Id
                     });
                 }
+            }
+
+            if (advance < 0)
+            {
+                MessageBox.Show(
+                    "Zaliczka nie może być ujemna!",
+                    "Błąd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
+
+                return;
             }
 
             if (visitsToBeAdded.Count < 1)

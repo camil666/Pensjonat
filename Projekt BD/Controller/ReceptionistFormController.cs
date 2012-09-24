@@ -943,13 +943,14 @@
         {
             if (this.Form.RoomTypesDataGridView.SelectedRows.Count > 0)
             {
+                RoomType roomType = null;
                 try
                 {
                     var selectedRowIndexes = this.Form.RoomTypesDataGridView.SelectedRows;
                     foreach (DataGridViewRow item in selectedRowIndexes)
                     {
                         var id = (int)this.Form.RoomTypesDataGridView[0, item.Index].Value;
-                        var roomType = DataAccess.Instance.RoomTypes.Single(t => t.Id == id);
+                        roomType = DataAccess.Instance.RoomTypes.Single(t => t.Id == id);
                         DataAccess.Instance.RoomTypes.Delete(roomType);
                     }
 
@@ -959,6 +960,7 @@
                 catch (Exception)
                 {
                     MessageBox.Show("Nie wolno usunąć typu pokoju, ponieważ istnieje pokój o ww. typie!");
+                    DataAccess.Instance.UnitOfWork.Refresh<RoomType>(roomType);
                 }
             }
             else

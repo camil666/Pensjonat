@@ -53,6 +53,11 @@
             this.objectContext.SaveChanges();
         }
 
+        public void Refresh<T>(T entity)
+        {
+            this.objectContext.Refresh(entity);
+        }
+        
         #endregion
     }
 }

@@ -58,6 +58,11 @@
             this.context.SaveChanges();
         }
 
+        public void Refresh<T>(T entity)
+        {
+            this.context.Detach(entity);
+        }
+
         #endregion
     }
 }

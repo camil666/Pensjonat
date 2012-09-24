@@ -117,7 +117,23 @@
         /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void DeleteServicesButton_Click(object sender, EventArgs e)
         {
-            this.RefreshDataGridView();
+            if (this.Form.ServicesDataGridView.SelectedRows.Count > 0)
+            {
+                var selectedRowIndexes = this.Form.ServicesDataGridView.SelectedRows;
+                foreach (DataGridViewRow item in selectedRowIndexes)
+                {
+                    var id = (int)this.Form.ServicesDataGridView[0, item.Index].Value;
+                    var service = DataAccess.Instance.Services.Single(t => t.Id == id);
+                    DataAccess.Instance.Services.Delete(service);
+                }
+
+                DataAccess.Instance.UnitOfWork.Commit();
+                this.RefreshDataGridView();
+            }
+            else
+            {
+                MessageBox.Show("Nie zaznaczono zadań do usunięcia!");
+            }
         }
 
         /// <summary>

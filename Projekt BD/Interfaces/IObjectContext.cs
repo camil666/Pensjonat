@@ -22,6 +22,8 @@
         /// </summary>
         void SaveChanges();
 
+        void Refresh<T>(T entity);
+        
         #endregion
     }
 }
