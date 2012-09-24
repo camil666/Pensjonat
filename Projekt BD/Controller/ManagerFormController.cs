@@ -417,7 +417,6 @@
                         var taskType = DataAccess.Instance.TaskTypes.Single(t => t.Id == id);
                         DataAccess.Instance.TaskTypes.Delete(taskType);
                     }
-
                     DataAccess.Instance.UnitOfWork.Commit();
                     this.LoadTaskTypes();
                 }
@@ -426,7 +425,7 @@
                     MessageBox.Show("Nie zaznaczono zadań do usunięcia!");
                 }
             }
-            catch (UpdateException)
+            catch (Exception)
             {
                 MessageBox.Show("Nie można usunąć typu zadania, ponieważ istnieją zadania tego typu!");
             }
