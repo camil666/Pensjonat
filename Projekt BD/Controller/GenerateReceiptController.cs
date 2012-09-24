@@ -144,6 +144,11 @@
                         {
                             totalVisitCost -= discount.Amount;
                             writer.WriteLine(string.Format("-{0}", discount.Amount));
+
+                            if (totalVisitCost < 0)
+                            {
+                                totalVisitCost = 0;
+                            }
                         }
 
                         writer.WriteLine("---");
