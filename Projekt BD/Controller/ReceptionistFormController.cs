@@ -116,7 +116,8 @@
                                         reservation.Id,
                                         reservation.StartDate,
                                         reservation.EndDate,
-                                        reservation.AdditionalInfo
+                                        reservation.AdditionalInfo,
+                                        reservation.IsVisit
                                     }).ToList();
 
                 this.Form.ReservationSearchResultDataGridView.DataSource = reservations;
@@ -125,6 +126,7 @@
                 this.Form.ReservationSearchResultDataGridView.Columns["StartDate"].HeaderText = "Data rozpoczęcia";
                 this.Form.ReservationSearchResultDataGridView.Columns["EndDate"].HeaderText = "Data zakończenia";
                 this.Form.ReservationSearchResultDataGridView.Columns["AdditionalInfo"].HeaderText = "Dodatkowe informacje";
+                this.Form.ReservationSearchResultDataGridView.Columns["IsVisit"].Visible = false;
             }
             else
             {
@@ -856,9 +858,17 @@
         {
             if (this.Form.ReservationSearchResultDataGridView.SelectedRows.Count > 0)
             {
+                if ((bool)this.Form.ReservationSearchResultDataGridView.SelectedRows[0].Cells["IsVisit"].Value == true)
+                {
+                    MessageBox.Show("Odpowiedni pobyt istnieje dla wybranej rezerwacji.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+                    return;
+                }
+
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.NewVisitForm);
                 controller.ItemToEditID = int.Parse(this.Form.ReservationIDDetailsTextBox.Text);
                 controller.Form.ShowDialog();
+
+                this.RefreshReservationSearchResultDataGridView();
             }
             else
             {
