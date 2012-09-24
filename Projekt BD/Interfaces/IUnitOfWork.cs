@@ -1,5 +1,8 @@
 ﻿namespace Projekt_BD.Interfaces
 {
+    /// <summary>
+    /// Interface for UnitOdWork class.
+    /// </summary>
     public interface IUnitOfWork
     {
         #region Methods

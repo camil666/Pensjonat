@@ -67,9 +67,9 @@ namespace Projekt_BD.Controller
         {
             if (this.IsEditForm)
             {
-                taskType = DataAccess.Instance.TaskTypes.Single(x => x.Id == this.ItemToEditID);
-                this.Form.NameTextBox.Text = taskType.Name;
-                this.Form.DescriptionRichTextBox.Text = taskType.Description;
+                this.taskType = DataAccess.Instance.TaskTypes.Single(x => x.Id == this.ItemToEditID);
+                this.Form.NameTextBox.Text = this.taskType.Name;
+                this.Form.DescriptionRichTextBox.Text = this.taskType.Description;
                 this.Form.Text = "Edycja typu zadania";
             }
             else
@@ -106,7 +106,7 @@ namespace Projekt_BD.Controller
             }
             else
             {
-                taskType = new TaskType
+                this.taskType = new TaskType
                 {
                     Name = taskTypeName,
                     Description = taskTypeDescription
@@ -119,7 +119,6 @@ namespace Projekt_BD.Controller
 
             this.Form.Dispose();
         }
-
 
         #endregion
     }

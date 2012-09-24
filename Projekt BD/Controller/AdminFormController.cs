@@ -3,28 +3,37 @@
     using System;
     using System.Linq;
     using System.Windows.Forms;
-    using Domain;
-
     using Projekt_BD.Enums;
-    using Projekt_BD.Interfaces;
     using Projekt_BD.View;
 
+    /// <summary>
+    /// Controller for Admin Form
+    /// </summary>
     public class AdminFormController : ControllerBase
     {
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdminFormController" /> class.
+        /// </summary>
         public AdminFormController()
         {
             base.Form = new AdminForm();
 
             this.SetupEvents();
-            this.SearchButton_Function();
+            this.SearchForEmployees();
         }
 
         #endregion
 
         #region Properties
 
+        /// <summary>
+        /// Gets the form.
+        /// </summary>
+        /// <value>
+        /// The form.
+        /// </value>
         public new AdminForm Form
         {
             get
@@ -33,6 +42,12 @@
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether employee is selected.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if employee is selected; otherwise, <c>false</c>.
+        /// </value>
         private bool IsEmployeeSelected
         {
             get
@@ -41,6 +56,12 @@
             }
         }
 
+        /// <summary>
+        /// Gets the selected employee id.
+        /// </summary>
+        /// <value>
+        /// The selected employee id.
+        /// </value>
         private int SelectedEmployeeId
         {
             get
@@ -54,6 +75,9 @@
 
         #region Methods
 
+        /// <summary>
+        /// Sets up the events.
+        /// </summary>
         private void SetupEvents()
         {
             this.Form.SearchButton.Click += this.SearchButton_Click;
@@ -62,7 +86,10 @@
             this.Form.ChangeEmployeeDetailsButton.Click += this.ChangeEmployeeDetailsButton_Click;
         }
 
-        private void SearchButton_Function()
+        /// <summary>
+        /// Searches for employees.
+        /// </summary>
+        private void SearchForEmployees()
         {
             // sprawdz czy szukanie po ID
             bool idSearch = false;
@@ -119,17 +146,32 @@
 
         #region Event Methods
 
+        /// <summary>
+        /// Handles the Click event of the SearchButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void SearchButton_Click(object sender, EventArgs e)
         {
-            this.SearchButton_Function();
+            this.SearchForEmployees();
         }
 
+        /// <summary>
+        /// Handles the Click event of the AddEmployeeButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void AddEmployeeButton_Click(object sender, EventArgs e)
         {
             ControllerFactory.Instance.Create(ControllerTypes.NewEmployeeForm).Form.ShowDialog();
-            this.SearchButton_Function();
+            this.SearchForEmployees();
         }
 
+        /// <summary>
+        /// Handles the Click event of the DeleteEmployeeButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void DeleteEmployeeButton_Click(object sender, EventArgs e)
         {
             if (this.IsEmployeeSelected)
@@ -141,7 +183,7 @@
 
                     DataAccess.Instance.UnitOfWork.Commit();
 
-                    this.SearchButton_Function();
+                    this.SearchForEmployees();
                 }
             }
             else
@@ -155,6 +197,11 @@
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the ChangeEmployeeDetailsButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void ChangeEmployeeDetailsButton_Click(object sender, EventArgs e)
         {
             if (this.IsEmployeeSelected)
@@ -162,7 +209,7 @@
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.NewEmployeeForm);
                 controller.ItemToEditID = this.SelectedEmployeeId;
                 controller.Form.ShowDialog();
-                this.SearchButton_Function();
+                this.SearchForEmployees();
             }
             else
             {
@@ -178,5 +225,3 @@
         #endregion
     }
 }
-
-        

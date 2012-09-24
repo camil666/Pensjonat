@@ -25,7 +25,7 @@ namespace Projekt_BD.Controller
     /// </summary>
     public class ManagerFormController : ControllerBase
     {
-        #region Field
+        #region Fields
 
         private static readonly string IdColumnName = "Id";
 
@@ -186,13 +186,13 @@ namespace Projekt_BD.Controller
 
         private void LoadSettings()
         {
-            mealPrices = DataAccess.Instance.MealPrices.GetAll().FirstOrDefault();
-            if (mealPrices != null)
+            this.mealPrices = DataAccess.Instance.MealPrices.GetAll().FirstOrDefault();
+            if (this.mealPrices != null)
             {
-                this.Form.BreakfastTextBox.Text = mealPrices.BreakfastPrice.ToString(CultureInfo.InvariantCulture);
-                this.Form.DinnerTextBox.Text = mealPrices.DinnerPrice.ToString(CultureInfo.InvariantCulture);
-                this.Form.LunchTextBox.Text = mealPrices.LunchPrice.ToString(CultureInfo.InvariantCulture);
-                this.Form.AllMealsTextBox.Text = mealPrices.ThreeMealsPrice.ToString(CultureInfo.InvariantCulture);
+                this.Form.BreakfastTextBox.Text = this.mealPrices.BreakfastPrice.ToString(CultureInfo.InvariantCulture);
+                this.Form.DinnerTextBox.Text = this.mealPrices.DinnerPrice.ToString(CultureInfo.InvariantCulture);
+                this.Form.LunchTextBox.Text = this.mealPrices.LunchPrice.ToString(CultureInfo.InvariantCulture);
+                this.Form.AllMealsTextBox.Text = this.mealPrices.ThreeMealsPrice.ToString(CultureInfo.InvariantCulture);
             }
         }
 
@@ -220,10 +220,11 @@ namespace Projekt_BD.Controller
                 MessageBox.Show("Wprowadź poprawne dane!");
                 return;
             }
-            mealPrices.BreakfastPrice = breakfast;
-            mealPrices.DinnerPrice = dinner;
-            mealPrices.LunchPrice = lunch;
-            mealPrices.ThreeMealsPrice = all;
+
+            this.mealPrices.BreakfastPrice = breakfast;
+            this.mealPrices.DinnerPrice = dinner;
+            this.mealPrices.LunchPrice = lunch;
+            this.mealPrices.ThreeMealsPrice = all;
             DataAccess.Instance.UnitOfWork.Commit();
         }
 
@@ -249,6 +250,7 @@ namespace Projekt_BD.Controller
                     var task = DataAccess.Instance.Tasks.Single(t => t.Id == id);
                     DataAccess.Instance.Tasks.Delete(task);
                 }
+
                 DataAccess.Instance.UnitOfWork.Commit();
                 this.LoadTasks();
             }
@@ -257,7 +259,6 @@ namespace Projekt_BD.Controller
                 MessageBox.Show("Nie zaznaczono zadań do usunięcia!");
             }
         }
-
 
         private void EditTasksButton_Click(object sender, EventArgs e)
         {
@@ -309,6 +310,7 @@ namespace Projekt_BD.Controller
                         var taskType = DataAccess.Instance.TaskTypes.Single(t => t.Id == id);
                         DataAccess.Instance.TaskTypes.Delete(taskType);
                     }
+
                     DataAccess.Instance.UnitOfWork.Commit();
                     this.LoadTaskTypes();
                 }
@@ -317,11 +319,10 @@ namespace Projekt_BD.Controller
                     MessageBox.Show("Nie zaznaczono zadań do usunięcia!");
                 }
             }
-            catch (UpdateException ex)
+            catch (UpdateException)
             {
                 MessageBox.Show("Nie można usunąć typu zadania, ponieważ istnieją zadania tego typu!");
             }
-            
         }
 
         private void AddTaskTypeButton_Click(object sender, EventArgs e)

@@ -13,11 +13,11 @@
 
         public DisplayedGuest(int id, string firstName, string lastName, string town, bool isVerified)
         {
-            Id = id;
-            FirstName = firstName;
-            LastName = lastName;
-            Town = town;
-            IsVerified = isVerified;
+            this.Id = id;
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.Town = town;
+            this.IsVerified = isVerified;
         }
 
         #endregion

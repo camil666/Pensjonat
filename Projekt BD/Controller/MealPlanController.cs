@@ -19,7 +19,6 @@ namespace Projekt_BD.Controller
     /// </summary>
     public class MealPlanController : ControllerBase
     {
-        
         #region Constructors
 
         public MealPlanController()
@@ -52,9 +51,8 @@ namespace Projekt_BD.Controller
             this.Form.AddButton.Click += this.AddButtonClick;
             this.Form.EditButton.Click += this.EditButtonClick;
             this.Form.DeleteMealPlan.Click += this.DeleteButtonClick;
-
         }
-        
+
         private void OkButtonClick(object sender, EventArgs e)
         {
             this.Form.Dispose();
@@ -63,24 +61,23 @@ namespace Projekt_BD.Controller
         private void SetColumnNamesAndVisibility()
         {
             this.Form.DataGridView.Columns["Id"].Visible = false;
-
         }
 
         private void RefreshDataGridView()
         {
             var mealplans = (from visitMealPlan in DataAccess.Instance.VisitMealPlans.GetAll()
-                            where visitMealPlan.VisitId == ItemToEditID
-                            join mealPlan in DataAccess.Instance.MealPlans.GetAll() on visitMealPlan.PlanId equals mealPlan.Id
-                            select
-                               new
-                               {
-                                   VisitMealPlanId = visitMealPlan.Id,
-                                   mealPlan.Id,
-                                   mealPlan.Price,
-                                   visitMealPlan.StartDate,
-                                   visitMealPlan.EndDate,
-                                   mealPlan.PeopleCount
-                               }).ToList();
+                             where visitMealPlan.VisitId == ItemToEditID
+                             join mealPlan in DataAccess.Instance.MealPlans.GetAll() on visitMealPlan.PlanId equals mealPlan.Id
+                             select
+                                new
+                                {
+                                    VisitMealPlanId = visitMealPlan.Id,
+                                    mealPlan.Id,
+                                    mealPlan.Price,
+                                    visitMealPlan.StartDate,
+                                    visitMealPlan.EndDate,
+                                    mealPlan.PeopleCount
+                                }).ToList();
 
             this.Form.DataGridView.DataSource = mealplans;
 
@@ -103,6 +100,7 @@ namespace Projekt_BD.Controller
                     DataAccess.Instance.MealPlans.Delete(visitMealPlan.MealPlan);
                     DataAccess.Instance.VisitMealPlans.Delete(visitMealPlan);
                 }
+
                 DataAccess.Instance.UnitOfWork.Commit();
                 this.RefreshDataGridView();
             }
@@ -110,7 +108,6 @@ namespace Projekt_BD.Controller
             {
                 MessageBox.Show("Nie zaznaczono zadań do usunięcia!");
             }
-            
         }
 
         private void EditButtonClick(object sender, EventArgs e)
@@ -119,7 +116,7 @@ namespace Projekt_BD.Controller
             {
                 int rowIndex = this.Form.DataGridView.SelectedRows[0].Index;
                 int index = (int)this.Form.DataGridView["VisitMealPlanId", rowIndex].Value;
-                
+
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.EditMealPlansForVisitForm);
                 controller.ItemToEditID = index;
                 controller.ClientID = this.ItemToEditID;

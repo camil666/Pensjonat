@@ -6,20 +6,41 @@
     using Domain;
     using Projekt_BD.View;
 
+    /// <summary>
+    /// Controller class for Employee form.
+    /// </summary>
     public class EmployeeFormController : ControllerBase
     {
         #region Fields
 
+        /// <summary>
+        /// Name of the Id column.
+        /// </summary>
         private static readonly string IdColumnName = "Id";
 
+        /// <summary>
+        /// Name of the Name column.
+        /// </summary>
         private static readonly string NameColumnName = "Name";
 
+        /// <summary>
+        /// Name of the StartDate column.
+        /// </summary>
         private static readonly string StartDateColumnName = "StartDate";
 
+        /// <summary>
+        /// Name of the EndDate column.
+        /// </summary>
         private static readonly string EndDateColumnName = "EndDate";
 
+        /// <summary>
+        /// Name of the Description column.
+        /// </summary>
         private static readonly string DescriptionColumnName = "Description";
 
+        /// <summary>
+        /// Name of the Statuses column.
+        /// </summary>
         private static readonly string StatusesColumnName = "Statuses";
 
         #endregion

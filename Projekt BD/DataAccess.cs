@@ -197,13 +197,6 @@
         /// </value>
         public Repository<ServiceType> ServiceTypes { get; private set; }
 
-
-        /// <summary>
-        /// Gets service types.
-        /// </summary>
-        /// <value>
-        /// Service type.
-        /// </value>
         /// <summary>
         /// Gets the discounts.
         /// </summary>
@@ -211,6 +204,13 @@
         /// The discounts.
         /// </value>
         public Repository<Discount> Discounts { get; private set; }
+
+        /// <summary>
+        /// Gets the meal plans.
+        /// </summary>
+        /// <value>
+        /// The meal plans.
+        /// </value>
         public Repository<MealPlan> MealPlans { get; private set; }
 
         /// <summary>

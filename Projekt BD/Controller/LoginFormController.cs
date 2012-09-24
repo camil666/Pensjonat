@@ -5,10 +5,16 @@
     using Domain;
     using Projekt_BD.View;
 
+    /// <summary>
+    /// Controller class for Login form.
+    /// </summary>
     public class LoginFormController : ControllerBase
     {
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoginFormController" /> class.
+        /// </summary>
         public LoginFormController()
         {
             base.Form = new LoginForm();
@@ -20,6 +26,12 @@
 
         #region Properties
 
+        /// <summary>
+        /// Gets the form.
+        /// </summary>
+        /// <value>
+        /// The form.
+        /// </value>
         public new LoginForm Form
         {
             get
@@ -32,6 +44,9 @@
 
         #region Methods
 
+        /// <summary>
+        /// Sets up the events.
+        /// </summary>
         private void SetupEvents()
         {
             this.Form.LoginButton.Click += this.LoginButton_Click;
@@ -43,6 +58,11 @@
 
         #region Event Methods
 
+        /// <summary>
+        /// Handles the KeyDown event of the TextBox control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="KeyEventArgs" /> instance containing the event data.</param>
         private void TextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -51,6 +71,11 @@
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the LoginButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void LoginButton_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(this.Form.LoginTextBox.Text))

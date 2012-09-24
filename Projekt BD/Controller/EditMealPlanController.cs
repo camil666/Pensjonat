@@ -54,7 +54,6 @@ namespace Projekt_BD.Controller
             this.Form.Load += this.FormLoad;
             this.Form.OkButton.Click += this.OkButtonClick;
             this.Form.CancButton.Click += this.CancelButtonClick;
-
         }
 
         #endregion

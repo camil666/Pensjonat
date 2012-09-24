@@ -5,10 +5,16 @@
     using Domain;
     using Projekt_BD.View;
 
+    /// <summary>
+    /// Controller class for EditRoomType form.
+    /// </summary>
     public class EditRoomTypeController : ControllerBase
     {
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EditRoomTypeController" /> class.
+        /// </summary>
         public EditRoomTypeController()
         {
             base.Form = new EditRoomTypeForm();
@@ -20,6 +26,12 @@
 
         #region Properties
 
+        /// <summary>
+        /// Gets the form.
+        /// </summary>
+        /// <value>
+        /// The form.
+        /// </value>
         public new EditRoomTypeForm Form
         {
             get
@@ -32,6 +44,9 @@
 
         #region Methods
 
+        /// <summary>
+        /// Sets up the events.
+        /// </summary>
         private void SetupEvents()
         {
             this.Form.Load += this.Form_Load;
@@ -43,11 +58,21 @@
 
         #region Event Methods
 
+        /// <summary>
+        /// Handles the Click event of the CancelButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Form.Dispose();
         }
 
+        /// <summary>
+        /// Handles the Load event of the Form control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void Form_Load(object sender, EventArgs e)
         {
             if (this.IsEditForm)
@@ -71,6 +96,11 @@
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the OkButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void OkButton_Click(object sender, EventArgs e)
         {
             string description = this.Form.DescriptionRichTextBox.Text;

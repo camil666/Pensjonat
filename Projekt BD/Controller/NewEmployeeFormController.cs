@@ -6,10 +6,16 @@
     using Domain;
     using Projekt_BD.View;
 
+    /// <summary>
+    /// Controller class for NewEmployee form.
+    /// </summary>
     public class NewEmployeeFormController : ControllerBase
     {
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewEmployeeFormController" /> class.
+        /// </summary>
         public NewEmployeeFormController()
         {
             base.Form = new NewEmployeeForm();
@@ -21,6 +27,12 @@
 
         #region Properties
 
+        /// <summary>
+        /// Gets the form.
+        /// </summary>
+        /// <value>
+        /// The form.
+        /// </value>
         public new NewEmployeeForm Form
         {
             get
@@ -33,6 +45,9 @@
 
         #region Methods
 
+        /// <summary>
+        /// Sets up the events.
+        /// </summary>
         private void SetupEvents()
         {
             this.Form.Load += this.Form_Load;
@@ -44,6 +59,11 @@
 
         #region Event Methods
 
+        /// <summary>
+        /// Handles the Load event of the Form control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void Form_Load(object sender, EventArgs e)
         {
             var availableRoles = DataAccess.Instance.Roles.GetAll().ToDictionary(availableType => availableType.Id, availableType => availableType.Name);
@@ -78,11 +98,21 @@
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the CancelButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Form.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the AddButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void AddButton_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(this.Form.ApartmentNumberTextBox.Text) ||

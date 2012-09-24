@@ -5,11 +5,16 @@ namespace Projekt_BD.Controller
     using Domain;
     using Projekt_BD.View;
 
+    /// <summary>
+    /// Controller class for EditService form.
+    /// </summary>
     public class EditServiceFormController : ControllerBase
     {
-
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EditServiceFormController" /> class.
+        /// </summary>
         public EditServiceFormController()
         {
             base.Form = new EditServiceForm();
@@ -21,6 +26,12 @@ namespace Projekt_BD.Controller
 
         #region Properties
 
+        /// <summary>
+        /// Gets the form.
+        /// </summary>
+        /// <value>
+        /// The form.
+        /// </value>
         public new EditServiceForm Form
         {
             get
@@ -33,6 +44,9 @@ namespace Projekt_BD.Controller
 
         #region Methods
 
+        /// <summary>
+        /// Sets up the events.
+        /// </summary>
         private void SetupEvents()
         {
             this.Form.Load += this.Form_Load;
@@ -44,6 +58,11 @@ namespace Projekt_BD.Controller
 
         #region Event Methods
 
+        /// <summary>
+        /// Handles the Load event of the Form control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void Form_Load(object sender, EventArgs e)
         {
             if (this.IsEditForm)
@@ -62,6 +81,11 @@ namespace Projekt_BD.Controller
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the OkButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void OkButton_Click(object sender, EventArgs e)
         {
             string description = this.Form.DescriptionRichTextBox.Text;
@@ -106,6 +130,11 @@ namespace Projekt_BD.Controller
             this.Form.Dispose();
         }
 
+        /// <summary>
+        /// Handles the Click event of the CancelButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Form.Dispose();

@@ -30,7 +30,7 @@
         /// </summary>
         private CurrentUser()
         {
-            isUserLoggedIn = false;
+            this.isUserLoggedIn = false;
         }
 
         #endregion
@@ -60,7 +60,7 @@
         {
             get
             {
-                return id;
+                return this.id;
             }
 
             set
@@ -71,8 +71,8 @@
                 }
                 else
                 {
-                    id = value;
-                    isUserLoggedIn = true;
+                    this.id = value;
+                    this.isUserLoggedIn = true;
                 }
             }
         }

@@ -4,25 +4,36 @@
     using System.Linq;
     using System.Windows.Forms;
     using Domain;
-    using Projekt_BD.Interfaces;
     using Projekt_BD.View;
 
+    /// <summary>
+    /// Controller for client search window. 
+    /// </summary>
     public class ClientSearchController : ControllerBase
     {
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ClientSearchController" /> class.
+        /// </summary>
         public ClientSearchController()
         {
             base.Form = new ClientSearch();
 
             this.SetupEvents();
-            this.clientSearch();
+            this.SearchForGuests();
         }
 
         #endregion
 
         #region Properties
 
+        /// <summary>
+        /// Gets the form.
+        /// </summary>
+        /// <value>
+        /// The form.
+        /// </value>
         public new ClientSearch Form
         {
             get
@@ -35,6 +46,9 @@
 
         #region Methods
 
+        /// <summary>
+        /// Sets up the events.
+        /// </summary>
         private void SetupEvents()
         {
             this.Form.ClientSearchButton.Click += this.ClientSearchButton_Click;
@@ -42,7 +56,10 @@
             this.Form.FormClosing += this.FormClosing;
         }
 
-        private void clientSearch()
+        /// <summary>
+        /// Searches for guests.
+        /// </summary>
+        private void SearchForGuests()
         {
             // sprawdz czy szukanie po ID
             bool idSearch = false;
@@ -152,6 +169,11 @@
 
         #region Event Methods
 
+        /// <summary>
+        /// Handles the form closing event.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="FormClosingEventArgs" /> instance containing the event data.</param>
         private void FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason != CloseReason.ApplicationExitCall)
@@ -162,6 +184,11 @@
             }
         }
 
+        /// <summary>
+        /// Handles the CellClick event of the ClientSearchResultDataGridView control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellEventArgs" /> instance containing the event data.</param>
         private void ClientSearchResultDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -187,9 +214,14 @@
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the ClientSearchButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void ClientSearchButton_Click(object sender, EventArgs e)
         {
-            this.clientSearch();
+            this.SearchForGuests();
         }
 
         #endregion

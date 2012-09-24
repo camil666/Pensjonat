@@ -64,7 +64,7 @@
             int parentVisitId = 0;
             var visitsToBeAdded = new List<Visit>();
 
-            foreach (var datasource in AddedGuestsDataSources)
+            foreach (var datasource in this.AddedGuestsDataSources)
             {
                 foreach (var item in datasource.List)
                 {
@@ -79,7 +79,7 @@
                         Advance = advance,
                         EndDate = this.Form.EndDateDateTimePicker.Value,
                         StartDate = this.Form.StartDateDateTimePicker.Value,
-                        RoomId = (int)this.Form.RoomNumberComboBox.Items[AddedGuestsDataSources.IndexOf(datasource)],
+                        RoomId = (int)this.Form.RoomNumberComboBox.Items[this.AddedGuestsDataSources.IndexOf(datasource)],
                         GuestId = guest.Id
                     });
                 }

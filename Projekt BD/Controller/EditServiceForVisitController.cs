@@ -19,7 +19,6 @@ namespace Projekt_BD.Controller
     /// </summary>
     public class EditServiceForVisitController : ControllerBase
     {
-        
         #region Constructors
 
         public EditServiceForVisitController()
@@ -52,12 +51,10 @@ namespace Projekt_BD.Controller
             this.Form.AddServiceButton.Click += this.AddServiceButtonClick;
             this.Form.EditServiceButton.Click += this.EditServiceButtonClick;
             this.Form.DeleteServicesButton.Click += this.DeleteServicesButtonClick;
-
         }
 
         private void DeleteServicesButtonClick(object sender, EventArgs e)
         {
-
             this.RefreshDataGridView();
         }
 
@@ -104,7 +101,6 @@ namespace Projekt_BD.Controller
             this.Form.ServicesDataGridView.Columns["Name"].HeaderText = "Nazwa typu usługi";
             this.Form.ServicesDataGridView.Columns["CustomDescription"].HeaderText = "Opis usługi";
             this.Form.ServicesDataGridView.Columns["CustomName"].HeaderText = "Nazwa usługi";
-            
         }
 
         private void RefreshDataGridView()

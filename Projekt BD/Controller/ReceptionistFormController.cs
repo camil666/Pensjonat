@@ -41,10 +41,10 @@
 
         private void Init()
         {
-            this.refreshRooms();
-            this.refreshRoomTypes();
-            this.refreshFeatures();
-            this.refreshService();
+            this.RefreshRooms();
+            this.RefreshRoomTypes();
+            this.RefreshFeatures();
+            this.RefreshServices();
         }
 
         private void SetupEvents()
@@ -120,7 +120,7 @@
             }
         }
 
-        private void refreshRooms()
+        private void RefreshRooms()
         {
             var rooms = (from room in DataAccess.Instance.Rooms.GetAll()
                          select new
@@ -154,7 +154,7 @@
             this.Form.AllRoomsDataGridView.Columns["FeatureList"].Visible = false;
         }
 
-        private void refreshRoomTypes()
+        private void RefreshRoomTypes()
         {
             var roomTypes = from roomType in DataAccess.Instance.RoomTypes.GetAll()
                             select new
@@ -174,7 +174,7 @@
             this.Form.RoomTypesDataGridView.Columns["Description"].HeaderText = "Opis";
         }
 
-        private void refreshFeatures()
+        private void RefreshFeatures()
         {
             var features = from feature in DataAccess.Instance.Features.GetAll()
                            select new
@@ -190,7 +190,7 @@
             this.Form.RoomFeaturesDataGridView.Columns["Description"].HeaderText = "Opis";
         }
 
-        private void refreshService()
+        private void RefreshServices()
         {
             var serviceTypes = (from serviceType in DataAccess.Instance.ServiceTypes.GetAll()
                                 select new
@@ -200,6 +200,7 @@
                                     serviceType.Description,
                                     serviceType.Charge
                                 }).ToList();
+
             this.Form.ServiceDataGridView.DataSource = serviceTypes;
             this.Form.ServiceDataGridView.Columns["Id"].Visible = false;
             this.Form.ServiceDataGridView.Columns["Name"].HeaderText = "Nazwa";
@@ -415,7 +416,7 @@
         private void AddFeaturesButton_Click(object sender, EventArgs e)
         {
             ControllerFactory.Instance.Create(ControllerTypes.EditRoomFeature).Form.ShowDialog();
-            this.refreshFeatures();
+            this.RefreshFeatures();
         }
 
         private void EditFeaturesButton_Click(object sender, EventArgs e)
@@ -428,14 +429,14 @@
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.EditRoomFeature);
                 controller.ItemToEditID = roomFeatureId;
                 controller.Form.ShowDialog();
-                this.refreshFeatures();
+                this.RefreshFeatures();
             }
         }
 
         private void AddRoomTypeButton_Click(object sender, EventArgs e)
         {
             ControllerFactory.Instance.Create(ControllerTypes.EditRoomType).Form.ShowDialog();
-            this.refreshRoomTypes();
+            this.RefreshRoomTypes();
         }
 
         private void EditRoomTypeButton_Click(object sender, EventArgs e)
@@ -448,29 +449,29 @@
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.EditRoomType);
                 controller.ItemToEditID = roomTypeId;
                 controller.Form.ShowDialog();
-                this.refreshRoomTypes();
+                this.RefreshRoomTypes();
             }
         }
 
         private void RefreshRoomsButton_Click(object sender, EventArgs e)
         {
-            this.refreshRooms();
+            this.RefreshRooms();
         }
 
         private void RefreshRoomTypesButton_Click(object sender, EventArgs e)
         {
-            this.refreshRoomTypes();
+            this.RefreshRoomTypes();
         }
 
         private void RefreshFeaturesButton_Click(object sender, EventArgs e)
         {
-            this.refreshFeatures();
+            this.RefreshFeatures();
         }
 
         private void NewRoomButton_Click(object sender, EventArgs e)
         {
             ControllerFactory.Instance.Create(ControllerTypes.EditRoom).Form.ShowDialog();
-            this.refreshRooms();
+            this.RefreshRooms();
         }
 
         private void EditRoomButton_Click(object sender, EventArgs e)
@@ -484,7 +485,7 @@
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.EditRoom);
                 controller.ItemToEditID = roomNumber;
                 controller.Form.ShowDialog();
-                this.refreshRooms();
+                this.RefreshRooms();
             }
         }
 
@@ -498,7 +499,6 @@
                                    && v.StartDate >= this.Form.VisitStartDateSearchDateTimePicker.Value.Date
                                    && v.EndDate <= this.Form.VisitEndDateSearchDateTimePicker.Value.Date)
                               select visit).ToList();
-
 
                 if (visits.Count == 0)
                 {
@@ -622,11 +622,10 @@
             DataAccess.Instance.UnitOfWork.Commit();
         }
 
-
         private void NewServiceButton_Click(object sender, System.EventArgs e)
         {
             ControllerFactory.Instance.Create(ControllerTypes.EditService).Form.ShowDialog();
-            this.refreshService();
+            this.RefreshServices();
         }
 
         private void EditServiceButton_Click(object sender, System.EventArgs e)
@@ -639,13 +638,13 @@
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.EditService);
                 controller.ItemToEditID = index;
                 controller.Form.ShowDialog();
-                this.refreshService();
+                this.RefreshServices();
             }
         }
 
         private void RefreshServiceButton_Click(object sender, System.EventArgs e)
         {
-            this.refreshService();
+            this.RefreshServices();
         }
 
         private void ReservationIntoVisitButton_Click(object sender, EventArgs e)
@@ -705,8 +704,9 @@
                     var room = DataAccess.Instance.Rooms.Single(t => t.Number == id);
                     DataAccess.Instance.Rooms.Delete(room);
                 }
+
                 DataAccess.Instance.UnitOfWork.Commit();
-                this.refreshRooms();
+                this.RefreshRooms();
             }
             else
             {
@@ -727,10 +727,11 @@
                         var roomType = DataAccess.Instance.RoomTypes.Single(t => t.Id == id);
                         DataAccess.Instance.RoomTypes.Delete(roomType);
                     }
+
                     DataAccess.Instance.UnitOfWork.Commit();
-                    this.refreshFeatures();
+                    this.RefreshFeatures();
                 }
-                catch (Exception exception)
+                catch (Exception)
                 {
                     MessageBox.Show("Nie wolno usunąć typu pokoju, ponieważ istnieje pokój o ww. typie!");
                 }
@@ -752,8 +753,9 @@
                     var feature = DataAccess.Instance.Features.Single(t => t.Id == id);
                     DataAccess.Instance.Features.Delete(feature);
                 }
+
                 DataAccess.Instance.UnitOfWork.Commit();
-                this.refreshFeatures();
+                this.RefreshFeatures();
             }
             else
             {

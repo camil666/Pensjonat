@@ -41,8 +41,6 @@ namespace Projekt_BD.Controller
             this.SetupButtons();
         }
 
-        
-
         #endregion
 
         #region Properties
@@ -65,7 +63,6 @@ namespace Projekt_BD.Controller
             this.Form.OkButton.Click += this.OkButtonClick;
             this.Form.CancButton.Click += this.CancelButtonClick;
         }
-
 
         #endregion
 
@@ -122,7 +119,7 @@ namespace Projekt_BD.Controller
             var customDescription = this.Form.CustomDescriptionTextBox.Text;
             int quantity;
             int.TryParse(this.Form.QuantityTextBox.Text, out quantity);
-            
+
             if (startDate > endDate)
             {
                 MessageBox.Show(
@@ -173,6 +170,5 @@ namespace Projekt_BD.Controller
         }
 
         #endregion
-
     }
 }

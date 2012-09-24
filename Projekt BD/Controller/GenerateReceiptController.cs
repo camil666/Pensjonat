@@ -8,10 +8,16 @@
     using Domain;
     using Projekt_BD.View;
 
+    /// <summary>
+    /// Controller class for GenerateReceipt form.
+    /// </summary>
     public class GenerateReceiptController : ControllerBase
     {
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenerateReceiptController" /> class.
+        /// </summary>
         public GenerateReceiptController()
         {
             base.Form = new GenerateReceiptForm();
@@ -23,6 +29,12 @@
 
         #region Properties
 
+        /// <summary>
+        /// Gets the form.
+        /// </summary>
+        /// <value>
+        /// The form.
+        /// </value>
         public new GenerateReceiptForm Form
         {
             get
@@ -31,14 +43,29 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the guests data source.
+        /// </summary>
+        /// <value>
+        /// The guests data source.
+        /// </value>
         private BindingSource GuestsDataSource { get; set; }
 
+        /// <summary>
+        /// Gets or sets the generate for data source.
+        /// </summary>
+        /// <value>
+        /// The generate for data source.
+        /// </value>
         private BindingSource GenerateForDataSource { get; set; }
 
         #endregion
 
         #region Methods
 
+        /// <summary>
+        /// Sets up the events.
+        /// </summary>
         private void SetupEvents()
         {
             this.Form.CancelButton.Click += this.CancelButton_Click;
@@ -52,9 +79,14 @@
 
         #region Event Methods
 
+        /// <summary>
+        /// Handles the Click event of the OkButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void OkButton_Click(object sender, EventArgs e)
         {
-            if (GenerateForDataSource.Count > 0)
+            if (this.GenerateForDataSource.Count > 0)
             {
                 var dialog = new SaveFileDialog();
                 dialog.DefaultExt = "txt";
@@ -116,7 +148,7 @@
                         totalGroupCost += totalVisitCost;
                     }
 
-                    if (GenerateForDataSource.Count > 1)
+                    if (this.GenerateForDataSource.Count > 1)
                     {
                         writer.WriteLine();
                         writer.WriteLine("------");
@@ -146,6 +178,11 @@
             }
         }
 
+        /// <summary>
+        /// Handles the Load event of the Form control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void Form_Load(object sender, EventArgs e)
         {
             this.GenerateForDataSource = new BindingSource();
@@ -197,11 +234,21 @@
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the CancelButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Form.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the RemoveGuestFromVisitButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void RemoveGuestFromVisitButton_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewRow item in this.Form.GenerateForGridView.SelectedRows)
@@ -211,6 +258,11 @@
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the AddGuestToVisitButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void AddGuestToVisitButton_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewRow item in this.Form.GuestsDataGridView.SelectedRows)

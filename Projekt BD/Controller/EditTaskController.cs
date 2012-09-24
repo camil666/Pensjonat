@@ -61,11 +61,11 @@ namespace Projekt_BD.Controller
             this.Form.TaskTypeComboBox.DataSource = new BindingSource(availableTypes, null);
             this.Form.TaskTypeComboBox.DisplayMember = "Value";
             this.Form.TaskTypeComboBox.ValueMember = "Key";
-            
+
             if (this.IsEditForm)
             {
                 this.task = DataAccess.Instance.Tasks.Single(x => x.Id == this.ItemToEditID);
-                
+
                 this.Form.NameTextBox.Text = this.task.Name;
                 this.Form.DescriptionTextBox.Text = this.task.Description;
                 var startDate = this.task.StartDate;
@@ -147,7 +147,6 @@ namespace Projekt_BD.Controller
 
             this.Form.Dispose();
         }
-
 
         #endregion
     }

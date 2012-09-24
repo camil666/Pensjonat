@@ -1,27 +1,40 @@
 ﻿namespace Projekt_BD.Controller
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Windows.Forms;
     using Domain;
     using Projekt_BD.View;
 
+    /// <summary>
+    /// Controller class for EditRoom form.
+    /// </summary>
     public class EditRoomController : ControllerBase
     {
-        #region Field
+        #region Fields
 
+        /// <summary>
+        /// Name of the Id column.
+        /// </summary>
         private static readonly string IdColumnName = "Id";
 
+        /// <summary>
+        /// Name of the Name column.
+        /// </summary>
         private static readonly string NameColumnName = "Name";
 
+        /// <summary>
+        /// Name of the IsAdded column.
+        /// </summary>
         private static readonly string IsAddedColumnName = "IsAdded";
 
         #endregion
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EditRoomController" /> class.
+        /// </summary>
         public EditRoomController()
         {
             base.Form = new EditRoomForm();
@@ -33,6 +46,12 @@
 
         #region Properties
 
+        /// <summary>
+        /// Gets the form.
+        /// </summary>
+        /// <value>
+        /// The form.
+        /// </value>
         public new EditRoomForm Form
         {
             get
@@ -45,6 +64,9 @@
 
         #region Methods
 
+        /// <summary>
+        /// Sets up the events.
+        /// </summary>
         private void SetupEvents()
         {
             this.Form.Load += this.Form_Load;
@@ -52,6 +74,9 @@
             this.Form.CancelButton.Click += this.CancelButton_Click;
         }
 
+        /// <summary>
+        /// Sets the column names and visibility.
+        /// </summary>
         private void SetColumnNamesAndVisibility()
         {
             this.Form.FeaturesDataGridView.Columns[IdColumnName].Visible = false;
@@ -59,6 +84,10 @@
             this.Form.FeaturesDataGridView.Columns[IsAddedColumnName].HeaderText = string.Empty;
         }
 
+        /// <summary>
+        /// Adds the features to room.
+        /// </summary>
+        /// <param name="room">The room.</param>
         private void AddFeaturesToRoom(Room room)
         {
             foreach (DataGridViewRow row in this.Form.FeaturesDataGridView.Rows)
@@ -82,6 +111,11 @@
 
         #region Event Methods
 
+        /// <summary>
+        /// Handles the Load event of the Form control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void Form_Load(object sender, EventArgs e)
         {
             var availableTypes = DataAccess.Instance.RoomTypes.GetAll().ToDictionary(availableType => availableType.Id, availableType => availableType.Name);
@@ -126,13 +160,18 @@
 
                 this.Form.FeaturesDataGridView.DataSource = featureList;
                 this.Form.FeaturesDataGridView.Columns.Add(new DataGridViewCheckBoxColumn() { Name = IsAddedColumnName });
-                
+
                 this.Form.Text = "Nowy pokój";
             }
 
             this.SetColumnNamesAndVisibility();
         }
 
+        /// <summary>
+        /// Handles the Click event of the OkButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void OkButton_Click(object sender, EventArgs e)
         {
             int roomNumber = 0;
@@ -186,6 +225,11 @@
             this.Form.Dispose();
         }
 
+        /// <summary>
+        /// Handles the Click event of the CancelButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Form.Dispose();
