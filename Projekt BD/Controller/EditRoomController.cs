@@ -195,10 +195,10 @@
 
                 return;
             }
-
+            Room room = null;
             if (this.IsEditForm)
             {
-                var room = DataAccess.Instance.Rooms.Single(r => r.Number == this.ItemToEditID);
+                room = DataAccess.Instance.Rooms.Single(r => r.Number == this.ItemToEditID);
                 room.Number = roomNumber;
                 room.Capacity = roomCapacity;
                 room.Floor = roomFloor;
@@ -208,7 +208,7 @@
             }
             else
             {
-                var room = new Room
+                room = new Room
                 {
                     Number = roomNumber,
                     Capacity = roomCapacity,
@@ -219,8 +219,16 @@
                 DataAccess.Instance.Rooms.Add(room);
                 this.AddFeaturesToRoom(room);
             }
-
-            DataAccess.Instance.UnitOfWork.Commit();
+            try
+            {
+                DataAccess.Instance.UnitOfWork.Commit();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Pokój o danym numerze już istnieje!");
+                DataAccess.Instance.UnitOfWork.Refresh(room);
+            }
+            
 
             this.Form.Dispose();
         }
