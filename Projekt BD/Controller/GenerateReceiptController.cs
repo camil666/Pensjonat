@@ -129,7 +129,11 @@
                         writer.WriteLine("---");
                         writer.WriteLine("Posiłki:");
 
-                        //TODO: dorobic mealplany
+                        foreach (var mealPlan in visit.VisitMealPlans)
+                        {
+                            totalVisitCost += (double)mealPlan.MealPlan.Price;
+                            writer.WriteLine(string.Format("Cena: {0}", mealPlan.MealPlan.Price));
+                        }
 
                         writer.WriteLine("---");
                         writer.WriteLine("Zniżki:");
