@@ -119,11 +119,16 @@
 
                 case ControllerTypes.MealPlansForm:
                     return new MealPlanController();
+
                 case ControllerTypes.GenerateReceiptForm:
                     return new GenerateReceiptController();
 
                 case ControllerTypes.EditMealPlansForVisitForm:
                     return new EditMealPlanController();
+
+                case ControllerTypes.GrantDiscountForm:
+                    return new GrantDiscountController();
+
                 default:
                     return null;
             }

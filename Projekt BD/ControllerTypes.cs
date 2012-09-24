@@ -99,6 +99,8 @@
         /// </summary>
         GenerateReceiptForm,
 
-        EditMealPlansForVisitForm
+        EditMealPlansForVisitForm,
+
+        GrantDiscountForm
     }
 }

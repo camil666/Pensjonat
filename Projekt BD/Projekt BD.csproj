@@ -71,6 +71,7 @@
     <Compile Include="Controller\EditTaskTypeController.cs" />
     <Compile Include="Controller\EmployeeFormController.cs" />
     <Compile Include="Controller\GenerateReceiptController.cs" />
+    <Compile Include="Controller\GrantDiscountController.cs" />
     <Compile Include="Controller\LoginFormController.cs" />
     <Compile Include="Controller\ManagerFormController.cs" />
     <Compile Include="Controller\MealPlanController.cs" />
@@ -169,6 +170,12 @@
     <Compile Include="View\GenerateReceiptForm.designer.cs">
       <DependentUpon>GenerateReceiptForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\GrantDiscountForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\GrantDiscountForm.Designer.cs">
+      <DependentUpon>GrantDiscountForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -257,6 +264,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\GenerateReceiptForm.resx">
       <DependentUpon>GenerateReceiptForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\GrantDiscountForm.resx">
+      <DependentUpon>GrantDiscountForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
