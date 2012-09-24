@@ -6,6 +6,9 @@
     {
         #region Construtors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoginForm" /> class.
+        /// </summary>
         public LoginForm()
         {
             this.InitializeComponent();

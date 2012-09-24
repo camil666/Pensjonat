@@ -2,6 +2,9 @@
 {
     using System;
 
+    /// <summary>
+    /// Holds information of currently logged user.
+    /// </summary>
     public class CurrentUser
     {
         #region Fields
@@ -56,6 +59,13 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the id.
+        /// </summary>
+        /// <value>
+        /// The id.
+        /// </value>
+        /// <exception cref="System.InvalidOperationException">Thrown when setter is fired more then once.</exception>
         public int Id
         {
             get

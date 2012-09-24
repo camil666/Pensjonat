@@ -174,18 +174,18 @@
         public Repository<Task> Tasks { get; private set; }
 
         /// <summary>
-        /// Gets task types.
+        /// Gets the task types.
         /// </summary>
         /// <value>
-        /// task type
+        /// The task types.
         /// </value>
         public Repository<TaskType> TaskTypes { get; private set; }
 
         /// <summary>
-        /// Gets services.
+        /// Gets the services.
         /// </summary>
         /// <value>
-        /// Service.
+        /// The services.
         /// </value>
         public Repository<Service> Services { get; private set; }
 

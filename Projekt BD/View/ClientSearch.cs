@@ -9,6 +9,9 @@
     {
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ClientSearch" /> class.
+        /// </summary>
         public ClientSearch()
         {
             this.InitializeComponent();
@@ -18,8 +21,18 @@
 
         #region Properties
 
+        /// <summary>
+        /// Gets or sets the form that the container control is assigned to.
+        /// </summary>
+        /// <returns>The <see cref="T:System.Windows.Forms.Form" /> that the container control is assigned to. This property will return null if the control is hosted inside of Internet Explorer or in another hosting context where there is no parent form. </returns>
         public new ReceptionistForm ParentForm { get; set; }
 
+        /// <summary>
+        /// Gets the selected client ID.
+        /// </summary>
+        /// <value>
+        /// The selected client ID.
+        /// </value>
         public int SelectedClientID
         {
             get

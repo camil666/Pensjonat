@@ -6,6 +6,9 @@
     {
         #region Consturctors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewClientForm" /> class.
+        /// </summary>
         public NewClientForm()
         {
             this.InitializeComponent();

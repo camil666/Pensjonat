@@ -2,35 +2,60 @@
 {
     using System;
     using System.Collections;
-    using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Linq;
     using System.Windows.Forms;
     using Domain;
     using Projekt_BD.View;
 
+    /// <summary>
+    /// Controller class for Reservation form.
+    /// </summary>
     public class ReservationFormController : ControllerBase
     {
         #region Fields
 
+        /// <summary>
+        /// Name of the Number column.
+        /// </summary>
         private static readonly string NumberColumnName = "Number";
 
+        /// <summary>
+        /// Name of the Name column.
+        /// </summary>
         private static readonly string NameColumnName = "Name";
 
+        /// <summary>
+        /// Name of the Capacity column.
+        /// </summary>
         private static readonly string CapacityColumnName = "Capacity";
 
+        /// <summary>
+        /// Name of the Floor column.
+        /// </summary>
         private static readonly string FloorColumnName = "Floor";
 
+        /// <summary>
+        /// Name of the Price column.
+        /// </summary>
         private static readonly string PriceColumnName = "Price";
 
+        /// <summary>
+        /// Indicates if form is loaded.
+        /// </summary>
         private bool formIsLoaded;
 
+        /// <summary>
+        /// Indicates if any edits were made.
+        /// </summary>
         private bool editsWereMade;
 
         #endregion
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReservationFormController" /> class.
+        /// </summary>
         public ReservationFormController()
         {
             base.Form = new ReservationForm();
@@ -44,6 +69,12 @@
 
         #region Properties
 
+        /// <summary>
+        /// Gets the form.
+        /// </summary>
+        /// <value>
+        /// The form.
+        /// </value>
         public new ReservationForm Form
         {
             get
@@ -52,14 +83,31 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the free rooms source.
+        /// </summary>
+        /// <value>
+        /// The free rooms source.
+        /// </value>
         private BindingSource FreeRoomsSource { get; set; }
 
+        /// <summary>
+        /// Gets or sets the reserved rooms source.
+        /// </summary>
+        /// <value>
+        /// The reserved rooms source.
+        /// </value>
         private BindingSource ReservedRoomsSource { get; set; }
 
         #endregion
 
         #region Methods
 
+        /// <summary>
+        /// Sets the column names.
+        /// </summary>
+        /// <param name="grid">The grid.</param>
+        /// <exception cref="System.ArgumentNullException">Thrown if given grid was null.</exception>
         private static void SetColumnNames(DataGridView grid)
         {
             if (grid != null)
@@ -76,6 +124,9 @@
             }
         }
 
+        /// <summary>
+        /// Sets up the events.
+        /// </summary>
         private void SetupEvents()
         {
             this.Form.Load += this.Form_Load;
@@ -91,6 +142,11 @@
 
         #region Event Methods
 
+        /// <summary>
+        /// Handles the Load event of the Form control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void Form_Load(object sender, EventArgs e)
         {
             try
@@ -140,11 +196,21 @@
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the CancelButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Form.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the AddToReservationButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void AddToReservationButton_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewRow item in this.Form.FreeRoomsDataGridView.SelectedRows)
@@ -156,6 +222,11 @@
             this.editsWereMade = true;
         }
 
+        /// <summary>
+        /// Handles the Click event of the RemoveFromReservationButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void RemoveFromReservationButton_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewRow item in this.Form.RoomsToBeReservedDataGridView.SelectedRows)
@@ -167,6 +238,11 @@
             this.editsWereMade = true;
         }
 
+        /// <summary>
+        /// Handles the Click event of the AddButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void AddButton_Click(object sender, EventArgs e)
         {
             if (this.Form.RoomsToBeReservedDataGridView.Rows.Count < 1)
@@ -228,6 +304,11 @@
             this.Form.Close();
         }
 
+        /// <summary>
+        /// Handles the ValueChanged event of the EndDateDateTimePicker control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void EndDateDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
             if (this.Form.StartDateDateTimePicker.Value <= this.Form.EndDateDateTimePicker.Value)
@@ -238,6 +319,11 @@
             this.RefreshGrids();
         }
 
+        /// <summary>
+        /// Handles the ValueChanged event of the StartDateDateTimePicker control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void StartDateDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
             if (this.Form.StartDateDateTimePicker.Value >= this.Form.EndDateDateTimePicker.Value)
@@ -248,6 +334,9 @@
             this.RefreshGrids();
         }
 
+        /// <summary>
+        /// Refreshes the grids.
+        /// </summary>
         private void RefreshGrids()
         {
             if (this.formIsLoaded)
@@ -257,6 +346,12 @@
             }
         }
 
+        /// <summary>
+        /// Gets the free rooms.
+        /// </summary>
+        /// <param name="startDate">The start date.</param>
+        /// <param name="endDate">The end date.</param>
+        /// <returns>List of free rooms.</returns>
         private IList GetFreeRooms(DateTime startDate, DateTime endDate)
         {
             DateTime reservationStart = this.Form.StartDateDateTimePicker.Value;

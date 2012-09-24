@@ -4,9 +4,16 @@
 
     public partial class AdminForm : Form
     {
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdminForm" /> class.
+        /// </summary>
         public AdminForm()
         {
-            this.InitializeComponent();    
+            this.InitializeComponent();
         }
+
+        #endregion
     }
 }

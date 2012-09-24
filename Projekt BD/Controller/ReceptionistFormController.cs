@@ -1,20 +1,21 @@
 ﻿namespace Projekt_BD.Controller
 {
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Data;
     using System.Linq;
-    using System.Text;
     using System.Windows.Forms;
     using Domain;
-    using Projekt_BD.Interfaces;
     using Projekt_BD.View;
 
+    /// <summary>
+    /// Controller class for Receptionist form.
+    /// </summary>
     public class ReceptionistFormController : ControllerBase
     {
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReceptionistFormController" /> class.
+        /// </summary>
         public ReceptionistFormController()
         {
             base.Form = new ReceptionistForm();
@@ -27,6 +28,12 @@
 
         #region Properties
 
+        /// <summary>
+        /// Gets the form.
+        /// </summary>
+        /// <value>
+        /// The form.
+        /// </value>
         public new ReceptionistForm Form
         {
             get
@@ -39,6 +46,9 @@
 
         #region Methods
 
+        /// <summary>
+        /// Inits this instance.
+        /// </summary>
         private void Init()
         {
             this.RefreshRooms();
@@ -47,6 +57,9 @@
             this.RefreshServices();
         }
 
+        /// <summary>
+        /// Sets up the events.
+        /// </summary>
         private void SetupEvents()
         {
             this.Form.ClientSearchEnabledStripMenuItem.Click += this.ClientSearchEnabledStripMenuItem_Click;
@@ -54,7 +67,7 @@
             this.Form.AboutToolStripMenuItem.Click += this.AboutToolStripMenuItem_Click;
             this.Form.NewClientButton.Click += this.NewClientButton_Click;
             this.Form.NewReservationButton.Click += this.NewReservationButton_Click;
-            this.Form.EditMealPlansForVisit.Click += this.EditMealPlansForVisitClick;
+            this.Form.EditMealPlansForVisit.Click += this.EditMealPlansForVisit_Click;
             this.Form.ReservationSearchButton.Click += this.ReservationSearchButton_Click;
             this.Form.StartDateReservationSearchDateTimePicker.ValueChanged += this.StartDateReservationSearchDateTimePicker_ValueChanged;
             this.Form.EndDateReservationSearchDateTimePicker.ValueChanged += this.EndDateReservationSearchDateTimePicker_ValueChanged;
@@ -78,14 +91,17 @@
             this.Form.EditServiceButton.Click += this.EditServiceButton_Click;
             this.Form.NewServiceButton.Click += this.NewServiceButton_Click;
             this.Form.ReservationIntoVisitButton.Click += this.ReservationIntoVisitButton_Click;
-            this.Form.ServicesButton.Click += this.EditServiceForVisitClick;
+            this.Form.ServicesButton.Click += this.EditServiceForVisit_Click;
             this.Form.GenerateReceiptButton.Click += this.GenerateReceiptButton_Click;
-            this.Form.DeleteFeatureButton.Click += this.DeleteFeatureButtonClick;
-            this.Form.DeleteRoomTypeButton.Click += this.DeleteRoomTypeButtonClick;
-            this.Form.DeleteRoomButton.Click += this.DeleteRoomButtonClick;
+            this.Form.DeleteFeatureButton.Click += this.DeleteFeatureButton_Click;
+            this.Form.DeleteRoomTypeButton.Click += this.DeleteRoomTypeButton_Click;
+            this.Form.DeleteRoomButton.Click += this.DeleteRoomButton_Click;
         }
 
-        private void ReservationSearchResultDataGridView_Refresh()
+        /// <summary>
+        /// Refreshes the reservation search result data grid view.
+        /// </summary>
+        private void RefreshReservationSearchResultDataGridView()
         {
             int selectedClientID = this.Form.ClientSearchWindow.SelectedClientID;
 
@@ -120,6 +136,9 @@
             }
         }
 
+        /// <summary>
+        /// Refreshes the rooms.
+        /// </summary>
         private void RefreshRooms()
         {
             var rooms = (from room in DataAccess.Instance.Rooms.GetAll()
@@ -154,6 +173,9 @@
             this.Form.AllRoomsDataGridView.Columns["FeatureList"].Visible = false;
         }
 
+        /// <summary>
+        /// Refreshes the room types.
+        /// </summary>
         private void RefreshRoomTypes()
         {
             var roomTypes = from roomType in DataAccess.Instance.RoomTypes.GetAll()
@@ -174,6 +196,9 @@
             this.Form.RoomTypesDataGridView.Columns["Description"].HeaderText = "Opis";
         }
 
+        /// <summary>
+        /// Refreshes the features.
+        /// </summary>
         private void RefreshFeatures()
         {
             var features = from feature in DataAccess.Instance.Features.GetAll()
@@ -190,6 +215,9 @@
             this.Form.RoomFeaturesDataGridView.Columns["Description"].HeaderText = "Opis";
         }
 
+        /// <summary>
+        /// Refreshes the services.
+        /// </summary>
         private void RefreshServices()
         {
             var serviceTypes = (from serviceType in DataAccess.Instance.ServiceTypes.GetAll()
@@ -212,6 +240,11 @@
 
         #region Event Methods
 
+        /// <summary>
+        /// Handles the Click event of the GenerateReceiptButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void GenerateReceiptButton_Click(object sender, EventArgs e)
         {
             if (this.Form.VisitSearchResultsDataGridView.SelectedRows.Count > 0)
@@ -228,6 +261,11 @@
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the ClientSearchEnabledStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void ClientSearchEnabledStripMenuItem_Click(object sender, EventArgs e)
         {
             if (this.Form.ClientSearchWindow != null)
@@ -243,11 +281,21 @@
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the ExitToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
+        /// <summary>
+        /// Handles the Click event of the AboutToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show(
@@ -258,11 +306,21 @@
             MessageBoxDefaultButton.Button1);
         }
 
+        /// <summary>
+        /// Handles the Click event of the NewClientButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void NewClientButton_Click(object sender, EventArgs e)
         {
             ControllerFactory.Instance.Create(ControllerTypes.NewClientForm).Form.ShowDialog();
         }
 
+        /// <summary>
+        /// Handles the Click event of the NewReservationButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void NewReservationButton_Click(object sender, EventArgs e)
         {
             int selectedClientID = this.Form.ClientSearchWindow.SelectedClientID;
@@ -272,7 +330,7 @@
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.ReservationForm);
                 controller.ClientID = selectedClientID;
                 controller.Form.ShowDialog();
-                this.ReservationSearchResultDataGridView_Refresh();
+                this.RefreshReservationSearchResultDataGridView();
             }
             else
             {
@@ -285,16 +343,31 @@
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the NewVisitButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void NewVisitButton_Click(object sender, EventArgs e)
         {
             ControllerFactory.Instance.Create(ControllerTypes.NewVisitForm).Form.ShowDialog();
         }
 
+        /// <summary>
+        /// Handles the Click event of the ReservationSearchButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void ReservationSearchButton_Click(object sender, EventArgs e)
         {
-            this.ReservationSearchResultDataGridView_Refresh();
+            this.RefreshReservationSearchResultDataGridView();
         }
 
+        /// <summary>
+        /// Handles the ValueChanged event of the StartDateReservationSearchDateTimePicker control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void StartDateReservationSearchDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
             if (this.Form.StartDateReservationSearchDateTimePicker.Value >= this.Form.EndDateReservationSearchDateTimePicker.Value)
@@ -303,6 +376,11 @@
             }
         }
 
+        /// <summary>
+        /// Handles the ValueChanged event of the EndDateReservationSearchDateTimePicker control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void EndDateReservationSearchDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
             if (this.Form.EndDateReservationSearchDateTimePicker.Value <= this.Form.StartDateReservationSearchDateTimePicker.Value)
@@ -311,6 +389,11 @@
             }
         }
 
+        /// <summary>
+        /// Handles the ValueChanged event of the VisitEndDateSearchDateTimePicker control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void VisitEndDateSearchDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
             if (this.Form.VisitEndDateSearchDateTimePicker.Value <= this.Form.VisitStartDateSearchDateTimePicker.Value)
@@ -319,6 +402,11 @@
             }
         }
 
+        /// <summary>
+        /// Handles the ValueChanged event of the VisitStartDateSearchDateTimePicker control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void VisitStartDateSearchDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
             if (this.Form.VisitStartDateSearchDateTimePicker.Value >= this.Form.VisitEndDateSearchDateTimePicker.Value)
@@ -327,6 +415,11 @@
             }
         }
 
+        /// <summary>
+        /// Handles the CellClick event of the ReservationSearchResultDataGridView control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellEventArgs" /> instance containing the event data.</param>
         private void ReservationSearchResultDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -354,6 +447,11 @@
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the DeleteReservationButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void DeleteReservationButton_Click(object sender, EventArgs e)
         {
             // if a reservation is selected
@@ -390,6 +488,11 @@
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the EditReservationButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void EditReservationButton_Click(object sender, EventArgs e)
         {
             // if a reservation is selected
@@ -400,7 +503,7 @@
                 controller.ItemToEditID = id;
                 controller.ClientID = this.Form.ClientSearchWindow.SelectedClientID;
                 controller.Form.ShowDialog();
-                this.ReservationSearchResultDataGridView_Refresh();
+                this.RefreshReservationSearchResultDataGridView();
             }
             else
             {
@@ -413,12 +516,22 @@
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the AddFeaturesButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void AddFeaturesButton_Click(object sender, EventArgs e)
         {
             ControllerFactory.Instance.Create(ControllerTypes.EditRoomFeature).Form.ShowDialog();
             this.RefreshFeatures();
         }
 
+        /// <summary>
+        /// Handles the Click event of the EditFeaturesButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void EditFeaturesButton_Click(object sender, EventArgs e)
         {
             int selectedCellCount = this.Form.RoomFeaturesDataGridView.GetCellCount(DataGridViewElementStates.Selected);
@@ -433,12 +546,22 @@
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the AddRoomTypeButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void AddRoomTypeButton_Click(object sender, EventArgs e)
         {
             ControllerFactory.Instance.Create(ControllerTypes.EditRoomType).Form.ShowDialog();
             this.RefreshRoomTypes();
         }
 
+        /// <summary>
+        /// Handles the Click event of the EditRoomTypeButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void EditRoomTypeButton_Click(object sender, EventArgs e)
         {
             int selectedCellCount = this.Form.RoomTypesDataGridView.GetCellCount(DataGridViewElementStates.Selected);
@@ -453,27 +576,52 @@
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the RefreshRoomsButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void RefreshRoomsButton_Click(object sender, EventArgs e)
         {
             this.RefreshRooms();
         }
 
+        /// <summary>
+        /// Handles the Click event of the RefreshRoomTypesButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void RefreshRoomTypesButton_Click(object sender, EventArgs e)
         {
             this.RefreshRoomTypes();
         }
 
+        /// <summary>
+        /// Handles the Click event of the RefreshFeaturesButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void RefreshFeaturesButton_Click(object sender, EventArgs e)
         {
             this.RefreshFeatures();
         }
 
+        /// <summary>
+        /// Handles the Click event of the NewRoomButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void NewRoomButton_Click(object sender, EventArgs e)
         {
             ControllerFactory.Instance.Create(ControllerTypes.EditRoom).Form.ShowDialog();
             this.RefreshRooms();
         }
 
+        /// <summary>
+        /// Handles the Click event of the EditRoomButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void EditRoomButton_Click(object sender, EventArgs e)
         {
             int selectedRowsCount = this.Form.AllRoomsDataGridView.SelectedRows.Count;
@@ -489,6 +637,11 @@
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the VisitSearchButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void VisitSearchButton_Click(object sender, EventArgs e)
         {
             int selectedClientID = this.Form.ClientSearchWindow.SelectedClientID;
@@ -574,6 +727,11 @@
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the SaveClientChangesButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void SaveClientChangesButton_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(this.Form.ApartmentNumberClientDetailsTextBox.Text) ||
@@ -622,12 +780,22 @@
             DataAccess.Instance.UnitOfWork.Commit();
         }
 
+        /// <summary>
+        /// Handles the Click event of the NewServiceButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs" /> instance containing the event data.</param>
         private void NewServiceButton_Click(object sender, System.EventArgs e)
         {
             ControllerFactory.Instance.Create(ControllerTypes.EditService).Form.ShowDialog();
             this.RefreshServices();
         }
 
+        /// <summary>
+        /// Handles the Click event of the EditServiceButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs" /> instance containing the event data.</param>
         private void EditServiceButton_Click(object sender, System.EventArgs e)
         {
             int selectedRowsCount = this.Form.ServiceDataGridView.SelectedRows.Count;
@@ -642,26 +810,41 @@
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the RefreshServiceButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs" /> instance containing the event data.</param>
         private void RefreshServiceButton_Click(object sender, System.EventArgs e)
         {
             this.RefreshServices();
         }
 
+        /// <summary>
+        /// Handles the Click event of the ReservationIntoVisitButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void ReservationIntoVisitButton_Click(object sender, EventArgs e)
         {
             if (this.Form.ReservationSearchResultDataGridView.SelectedRows.Count > 0)
             {
-                var controller = ControllerFactory.Instance.Create(ControllerTypes.NewVisitForm); 
-                controller.ItemToEditID = int.Parse(this.Form.ReservationIDDetailsTextBox.Text); 
+                var controller = ControllerFactory.Instance.Create(ControllerTypes.NewVisitForm);
+                controller.ItemToEditID = int.Parse(this.Form.ReservationIDDetailsTextBox.Text);
                 controller.Form.ShowDialog();
-            } 
+            }
             else
             {
                 MessageBox.Show("Należy zaznaczyć rezerwację", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
         }
 
-        private void EditServiceForVisitClick(object sender, EventArgs e)
+        /// <summary>
+        /// Handles the Click event of the EditServiceForVisit control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void EditServiceForVisit_Click(object sender, EventArgs e)
         {
             if (this.Form.VisitSearchResultsDataGridView.SelectedRows.Count > 0)
             {
@@ -677,7 +860,12 @@
             }
         }
 
-        private void EditMealPlansForVisitClick(object sender, EventArgs e)
+        /// <summary>
+        /// Handles the Click event of the EditMealPlansForVisit control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void EditMealPlansForVisit_Click(object sender, EventArgs e)
         {
             if (this.Form.VisitSearchResultsDataGridView.SelectedRows.Count > 0)
             {
@@ -693,7 +881,12 @@
             }
         }
 
-        private void DeleteRoomButtonClick(object sender, EventArgs e)
+        /// <summary>
+        /// Handles the Click event of the DeleteRoomButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void DeleteRoomButton_Click(object sender, EventArgs e)
         {
             if (this.Form.AllRoomsDataGridView.SelectedRows.Count > 0)
             {
@@ -714,7 +907,12 @@
             }
         }
 
-        private void DeleteRoomTypeButtonClick(object sender, EventArgs e)
+        /// <summary>
+        /// Handles the Click event of the DeleteRoomTypeButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void DeleteRoomTypeButton_Click(object sender, EventArgs e)
         {
             if (this.Form.RoomTypesDataGridView.SelectedRows.Count > 0)
             {
@@ -742,7 +940,12 @@
             }
         }
 
-        private void DeleteFeatureButtonClick(object sender, EventArgs e)
+        /// <summary>
+        /// Handles the Click event of the DeleteFeatureButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void DeleteFeatureButton_Click(object sender, EventArgs e)
         {
             if (this.Form.RoomFeaturesDataGridView.SelectedRows.Count > 0)
             {
@@ -762,6 +965,7 @@
                 MessageBox.Show("Nie zaznaczono zadań do usunięcia!");
             }
         }
+
         #endregion
     }
 }

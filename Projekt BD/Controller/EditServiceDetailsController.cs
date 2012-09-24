@@ -1,38 +1,40 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="EditServiceDetailsController.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Projekt_BD.Controller
+﻿namespace Projekt_BD.Controller
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Windows.Forms;
-
     using Domain;
-
     using Projekt_BD.View;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Controller class for EditServiceDetails form.
     /// </summary>
     public class EditServiceDetailsController : ControllerBase
     {
-        #region Field
+        #region Fields
 
+        /// <summary>
+        /// Name of the Id column.
+        /// </summary>
         private static readonly string IdColumnName = "Id";
 
+        /// <summary>
+        /// Name of the Name column.
+        /// </summary>
         private static readonly string NameColumnName = "Name";
 
+        /// <summary>
+        /// Name of the IsAdded column.
+        /// </summary>
         private static readonly string IsAddedColumnName = "IsAdded";
 
         #endregion
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EditServiceDetailsController" /> class.
+        /// </summary>
         public EditServiceDetailsController()
         {
             base.Form = new EditServiceDetails();
@@ -45,6 +47,12 @@ namespace Projekt_BD.Controller
 
         #region Properties
 
+        /// <summary>
+        /// Gets the form.
+        /// </summary>
+        /// <value>
+        /// The form.
+        /// </value>
         public new EditServiceDetails Form
         {
             get
@@ -57,23 +65,34 @@ namespace Projekt_BD.Controller
 
         #region Methods
 
+        /// <summary>
+        /// Sets up the events.
+        /// </summary>
         private void SetupEvents()
         {
             this.Form.Load += this.Form_Load;
-            this.Form.OkButton.Click += this.OkButtonClick;
-            this.Form.CancButton.Click += this.CancelButtonClick;
+            this.Form.OkButton.Click += this.OkButton_Click;
+            this.Form.CancButton.Click += this.CancelButton_Click;
         }
 
         #endregion
 
         #region Event Methods
 
+        /// <summary>
+        /// Sets up the buttons.
+        /// </summary>
         private void SetupButtons()
         {
             this.Form.OkButton.DialogResult = DialogResult.OK;
             this.Form.CancButton.DialogResult = DialogResult.Cancel;
         }
 
+        /// <summary>
+        /// Handles the Load event of the Form control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void Form_Load(object sender, EventArgs e)
         {
             var availableTypes = DataAccess.Instance.ServiceTypes.GetAll().ToDictionary(availableType => availableType.Id, availableType => availableType.Name);
@@ -108,7 +127,12 @@ namespace Projekt_BD.Controller
             }
         }
 
-        private void OkButtonClick(object sender, EventArgs e)
+        /// <summary>
+        /// Handles the Click event of the OkButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void OkButton_Click(object sender, EventArgs e)
         {
             DateTime startDate = this.Form.StartDateTimePicker.Value;
             DateTime endDate = this.Form.EndDateTimePicker.Value;
@@ -164,7 +188,12 @@ namespace Projekt_BD.Controller
             this.Form.Dispose();
         }
 
-        private void CancelButtonClick(object sender, EventArgs e)
+        /// <summary>
+        /// Handles the Click event of the CancelButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Form.Dispose();
         }

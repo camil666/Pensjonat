@@ -4,9 +4,16 @@
 
     public partial class EditServiceForVisitForm : Form
     {
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EditServiceForVisitForm" /> class.
+        /// </summary>
         public EditServiceForVisitForm()
         {
             this.InitializeComponent();
         }
+
+        #endregion
     }
 }

@@ -6,6 +6,9 @@
     {
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EditRoomFeatureForm" /> class.
+        /// </summary>
         public EditRoomFeatureForm()
         {
             this.InitializeComponent();

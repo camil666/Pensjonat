@@ -4,9 +4,16 @@
 
     public partial class MealPlansView : Form
     {
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MealPlansView" /> class.
+        /// </summary>
         public MealPlansView()
         {
             this.InitializeComponent();
         }
+
+        #endregion
     }
 }

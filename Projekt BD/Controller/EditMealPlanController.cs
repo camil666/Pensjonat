@@ -1,31 +1,31 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="EditMealPlanController.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Projekt_BD.Controller
+﻿namespace Projekt_BD.Controller
 {
     using System;
-    using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
-    using System.Text;
     using System.Windows.Forms;
-
     using Domain;
-
     using Projekt_BD.View;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Controller class for EditMealPlan form.
     /// </summary>
     public class EditMealPlanController : ControllerBase
     {
+        #region Fields
+
+        /// <summary>
+        /// Single mealplan.
+        /// </summary>
         private VisitMealPlan visitMealPlan;
+
+        #endregion
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EditMealPlanController" /> class.
+        /// </summary>
         public EditMealPlanController()
         {
             base.Form = new EditMealPlan();
@@ -37,6 +37,12 @@ namespace Projekt_BD.Controller
 
         #region Properties
 
+        /// <summary>
+        /// Gets the form.
+        /// </summary>
+        /// <value>
+        /// The form.
+        /// </value>
         public new EditMealPlan Form
         {
             get
@@ -49,23 +55,36 @@ namespace Projekt_BD.Controller
 
         #region Methods
 
+        /// <summary>
+        /// Sets up the events.
+        /// </summary>
         private void SetupEvents()
         {
-            this.Form.Load += this.FormLoad;
-            this.Form.OkButton.Click += this.OkButtonClick;
-            this.Form.CancButton.Click += this.CancelButtonClick;
+            this.Form.Load += this.Form_Load;
+            this.Form.OkButton.Click += this.OkButton_Click;
+            this.Form.CancButton.Click += this.CancelButton_Click;
         }
 
         #endregion
 
         #region Event Methods
 
-        private void CancelButtonClick(object sender, EventArgs e)
+        /// <summary>
+        /// Handles the Click event of the CancelButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Form.Dispose();
         }
 
-        private void OkButtonClick(object sender, EventArgs e)
+        /// <summary>
+        /// Handles the Click event of the OkButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void OkButton_Click(object sender, EventArgs e)
         {
             string additionalInfo = this.Form.AdditionalInfoTextBox.Text;
             int count;
@@ -162,7 +181,12 @@ namespace Projekt_BD.Controller
             this.Form.Dispose();
         }
 
-        private void FormLoad(object sender, EventArgs e)
+        /// <summary>
+        /// Handles the Load event of the Form control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void Form_Load(object sender, EventArgs e)
         {
             if (this.IsEditForm)
             {

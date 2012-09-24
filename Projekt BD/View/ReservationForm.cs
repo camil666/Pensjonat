@@ -6,6 +6,9 @@
     {
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReservationForm" /> class.
+        /// </summary>
         public ReservationForm()
         {
             this.InitializeComponent();

@@ -65,19 +65,38 @@
         /// </summary>
         ReceptionistForm,
 
+        /// <summary>
+        /// Form for editing services.
+        /// </summary>
         EditService,
 
+        /// <summary>
+        /// Main form for manager.
+        /// </summary>
         ManagerForm,
 
+        /// <summary>
+        /// Form for editing tasks.
+        /// </summary>
         EditTaskForm,
 
+        /// <summary>
+        /// Form for editing task types.
+        /// </summary>
         EditTaskTypeForm,
 
         EditServiceForVisit,
 
+        /// <summary>
+        /// Form for editing service details.
+        /// </summary>
         EditServiceDetailsForm,
 
         MealPlansForm,
+
+        /// <summary>
+        /// Form for generating receipts.
+        /// </summary>
         GenerateReceiptForm,
 
         EditMealPlansForVisitForm

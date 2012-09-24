@@ -1,44 +1,48 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="ManagerFormController.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Projekt_BD.Controller
+﻿namespace Projekt_BD.Controller
 {
     using System;
-    using System.Collections.Generic;
     using System.Data;
     using System.Globalization;
     using System.Linq;
-    using System.Text;
     using System.Windows.Forms;
-
     using Domain;
-
     using Projekt_BD.Enums;
-    using Projekt_BD.Interfaces;
     using Projekt_BD.View;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Controller class for Manager form.
     /// </summary>
     public class ManagerFormController : ControllerBase
     {
         #region Fields
 
+        /// <summary>
+        /// Name of the Id column.
+        /// </summary>
         private static readonly string IdColumnName = "Id";
 
+        /// <summary>
+        /// Name of the FirstName column.
+        /// </summary>
         private static readonly string FirstNameColumnName = "FirstName";
 
+        /// <summary>
+        /// Name of the LastName column.
+        /// </summary>
         private static readonly string LastNameColumnName = "LastName";
 
+        /// <summary>
+        /// Single mealPrice.
+        /// </summary>
         private MealPrice mealPrices;
 
         #endregion
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ManagerFormController" /> class.
+        /// </summary>
         public ManagerFormController()
         {
             base.Form = new ManagerForm();
@@ -50,6 +54,12 @@ namespace Projekt_BD.Controller
 
         #region Properties
 
+        /// <summary>
+        /// Gets the form.
+        /// </summary>
+        /// <value>
+        /// The form.
+        /// </value>
         public new ManagerForm Form
         {
             get
@@ -58,6 +68,12 @@ namespace Projekt_BD.Controller
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether employee is selected.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if employee is selected; otherwise, <c>false</c>.
+        /// </value>
         private bool IsEmployeeSelected
         {
             get
@@ -66,6 +82,12 @@ namespace Projekt_BD.Controller
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether task type is selected.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if task type is selected; otherwise, <c>false</c>.
+        /// </value>
         private bool IsTaskTypeSelected
         {
             get
@@ -74,6 +96,12 @@ namespace Projekt_BD.Controller
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether task is selected.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if task is selected; otherwise, <c>false</c>.
+        /// </value>
         private bool IsTaskSelected
         {
             get
@@ -82,6 +110,12 @@ namespace Projekt_BD.Controller
             }
         }
 
+        /// <summary>
+        /// Gets the selected employee id.
+        /// </summary>
+        /// <value>
+        /// The selected employee id.
+        /// </value>
         private int SelectedEmployeeId
         {
             get
@@ -91,6 +125,12 @@ namespace Projekt_BD.Controller
             }
         }
 
+        /// <summary>
+        /// Gets the selected task type id.
+        /// </summary>
+        /// <value>
+        /// The selected task type id.
+        /// </value>
         private int SelectedTaskTypeId
         {
             get
@@ -100,6 +140,12 @@ namespace Projekt_BD.Controller
             }
         }
 
+        /// <summary>
+        /// Gets the selected task id.
+        /// </summary>
+        /// <value>
+        /// The selected task id.
+        /// </value>
         private int SelectedTaskId
         {
             get
@@ -113,6 +159,9 @@ namespace Projekt_BD.Controller
 
         #region Methods
 
+        /// <summary>
+        /// Sets up the events.
+        /// </summary>
         private void SetupEvents()
         {
             this.Form.Load += this.Form_Load;
@@ -124,9 +173,12 @@ namespace Projekt_BD.Controller
             this.Form.AddTaskTypeButton.Click += this.AddTaskTypeButton_Click;
             this.Form.DeleteTaskTypeButton.Click += this.DeleteTaskTypeButton_Click;
             this.Form.EditTaskTypeButton.Click += this.EditTaskTypeButton_Click;
-            this.Form.SaveButton.Click += this.SaveButtonClick;
+            this.Form.SaveButton.Click += this.SaveButton_Click;
         }
 
+        /// <summary>
+        /// Sets the visibilty and header names of employees.
+        /// </summary>
         private void SetVisibiltyAndHeaderNamesOfEmployees()
         {
             this.Form.EmployeesDataGridView.Columns[IdColumnName].Visible = false;
@@ -135,6 +187,9 @@ namespace Projekt_BD.Controller
             this.Form.EmployeesDataGridView.Columns["UserName"].HeaderText = "Login";
         }
 
+        /// <summary>
+        /// Sets the visibilty and header names of tasks.
+        /// </summary>
         private void SetVisibiltyAndHeaderNamesOfTasks()
         {
             this.Form.TasksDataGridView.Columns[IdColumnName].Visible = false;
@@ -144,6 +199,9 @@ namespace Projekt_BD.Controller
             this.Form.TasksDataGridView.Columns["EndDate"].HeaderText = "Zakończenie";
         }
 
+        /// <summary>
+        /// Loads the task types.
+        /// </summary>
         private void LoadTaskTypes()
         {
             var taskTypes = from taskType in DataAccess.Instance.TaskTypes.GetAll()
@@ -157,6 +215,9 @@ namespace Projekt_BD.Controller
             this.Form.TaskTypesDataGridView.DataSource = taskTypes;
         }
 
+        /// <summary>
+        /// Loads the employees.
+        /// </summary>
         private void LoadEmployees()
         {
             var employees = from employee in DataAccess.Instance.Employees.GetAll()
@@ -173,6 +234,9 @@ namespace Projekt_BD.Controller
             this.SetVisibiltyAndHeaderNamesOfEmployees();
         }
 
+        /// <summary>
+        /// Loads the tasks.
+        /// </summary>
         private void LoadTasks()
         {
             if (this.IsEmployeeSelected)
@@ -184,6 +248,9 @@ namespace Projekt_BD.Controller
             }
         }
 
+        /// <summary>
+        /// Loads the settings.
+        /// </summary>
         private void LoadSettings()
         {
             this.mealPrices = DataAccess.Instance.MealPrices.GetAll().FirstOrDefault();
@@ -200,6 +267,11 @@ namespace Projekt_BD.Controller
 
         #region Event Methods
 
+        /// <summary>
+        /// Handles the Load event of the Form control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void Form_Load(object sender, EventArgs e)
         {
             this.LoadEmployees();
@@ -208,13 +280,18 @@ namespace Projekt_BD.Controller
             this.SetVisibiltyAndHeaderNamesOfTasks();
         }
 
-        private void SaveButtonClick(object sender, EventArgs e)
+        /// <summary>
+        /// Handles the Click event of the SaveButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void SaveButton_Click(object sender, EventArgs e)
         {
             double breakfast;
             double lunch;
             double dinner;
             double all;
-            if (!double.TryParse(this.Form.BreakfastTextBox.Text, out breakfast) || !double.TryParse(this.Form.LunchTextBox.Text, out lunch) || 
+            if (!double.TryParse(this.Form.BreakfastTextBox.Text, out breakfast) || !double.TryParse(this.Form.LunchTextBox.Text, out lunch) ||
                 !double.TryParse(this.Form.DinnerTextBox.Text, out dinner) || !double.TryParse(this.Form.AllMealsTextBox.Text, out all))
             {
                 MessageBox.Show("Wprowadź poprawne dane!");
@@ -228,6 +305,11 @@ namespace Projekt_BD.Controller
             DataAccess.Instance.UnitOfWork.Commit();
         }
 
+        /// <summary>
+        /// Handles the Click event of the AddTasksButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void AddTasksButton_Click(object sender, EventArgs e)
         {
             if (DataAccess.Instance.TaskTypes.GetAll().Any())
@@ -235,10 +317,15 @@ namespace Projekt_BD.Controller
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.EditTaskForm);
                 controller.SecondaryId = this.SelectedEmployeeId;
                 controller.Form.ShowDialog();
-                this.LoadTasks();    
+                this.LoadTasks();
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the RemoveTasksButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void RemoveTasksButton_Click(object sender, EventArgs e)
         {
             if (this.IsTaskSelected)
@@ -260,6 +347,11 @@ namespace Projekt_BD.Controller
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the EditTasksButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void EditTasksButton_Click(object sender, EventArgs e)
         {
             if (this.IsTaskSelected)
@@ -275,13 +367,23 @@ namespace Projekt_BD.Controller
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the EmployeeCellMouse control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellMouseEventArgs" /> instance containing the event data.</param>
         private void EmployeeCellMouse_Click(object sender, DataGridViewCellMouseEventArgs e)
         {
             this.LoadTasks();
         }
 
-        // task types
+        // TODO:task types
 
+        /// <summary>
+        /// Handles the Click event of the EditTaskTypeButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void EditTaskTypeButton_Click(object sender, EventArgs e)
         {
             if (this.IsTaskTypeSelected)
@@ -297,6 +399,11 @@ namespace Projekt_BD.Controller
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the DeleteTaskTypeButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void DeleteTaskTypeButton_Click(object sender, EventArgs e)
         {
             try
@@ -325,6 +432,11 @@ namespace Projekt_BD.Controller
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the AddTaskTypeButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void AddTaskTypeButton_Click(object sender, EventArgs e)
         {
             ControllerFactory.Instance.Create(ControllerTypes.EditTaskTypeForm).Form.ShowDialog();

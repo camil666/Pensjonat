@@ -7,10 +7,16 @@
     using Domain;
     using Projekt_BD.View;
 
+    /// <summary>
+    /// Controller class for NewVisit form.
+    /// </summary>
     public class NewVisitFormController : ControllerBase
     {
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewVisitFormController" /> class.
+        /// </summary>
         public NewVisitFormController()
         {
             base.Form = new NewVisitForm();
@@ -22,6 +28,12 @@
 
         #region Properties
 
+        /// <summary>
+        /// Gets the form.
+        /// </summary>
+        /// <value>
+        /// The form.
+        /// </value>
         public new NewVisitForm Form
         {
             get
@@ -30,14 +42,29 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the guests data source.
+        /// </summary>
+        /// <value>
+        /// The guests data source.
+        /// </value>
         private BindingSource GuestsDataSource { get; set; }
 
+        /// <summary>
+        /// Gets or sets the added guests data sources.
+        /// </summary>
+        /// <value>
+        /// The added guests data sources.
+        /// </value>
         private List<BindingSource> AddedGuestsDataSources { get; set; }
 
         #endregion
 
         #region Methods
 
+        /// <summary>
+        /// Sets up the events.
+        /// </summary>
         private void SetupEvents()
         {
             this.Form.CancelButton.Click += this.CancelButton_Click;
@@ -52,6 +79,11 @@
 
         #region Event Methods
 
+        /// <summary>
+        /// Handles the SelectedValueChanged event of the RoomNumberComboBox control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void RoomNumberComboBox_SelectedValueChanged(object sender, EventArgs e)
         {
             int roomIndex = this.Form.RoomNumberComboBox.SelectedIndex;
@@ -59,6 +91,11 @@
             this.Form.GuestsToVisitDataGridView.DataSource = this.AddedGuestsDataSources[roomIndex];
         }
 
+        /// <summary>
+        /// Handles the Click event of the OkButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void OkButton_Click(object sender, EventArgs e)
         {
             int parentVisitId = 0;
@@ -125,6 +162,11 @@
             this.Form.Close();
         }
 
+        /// <summary>
+        /// Handles the Load event of the Form control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void Form_Load(object sender, EventArgs e)
         {
             this.AddedGuestsDataSources = new List<BindingSource>();
@@ -171,11 +213,21 @@
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the CancelButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Form.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the RemoveGuestFromVisitButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void RemoveGuestFromVisitButton_Click(object sender, EventArgs e)
         {
             int roomIndex = this.Form.RoomNumberComboBox.SelectedIndex;
@@ -187,6 +239,11 @@
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the AddGuestToVisitButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void AddGuestToVisitButton_Click(object sender, EventArgs e)
         {
             int roomIndex = this.Form.RoomNumberComboBox.SelectedIndex;

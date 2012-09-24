@@ -1,26 +1,20 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="MealPlanController.cs" company="">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Projekt_BD.Controller
+﻿namespace Projekt_BD.Controller
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Windows.Forms;
-
     using Projekt_BD.View;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Controller class for MealPlan form.
     /// </summary>
     public class MealPlanController : ControllerBase
     {
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MealPlanController" /> class.
+        /// </summary>
         public MealPlanController()
         {
             base.Form = new MealPlansView();
@@ -32,6 +26,12 @@ namespace Projekt_BD.Controller
 
         #region Properties
 
+        /// <summary>
+        /// Gets the form.
+        /// </summary>
+        /// <value>
+        /// The form.
+        /// </value>
         public new MealPlansView Form
         {
             get
@@ -44,25 +44,29 @@ namespace Projekt_BD.Controller
 
         #region Methods
 
+        /// <summary>
+        /// Sets up the events.
+        /// </summary>
         private void SetupEvents()
         {
-            this.Form.Load += this.FormLoad;
-            this.Form.OkButton.Click += this.OkButtonClick;
-            this.Form.AddButton.Click += this.AddButtonClick;
-            this.Form.EditButton.Click += this.EditButtonClick;
-            this.Form.DeleteMealPlan.Click += this.DeleteButtonClick;
+            this.Form.Load += this.Form_Load;
+            this.Form.OkButton.Click += this.OkButton_Click;
+            this.Form.AddButton.Click += this.AddButton_Click;
+            this.Form.EditButton.Click += this.EditButton_Click;
+            this.Form.DeleteMealPlan.Click += this.DeleteButton_Click;
         }
 
-        private void OkButtonClick(object sender, EventArgs e)
-        {
-            this.Form.Dispose();
-        }
-
+        /// <summary>
+        /// Sets the column names and visibility.
+        /// </summary>
         private void SetColumnNamesAndVisibility()
         {
             this.Form.DataGridView.Columns["Id"].Visible = false;
         }
 
+        /// <summary>
+        /// Refreshes the data grid view.
+        /// </summary>
         private void RefreshDataGridView()
         {
             var mealplans = (from visitMealPlan in DataAccess.Instance.VisitMealPlans.GetAll()
@@ -88,7 +92,22 @@ namespace Projekt_BD.Controller
 
         #region Event Methods
 
-        private void DeleteButtonClick(object sender, EventArgs e)
+        /// <summary>
+        /// Handles the Click event of the OkButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void OkButton_Click(object sender, EventArgs e)
+        {
+            this.Form.Dispose();
+        }
+
+        /// <summary>
+        /// Handles the Click event of the DeleteButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void DeleteButton_Click(object sender, EventArgs e)
         {
             if (this.Form.DataGridView.SelectedRows.Count > 0)
             {
@@ -110,7 +129,12 @@ namespace Projekt_BD.Controller
             }
         }
 
-        private void EditButtonClick(object sender, EventArgs e)
+        /// <summary>
+        /// Handles the Click event of the EditButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void EditButton_Click(object sender, EventArgs e)
         {
             if (this.Form.DataGridView.SelectedRows.Count > 0)
             {
@@ -129,7 +153,12 @@ namespace Projekt_BD.Controller
             }
         }
 
-        private void AddButtonClick(object sender, EventArgs e)
+        /// <summary>
+        /// Handles the Click event of the AddButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void AddButton_Click(object sender, EventArgs e)
         {
             var controller = ControllerFactory.Instance.Create(ControllerTypes.EditMealPlansForVisitForm);
             controller.ClientID = this.ItemToEditID;
@@ -137,7 +166,12 @@ namespace Projekt_BD.Controller
             this.RefreshDataGridView();
         }
 
-        private void FormLoad(object sender, EventArgs e)
+        /// <summary>
+        /// Handles the Load event of the Form control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void Form_Load(object sender, EventArgs e)
         {
             this.RefreshDataGridView();
         }

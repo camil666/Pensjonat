@@ -6,6 +6,9 @@
     {
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReceptionistForm" /> class.
+        /// </summary>
         public ReceptionistForm()
         {
             this.InitializeComponent();
@@ -18,8 +21,20 @@
 
         #region Properties
 
+        /// <summary>
+        /// Gets the client search window.
+        /// </summary>
+        /// <value>
+        /// The client search window.
+        /// </value>
         public ClientSearch ClientSearchWindow { get; private set; }
 
+        /// <summary>
+        /// Gets the value indicating whether client search is enabled.
+        /// </summary>
+        /// <value>
+        /// Value indicating whether client search is enabled.
+        /// </value>
         public ToolStripMenuItem ClientSearchEnabled
         {
             get
