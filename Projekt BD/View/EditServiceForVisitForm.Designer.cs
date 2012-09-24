@@ -50,6 +50,7 @@
             this.ServicesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ServicesDataGridView.Location = new System.Drawing.Point(12, 46);
             this.ServicesDataGridView.Name = "ServicesDataGridView";
+            this.ServicesDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ServicesDataGridView.Size = new System.Drawing.Size(452, 233);
             this.ServicesDataGridView.TabIndex = 2;
             // 

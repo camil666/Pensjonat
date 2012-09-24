@@ -215,6 +215,7 @@
             // AdditionalInfoTextBox
             // 
             this.AdditionalInfoTextBox.Location = new System.Drawing.Point(143, 297);
+            this.AdditionalInfoTextBox.MaxLength = 50;
             this.AdditionalInfoTextBox.Name = "AdditionalInfoTextBox";
             this.AdditionalInfoTextBox.Size = new System.Drawing.Size(129, 20);
             this.AdditionalInfoTextBox.TabIndex = 18;

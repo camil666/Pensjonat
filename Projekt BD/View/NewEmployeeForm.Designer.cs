@@ -104,6 +104,7 @@
             // LoginTextBox
             // 
             this.LoginTextBox.Location = new System.Drawing.Point(81, 7);
+            this.LoginTextBox.MaxLength = 20;
             this.LoginTextBox.Name = "LoginTextBox";
             this.LoginTextBox.Size = new System.Drawing.Size(100, 20);
             this.LoginTextBox.TabIndex = 1;
@@ -111,6 +112,7 @@
             // PasswordTextBox
             // 
             this.PasswordTextBox.Location = new System.Drawing.Point(81, 37);
+            this.PasswordTextBox.MaxLength = 40;
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.Size = new System.Drawing.Size(100, 20);
             this.PasswordTextBox.TabIndex = 2;
@@ -118,6 +120,7 @@
             // FirstNameTextBox
             // 
             this.FirstNameTextBox.Location = new System.Drawing.Point(81, 67);
+            this.FirstNameTextBox.MaxLength = 30;
             this.FirstNameTextBox.Name = "FirstNameTextBox";
             this.FirstNameTextBox.Size = new System.Drawing.Size(100, 20);
             this.FirstNameTextBox.TabIndex = 3;
@@ -125,6 +128,7 @@
             // LastNameTextBox
             // 
             this.LastNameTextBox.Location = new System.Drawing.Point(81, 97);
+            this.LastNameTextBox.MaxLength = 30;
             this.LastNameTextBox.Name = "LastNameTextBox";
             this.LastNameTextBox.Size = new System.Drawing.Size(100, 20);
             this.LastNameTextBox.TabIndex = 4;
@@ -132,6 +136,7 @@
             // TownTextBox
             // 
             this.TownTextBox.Location = new System.Drawing.Point(81, 127);
+            this.TownTextBox.MaxLength = 20;
             this.TownTextBox.Name = "TownTextBox";
             this.TownTextBox.Size = new System.Drawing.Size(100, 20);
             this.TownTextBox.TabIndex = 5;
@@ -139,6 +144,7 @@
             // PostCodeTextBox
             // 
             this.PostCodeTextBox.Location = new System.Drawing.Point(93, 187);
+            this.PostCodeTextBox.MaxLength = 10;
             this.PostCodeTextBox.Name = "PostCodeTextBox";
             this.PostCodeTextBox.Size = new System.Drawing.Size(88, 20);
             this.PostCodeTextBox.TabIndex = 9;
@@ -155,6 +161,7 @@
             // ApartmentNumberTextBox
             // 
             this.ApartmentNumberTextBox.Location = new System.Drawing.Point(277, 157);
+            this.ApartmentNumberTextBox.MaxLength = 4;
             this.ApartmentNumberTextBox.Name = "ApartmentNumberTextBox";
             this.ApartmentNumberTextBox.Size = new System.Drawing.Size(100, 20);
             this.ApartmentNumberTextBox.TabIndex = 8;
@@ -171,6 +178,7 @@
             // HouseNumberTextBox
             // 
             this.HouseNumberTextBox.Location = new System.Drawing.Point(80, 157);
+            this.HouseNumberTextBox.MaxLength = 4;
             this.HouseNumberTextBox.Name = "HouseNumberTextBox";
             this.HouseNumberTextBox.Size = new System.Drawing.Size(100, 20);
             this.HouseNumberTextBox.TabIndex = 7;
@@ -187,6 +195,7 @@
             // StreetTextBox
             // 
             this.StreetTextBox.Location = new System.Drawing.Point(277, 127);
+            this.StreetTextBox.MaxLength = 20;
             this.StreetTextBox.Name = "StreetTextBox";
             this.StreetTextBox.Size = new System.Drawing.Size(100, 20);
             this.StreetTextBox.TabIndex = 6;
@@ -212,6 +221,7 @@
             // EmailTextBox
             // 
             this.EmailTextBox.Location = new System.Drawing.Point(81, 217);
+            this.EmailTextBox.MaxLength = 30;
             this.EmailTextBox.Name = "EmailTextBox";
             this.EmailTextBox.Size = new System.Drawing.Size(100, 20);
             this.EmailTextBox.TabIndex = 10;
@@ -228,6 +238,7 @@
             // PhoneNumberTextBox
             // 
             this.PhoneNumberTextBox.Location = new System.Drawing.Point(81, 247);
+            this.PhoneNumberTextBox.MaxLength = 15;
             this.PhoneNumberTextBox.Name = "PhoneNumberTextBox";
             this.PhoneNumberTextBox.Size = new System.Drawing.Size(100, 20);
             this.PhoneNumberTextBox.TabIndex = 11;
