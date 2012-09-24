@@ -96,6 +96,7 @@
             this.Form.DeleteFeatureButton.Click += this.DeleteFeatureButton_Click;
             this.Form.DeleteRoomTypeButton.Click += this.DeleteRoomTypeButton_Click;
             this.Form.DeleteRoomButton.Click += this.DeleteRoomButton_Click;
+            this.Form.DiscountsButton.Click += this.DiscountsButton_Click;
         }
 
         /// <summary>
@@ -239,6 +240,32 @@
         #endregion
 
         #region Event Methods
+
+        /// <summary>
+        /// Handles the Click event of the DiscountsButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        void DiscountsButton_Click(object sender, EventArgs e)
+        {
+            int selectedClientID = this.Form.ClientSearchWindow.SelectedClientID;
+
+            if (selectedClientID > 0)
+            {
+                var controller = ControllerFactory.Instance.Create(ControllerTypes.GrantDiscountForm);
+                controller.ClientID = selectedClientID;
+                controller.Form.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Należy zaznaczyć klienta",
+                    "Błąd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
+            }
+        }
 
         /// <summary>
         /// Handles the Click event of the GenerateReceiptButton control.
