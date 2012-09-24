@@ -133,10 +133,9 @@
                 int index = (int)this.Form.ServicesDataGridView["Id", rowIndex].Value;
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.EditServiceDetailsForm);
                 controller.ItemToEditID = index;
-                if (controller.Form.ShowDialog() == DialogResult.OK)
-                {
-                    this.RefreshDataGridView();
-                }
+                controller.SecondaryId = this.ItemToEditID;
+                controller.Form.ShowDialog();
+                this.RefreshDataGridView();
             }
             else
             {
@@ -151,11 +150,10 @@
         /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void AddServiceButton_Click(object sender, EventArgs e)
         {
-            var controller = ControllerFactory.Instance.Create(ControllerTypes.NewVisitForm);
-            if (controller.Form.ShowDialog() == DialogResult.OK)
-            {
-                this.RefreshDataGridView();
-            }
+            var controller = ControllerFactory.Instance.Create(ControllerTypes.EditServiceDetailsForm);
+            controller.SecondaryId = this.ItemToEditID;
+            controller.Form.ShowDialog();
+            this.RefreshDataGridView();
         }
 
         /// <summary>

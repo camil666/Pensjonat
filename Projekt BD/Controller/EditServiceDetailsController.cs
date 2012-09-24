@@ -28,6 +28,8 @@
         /// </summary>
         private static readonly string IsAddedColumnName = "IsAdded";
 
+        private Service service;
+
         #endregion
 
         #region Constructors
@@ -40,7 +42,6 @@
             base.Form = new EditServiceDetails();
 
             this.SetupEvents();
-            this.SetupButtons();
         }
 
         #endregion
@@ -80,15 +81,6 @@
         #region Event Methods
 
         /// <summary>
-        /// Sets up the buttons.
-        /// </summary>
-        private void SetupButtons()
-        {
-            this.Form.OkButton.DialogResult = DialogResult.OK;
-            this.Form.CancButton.DialogResult = DialogResult.Cancel;
-        }
-
-        /// <summary>
         /// Handles the Load event of the Form control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -101,23 +93,23 @@
             this.Form.TypeComboBox.ValueMember = "Key";
             if (this.IsEditForm)
             {
-                var service = DataAccess.Instance.Services.Single(x => x.Id == ItemToEditID);
+                this.service = DataAccess.Instance.Services.Single(x => x.Id == ItemToEditID);
                 this.Form.TypeComboBox.Text = availableTypes.Where(x => x.Key == service.TypeId).Select(x => x.Value).FirstOrDefault();
 
-                this.Form.CustomNameTextBox.Text = service.CustomName;
-                this.Form.CustomDescriptionTextBox.Text = service.CustomDescription;
-                this.Form.AdditionalInfoTextBox.Text = service.AdditionalInfo;
-                if (service.StartDate != null)
+                this.Form.CustomNameTextBox.Text = this.service.CustomName;
+                this.Form.CustomDescriptionTextBox.Text = this.service.CustomDescription;
+                this.Form.AdditionalInfoTextBox.Text = this.service.AdditionalInfo;
+                if (this.service.StartDate != null)
                 {
-                    this.Form.StartDateTimePicker.Value = (DateTime)service.StartDate;
+                    this.Form.StartDateTimePicker.Value = (DateTime)this.service.StartDate;
                 }
 
-                if (service.EndDate != null)
+                if (this.service.EndDate != null)
                 {
-                    this.Form.EndDateTimePicker.Value = (DateTime)service.EndDate;
+                    this.Form.EndDateTimePicker.Value = (DateTime)this.service.EndDate;
                 }
 
-                this.Form.QuantityTextBox.Text = service.Quantity.ToString();
+                this.Form.QuantityTextBox.Text = this.service.Quantity.ToString();
 
                 this.Form.Text = "Edycja usługi";
             }
@@ -135,16 +127,30 @@
         private void OkButton_Click(object sender, EventArgs e)
         {
             DateTime startDate = this.Form.StartDateTimePicker.Value;
-            DateTime endDate = this.Form.EndDateTimePicker.Value;
+            DateTime endDate = this.Form.EndDateTimePicker.Value.AddSeconds(1.0);
             int type;
             int.TryParse(this.Form.TypeComboBox.SelectedValue.ToString(), out type);
             var additionalInfo = this.Form.AdditionalInfoTextBox.Text;
             var customName = this.Form.CustomNameTextBox.Text;
             var customDescription = this.Form.CustomDescriptionTextBox.Text;
-            int quantity;
+            int quantity = 0;
             int.TryParse(this.Form.QuantityTextBox.Text, out quantity);
 
-            if (startDate > endDate)
+            var visit = DataAccess.Instance.Visits.Single(x => x.Id == this.SecondaryId);
+
+            if ((visit.StartDate > startDate) || (visit.EndDate < endDate))
+            {
+                MessageBox.Show(
+                        "Usługa nie może znajdować się poza datą wizyty!",
+                        "Błąd",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation,
+                        MessageBoxDefaultButton.Button1);
+
+                return;
+            }
+
+            if (startDate >= endDate || quantity <= 0)
             {
                 MessageBox.Show(
                     "Podane wartości nie są prawidłowe lub pozostawiono niewypełnione pola.",
@@ -158,18 +164,17 @@
 
             if (this.IsEditForm)
             {
-                var service = DataAccess.Instance.Services.Single(r => r.Id == this.ItemToEditID);
-                service.Quantity = quantity;
-                service.AdditionalInfo = additionalInfo;
-                service.CustomDescription = customDescription;
-                service.CustomName = customName;
-                service.TypeId = type;
-                service.StartDate = startDate;
-                service.EndDate = endDate;
+                this.service.Quantity = quantity;
+                this.service.AdditionalInfo = additionalInfo;
+                this.service.CustomDescription = customDescription;
+                this.service.CustomName = customName;
+                this.service.TypeId = type;
+                this.service.StartDate = startDate;
+                this.service.EndDate = endDate;
             }
             else
             {
-                var service = new Service
+                this.service = new Service
                 {
                     Quantity = quantity,
                     AdditionalInfo = additionalInfo,
@@ -177,14 +182,14 @@
                     CustomName = customName,
                     TypeId = type,
                     StartDate = startDate,
-                    EndDate = endDate
+                    EndDate = endDate,
+                    VisitId = this.SecondaryId
                 };
 
-                DataAccess.Instance.Services.Add(service);
+                DataAccess.Instance.Services.Add(this.service);
             }
 
             DataAccess.Instance.UnitOfWork.Commit();
-            this.Form.OkButton.DialogResult = DialogResult.OK;
             this.Form.Dispose();
         }
 

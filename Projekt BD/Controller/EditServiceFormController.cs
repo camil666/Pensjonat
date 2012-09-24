@@ -115,7 +115,7 @@ namespace Projekt_BD.Controller
             }
             else
             {
-                var serviceType = new ServiceType()
+                var serviceType = new ServiceType
                 {
                     Description = description,
                     Name = name,

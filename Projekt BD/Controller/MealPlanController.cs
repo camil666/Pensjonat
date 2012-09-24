@@ -143,7 +143,7 @@
 
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.EditMealPlansForVisitForm);
                 controller.ItemToEditID = index;
-                controller.ClientID = this.ItemToEditID;
+                controller.SecondaryId = this.ItemToEditID;
                 controller.Form.ShowDialog();
                 this.RefreshDataGridView();
             }
@@ -161,7 +161,7 @@
         private void AddButton_Click(object sender, EventArgs e)
         {
             var controller = ControllerFactory.Instance.Create(ControllerTypes.EditMealPlansForVisitForm);
-            controller.ClientID = this.ItemToEditID;
+            controller.SecondaryId = this.ItemToEditID;
             controller.Form.ShowDialog();
             this.RefreshDataGridView();
         }

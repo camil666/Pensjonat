@@ -87,7 +87,7 @@
         private void OkButton_Click(object sender, EventArgs e)
         {
             string additionalInfo = this.Form.AdditionalInfoTextBox.Text;
-            int count;
+            int count = 0;
             DateTime startDate = this.Form.StartDateTimePicker.Value;
             DateTime endDate = this.Form.EndDateTimePicker.Value.AddSeconds(1.0);
             bool breakfast = this.Form.BreakfastCheckBox.Checked;
@@ -96,8 +96,24 @@
             bool lunch = this.Form.LunchCheckBox.Checked;
             bool toRoom = this.Form.ToRoomCheckBox.Checked;
             bool vegetarian = this.Form.VegetarianCheckBox.Checked;
+            
+            int.TryParse(this.Form.CountTextBox.Text, out count);
 
-            if ((startDate >= endDate) || int.TryParse(this.Form.CountTextBox.Text, out count) == false)
+            var visit = DataAccess.Instance.Visits.Single(x => x.Id == this.SecondaryId);
+
+            if ((visit.StartDate > startDate) || (visit.EndDate < endDate))
+            {
+                MessageBox.Show(
+                        "Posiłek nie może znajdować się poza datą wizyty!",
+                        "Błąd",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation,
+                        MessageBoxDefaultButton.Button1);
+
+                    return;
+            }
+
+            if ((startDate >= endDate) || count <= 0)
             {
                 MessageBox.Show(
                     "Podane wartości nie są prawidłowe lub pozostawiono niewypełnione pola.",
@@ -134,7 +150,7 @@
             }
 
             price *= count;
-
+            price *= endDate.Subtract(startDate).Days + 1;
             if (this.IsEditForm)
             {
                 this.visitMealPlan.MealPlan.PeopleCount = count;
@@ -170,7 +186,7 @@
                     StartDate = startDate,
                     EndDate = endDate,
                     MealPlan = mealPlan,
-                    VisitId = this.ClientID
+                    VisitId = this.SecondaryId
                 };
 
                 DataAccess.Instance.VisitMealPlans.Add(this.visitMealPlan);

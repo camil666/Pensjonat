@@ -245,6 +245,7 @@
                 var tasks = (from task in employee.Tasks
                              select new { task.Id, task.Name, task.Description, task.StartDate, task.EndDate }).ToList();
                 this.Form.TasksDataGridView.DataSource = tasks;
+                this.SetVisibiltyAndHeaderNamesOfTasks();
             }
         }
 
@@ -277,7 +278,6 @@
             this.LoadEmployees();
             this.LoadTaskTypes();
             this.LoadSettings();
-            this.SetVisibiltyAndHeaderNamesOfTasks();
         }
 
         /// <summary>
