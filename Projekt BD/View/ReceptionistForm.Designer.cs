@@ -49,7 +49,6 @@
             this.GenerateReceiptButton = new System.Windows.Forms.Button();
             this.ServicesButton = new System.Windows.Forms.Button();
             this.DiscountsButton = new System.Windows.Forms.Button();
-            this.ChargesButton = new System.Windows.Forms.Button();
             this.ClientsTabPage = new System.Windows.Forms.TabPage();
             this.ClientDetailsGroupBox = new System.Windows.Forms.GroupBox();
             this.IDNumberClientDetailsTextBox = new System.Windows.Forms.TextBox();
@@ -108,30 +107,30 @@
             this.TabControl = new System.Windows.Forms.TabControl();
             this.RoomTabPage = new System.Windows.Forms.TabPage();
             this.FeaturesGroupBox = new System.Windows.Forms.GroupBox();
+            this.DeleteFeatureButton = new System.Windows.Forms.Button();
             this.RefreshFeaturesButton = new System.Windows.Forms.Button();
             this.EditFeaturesButton = new System.Windows.Forms.Button();
             this.AddFeaturesButton = new System.Windows.Forms.Button();
             this.RoomFeaturesDataGridView = new System.Windows.Forms.DataGridView();
             this.RoomTypesGroupBox = new System.Windows.Forms.GroupBox();
+            this.DeleteRoomTypeButton = new System.Windows.Forms.Button();
             this.RefreshRoomTypesButton = new System.Windows.Forms.Button();
             this.EditRoomTypeButton = new System.Windows.Forms.Button();
             this.AddRoomTypeButton = new System.Windows.Forms.Button();
             this.RoomTypesDataGridView = new System.Windows.Forms.DataGridView();
             this.RoomsGroupBox = new System.Windows.Forms.GroupBox();
+            this.DeleteRoomButton = new System.Windows.Forms.Button();
             this.RefreshRoomsButton = new System.Windows.Forms.Button();
             this.AllRoomsDataGridView = new System.Windows.Forms.DataGridView();
             this.EditRoomButton = new System.Windows.Forms.Button();
             this.NewRoomButton = new System.Windows.Forms.Button();
             this.ServiceTab = new System.Windows.Forms.TabPage();
             this.ServiceGroupBox = new System.Windows.Forms.GroupBox();
+            this.DeleteServiceTypeButton = new System.Windows.Forms.Button();
             this.ServiceDataGridView = new System.Windows.Forms.DataGridView();
             this.RefreshServiceButton = new System.Windows.Forms.Button();
             this.EditServiceButton = new System.Windows.Forms.Button();
             this.NewServiceButton = new System.Windows.Forms.Button();
-            this.DeleteRoomButton = new System.Windows.Forms.Button();
-            this.DeleteRoomTypeButton = new System.Windows.Forms.Button();
-            this.DeleteFeatureButton = new System.Windows.Forms.Button();
-            this.DeleteServiceTypeButton = new System.Windows.Forms.Button();
             this.MenuStrip.SuspendLayout();
             this.VisitManagementTabPage.SuspendLayout();
             this.VisitSearchMainGroupBox.SuspendLayout();
@@ -316,7 +315,6 @@
             this.VisitActionsGroupBox.Controls.Add(this.GenerateReceiptButton);
             this.VisitActionsGroupBox.Controls.Add(this.ServicesButton);
             this.VisitActionsGroupBox.Controls.Add(this.DiscountsButton);
-            this.VisitActionsGroupBox.Controls.Add(this.ChargesButton);
             this.VisitActionsGroupBox.Dock = System.Windows.Forms.DockStyle.Left;
             this.VisitActionsGroupBox.Location = new System.Drawing.Point(3, 3);
             this.VisitActionsGroupBox.Name = "VisitActionsGroupBox";
@@ -327,7 +325,7 @@
             // 
             // EditMealPlansForVisit
             // 
-            this.EditMealPlansForVisit.Location = new System.Drawing.Point(50, 303);
+            this.EditMealPlansForVisit.Location = new System.Drawing.Point(50, 250);
             this.EditMealPlansForVisit.Name = "EditMealPlansForVisit";
             this.EditMealPlansForVisit.Size = new System.Drawing.Size(150, 23);
             this.EditMealPlansForVisit.TabIndex = 4;
@@ -345,7 +343,7 @@
             // 
             // ServicesButton
             // 
-            this.ServicesButton.Location = new System.Drawing.Point(50, 250);
+            this.ServicesButton.Location = new System.Drawing.Point(50, 200);
             this.ServicesButton.Name = "ServicesButton";
             this.ServicesButton.Size = new System.Drawing.Size(150, 23);
             this.ServicesButton.TabIndex = 3;
@@ -360,15 +358,6 @@
             this.DiscountsButton.TabIndex = 1;
             this.DiscountsButton.Text = "Przyznawanie rabatów...";
             this.DiscountsButton.UseVisualStyleBackColor = true;
-            // 
-            // ChargesButton
-            // 
-            this.ChargesButton.Location = new System.Drawing.Point(50, 200);
-            this.ChargesButton.Name = "ChargesButton";
-            this.ChargesButton.Size = new System.Drawing.Size(150, 23);
-            this.ChargesButton.TabIndex = 2;
-            this.ChargesButton.Text = "Naliczanie opłat...";
-            this.ChargesButton.UseVisualStyleBackColor = true;
             // 
             // ClientsTabPage
             // 
@@ -957,6 +946,15 @@
             this.FeaturesGroupBox.TabStop = false;
             this.FeaturesGroupBox.Text = "Udogodnienia";
             // 
+            // DeleteFeatureButton
+            // 
+            this.DeleteFeatureButton.Location = new System.Drawing.Point(250, 18);
+            this.DeleteFeatureButton.Name = "DeleteFeatureButton";
+            this.DeleteFeatureButton.Size = new System.Drawing.Size(75, 23);
+            this.DeleteFeatureButton.TabIndex = 6;
+            this.DeleteFeatureButton.Text = "Usuń";
+            this.DeleteFeatureButton.UseVisualStyleBackColor = true;
+            // 
             // RefreshFeaturesButton
             // 
             this.RefreshFeaturesButton.Location = new System.Drawing.Point(169, 18);
@@ -1011,6 +1009,15 @@
             this.RoomTypesGroupBox.TabStop = false;
             this.RoomTypesGroupBox.Text = "Typy pokoi";
             // 
+            // DeleteRoomTypeButton
+            // 
+            this.DeleteRoomTypeButton.Location = new System.Drawing.Point(249, 19);
+            this.DeleteRoomTypeButton.Name = "DeleteRoomTypeButton";
+            this.DeleteRoomTypeButton.Size = new System.Drawing.Size(75, 23);
+            this.DeleteRoomTypeButton.TabIndex = 4;
+            this.DeleteRoomTypeButton.Text = "Usuń typ";
+            this.DeleteRoomTypeButton.UseVisualStyleBackColor = true;
+            // 
             // RefreshRoomTypesButton
             // 
             this.RefreshRoomTypesButton.Location = new System.Drawing.Point(168, 19);
@@ -1063,6 +1070,15 @@
             this.RoomsGroupBox.TabIndex = 0;
             this.RoomsGroupBox.TabStop = false;
             this.RoomsGroupBox.Text = "Pokoje";
+            // 
+            // DeleteRoomButton
+            // 
+            this.DeleteRoomButton.Location = new System.Drawing.Point(249, 19);
+            this.DeleteRoomButton.Name = "DeleteRoomButton";
+            this.DeleteRoomButton.Size = new System.Drawing.Size(75, 23);
+            this.DeleteRoomButton.TabIndex = 3;
+            this.DeleteRoomButton.Text = "Usuń pokój";
+            this.DeleteRoomButton.UseVisualStyleBackColor = true;
             // 
             // RefreshRoomsButton
             // 
@@ -1128,6 +1144,15 @@
             this.ServiceGroupBox.TabStop = false;
             this.ServiceGroupBox.Text = "Usługi";
             // 
+            // DeleteServiceTypeButton
+            // 
+            this.DeleteServiceTypeButton.Location = new System.Drawing.Point(248, 19);
+            this.DeleteServiceTypeButton.Name = "DeleteServiceTypeButton";
+            this.DeleteServiceTypeButton.Size = new System.Drawing.Size(75, 23);
+            this.DeleteServiceTypeButton.TabIndex = 4;
+            this.DeleteServiceTypeButton.Text = "Usuń";
+            this.DeleteServiceTypeButton.UseVisualStyleBackColor = true;
+            // 
             // ServiceDataGridView
             // 
             this.ServiceDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -1164,42 +1189,6 @@
             this.NewServiceButton.TabIndex = 0;
             this.NewServiceButton.Text = "Dodaj";
             this.NewServiceButton.UseVisualStyleBackColor = true;
-            // 
-            // DeleteRoomButton
-            // 
-            this.DeleteRoomButton.Location = new System.Drawing.Point(249, 19);
-            this.DeleteRoomButton.Name = "DeleteRoomButton";
-            this.DeleteRoomButton.Size = new System.Drawing.Size(75, 23);
-            this.DeleteRoomButton.TabIndex = 3;
-            this.DeleteRoomButton.Text = "Usuń pokój";
-            this.DeleteRoomButton.UseVisualStyleBackColor = true;
-            // 
-            // DeleteRoomTypeButton
-            // 
-            this.DeleteRoomTypeButton.Location = new System.Drawing.Point(249, 19);
-            this.DeleteRoomTypeButton.Name = "DeleteRoomTypeButton";
-            this.DeleteRoomTypeButton.Size = new System.Drawing.Size(75, 23);
-            this.DeleteRoomTypeButton.TabIndex = 4;
-            this.DeleteRoomTypeButton.Text = "Usuń typ";
-            this.DeleteRoomTypeButton.UseVisualStyleBackColor = true;
-            // 
-            // DeleteFeatureButton
-            // 
-            this.DeleteFeatureButton.Location = new System.Drawing.Point(250, 18);
-            this.DeleteFeatureButton.Name = "DeleteFeatureButton";
-            this.DeleteFeatureButton.Size = new System.Drawing.Size(75, 23);
-            this.DeleteFeatureButton.TabIndex = 6;
-            this.DeleteFeatureButton.Text = "Usuń";
-            this.DeleteFeatureButton.UseVisualStyleBackColor = true;
-            // 
-            // DeleteServiceTypeButton
-            // 
-            this.DeleteServiceTypeButton.Location = new System.Drawing.Point(248, 19);
-            this.DeleteServiceTypeButton.Name = "DeleteServiceTypeButton";
-            this.DeleteServiceTypeButton.Size = new System.Drawing.Size(75, 23);
-            this.DeleteServiceTypeButton.TabIndex = 4;
-            this.DeleteServiceTypeButton.Text = "Usuń";
-            this.DeleteServiceTypeButton.UseVisualStyleBackColor = true;
             // 
             // ReceptionistForm
             // 
@@ -1317,7 +1306,6 @@
         public System.Windows.Forms.Button GenerateReceiptButton;
         public System.Windows.Forms.Button ServicesButton;
         public System.Windows.Forms.Button DiscountsButton;
-        public System.Windows.Forms.Button ChargesButton;
         public System.Windows.Forms.DataGridView RoomFeaturesDataGridView;
         public System.Windows.Forms.DataGridView RoomTypesDataGridView;
         public System.Windows.Forms.DataGridView AllRoomsDataGridView;
