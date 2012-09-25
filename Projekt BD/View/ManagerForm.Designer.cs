@@ -364,14 +364,14 @@
             // AboutToolStripMenuItem
             // 
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.AboutToolStripMenuItem.Text = "&O programie";
             // 
             // GetHelpToolStripMenuItem
             // 
             this.GetHelpToolStripMenuItem.Name = "GetHelpToolStripMenuItem";
             this.GetHelpToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.GetHelpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.GetHelpToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.GetHelpToolStripMenuItem.Text = "&Pomoc";
             // 
             // ManagerForm
@@ -383,7 +383,7 @@
             this.Controls.Add(this.MenuStrip);
             this.MainMenuStrip = this.MenuStrip;
             this.Name = "ManagerForm";
-            this.Text = "ManagerForm";
+            this.Text = "Moduł Kierownika";
             this.tabControl1.ResumeLayout(false);
             this.TasksTabPage.ResumeLayout(false);
             this.TasksGroupBox.ResumeLayout(false);
