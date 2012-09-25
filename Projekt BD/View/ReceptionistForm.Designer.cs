@@ -347,7 +347,7 @@
             this.GenerateReceiptButton.Name = "GenerateReceiptButton";
             this.GenerateReceiptButton.Size = new System.Drawing.Size(150, 23);
             this.GenerateReceiptButton.TabIndex = 0;
-            this.GenerateReceiptButton.Text = "Generowanie faktury...";
+            this.GenerateReceiptButton.Text = "Wystaw rachunek...";
             this.GenerateReceiptButton.UseVisualStyleBackColor = true;
             // 
             // ServicesButton
