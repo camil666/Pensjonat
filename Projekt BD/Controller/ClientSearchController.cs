@@ -21,7 +21,6 @@
             base.Form = new ClientSearch();
 
             this.SetupEvents();
-            this.SearchForGuests();
         }
 
         #endregion
@@ -54,6 +53,7 @@
             this.Form.ClientSearchButton.Click += this.ClientSearchButton_Click;
             this.Form.ClientSearchResultDataGridView.CellClick += this.ClientSearchResultDataGridView_CellClick;
             this.Form.FormClosing += this.FormClosing;
+            this.Form.Load += this.Form_Load;
         }
 
         /// <summary>
@@ -165,6 +165,31 @@
             }
         }
 
+        /// <summary>
+        /// Sends the client information to parent form.
+        /// </summary>
+        private void SendClientInformationToParentForm()
+        {
+            int guestId = (int)this.Form.ClientSearchResultDataGridView.SelectedRows[0].Cells["Id"].Value;
+
+            Guest selectedGuest = DataAccess.Instance.Guests.Single(g => g.Id == guestId);
+
+            this.Form.ParentForm.ApartmentNumberClientDetailsTextBox.Text = selectedGuest.ApartmentNumber;
+            this.Form.ParentForm.CompanyNameClientDetailsTextBox.Text = selectedGuest.CompanyName;
+            this.Form.ParentForm.IDClientDetailsTextBox.Text = selectedGuest.Id.ToString();
+            this.Form.ParentForm.IDNumberClientDetailsTextBox.Text = selectedGuest.IdNumber;
+            this.Form.ParentForm.CountryClientDetailsTextBox.Text = selectedGuest.CountryId;
+            this.Form.ParentForm.EmailClientDetailsTextBox.Text = selectedGuest.Email;
+            this.Form.ParentForm.FirstNameClientDetailsTextBox.Text = selectedGuest.FirstName;
+            this.Form.ParentForm.HouseNumberClientDetailsTextBox.Text = selectedGuest.HouseNumber;
+            this.Form.ParentForm.LastNameClientDetailsTextBox.Text = selectedGuest.LastName;
+            this.Form.ParentForm.PhoneNumberClientDetailsTextBox.Text = selectedGuest.TelephoneNumber;
+            this.Form.ParentForm.PostCodeClientDetailsTextBox.Text = selectedGuest.PostCode;
+            this.Form.ParentForm.StreetClientDetailsTextBox.Text = selectedGuest.Street;
+            this.Form.ParentForm.TownClientDetailsTextBox.Text = selectedGuest.Town;
+            this.Form.ParentForm.VerifiedClientDetailsCheckBox.Checked = selectedGuest.IsVerified;
+        }
+
         #endregion
 
         #region Event Methods
@@ -185,6 +210,22 @@
         }
 
         /// <summary>
+        /// Handles the Load event of the Form control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void Form_Load(object sender, EventArgs e)
+        {
+            this.SearchForGuests();
+            if (this.Form.ClientSearchResultDataGridView.Rows.Count > 0)
+            {
+                this.Form.ClientSearchResultDataGridView.CurrentCell = this.Form.ClientSearchResultDataGridView.Rows[0].Cells[1];
+            }
+
+            this.SendClientInformationToParentForm();
+        }
+
+        /// <summary>
         /// Handles the CellClick event of the ClientSearchResultDataGridView control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -193,24 +234,26 @@
         {
             if (e.RowIndex >= 0)
             {
-                int guestId = (int)this.Form.ClientSearchResultDataGridView.Rows[e.RowIndex].Cells["Id"].Value;
+                this.SendClientInformationToParentForm();
 
-                Guest selectedGuest = DataAccess.Instance.Guests.Single(g => g.Id == guestId);
+                //int guestId = (int)this.Form.ClientSearchResultDataGridView.Rows[e.RowIndex].Cells["Id"].Value;
 
-                this.Form.ParentForm.ApartmentNumberClientDetailsTextBox.Text = selectedGuest.ApartmentNumber;
-                this.Form.ParentForm.CompanyNameClientDetailsTextBox.Text = selectedGuest.CompanyName;
-                this.Form.ParentForm.IDClientDetailsTextBox.Text = selectedGuest.Id.ToString();
-                this.Form.ParentForm.IDNumberClientDetailsTextBox.Text = selectedGuest.IdNumber;
-                this.Form.ParentForm.CountryClientDetailsTextBox.Text = selectedGuest.CountryId;
-                this.Form.ParentForm.EmailClientDetailsTextBox.Text = selectedGuest.Email;
-                this.Form.ParentForm.FirstNameClientDetailsTextBox.Text = selectedGuest.FirstName;
-                this.Form.ParentForm.HouseNumberClientDetailsTextBox.Text = selectedGuest.HouseNumber;
-                this.Form.ParentForm.LastNameClientDetailsTextBox.Text = selectedGuest.LastName;
-                this.Form.ParentForm.PhoneNumberClientDetailsTextBox.Text = selectedGuest.TelephoneNumber;
-                this.Form.ParentForm.PostCodeClientDetailsTextBox.Text = selectedGuest.PostCode;
-                this.Form.ParentForm.StreetClientDetailsTextBox.Text = selectedGuest.Street;
-                this.Form.ParentForm.TownClientDetailsTextBox.Text = selectedGuest.Town;
-                this.Form.ParentForm.VerifiedClientDetailsCheckBox.Checked = selectedGuest.IsVerified;
+                //Guest selectedGuest = DataAccess.Instance.Guests.Single(g => g.Id == guestId);
+
+                //this.Form.ParentForm.ApartmentNumberClientDetailsTextBox.Text = selectedGuest.ApartmentNumber;
+                //this.Form.ParentForm.CompanyNameClientDetailsTextBox.Text = selectedGuest.CompanyName;
+                //this.Form.ParentForm.IDClientDetailsTextBox.Text = selectedGuest.Id.ToString();
+                //this.Form.ParentForm.IDNumberClientDetailsTextBox.Text = selectedGuest.IdNumber;
+                //this.Form.ParentForm.CountryClientDetailsTextBox.Text = selectedGuest.CountryId;
+                //this.Form.ParentForm.EmailClientDetailsTextBox.Text = selectedGuest.Email;
+                //this.Form.ParentForm.FirstNameClientDetailsTextBox.Text = selectedGuest.FirstName;
+                //this.Form.ParentForm.HouseNumberClientDetailsTextBox.Text = selectedGuest.HouseNumber;
+                //this.Form.ParentForm.LastNameClientDetailsTextBox.Text = selectedGuest.LastName;
+                //this.Form.ParentForm.PhoneNumberClientDetailsTextBox.Text = selectedGuest.TelephoneNumber;
+                //this.Form.ParentForm.PostCodeClientDetailsTextBox.Text = selectedGuest.PostCode;
+                //this.Form.ParentForm.StreetClientDetailsTextBox.Text = selectedGuest.Street;
+                //this.Form.ParentForm.TownClientDetailsTextBox.Text = selectedGuest.Town;
+                //this.Form.ParentForm.VerifiedClientDetailsCheckBox.Checked = selectedGuest.IsVerified;
             }
         }
 
