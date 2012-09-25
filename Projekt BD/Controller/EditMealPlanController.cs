@@ -112,6 +112,17 @@
 
                     return;
             }
+            if (!dinner && !breakfast && !lunch)
+            {
+                MessageBox.Show(
+                        "Trzeba zaznaczyć posiłki!",
+                        "Błąd",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation,
+                        MessageBoxDefaultButton.Button1);
+
+                return;
+            }
 
             if ((startDate >= endDate) || count <= 0)
             {

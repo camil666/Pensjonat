@@ -194,7 +194,7 @@
         {
             var myProcess = new System.Diagnostics.Process();
             myProcess.StartInfo.FileName = "iexplore.exe";
-            myProcess.StartInfo.Arguments = Application.StartupPath + "/help.html";
+            myProcess.StartInfo.Arguments = Application.StartupPath + "\\Help\\help.html";
             myProcess.Start();
         }
 

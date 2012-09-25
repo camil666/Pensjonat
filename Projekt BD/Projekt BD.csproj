@@ -228,6 +228,7 @@
     </Compile>
     <EmbeddedResource Include="View\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ClientSearch.resx">
       <DependentUpon>ClientSearch.cs</DependentUpon>
@@ -325,6 +326,10 @@
       <Project>{E6F453D8-2BE3-44FD-B04E-6179B93DCDD5}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Help\help.html" />
+    <Content Include="Help\newcss.css" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
