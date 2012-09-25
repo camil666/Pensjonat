@@ -220,6 +220,7 @@
             }
 
             this.editsWereMade = true;
+            SetColumnNames(this.Form.RoomsToBeReservedDataGridView);
         }
 
         /// <summary>
