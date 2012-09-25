@@ -128,7 +128,7 @@
                         foreach (var service in visit.Services)
                         {
                             totalVisitCost += (double)service.ServiceType.Charge;
-                            writer.WriteLine(string.Format("{0}: {1}", service.ServiceType.Name, service.ServiceType.Charge));
+                            writer.WriteLine(string.Format("{0}x{1}: {2} zł", service.ServiceType.Name, service.Quantity, service.ServiceType.Charge));
                         }
 
                         writer.WriteLine("---");
