@@ -154,6 +154,7 @@
                 this.Form.ClientSearchResultDataGridView.Columns["PostCode"].HeaderText = "Kod pocztowy";
                 this.Form.ClientSearchResultDataGridView.Columns["CompanyName"].HeaderText = "Firma";
                 this.Form.ClientSearchResultDataGridView.Columns["CountryId"].HeaderText = "Kraj";
+                this.Form.ClientSearchResultDataGridView.Columns["IsVerified"].HeaderText = "Zweryfikowany";
                 this.Form.ClientSearchResultDataGridView.Columns["Discounts"].Visible = false;
                 this.Form.ClientSearchResultDataGridView.Columns["Reservations"].Visible = false;
                 this.Form.ClientSearchResultDataGridView.Columns["Visits"].Visible = false;
