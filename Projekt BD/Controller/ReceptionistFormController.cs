@@ -100,6 +100,7 @@
             this.Form.DeleteRoomButton.Click += this.DeleteRoomButton_Click;
             this.Form.DiscountsButton.Click += this.DiscountsButton_Click;
             this.Form.SettleVisitButton.Click += this.SettleVisitButton_Click;
+            this.Form.DeleteServiceTypeButton.Click += this.DeleteServiceTypeButton_Click;
         }
 
         /// <summary>
@@ -245,6 +246,53 @@
         #endregion
 
         #region Event Methods
+
+        /// <summary>
+        /// Handles the Click event of the DeleteServiceTypeButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void DeleteServiceTypeButton_Click(object sender, EventArgs e)
+        {
+            if (this.Form.ServiceDataGridView.SelectedRows.Count > 0)
+            {
+                DialogResult dialogResult = MessageBox.Show("Czy na pewno chcesz usunąć usługę?", "Potwierdzenie", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    try
+                    {
+                        int rowIndex = this.Form.ServiceDataGridView.SelectedRows[0].Index;
+                        int index = (int)this.Form.ServiceDataGridView["Id", rowIndex].Value;
+
+                        ServiceType type = DataAccess.Instance.ServiceTypes.Single(v => v.Id == index);
+
+                        DataAccess.Instance.ServiceTypes.Delete(type);
+
+                        DataAccess.Instance.UnitOfWork.Commit();
+
+                        this.RefreshServices();
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show(
+                            "Nie można usunąć usługi, która jest przypisana.",
+                            "Błąd",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Exclamation,
+                            MessageBoxDefaultButton.Button1);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Należy zaznaczyć usługę",
+                    "Błąd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
+            }
+        }
 
         /// <summary>
         /// Handles the Click event of the SettleVisitButton control.
