@@ -132,7 +132,7 @@
 
                 if (!string.IsNullOrEmpty(this.Form.TownClientSearchTextBox.Text))
                 {
-                    clients = clients.Where(l => l.Town.ToLowerInvariant().Contains(this.Form.PostCodeClientSearchTextBox.Text.ToLowerInvariant())).ToList();
+                    clients = clients.Where(l => l.Town.ToLowerInvariant().Contains(this.Form.TownClientSearchTextBox.Text.ToLowerInvariant())).ToList();
                 }
 
                 this.Form.ClientSearchResultDataGridView.DataSource = clients;
