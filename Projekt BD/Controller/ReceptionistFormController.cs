@@ -65,6 +65,7 @@
             this.Form.ClientSearchEnabledStripMenuItem.Click += this.ClientSearchEnabledStripMenuItem_Click;
             this.Form.ExitToolStripMenuItem.Click += this.ExitToolStripMenuItem_Click;
             this.Form.AboutToolStripMenuItem.Click += this.AboutToolStripMenuItem_Click;
+            this.Form.GetHelpToolStripMenuItem.Click += this.GetHelpToolStripMenuItem_Click;
             this.Form.NewClientButton.Click += this.NewClientButton_Click;
             this.Form.NewReservationButton.Click += this.NewReservationButton_Click;
             this.Form.EditMealPlansForVisit.Click += this.EditMealPlansForVisit_Click;
@@ -333,6 +334,14 @@
             MessageBoxButtons.OK,
             MessageBoxIcon.Asterisk,
             MessageBoxDefaultButton.Button1);
+        }
+
+        private void GetHelpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var myProcess = new System.Diagnostics.Process();
+            myProcess.StartInfo.FileName = "iexplore.exe";
+            myProcess.StartInfo.Arguments = Application.StartupPath + "/help.html";
+            myProcess.Start();
         }
 
         /// <summary>
