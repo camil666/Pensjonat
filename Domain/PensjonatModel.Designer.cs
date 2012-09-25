@@ -8,12 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
@@ -359,6 +360,7 @@ namespace Domain
         private ObjectSet<Visit> _Visits;
 
         #endregion
+
         #region AddTo Methods
     
         /// <summary>
@@ -498,11 +500,11 @@ namespace Domain
         }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entities
     
     /// <summary>
@@ -531,6 +533,7 @@ namespace Domain
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -609,6 +612,7 @@ namespace Domain
         partial void OnAmountChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -651,6 +655,7 @@ namespace Domain
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -695,6 +700,7 @@ namespace Domain
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1013,6 +1019,7 @@ namespace Domain
         partial void OnRoleIdChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1099,6 +1106,7 @@ namespace Domain
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1125,6 +1133,7 @@ namespace Domain
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1203,6 +1212,7 @@ namespace Domain
         partial void OnDescriptionChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1229,6 +1239,7 @@ namespace Domain
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1273,6 +1284,7 @@ namespace Domain
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1615,6 +1627,7 @@ namespace Domain
         partial void OnIsVerifiedChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1685,6 +1698,7 @@ namespace Domain
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1725,6 +1739,7 @@ namespace Domain
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1971,6 +1986,7 @@ namespace Domain
         partial void OnPriceChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1997,6 +2013,7 @@ namespace Domain
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2029,6 +2046,7 @@ namespace Domain
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2155,6 +2173,7 @@ namespace Domain
         partial void OnIdChanged();
 
         #endregion
+
     
     }
     
@@ -2188,6 +2207,7 @@ namespace Domain
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2338,6 +2358,7 @@ namespace Domain
         partial void OnIsVisitChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2402,6 +2423,7 @@ namespace Domain
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2428,6 +2450,7 @@ namespace Domain
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2482,6 +2505,7 @@ namespace Domain
         partial void OnIdChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2508,6 +2532,7 @@ namespace Domain
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2540,6 +2565,7 @@ namespace Domain
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2666,6 +2692,7 @@ namespace Domain
         partial void OnVacancyChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2774,6 +2801,7 @@ namespace Domain
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2802,6 +2830,7 @@ namespace Domain
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2928,6 +2957,7 @@ namespace Domain
         partial void OnIdChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -3008,6 +3038,7 @@ namespace Domain
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -3036,6 +3067,7 @@ namespace Domain
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -3162,6 +3194,7 @@ namespace Domain
         partial void OnDescriptionChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -3188,6 +3221,7 @@ namespace Domain
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -3214,6 +3248,7 @@ namespace Domain
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -3460,6 +3495,7 @@ namespace Domain
         partial void OnCustomChargeChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -3540,6 +3576,7 @@ namespace Domain
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -3566,6 +3603,7 @@ namespace Domain
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -3668,6 +3706,7 @@ namespace Domain
         partial void OnChargeChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -3732,6 +3771,7 @@ namespace Domain
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -3762,6 +3802,7 @@ namespace Domain
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -3960,6 +4001,7 @@ namespace Domain
         partial void OnTypeIdChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -4040,6 +4082,7 @@ namespace Domain
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -4066,6 +4109,7 @@ namespace Domain
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -4144,6 +4188,7 @@ namespace Domain
         partial void OnDescriptionChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -4170,6 +4215,7 @@ namespace Domain
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -4204,6 +4250,7 @@ namespace Domain
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -4426,6 +4473,7 @@ namespace Domain
         partial void OnSettledChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -4610,6 +4658,7 @@ namespace Domain
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -4642,6 +4691,7 @@ namespace Domain
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -4768,6 +4818,7 @@ namespace Domain
         partial void OnIdChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -4848,8 +4899,10 @@ namespace Domain
         }
 
         #endregion
+
     }
 
     #endregion
+
     
 }
