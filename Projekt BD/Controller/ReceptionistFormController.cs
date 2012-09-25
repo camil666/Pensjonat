@@ -554,12 +554,28 @@
 
                     foreach (var roomReservation in roomReservations)
                     {
-                        DataAccess.Instance.RoomReservations.Delete(roomReservation);
+                        try
+                        {
+                            DataAccess.Instance.RoomReservations.Delete(roomReservation);
+                        }
+                        catch (Exception)
+                        {
+                            DataAccess.Instance.UnitOfWork.Refresh(roomReservation);
+                            return;
+                        }
+                        
                     }
 
                     DataAccess.Instance.Reservations.Delete(reservationToBeDeleted);
-
-                    DataAccess.Instance.UnitOfWork.Commit();
+                    try
+                    {
+                        DataAccess.Instance.UnitOfWork.Commit();    
+                    }
+                    catch (Exception)
+                    {
+                        DataAccess.Instance.UnitOfWork.Refresh(reservationToBeDeleted);
+                        return;
+                    }
 
                     this.Form.ReservationSearchButton.PerformClick();
                 }
@@ -987,15 +1003,24 @@
         {
             if (this.Form.AllRoomsDataGridView.SelectedRows.Count > 0)
             {
+                Room room = null;
                 var selectedRowIndexes = this.Form.AllRoomsDataGridView.SelectedRows;
                 foreach (DataGridViewRow item in selectedRowIndexes)
                 {
                     var id = (int)this.Form.AllRoomsDataGridView["Number", item.Index].Value;
-                    var room = DataAccess.Instance.Rooms.Single(t => t.Number == id);
+                    room = DataAccess.Instance.Rooms.Single(t => t.Number == id);
                     DataAccess.Instance.Rooms.Delete(room);
                 }
-
-                DataAccess.Instance.UnitOfWork.Commit();
+                try
+                {
+                    DataAccess.Instance.UnitOfWork.Commit();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Pokój jest w użyciu! Nie można go usunąć!");
+                    DataAccess.Instance.UnitOfWork.Refresh(room);
+                }
+                
                 this.RefreshRooms();
             }
             else
@@ -1025,7 +1050,7 @@
                     }
 
                     DataAccess.Instance.UnitOfWork.Commit();
-                    this.RefreshFeatures();
+                    this.RefreshRoomTypes();
                 }
                 catch (Exception)
                 {
@@ -1048,15 +1073,25 @@
         {
             if (this.Form.RoomFeaturesDataGridView.SelectedRows.Count > 0)
             {
+                Feature feature = null;
                 var selectedRowIndexes = this.Form.RoomFeaturesDataGridView.SelectedRows;
                 foreach (DataGridViewRow item in selectedRowIndexes)
                 {
                     var id = (int)this.Form.RoomFeaturesDataGridView[0, item.Index].Value;
-                    var feature = DataAccess.Instance.Features.Single(t => t.Id == id);
+                    feature = DataAccess.Instance.Features.Single(t => t.Id == id);
                     DataAccess.Instance.Features.Delete(feature);
                 }
 
-                DataAccess.Instance.UnitOfWork.Commit();
+                try
+                {
+                    DataAccess.Instance.UnitOfWork.Commit();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Nie wolno usunąć udogodnienia pokoju, ponieważ istnieje pokój z takim udogodnieniem!");
+                    DataAccess.Instance.UnitOfWork.Refresh(feature);
+                }
+                
                 this.RefreshFeatures();
             }
             else

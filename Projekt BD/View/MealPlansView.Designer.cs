@@ -92,7 +92,7 @@
             this.Controls.Add(this.EditButton);
             this.Controls.Add(this.AddButton);
             this.Name = "MealPlansView";
-            this.Text = "MealPlansView";
+            this.Text = "Posiłki";
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).EndInit();
             this.ResumeLayout(false);
 

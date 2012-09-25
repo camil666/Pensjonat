@@ -115,9 +115,7 @@
         /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void AddButton_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(this.Form.ApartmentNumberTextBox.Text) ||
-                string.IsNullOrEmpty(this.Form.EmailTextBox.Text) ||
-                string.IsNullOrEmpty(this.Form.FirstNameTextBox.Text) ||
+            if (string.IsNullOrEmpty(this.Form.FirstNameTextBox.Text) ||
                 string.IsNullOrEmpty(this.Form.HouseNumberTextBox.Text) ||
                 string.IsNullOrEmpty(this.Form.LastNameTextBox.Text) ||
                 string.IsNullOrEmpty(this.Form.PostCodeTextBox.Text) ||

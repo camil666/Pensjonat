@@ -62,6 +62,11 @@
         private void SetColumnNamesAndVisibility()
         {
             this.Form.DataGridView.Columns["Id"].Visible = false;
+            this.Form.DataGridView.Columns["VisitMealPlanId"].Visible = false;
+            this.Form.DataGridView.Columns["Price"].HeaderText = "Cena";
+            this.Form.DataGridView.Columns["StartDate"].HeaderText = "Rozpoczęcie";
+            this.Form.DataGridView.Columns["EndDate"].HeaderText = "Zakończenie";
+            this.Form.DataGridView.Columns["PeopleCount"].HeaderText = "Liczba ludzi";
         }
 
         /// <summary>

@@ -76,11 +76,9 @@
         {
             if (string.IsNullOrEmpty(this.Form.FirstNameTextBox.Text) ||
                 string.IsNullOrEmpty(this.Form.LastNameTextBox.Text) ||
-                string.IsNullOrEmpty(this.Form.EmailTextBox.Text) ||
                 string.IsNullOrEmpty(this.Form.CountryTextBox.Text) ||
                 string.IsNullOrEmpty(this.Form.StreetTextBox.Text) ||
                 string.IsNullOrEmpty(this.Form.PostCodeTextBox.Text) ||
-                string.IsNullOrEmpty(this.Form.ApartmentNumberTextBox.Text) ||
                 string.IsNullOrEmpty(this.Form.HouseNumberTextBox.Text) ||
                 string.IsNullOrEmpty(this.Form.TownTextBox.Text) ||
                 string.IsNullOrEmpty(this.Form.PhoneNumberTextBox.Text))

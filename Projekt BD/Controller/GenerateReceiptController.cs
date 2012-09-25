@@ -132,7 +132,7 @@
                         foreach (var mealPlan in visit.VisitMealPlans)
                         {
                             totalVisitCost += (double)mealPlan.MealPlan.Price;
-                            writer.WriteLine(string.Format("Cena: {0} zł\t{1} - {2}", mealPlan.MealPlan.Price, mealPlan.StartDate, mealPlan.EndDate));
+                            writer.WriteLine(string.Format("Cena: {0} zł\t{1} - {2}", mealPlan.MealPlan.Price, mealPlan.StartDate.ToString("d"), mealPlan.EndDate.ToString("d")));
                         }
 
                         writer.WriteLine("---");
