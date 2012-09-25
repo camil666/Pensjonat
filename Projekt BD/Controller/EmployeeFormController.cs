@@ -84,6 +84,7 @@
         /// </summary>
         private void SetupEvents()
         {
+            this.Form.FormClosed += this.Form_Closed;
             this.Form.LoadButton.Click += this.LoadButton_Click;
             this.Form.Load += this.Form_Load;
             this.Form.SaveButton.Click += this.SaveButton_Click;
@@ -154,6 +155,16 @@
         #endregion
 
         #region Event Methods
+
+        /// <summary>
+        /// Handles the Closed event of the Form control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void Form_Closed(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
 
         /// <summary>
         /// Handles the Click event of the ExitToolStripMenuItem control.
