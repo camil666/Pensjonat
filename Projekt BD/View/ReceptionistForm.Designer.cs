@@ -132,6 +132,7 @@
             this.RefreshServiceButton = new System.Windows.Forms.Button();
             this.EditServiceButton = new System.Windows.Forms.Button();
             this.NewServiceButton = new System.Windows.Forms.Button();
+            this.SettleVisitButton = new System.Windows.Forms.Button();
             this.MenuStrip.SuspendLayout();
             this.VisitManagementTabPage.SuspendLayout();
             this.VisitSearchMainGroupBox.SuspendLayout();
@@ -214,14 +215,14 @@
             // AboutToolStripMenuItem
             // 
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.AboutToolStripMenuItem.Text = "&O programie...";
             // 
             // GetHelpToolStripMenuItem
             // 
             this.GetHelpToolStripMenuItem.Name = "GetHelpToolStripMenuItem";
             this.GetHelpToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.GetHelpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.GetHelpToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.GetHelpToolStripMenuItem.Text = "Pomoc";
             // 
             // VisitManagementTabPage
@@ -320,6 +321,7 @@
             // 
             // VisitActionsGroupBox
             // 
+            this.VisitActionsGroupBox.Controls.Add(this.SettleVisitButton);
             this.VisitActionsGroupBox.Controls.Add(this.EditMealPlansForVisit);
             this.VisitActionsGroupBox.Controls.Add(this.GenerateReceiptButton);
             this.VisitActionsGroupBox.Controls.Add(this.ServicesButton);
@@ -1199,6 +1201,15 @@
             this.NewServiceButton.Text = "Dodaj";
             this.NewServiceButton.UseVisualStyleBackColor = true;
             // 
+            // SettleVisitButton
+            // 
+            this.SettleVisitButton.Location = new System.Drawing.Point(50, 300);
+            this.SettleVisitButton.Name = "SettleVisitButton";
+            this.SettleVisitButton.Size = new System.Drawing.Size(150, 23);
+            this.SettleVisitButton.TabIndex = 5;
+            this.SettleVisitButton.Text = "Zapłacono...";
+            this.SettleVisitButton.UseVisualStyleBackColor = true;
+            // 
             // ReceptionistForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1351,5 +1362,6 @@
         public System.Windows.Forms.Button DeleteRoomButton;
         public System.Windows.Forms.Button DeleteServiceTypeButton;
         public System.Windows.Forms.ToolStripMenuItem GetHelpToolStripMenuItem;
+        public System.Windows.Forms.Button SettleVisitButton;
     }
 }

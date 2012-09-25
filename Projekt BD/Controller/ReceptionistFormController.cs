@@ -99,6 +99,7 @@
             this.Form.DeleteRoomTypeButton.Click += this.DeleteRoomTypeButton_Click;
             this.Form.DeleteRoomButton.Click += this.DeleteRoomButton_Click;
             this.Form.DiscountsButton.Click += this.DiscountsButton_Click;
+            this.Form.SettleVisitButton.Click += this.SettleVisitButton_Click;
         }
 
         /// <summary>
@@ -244,6 +245,38 @@
         #endregion
 
         #region Event Methods
+
+        /// <summary>
+        /// Handles the Click event of the SettleVisitButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void SettleVisitButton_Click(object sender, EventArgs e)
+        {
+            if (this.Form.VisitSearchResultsDataGridView.SelectedRows.Count > 0)
+            {
+                DialogResult dialogResult = MessageBox.Show("Czy na pewno chcesz oznaczyc pobyt jako rozliczony?", "Zapłacono", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    int selectedVisitId = (int)this.Form.VisitSearchResultsDataGridView.SelectedRows[0].Cells["Id"].Value;
+                    Visit visit = DataAccess.Instance.Visits.Single(v => v.Id == selectedVisitId);
+                    visit.Settled = true;
+
+                    DataAccess.Instance.UnitOfWork.Commit();
+
+                    this.Form.VisitSearchButton.PerformClick();
+                }
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Należy zaznaczyć pobyt",
+                    "Błąd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
+            }
+        }
 
         /// <summary>
         /// Handles the Closed event of the Form control.
@@ -754,6 +787,7 @@
                                               visit.Guest.LastName,
                                               visit.RoomId,
                                               visit.Advance,
+                                              visit.Settled,
                                               visit.StartDate,
                                               visit.EndDate,
                                               visit.AdditionalInfo
@@ -765,6 +799,7 @@
                 this.Form.VisitSearchResultsDataGridView.Columns["FirstName"].HeaderText = "Imię";
                 this.Form.VisitSearchResultsDataGridView.Columns["LastName"].HeaderText = "Nazwisko";
                 this.Form.VisitSearchResultsDataGridView.Columns["RoomId"].HeaderText = "Pokój";
+                this.Form.VisitSearchResultsDataGridView.Columns["Settled"].HeaderText = "Rozliczono";
                 this.Form.VisitSearchResultsDataGridView.Columns["Advance"].HeaderText = "Zaliczka";
                 this.Form.VisitSearchResultsDataGridView.Columns["StartDate"].HeaderText = "Data rozpoczęcia";
                 this.Form.VisitSearchResultsDataGridView.Columns["EndDate"].HeaderText = "Data zakończenia";
