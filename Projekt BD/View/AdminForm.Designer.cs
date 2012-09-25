@@ -120,12 +120,12 @@
             // SearchResultsDataGridView
             // 
             this.SearchResultsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.SearchResultsDataGridView.Location = new System.Drawing.Point(6, 165);
+            this.SearchResultsDataGridView.Location = new System.Drawing.Point(6, 147);
             this.SearchResultsDataGridView.MultiSelect = false;
             this.SearchResultsDataGridView.Name = "SearchResultsDataGridView";
             this.SearchResultsDataGridView.ReadOnly = true;
             this.SearchResultsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.SearchResultsDataGridView.Size = new System.Drawing.Size(549, 325);
+            this.SearchResultsDataGridView.Size = new System.Drawing.Size(549, 328);
             this.SearchResultsDataGridView.TabIndex = 75;
             this.SearchResultsDataGridView.TabStop = false;
             // 
@@ -255,14 +255,14 @@
             // AboutToolStripMenuItem
             // 
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.AboutToolStripMenuItem.Text = "&O programie";
             // 
             // GetHelpToolStripMenuItem
             // 
             this.GetHelpToolStripMenuItem.Name = "GetHelpToolStripMenuItem";
             this.GetHelpToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.GetHelpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.GetHelpToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.GetHelpToolStripMenuItem.Text = "&Pomoc";
             // 
             // AdminForm
