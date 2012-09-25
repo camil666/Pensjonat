@@ -273,10 +273,10 @@
             this.mealPrices = DataAccess.Instance.MealPrices.GetAll().FirstOrDefault();
             if (this.mealPrices != null)
             {
-                this.Form.BreakfastTextBox.Text = this.mealPrices.BreakfastPrice.ToString(CultureInfo.InvariantCulture);
-                this.Form.DinnerTextBox.Text = this.mealPrices.DinnerPrice.ToString(CultureInfo.InvariantCulture);
-                this.Form.LunchTextBox.Text = this.mealPrices.LunchPrice.ToString(CultureInfo.InvariantCulture);
-                this.Form.AllMealsTextBox.Text = this.mealPrices.ThreeMealsPrice.ToString(CultureInfo.InvariantCulture);
+                this.Form.BreakfastTextBox.Text = this.mealPrices.BreakfastPrice.ToString(CultureInfo.CurrentCulture);
+                this.Form.DinnerTextBox.Text = this.mealPrices.DinnerPrice.ToString(CultureInfo.CurrentCulture);
+                this.Form.LunchTextBox.Text = this.mealPrices.LunchPrice.ToString(CultureInfo.CurrentCulture);
+                this.Form.AllMealsTextBox.Text = this.mealPrices.ThreeMealsPrice.ToString(CultureInfo.CurrentCulture);
             }
         }
 
@@ -440,8 +440,6 @@
             myProcess.StartInfo.Arguments = Application.StartupPath + "/help.html";
             myProcess.Start();
         }
-
-        // TODO:task types
 
         /// <summary>
         /// Handles the Click event of the EditTaskTypeButton control.
