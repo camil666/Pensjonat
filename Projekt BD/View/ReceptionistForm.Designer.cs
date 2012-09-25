@@ -131,6 +131,7 @@
             this.RefreshServiceButton = new System.Windows.Forms.Button();
             this.EditServiceButton = new System.Windows.Forms.Button();
             this.NewServiceButton = new System.Windows.Forms.Button();
+            this.pomocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.VisitManagementTabPage.SuspendLayout();
             this.VisitSearchMainGroupBox.SuspendLayout();
@@ -204,7 +205,8 @@
             // HelpToolStripMenuItem
             // 
             this.HelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.AboutToolStripMenuItem});
+            this.AboutToolStripMenuItem,
+            this.pomocToolStripMenuItem});
             this.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem";
             this.HelpToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.HelpToolStripMenuItem.Text = "&Pomoc";
@@ -212,7 +214,7 @@
             // AboutToolStripMenuItem
             // 
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.AboutToolStripMenuItem.Text = "&O programie...";
             // 
             // VisitManagementTabPage
@@ -1190,6 +1192,12 @@
             this.NewServiceButton.Text = "Dodaj";
             this.NewServiceButton.UseVisualStyleBackColor = true;
             // 
+            // pomocToolStripMenuItem
+            // 
+            this.pomocToolStripMenuItem.Name = "pomocToolStripMenuItem";
+            this.pomocToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pomocToolStripMenuItem.Text = "Pomoc";
+            // 
             // ReceptionistForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1341,5 +1349,6 @@
         public System.Windows.Forms.Button DeleteRoomTypeButton;
         public System.Windows.Forms.Button DeleteRoomButton;
         public System.Windows.Forms.Button DeleteServiceTypeButton;
+        private System.Windows.Forms.ToolStripMenuItem pomocToolStripMenuItem;
     }
 }
