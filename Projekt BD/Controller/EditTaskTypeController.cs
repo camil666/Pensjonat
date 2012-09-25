@@ -29,7 +29,6 @@
             base.Form = new EditTaskTypeForm();
 
             this.SetupEvents();
-            this.SetupButtons();
         }
 
         #endregion
@@ -64,14 +63,6 @@
             this.Form.OkButton.Click += this.OkButton_Click;
         }
 
-        /// <summary>
-        /// Sets up the buttons.
-        /// </summary>
-        private void SetupButtons()
-        {
-            this.Form.OkButton.DialogResult = DialogResult.OK;
-            this.Form.CancButton.DialogResult = DialogResult.Cancel;
-        }
 
         #endregion
 

@@ -134,7 +134,7 @@
             int taskTypeId = 0;
             int.TryParse(this.Form.TaskTypeComboBox.SelectedValue.ToString(), out taskTypeId);
 
-            if (string.IsNullOrEmpty(taskName) || string.IsNullOrEmpty(taskDescription) || startDate >= endDate)
+            if (string.IsNullOrEmpty(taskName) || startDate >= endDate)
             {
                 MessageBox.Show(
                     "Podane wartości nie są prawidłowe lub pozostawiono niewypełnione pola.",
