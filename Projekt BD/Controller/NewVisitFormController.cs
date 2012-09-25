@@ -169,6 +169,8 @@
                 DataAccess.Instance.Visits.Add(visit);
             }
 
+            reservation.IsVisit = true;
+
             DataAccess.Instance.UnitOfWork.Commit();
             this.Form.Close();
         }

@@ -53,6 +53,11 @@
             this.objectContext.SaveChanges();
         }
 
+        /// <summary>
+        /// Refreshes the specified entity.
+        /// </summary>
+        /// <typeparam name="T">Class of object to refresh.</typeparam>
+        /// <param name="entity">The entity.</param>
         public void Refresh<T>(T entity)
         {
             this.objectContext.Refresh(entity);

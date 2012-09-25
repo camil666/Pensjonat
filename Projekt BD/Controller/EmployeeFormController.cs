@@ -84,9 +84,13 @@
         /// </summary>
         private void SetupEvents()
         {
+            this.Form.FormClosed += this.Form_Closed;
             this.Form.LoadButton.Click += this.LoadButton_Click;
             this.Form.Load += this.Form_Load;
             this.Form.SaveButton.Click += this.SaveButton_Click;
+            this.Form.ExitToolStripMenuItem.Click += this.ExitToolStripMenuItem_Click;
+            this.Form.AboutToolStripMenuItem.Click += this.AboutToolStripMenuItem_Click;
+            this.Form.GetHelpToolStripMenuItem.Click += this.GetHelpToolStripMenuItem_Click;
         }
 
         /// <summary>
@@ -151,6 +155,54 @@
         #endregion
 
         #region Event Methods
+
+        /// <summary>
+        /// Handles the Closed event of the Form control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void Form_Closed(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        /// <summary>
+        /// Handles the Click event of the ExitToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        /// <summary>
+        /// Handles the Click event of the AboutToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+            "Pensjonat\n\nKamil Socha\nMarcin Koba\nDawid Mazur\n2012",
+            "About",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Asterisk,
+            MessageBoxDefaultButton.Button1);
+        }
+
+        /// <summary>
+        /// Handles the Click event of the GetHelpToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void GetHelpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var myProcess = new System.Diagnostics.Process();
+            myProcess.StartInfo.FileName = "iexplore.exe";
+            myProcess.StartInfo.Arguments = Application.StartupPath + "/help.html";
+            myProcess.Start();
+        }
 
         /// <summary>
         /// Handles the Click event of the LoadButton control.

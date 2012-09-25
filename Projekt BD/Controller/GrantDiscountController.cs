@@ -63,7 +63,7 @@
             var discounts = (from discount in DataAccess.Instance.Discounts.Find(d => d.GuestId == this.ClientID)
                              select new { discount.Id, discount.Amount }).ToList();
 
-            if (discounts != null && discounts.Count > 0)
+            if (discounts != null && discounts.Count >= 0)
             {
                 this.Form.DiscountsDataGridView.DataSource = discounts;
 

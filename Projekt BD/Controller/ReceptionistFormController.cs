@@ -62,9 +62,11 @@
         /// </summary>
         private void SetupEvents()
         {
+            this.Form.FormClosed += this.Form_Closed;
             this.Form.ClientSearchEnabledStripMenuItem.Click += this.ClientSearchEnabledStripMenuItem_Click;
             this.Form.ExitToolStripMenuItem.Click += this.ExitToolStripMenuItem_Click;
             this.Form.AboutToolStripMenuItem.Click += this.AboutToolStripMenuItem_Click;
+            this.Form.GetHelpToolStripMenuItem.Click += this.GetHelpToolStripMenuItem_Click;
             this.Form.NewClientButton.Click += this.NewClientButton_Click;
             this.Form.NewReservationButton.Click += this.NewReservationButton_Click;
             this.Form.EditMealPlansForVisit.Click += this.EditMealPlansForVisit_Click;
@@ -97,6 +99,7 @@
             this.Form.DeleteRoomTypeButton.Click += this.DeleteRoomTypeButton_Click;
             this.Form.DeleteRoomButton.Click += this.DeleteRoomButton_Click;
             this.Form.DiscountsButton.Click += this.DiscountsButton_Click;
+            this.Form.SettleVisitButton.Click += this.SettleVisitButton_Click;
         }
 
         /// <summary>
@@ -116,7 +119,8 @@
                                         reservation.Id,
                                         reservation.StartDate,
                                         reservation.EndDate,
-                                        reservation.AdditionalInfo
+                                        reservation.AdditionalInfo,
+                                        reservation.IsVisit
                                     }).ToList();
 
                 this.Form.ReservationSearchResultDataGridView.DataSource = reservations;
@@ -125,6 +129,7 @@
                 this.Form.ReservationSearchResultDataGridView.Columns["StartDate"].HeaderText = "Data rozpoczęcia";
                 this.Form.ReservationSearchResultDataGridView.Columns["EndDate"].HeaderText = "Data zakończenia";
                 this.Form.ReservationSearchResultDataGridView.Columns["AdditionalInfo"].HeaderText = "Dodatkowe informacje";
+                this.Form.ReservationSearchResultDataGridView.Columns["IsVisit"].Visible = false;
             }
             else
             {
@@ -242,11 +247,53 @@
         #region Event Methods
 
         /// <summary>
+        /// Handles the Click event of the SettleVisitButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void SettleVisitButton_Click(object sender, EventArgs e)
+        {
+            if (this.Form.VisitSearchResultsDataGridView.SelectedRows.Count > 0)
+            {
+                DialogResult dialogResult = MessageBox.Show("Czy na pewno chcesz oznaczyc pobyt jako rozliczony?", "Zapłacono", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    int selectedVisitId = (int)this.Form.VisitSearchResultsDataGridView.SelectedRows[0].Cells["Id"].Value;
+                    Visit visit = DataAccess.Instance.Visits.Single(v => v.Id == selectedVisitId);
+                    visit.Settled = true;
+
+                    DataAccess.Instance.UnitOfWork.Commit();
+
+                    this.Form.VisitSearchButton.PerformClick();
+                }
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Należy zaznaczyć pobyt",
+                    "Błąd",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
+            }
+        }
+
+        /// <summary>
+        /// Handles the Closed event of the Form control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void Form_Closed(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        /// <summary>
         /// Handles the Click event of the DiscountsButton control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
-        void DiscountsButton_Click(object sender, EventArgs e)
+        private void DiscountsButton_Click(object sender, EventArgs e)
         {
             int selectedClientID = this.Form.ClientSearchWindow.SelectedClientID;
 
@@ -331,6 +378,19 @@
             MessageBoxButtons.OK,
             MessageBoxIcon.Asterisk,
             MessageBoxDefaultButton.Button1);
+        }
+
+        /// <summary>
+        /// Handles the Click event of the GetHelpToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void GetHelpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var myProcess = new System.Diagnostics.Process();
+            myProcess.StartInfo.FileName = "iexplore.exe";
+            myProcess.StartInfo.Arguments = Application.StartupPath + "/help.html";
+            myProcess.Start();
         }
 
         /// <summary>
@@ -727,6 +787,7 @@
                                               visit.Guest.LastName,
                                               visit.RoomId,
                                               visit.Advance,
+                                              visit.Settled,
                                               visit.StartDate,
                                               visit.EndDate,
                                               visit.AdditionalInfo
@@ -738,6 +799,7 @@
                 this.Form.VisitSearchResultsDataGridView.Columns["FirstName"].HeaderText = "Imię";
                 this.Form.VisitSearchResultsDataGridView.Columns["LastName"].HeaderText = "Nazwisko";
                 this.Form.VisitSearchResultsDataGridView.Columns["RoomId"].HeaderText = "Pokój";
+                this.Form.VisitSearchResultsDataGridView.Columns["Settled"].HeaderText = "Rozliczono";
                 this.Form.VisitSearchResultsDataGridView.Columns["Advance"].HeaderText = "Zaliczka";
                 this.Form.VisitSearchResultsDataGridView.Columns["StartDate"].HeaderText = "Data rozpoczęcia";
                 this.Form.VisitSearchResultsDataGridView.Columns["EndDate"].HeaderText = "Data zakończenia";
@@ -856,9 +918,17 @@
         {
             if (this.Form.ReservationSearchResultDataGridView.SelectedRows.Count > 0)
             {
+                if ((bool)this.Form.ReservationSearchResultDataGridView.SelectedRows[0].Cells["IsVisit"].Value == true)
+                {
+                    MessageBox.Show("Odpowiedni pobyt istnieje dla wybranej rezerwacji.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+                    return;
+                }
+
                 var controller = ControllerFactory.Instance.Create(ControllerTypes.NewVisitForm);
                 controller.ItemToEditID = int.Parse(this.Form.ReservationIDDetailsTextBox.Text);
                 controller.Form.ShowDialog();
+
+                this.RefreshReservationSearchResultDataGridView();
             }
             else
             {

@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-
-namespace Projekt_BD.View
+﻿namespace Projekt_BD.View
 {
+    using System.Windows.Forms;
+
     public partial class GrantDiscountForm : Form
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GrantDiscountForm" /> class.
+        /// </summary>
         public GrantDiscountForm()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

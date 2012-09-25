@@ -181,7 +181,7 @@
             this.Controls.Add(this.StartDateLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "GenerateReceiptForm";
-            this.Text = "Generowanie faktury";
+            this.Text = "Wystawianie rachunku";
             ((System.ComponentModel.ISupportInitialize)(this.GenerateForGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GuestsDataGridView)).EndInit();
             this.ResumeLayout(false);

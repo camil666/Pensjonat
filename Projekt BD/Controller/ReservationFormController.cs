@@ -311,7 +311,7 @@
         /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void EndDateDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            if (this.Form.StartDateDateTimePicker.Value <= this.Form.EndDateDateTimePicker.Value)
+            if (this.Form.StartDateDateTimePicker.Value >= this.Form.EndDateDateTimePicker.Value)
             {
                 this.Form.StartDateDateTimePicker.Value = this.Form.EndDateDateTimePicker.Value.Subtract(new TimeSpan(1, 0, 0, 0));
             }

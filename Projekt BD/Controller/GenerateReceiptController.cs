@@ -99,7 +99,7 @@
 
                     TextWriter writer = new StreamWriter(dialog.FileName);
 
-                    writer.WriteLine("Faktura");
+                    writer.WriteLine("Rachunek");
                     writer.WriteLine();
 
                     foreach (DataGridViewRow row in this.Form.GenerateForGridView.Rows)
@@ -172,7 +172,7 @@
                 }
 
                 MessageBox.Show(
-                    "Faktura została wygenerowana.",
+                    "Rachunek został wygenerowany.",
                     "Sukces",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information,
