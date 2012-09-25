@@ -961,11 +961,18 @@
         {
             if (this.Form.VisitSearchResultsDataGridView.SelectedRows.Count > 0)
             {
-                int rowIndex = this.Form.VisitSearchResultsDataGridView.SelectedRows[0].Index;
-                int index = (int)this.Form.VisitSearchResultsDataGridView["Id", rowIndex].Value;
-                var controller = ControllerFactory.Instance.Create(ControllerTypes.EditServiceForVisit);
-                controller.ItemToEditID = index;
-                controller.Form.ShowDialog();
+                if ((bool)this.Form.VisitSearchResultsDataGridView.SelectedRows[0].Cells["Settled"].Value == false)
+                {
+                    int rowIndex = this.Form.VisitSearchResultsDataGridView.SelectedRows[0].Index;
+                    int index = (int)this.Form.VisitSearchResultsDataGridView["Id", rowIndex].Value;
+                    var controller = ControllerFactory.Instance.Create(ControllerTypes.EditServiceForVisit);
+                    controller.ItemToEditID = index;
+                    controller.Form.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Nie można rezerwować usług dla rozliczonego pobytu.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+                }
             }
             else
             {
@@ -982,11 +989,18 @@
         {
             if (this.Form.VisitSearchResultsDataGridView.SelectedRows.Count > 0)
             {
-                int rowIndex = this.Form.VisitSearchResultsDataGridView.SelectedRows[0].Index;
-                int index = (int)this.Form.VisitSearchResultsDataGridView["Id", rowIndex].Value;
-                var controller = ControllerFactory.Instance.Create(ControllerTypes.MealPlansForm);
-                controller.ItemToEditID = index;
-                controller.Form.ShowDialog();
+                if ((bool)this.Form.VisitSearchResultsDataGridView.SelectedRows[0].Cells["Settled"].Value == false)
+                {
+                    int rowIndex = this.Form.VisitSearchResultsDataGridView.SelectedRows[0].Index;
+                    int index = (int)this.Form.VisitSearchResultsDataGridView["Id", rowIndex].Value;
+                    var controller = ControllerFactory.Instance.Create(ControllerTypes.MealPlansForm);
+                    controller.ItemToEditID = index;
+                    controller.Form.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Nie można edytować posiłków dla rozliczonego pobytu.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+                }
             }
             else
             {
