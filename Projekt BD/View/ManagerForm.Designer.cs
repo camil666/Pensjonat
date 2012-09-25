@@ -45,15 +45,21 @@
             this.TaskTypesDataGridView = new System.Windows.Forms.DataGridView();
             this.SettingsTabPage = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.BreakfastTextBox = new System.Windows.Forms.TextBox();
-            this.LunchTextBox = new System.Windows.Forms.TextBox();
-            this.DinnerTextBox = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.AllMealsTextBox = new System.Windows.Forms.TextBox();
             this.SaveButton = new System.Windows.Forms.Button();
+            this.AllMealsTextBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.DinnerTextBox = new System.Windows.Forms.TextBox();
+            this.LunchTextBox = new System.Windows.Forms.TextBox();
+            this.BreakfastTextBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.MenuStrip = new System.Windows.Forms.MenuStrip();
+            this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.GetHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.TasksTabPage.SuspendLayout();
             this.TasksGroupBox.SuspendLayout();
@@ -65,6 +71,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.TaskTypesDataGridView)).BeginInit();
             this.SettingsTabPage.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -72,10 +79,10 @@
             this.tabControl1.Controls.Add(this.TasksTabPage);
             this.tabControl1.Controls.Add(this.TaskTypesTabPage);
             this.tabControl1.Controls.Add(this.SettingsTabPage);
-            this.tabControl1.Location = new System.Drawing.Point(3, 3);
+            this.tabControl1.Location = new System.Drawing.Point(3, 27);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(718, 402);
+            this.tabControl1.Size = new System.Drawing.Size(718, 378);
             this.tabControl1.TabIndex = 0;
             // 
             // TasksTabPage
@@ -85,7 +92,7 @@
             this.TasksTabPage.Location = new System.Drawing.Point(4, 22);
             this.TasksTabPage.Name = "TasksTabPage";
             this.TasksTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.TasksTabPage.Size = new System.Drawing.Size(710, 376);
+            this.TasksTabPage.Size = new System.Drawing.Size(710, 352);
             this.TasksTabPage.TabIndex = 0;
             this.TasksTabPage.Text = "Zadania";
             this.TasksTabPage.UseVisualStyleBackColor = true;
@@ -164,7 +171,7 @@
             this.TaskTypesTabPage.Location = new System.Drawing.Point(4, 22);
             this.TaskTypesTabPage.Name = "TaskTypesTabPage";
             this.TaskTypesTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.TaskTypesTabPage.Size = new System.Drawing.Size(710, 376);
+            this.TaskTypesTabPage.Size = new System.Drawing.Size(710, 352);
             this.TaskTypesTabPage.TabIndex = 1;
             this.TaskTypesTabPage.Text = "Typy zadań";
             this.TaskTypesTabPage.UseVisualStyleBackColor = true;
@@ -224,7 +231,7 @@
             this.SettingsTabPage.Location = new System.Drawing.Point(4, 22);
             this.SettingsTabPage.Name = "SettingsTabPage";
             this.SettingsTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.SettingsTabPage.Size = new System.Drawing.Size(710, 376);
+            this.SettingsTabPage.Size = new System.Drawing.Size(710, 352);
             this.SettingsTabPage.TabIndex = 2;
             this.SettingsTabPage.Text = "Ustawienia";
             this.SettingsTabPage.UseVisualStyleBackColor = true;
@@ -247,53 +254,21 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ustawienia";
             // 
-            // label1
+            // SaveButton
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 37);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Cena śniadania";
+            this.SaveButton.Location = new System.Drawing.Point(69, 149);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(115, 23);
+            this.SaveButton.TabIndex = 8;
+            this.SaveButton.Text = "Zapisz ustawienia";
+            this.SaveButton.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // AllMealsTextBox
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 66);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Cena obiadu";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 91);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Cena kolacji";
-            // 
-            // BreakfastTextBox
-            // 
-            this.BreakfastTextBox.Location = new System.Drawing.Point(145, 34);
-            this.BreakfastTextBox.Name = "BreakfastTextBox";
-            this.BreakfastTextBox.Size = new System.Drawing.Size(100, 20);
-            this.BreakfastTextBox.TabIndex = 3;
-            // 
-            // LunchTextBox
-            // 
-            this.LunchTextBox.Location = new System.Drawing.Point(145, 63);
-            this.LunchTextBox.Name = "LunchTextBox";
-            this.LunchTextBox.Size = new System.Drawing.Size(100, 20);
-            this.LunchTextBox.TabIndex = 4;
-            // 
-            // DinnerTextBox
-            // 
-            this.DinnerTextBox.Location = new System.Drawing.Point(145, 88);
-            this.DinnerTextBox.Name = "DinnerTextBox";
-            this.DinnerTextBox.Size = new System.Drawing.Size(100, 20);
-            this.DinnerTextBox.TabIndex = 5;
+            this.AllMealsTextBox.Location = new System.Drawing.Point(145, 114);
+            this.AllMealsTextBox.Name = "AllMealsTextBox";
+            this.AllMealsTextBox.Size = new System.Drawing.Size(100, 20);
+            this.AllMealsTextBox.TabIndex = 7;
             // 
             // label4
             // 
@@ -304,21 +279,99 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Cena trzech posiłków";
             // 
-            // AllMealsTextBox
+            // DinnerTextBox
             // 
-            this.AllMealsTextBox.Location = new System.Drawing.Point(145, 114);
-            this.AllMealsTextBox.Name = "AllMealsTextBox";
-            this.AllMealsTextBox.Size = new System.Drawing.Size(100, 20);
-            this.AllMealsTextBox.TabIndex = 7;
+            this.DinnerTextBox.Location = new System.Drawing.Point(145, 88);
+            this.DinnerTextBox.Name = "DinnerTextBox";
+            this.DinnerTextBox.Size = new System.Drawing.Size(100, 20);
+            this.DinnerTextBox.TabIndex = 5;
             // 
-            // SaveButton
+            // LunchTextBox
             // 
-            this.SaveButton.Location = new System.Drawing.Point(69, 149);
-            this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(115, 23);
-            this.SaveButton.TabIndex = 8;
-            this.SaveButton.Text = "Zapisz ustawienia";
-            this.SaveButton.UseVisualStyleBackColor = true;
+            this.LunchTextBox.Location = new System.Drawing.Point(145, 63);
+            this.LunchTextBox.Name = "LunchTextBox";
+            this.LunchTextBox.Size = new System.Drawing.Size(100, 20);
+            this.LunchTextBox.TabIndex = 4;
+            // 
+            // BreakfastTextBox
+            // 
+            this.BreakfastTextBox.Location = new System.Drawing.Point(145, 34);
+            this.BreakfastTextBox.Name = "BreakfastTextBox";
+            this.BreakfastTextBox.Size = new System.Drawing.Size(100, 20);
+            this.BreakfastTextBox.TabIndex = 3;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 91);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Cena kolacji";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 66);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Cena obiadu";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 37);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(80, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Cena śniadania";
+            // 
+            // MenuStrip
+            // 
+            this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FileToolStripMenuItem,
+            this.HelpToolStripMenuItem});
+            this.MenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.MenuStrip.Name = "MenuStrip";
+            this.MenuStrip.Size = new System.Drawing.Size(721, 24);
+            this.MenuStrip.TabIndex = 1;
+            this.MenuStrip.Text = "menuStrip1";
+            // 
+            // FileToolStripMenuItem
+            // 
+            this.FileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ExitToolStripMenuItem});
+            this.FileToolStripMenuItem.Name = "FileToolStripMenuItem";
+            this.FileToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
+            this.FileToolStripMenuItem.Text = "&Plik";
+            // 
+            // ExitToolStripMenuItem
+            // 
+            this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ExitToolStripMenuItem.Text = "&Wyjście";
+            // 
+            // HelpToolStripMenuItem
+            // 
+            this.HelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AboutToolStripMenuItem,
+            this.GetHelpToolStripMenuItem});
+            this.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem";
+            this.HelpToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.HelpToolStripMenuItem.Text = "&Pomoc";
+            // 
+            // AboutToolStripMenuItem
+            // 
+            this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.AboutToolStripMenuItem.Text = "&O programie";
+            // 
+            // GetHelpToolStripMenuItem
+            // 
+            this.GetHelpToolStripMenuItem.Name = "GetHelpToolStripMenuItem";
+            this.GetHelpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.GetHelpToolStripMenuItem.Text = "&Pomoc";
             // 
             // ManagerForm
             // 
@@ -326,6 +379,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(721, 405);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.MenuStrip);
+            this.MainMenuStrip = this.MenuStrip;
             this.Name = "ManagerForm";
             this.Text = "ManagerForm";
             this.tabControl1.ResumeLayout(false);
@@ -340,7 +395,10 @@
             this.SettingsTabPage.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.MenuStrip.ResumeLayout(false);
+            this.MenuStrip.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -372,5 +430,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.MenuStrip MenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem FileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem GetHelpToolStripMenuItem;
     }
 }

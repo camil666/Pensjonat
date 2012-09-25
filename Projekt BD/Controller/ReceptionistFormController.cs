@@ -336,6 +336,11 @@
             MessageBoxDefaultButton.Button1);
         }
 
+        /// <summary>
+        /// Handles the Click event of the GetHelpToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void GetHelpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var myProcess = new System.Diagnostics.Process();

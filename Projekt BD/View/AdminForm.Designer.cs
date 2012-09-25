@@ -45,9 +45,16 @@
             this.LastNameSearchLabel = new System.Windows.Forms.Label();
             this.FirstNameSearchTextBox = new System.Windows.Forms.TextBox();
             this.FirstNameSearchLabel = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.GetHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ActionsGroupBox.SuspendLayout();
             this.SearchGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SearchResultsDataGridView)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // ActionsGroupBox
@@ -55,9 +62,9 @@
             this.ActionsGroupBox.Controls.Add(this.ChangeEmployeeDetailsButton);
             this.ActionsGroupBox.Controls.Add(this.DeleteEmployeeButton);
             this.ActionsGroupBox.Controls.Add(this.AddEmployeeButton);
-            this.ActionsGroupBox.Location = new System.Drawing.Point(12, 12);
+            this.ActionsGroupBox.Location = new System.Drawing.Point(12, 27);
             this.ActionsGroupBox.Name = "ActionsGroupBox";
-            this.ActionsGroupBox.Size = new System.Drawing.Size(193, 496);
+            this.ActionsGroupBox.Size = new System.Drawing.Size(193, 481);
             this.ActionsGroupBox.TabIndex = 1;
             this.ActionsGroupBox.TabStop = false;
             this.ActionsGroupBox.Text = "Akcje predefiniowane";
@@ -103,9 +110,9 @@
             this.SearchGroupBox.Controls.Add(this.LastNameSearchLabel);
             this.SearchGroupBox.Controls.Add(this.FirstNameSearchTextBox);
             this.SearchGroupBox.Controls.Add(this.FirstNameSearchLabel);
-            this.SearchGroupBox.Location = new System.Drawing.Point(211, 12);
+            this.SearchGroupBox.Location = new System.Drawing.Point(211, 27);
             this.SearchGroupBox.Name = "SearchGroupBox";
-            this.SearchGroupBox.Size = new System.Drawing.Size(561, 496);
+            this.SearchGroupBox.Size = new System.Drawing.Size(561, 481);
             this.SearchGroupBox.TabIndex = 2;
             this.SearchGroupBox.TabStop = false;
             this.SearchGroupBox.Text = "Wyszukiwanie";
@@ -211,6 +218,52 @@
             this.FirstNameSearchLabel.TabIndex = 63;
             this.FirstNameSearchLabel.Text = "Imię:";
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FileToolStripMenuItem,
+            this.HelpToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(784, 24);
+            this.menuStrip1.TabIndex = 3;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // FileToolStripMenuItem
+            // 
+            this.FileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ExitToolStripMenuItem});
+            this.FileToolStripMenuItem.Name = "FileToolStripMenuItem";
+            this.FileToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
+            this.FileToolStripMenuItem.Text = "&Plik";
+            // 
+            // ExitToolStripMenuItem
+            // 
+            this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ExitToolStripMenuItem.Text = "&Wyjście";
+            // 
+            // HelpToolStripMenuItem
+            // 
+            this.HelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AboutToolStripMenuItem,
+            this.GetHelpToolStripMenuItem});
+            this.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem";
+            this.HelpToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.HelpToolStripMenuItem.Text = "&Pomoc";
+            // 
+            // AboutToolStripMenuItem
+            // 
+            this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.AboutToolStripMenuItem.Text = "&O programie";
+            // 
+            // GetHelpToolStripMenuItem
+            // 
+            this.GetHelpToolStripMenuItem.Name = "GetHelpToolStripMenuItem";
+            this.GetHelpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.GetHelpToolStripMenuItem.Text = "&Pomoc";
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -218,14 +271,19 @@
             this.ClientSize = new System.Drawing.Size(784, 520);
             this.Controls.Add(this.SearchGroupBox);
             this.Controls.Add(this.ActionsGroupBox);
+            this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "AdminForm";
             this.Text = "Moduł Administratora";
             this.ActionsGroupBox.ResumeLayout(false);
             this.SearchGroupBox.ResumeLayout(false);
             this.SearchGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SearchResultsDataGridView)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -248,5 +306,11 @@
         public System.Windows.Forms.TextBox LoginSearchTextBox;
         public System.Windows.Forms.Button SearchButton;
         public System.Windows.Forms.DataGridView SearchResultsDataGridView;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem FileToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem GetHelpToolStripMenuItem;
     }
 }

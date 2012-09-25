@@ -169,6 +169,9 @@
             this.Form.RemoveTasksButton.Click += this.RemoveTasksButton_Click;
             this.Form.EditTaskButton.Click += this.EditTasksButton_Click;
             this.Form.EmployeesDataGridView.CellMouseClick += this.EmployeeCellMouse_Click;
+            this.Form.ExitToolStripMenuItem.Click += this.ExitToolStripMenuItem_Click;
+            this.Form.AboutToolStripMenuItem.Click += this.AboutToolStripMenuItem_Click;
+            this.Form.GetHelpToolStripMenuItem.Click += this.GetHelpToolStripMenuItem_Click;
 
             this.Form.AddTaskTypeButton.Click += this.AddTaskTypeButton_Click;
             this.Form.DeleteTaskTypeButton.Click += this.DeleteTaskTypeButton_Click;
@@ -387,6 +390,44 @@
         private void EmployeeCellMouse_Click(object sender, DataGridViewCellMouseEventArgs e)
         {
             this.LoadTasks();
+        }
+
+        /// <summary>
+        /// Handles the Click event of the ExitToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        /// <summary>
+        /// Handles the Click event of the AboutToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+            "Pensjonat\n\nKamil Socha\nMarcin Koba\nDawid Mazur\n2012",
+            "About",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Asterisk,
+            MessageBoxDefaultButton.Button1);
+        }
+
+        /// <summary>
+        /// Handles the Click event of the GetHelpToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        private void GetHelpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var myProcess = new System.Diagnostics.Process();
+            myProcess.StartInfo.FileName = "iexplore.exe";
+            myProcess.StartInfo.Arguments = Application.StartupPath + "/help.html";
+            myProcess.Start();
         }
 
         // TODO:task types
