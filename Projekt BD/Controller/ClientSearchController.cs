@@ -100,11 +100,10 @@
                     clients = clients.Where(l => l.CompanyName.ToLowerInvariant().Contains(this.Form.CompanyNameClientSearchTextBox.Text.ToLowerInvariant())).ToList();
                 }
 
-                //TODO: szukanie po nazwie kraju a nie jego id, albo zmiana bazy
-                //if (!string.IsNullOrEmpty(this.Form.CountryClientSearchTextBox.Text))
-                //{
-                //    clients = clients.Where(l => l.CountryId.Contains(this.Form.CountryClientSearchTextBox.Text)).ToList();
-                //}
+                if (!string.IsNullOrEmpty(this.Form.CountryClientSearchTextBox.Text))
+                {
+                    clients = clients.Where(l => l.CountryId.Contains(this.Form.CountryClientSearchTextBox.Text)).ToList();
+                }
 
                 if (!string.IsNullOrEmpty(this.Form.StreetClientSearchTextBox.Text))
                 {
@@ -235,25 +234,6 @@
             if (e.RowIndex >= 0)
             {
                 this.SendClientInformationToParentForm();
-
-                //int guestId = (int)this.Form.ClientSearchResultDataGridView.Rows[e.RowIndex].Cells["Id"].Value;
-
-                //Guest selectedGuest = DataAccess.Instance.Guests.Single(g => g.Id == guestId);
-
-                //this.Form.ParentForm.ApartmentNumberClientDetailsTextBox.Text = selectedGuest.ApartmentNumber;
-                //this.Form.ParentForm.CompanyNameClientDetailsTextBox.Text = selectedGuest.CompanyName;
-                //this.Form.ParentForm.IDClientDetailsTextBox.Text = selectedGuest.Id.ToString();
-                //this.Form.ParentForm.IDNumberClientDetailsTextBox.Text = selectedGuest.IdNumber;
-                //this.Form.ParentForm.CountryClientDetailsTextBox.Text = selectedGuest.CountryId;
-                //this.Form.ParentForm.EmailClientDetailsTextBox.Text = selectedGuest.Email;
-                //this.Form.ParentForm.FirstNameClientDetailsTextBox.Text = selectedGuest.FirstName;
-                //this.Form.ParentForm.HouseNumberClientDetailsTextBox.Text = selectedGuest.HouseNumber;
-                //this.Form.ParentForm.LastNameClientDetailsTextBox.Text = selectedGuest.LastName;
-                //this.Form.ParentForm.PhoneNumberClientDetailsTextBox.Text = selectedGuest.TelephoneNumber;
-                //this.Form.ParentForm.PostCodeClientDetailsTextBox.Text = selectedGuest.PostCode;
-                //this.Form.ParentForm.StreetClientDetailsTextBox.Text = selectedGuest.Street;
-                //this.Form.ParentForm.TownClientDetailsTextBox.Text = selectedGuest.Town;
-                //this.Form.ParentForm.VerifiedClientDetailsCheckBox.Checked = selectedGuest.IsVerified;
             }
         }
 

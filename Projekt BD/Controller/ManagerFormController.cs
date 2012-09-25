@@ -482,6 +482,7 @@
                         taskType = DataAccess.Instance.TaskTypes.Single(t => t.Id == id);
                         DataAccess.Instance.TaskTypes.Delete(taskType);
                     }
+
                     DataAccess.Instance.UnitOfWork.Commit();
                     this.LoadTaskTypes();
                 }

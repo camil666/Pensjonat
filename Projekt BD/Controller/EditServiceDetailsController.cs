@@ -14,20 +14,8 @@
         #region Fields
 
         /// <summary>
-        /// Name of the Id column.
+        /// Holds single service.
         /// </summary>
-        private static readonly string IdColumnName = "Id";
-
-        /// <summary>
-        /// Name of the Name column.
-        /// </summary>
-        private static readonly string NameColumnName = "Name";
-
-        /// <summary>
-        /// Name of the IsAdded column.
-        /// </summary>
-        private static readonly string IsAddedColumnName = "IsAdded";
-
         private Service service;
 
         #endregion
@@ -93,8 +81,8 @@
             this.Form.TypeComboBox.ValueMember = "Key";
             if (this.IsEditForm)
             {
-                this.service = DataAccess.Instance.Services.Single(x => x.Id == ItemToEditID);
-                this.Form.TypeComboBox.Text = availableTypes.Where(x => x.Key == service.TypeId).Select(x => x.Value).FirstOrDefault();
+                this.service = DataAccess.Instance.Services.Single(x => x.Id == this.ItemToEditID);
+                this.Form.TypeComboBox.Text = availableTypes.Where(x => x.Key == this.service.TypeId).Select(x => x.Value).FirstOrDefault();
 
                 this.Form.CustomNameTextBox.Text = this.service.CustomName;
                 this.Form.CustomDescriptionTextBox.Text = this.service.CustomDescription;

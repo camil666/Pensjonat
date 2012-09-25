@@ -195,6 +195,7 @@
 
                 return;
             }
+
             Room room = null;
             if (this.IsEditForm)
             {
@@ -219,6 +220,7 @@
                 DataAccess.Instance.Rooms.Add(room);
                 this.AddFeaturesToRoom(room);
             }
+
             try
             {
                 DataAccess.Instance.UnitOfWork.Commit();
@@ -228,7 +230,6 @@
                 MessageBox.Show("Pokój o danym numerze już istnieje!");
                 DataAccess.Instance.UnitOfWork.Refresh(room);
             }
-            
 
             this.Form.Dispose();
         }

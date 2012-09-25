@@ -260,7 +260,7 @@
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
-        void DiscountsButton_Click(object sender, EventArgs e)
+        private void DiscountsButton_Click(object sender, EventArgs e)
         {
             int selectedClientID = this.Form.ClientSearchWindow.SelectedClientID;
 

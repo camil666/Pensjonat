@@ -22,6 +22,11 @@
         /// </summary>
         void SaveChanges();
 
+        /// <summary>
+        /// Refreshes the specified entity.
+        /// </summary>
+        /// <typeparam name="T">Class of object to refresh.</typeparam>
+        /// <param name="entity">The entity.</param>
         void Refresh<T>(T entity);
         
         #endregion
