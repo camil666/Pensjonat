@@ -88,6 +88,7 @@
         {
             if (this.GenerateForDataSource.Count > 0)
             {
+                double? advance = null;
                 var dialog = new SaveFileDialog();
                 dialog.DefaultExt = "txt";
                 dialog.Filter = "txt files (*.txt)|*.txt";
@@ -106,6 +107,10 @@
                     {
                         int visitId = (int)row.Cells["Id"].Value;
                         var visit = DataAccess.Instance.Visits.Single(r => r.Id == visitId);
+                        if (visit.Advance != null)
+                        {
+                            advance = visit.Advance;
+                        }
 
                         int visitDuration = visit.EndDate.Subtract(visit.StartDate).Days;
                         double roomPrice = (double)visit.Room.RoomType.PricePerPerson;
@@ -163,6 +168,14 @@
 
                     if (this.GenerateForDataSource.Count > 1)
                     {
+                        if (advance != null)
+                        {
+                            writer.WriteLine();
+                            writer.WriteLine("------");
+                            writer.WriteLine("Zaliczka: {0} zł", advance);
+                            totalGroupCost -= (double)advance;
+                        }
+
                         writer.WriteLine();
                         writer.WriteLine("------");
                         writer.WriteLine("Cena za grupę: {0} zł", totalGroupCost);
