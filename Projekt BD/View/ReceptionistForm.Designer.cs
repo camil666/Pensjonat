@@ -214,13 +214,14 @@
             // AboutToolStripMenuItem
             // 
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.AboutToolStripMenuItem.Text = "&O programie...";
             // 
             // GetHelpToolStripMenuItem
             // 
             this.GetHelpToolStripMenuItem.Name = "GetHelpToolStripMenuItem";
-            this.GetHelpToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.GetHelpToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
+            this.GetHelpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.GetHelpToolStripMenuItem.Text = "Pomoc";
             // 
             // VisitManagementTabPage

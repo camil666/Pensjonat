@@ -108,7 +108,7 @@
             // ExitToolStripMenuItem
             // 
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.ExitToolStripMenuItem.Text = "&Wyjście";
             // 
             // HelpToolStripMenuItem
@@ -129,6 +129,7 @@
             // GetHelpToolStripMenuItem
             // 
             this.GetHelpToolStripMenuItem.Name = "GetHelpToolStripMenuItem";
+            this.GetHelpToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
             this.GetHelpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.GetHelpToolStripMenuItem.Text = "&Pomoc";
             // 
